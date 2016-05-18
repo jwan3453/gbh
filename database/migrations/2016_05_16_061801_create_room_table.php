@@ -19,7 +19,8 @@ class CreateRoomTable extends Migration
             $table->integer('room_type')->default(0);
             $table->integer('hotel_id')->default(0);
             $table->string('attribute',500);//json
-            $table->integer('num');
+            $table->string('room_name',50);
+            $table->string('room_name_english',50);
 
             $table->timestamps();
         });
