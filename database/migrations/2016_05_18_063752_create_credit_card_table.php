@@ -3,23 +3,21 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRoomFacilityTable extends Migration
+class CreateCreditCardTable extends Migration
 {
     /**
      * Run the migrations.
      *
-     *----房间设备表-----
+     *---信用卡信息-----
      *
      * @return void
      */
     public function up()
     {
-        Schema::create('room_facility', function (Blueprint $table) {
+        Schema::create('credit_card', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('facility_name',20);
-            $table->string('facility_icon',10);
-            $table->integer('facility_type');
-          
+            $table->integer('credit_type');//--国内银联卡/国内各类银行卡明细/国外信用卡明细
+            $table->string('credit_name');
         });
     }
 
@@ -30,6 +28,6 @@ class CreateRoomFacilityTable extends Migration
      */
     public function down()
     {
-        Schema::drop('room_facility');
+        Schema::drop('credit_card');
     }
 }
