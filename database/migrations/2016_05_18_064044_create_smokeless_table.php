@@ -8,6 +8,8 @@ class CreateSmokelessTable extends Migration
     /**
      * Run the migrations.
      *
+     *----无烟-----
+     *
      * @return void
      */
     public function up()
