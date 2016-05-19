@@ -1,0 +1,154 @@
+body{
+	margin: 0;
+}
+
+/***************公用*******************/
+
+.regular-btn{
+	line-height: 50px;
+	text-align: center;
+	font-size:16px;	
+	border: none;
+	height:30px;
+}
+.red-btn{
+	background-color:red;
+}
+
+::-webkit-input-placeholder { color:#f8f8f8; }
+::-moz-placeholder { color:#f8f8f8; } /* firefox 19+ */
+:-ms-input-placeholder { color:#f8f8f8; } /* ie */
+input:-moz-placeholder { color:#f8f8f8; }
+
+
+/*****************公用***end*********************/
+
+
+/*************登录页面**************/
+
+.login-box {
+	width:100%; 
+	height: 100%;
+}
+
+.login-box .brackgroud-img{
+	position:fixed; 
+	width:100%; 
+	height: 100%;
+	z-index: -1;
+	margin-top: -6.33%;
+}
+
+.logo-div{
+	width: 50%;
+	text-align: center;
+	margin: 0 auto;
+	margin-top: 6.33%;
+}
+
+.logo-div img{
+	width: 100%;
+}
+
+
+.login-form-box{
+	width: 87.5%;
+	height :15.845%;
+	margin: 0 auto;
+	margin-top: 12.323%;
+}
+
+.login-username-box{
+	width: 100%;
+	height: 45px;
+	border-bottom: 1px solid #f8f8f8;
+	line-height: 60px;
+	position: relative;
+}
+
+.login-password-box{
+	width: 100%;
+	height: 45px;
+	margin-top: 2.333%;
+	border-bottom: 1px solid #f8f8f8;
+	align:middle;
+	line-height: 60px;
+	position: relative;
+}
+
+
+.login-input-icon{
+	width:26px;
+	height:26px;
+	margin-left:8px;
+}
+
+.login-input-icon .login-input-icon{
+	width: 	100%;
+}
+
+.login-button-box{
+	width: 100%;
+	margin-top:30px;
+}
+
+
+.login-button{
+	width: 100%;
+	font-size: 20px;
+	background: #f8f8f8;
+	color: #eda26a ;
+	border-radius: 6px;
+	border: 0;
+	height:40px;
+	line-height: 40px;
+}
+
+.register-button{
+	width: 100%;
+	font-size: 20px;
+	background: transparent none;
+	box-shadow: 0px 0px 0px 1px #f8f8f8 inset;
+	color: #f8f8f8 ;
+	border-radius: 6px;
+	margin-top: 20px;
+	height:40px;
+	line-height: 40px;
+}
+
+.login-input-base-left{
+	width: 1px;
+	position:absolute;
+	bottom: 0;
+	
+}
+
+.login-input-base-right{
+	width: 1px;
+	position:absolute;
+	bottom:0px;
+ 	right:0;
+}
+
+.login-text-box{
+	margin-top: 10px;
+	text-align: right;
+}
+
+.text-forget{
+	color: #f8f8f8;
+	font-size: 18px;
+}
+
+.login-username-input{
+	width: 80%;
+	font-size: 16px;
+	top:10px;
+	left:48px;
+	position: absolute;
+	background: transparent none;
+	border: 0;
+}
+
+
+/*************首页***end***********/
