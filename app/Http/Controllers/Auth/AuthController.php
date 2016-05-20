@@ -68,4 +68,9 @@ class AuthController extends Controller
     {
         return view('GbhMobile.login');
     }
+
+    public function registerPage()
+    {
+        return view('GbhMobile.register');
+    }
 }

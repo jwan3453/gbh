@@ -15,10 +15,7 @@ body{
 	background-color:red;
 }
 
-::-webkit-input-placeholder { color:#f8f8f8; }
-::-moz-placeholder { color:#f8f8f8; } /* firefox 19+ */
-:-ms-input-placeholder { color:#f8f8f8; } /* ie */
-input:-moz-placeholder { color:#f8f8f8; }
+
 
 
 /*****************公用***end*********************/
@@ -104,7 +101,7 @@ input:-moz-placeholder { color:#f8f8f8; }
 	line-height: 40px;
 }
 
-.register-button{
+.login-to-register-button{
 	width: 100%;
 	font-size: 20px;
 	background: transparent none;
@@ -143,7 +140,8 @@ input:-moz-placeholder { color:#f8f8f8; }
 .login-username-input{
 	width: 80%;
 	font-size: 16px;
-	top:10px;
+	height: 30px;
+	top:6px;
 	left:48px;
 	position: absolute;
 	background: transparent none;
@@ -152,3 +150,323 @@ input:-moz-placeholder { color:#f8f8f8; }
 
 
 /*************首页***end***********/
+
+
+
+
+/***************注册页***************/
+
+.register-wrapper{
+	position : relative;
+	
+}
+
+.nav-header{
+	width: 100%;
+	height: 45px;
+	background-color: #ff5776;
+	line-height: 45px;
+	text-align: center;
+}
+
+.nav-header-left{
+	width: 15px;
+	height: 24px;
+	margin: 10px 0 10px 10px;
+	left:0px;
+	position: absolute;
+}
+
+.nav-header-text{
+	font-weight: bold;
+	font-size: 20px;
+	color: #f8f8f8;
+}
+
+.middle-box{
+	width: 100%;
+	height: 304px;
+	background-color: #f8f8f8;
+}
+
+.register-input-div{
+	width: 96.875%;
+	height: 305px;
+	position: absolute;
+	right: 0;
+}
+
+.input-div-column{
+	height: 60px;
+	line-height: 60px;
+	position : relative;
+}
+
+.column-separate{
+	width: 100%;
+	border-bottom: 1px solid #e6e6e6;
+}
+
+.input-div-column img{
+	width: 28px;
+	vertical-align:middle;
+}
+
+.register-input{
+	width: 80%;
+	height: 40px;
+	font-size: 14px;
+	background: transparent none;
+	border: 0;
+	margin-left: 8px;
+}
+
+.mobile-code-input{
+	width: 53.125%;
+	height: 40px;
+	font-size: 14px;
+	background: transparent none;
+	border: 0;
+	margin-left: 8px;
+}
+
+.register-button-box{
+	width: 100%;
+	margin-top: 40px;
+}
+
+.register-button{
+	width: 62.5%;
+	font-size: 20px;
+	background: #ff5f76;
+	color: #f8f8f8;
+	border-radius: 4px;
+	border: 0;
+	height:40px;
+	line-height: 40px;
+	margin: 0 auto;
+}
+
+.mobile-code-button{
+	width: 28.125%;
+	height: 40px;
+	background: transparent none;
+	border: 1px solid #ff5f76;
+	border-radius: 4px;
+	line-height: 40px;
+
+	position: absolute;
+	right: 1.5em;
+	bottom: 0.555555em;
+}
+
+.mobile-code-text{
+	color: #ff5f76;
+	font-size: 14px;
+}
+
+
+/**************注册页*****end****************/
+
+
+
+/***************个人中心***************/
+
+.personnel-wrapper{
+
+}
+
+.personnel-header-brackground{
+	top: 0;
+	width: 100%;
+	height: 233.333333333333333px;
+	background-image: url(../img/personnel-background.png);
+	padding-top: 40px;
+	
+}
+
+.personnel-portrait-box{
+	width: 94.6666666666px;
+	height: 94.6666666666px;
+	margin: 0 auto;
+	border: 2px solid #f8f8f8;
+	-moz-border-radius: 94.6666666666px; 
+	-webkit-border-radius: 94.6666666666px; 
+	border-radius: 94.6666666666px; 
+}
+
+.personnel-portrait-img{
+	width: 94.6666666666px;
+	height: 94.6666666666px;
+	border-radius: 94.6666666666px; 
+}
+
+.personnel-username-box{
+	width: 100%;
+	margin-top: 6px;
+	text-align: center;
+}
+
+.personnel-username-text{
+	font-size: 18px;
+	color: #f8f8f8;
+}
+
+.personnel-content-box{
+	width: 100%;
+	margin-top: 46px;
+	position : relative;
+}
+
+.personnel-unpaid{
+	width: 32%;
+	height: 24px;
+	position: absolute;
+	left: 0;
+	padding: 0;
+	text-align: center;
+}
+
+.personnel-already-paid{
+	width: 32%;
+	height: 24px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.personnel-pending-payment{
+	width: 32%;
+	height: 24px;
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	text-align: center;
+}
+
+.personnel-content-separate-1{
+	width: 1px;
+	position: absolute;
+	left: 33%;
+	top: 10px;
+	border-left: 1px solid #f8f8f8;
+	height: 24px;
+}
+
+.personnel-content-separate-2{
+	width: 1px;
+	position: absolute;
+	right: 33%;
+	top: 10px;
+	border-left: 1px solid #f8f8f8;
+	height: 24px;
+}
+
+.personnel-content-text{
+	color: #f8f8f8;
+	font-size: 12px;
+}
+
+.personnel-content-number{
+	color: #f8f8f8;
+	font-size: 18px;
+}
+
+.personnel-menu-box{
+	width: 100%;
+	height: 243px;
+	background-color: #f8f8f8;
+	
+}
+
+.personnel-menu-colmun{
+	width: 96.875%;
+	margin-left: 3.125%;
+	border-bottom: 1px solid #b4b4b4;
+	height: 60px;
+	line-height: 60px;
+	position:relative;
+}
+
+.personnel-menu-colmun-last{
+	width: 96.875%;
+	margin-left: 3.125%;
+	height: 60px;
+	position:relative;
+	line-height: 60px;
+}
+
+.personnel-menu-separate-foot{
+	width: 100%;
+	height: 20px;
+	background-color: #e6e6e6;
+}
+
+.personnel-menu-icon{
+	width:20px;
+	height:20px;
+	position: absolute;
+	top:50%;
+	margin-top: -10px;
+}
+
+
+.personnel-menu-colmun span{
+	margin-left: 30px;
+	color: #505050;
+}
+
+.personnel-menu-colmun-last span{
+	margin-left: 30px;
+	color: #505050;
+}
+
+.personnel-menu-box .personnel-menu-colmun i{
+	position: absolute;
+	right: 10px;
+	color: #a0a0a0;
+}
+
+.personnel-menu-box .personnel-menu-colmun-last i{
+	position: absolute;
+	right: 10px;
+	color: #a0a0a0;
+}
+
+.personnel-menu-box .personnel-menu-colmun a{
+	position: absolute;
+	right: 40px;
+	color: #a0a0a0;
+	font-size: 14px;
+}
+
+.return-mall-button{
+	width: 56.25%;
+	font-size: 18px;
+	background: #ff5f76;
+	color: #f8f8f8 ;
+	border-radius: 4px;
+	border: 0;
+	height:40px;
+	line-height: 40px;
+	margin: 0 auto;
+	margin-top: 20px;
+}
+
+.change-user-button{
+	width: 56.25%;
+	font-size: 18px;
+	background: #d5d5d5;
+	color: #505050 ;
+	border-radius: 4px;
+	border: 0;
+	height:40px;
+	line-height: 40px;
+	margin: 0 auto;
+	margin-top: 20px;
+}
+
+.personnel-foot-box{
+	padding-bottom: 30px;
+}
+
+/***************个人中心**end***************/

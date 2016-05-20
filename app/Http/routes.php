@@ -16,3 +16,7 @@ Route::get('/', function () {
 });
 
 Route::get('auth/login','Auth\AuthController@loginPage');
+
+Route::get('auth/register','Auth\AuthController@registerPage');
+
+Route::get('memberCenter','Member\MemberController@memberCenter');
