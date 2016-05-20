@@ -1,3 +1,4 @@
+
 body{
 	margin: 0;
 }
@@ -17,6 +18,28 @@ body{
 
 
 
+.footer-section{
+	margin-top:10px;
+	padding:10px 5px;
+	background-color: #c4bfbf;
+	color: #1f1f1f;
+}
+.tech-support{
+	text-align: center;
+}
+.copy-right{
+	margin-top: 5px !important;;
+	width:90%;
+	text-align: center;
+	font-size:14px;
+}
+.auto-margin{
+	margin-left: auto!important;
+	margin-right: auto!important;
+}
+.f-left{
+	float:left;
+}
 
 /*****************公用***end*********************/
 
@@ -150,6 +173,7 @@ body{
 
 
 /*************首页***end***********/
+
 
 
 
@@ -470,3 +494,243 @@ body{
 }
 
 /***************个人中心**end***************/
+
+/**********首页******/
+
+.image-slide{
+    z-index: -1!important;
+}
+
+.image-slide img{
+    width:100%;
+}
+.hotel-search-box{
+    z-index:1000;
+    margin-top: -50px;
+    width:100%;
+    height:40px;
+    position: absolute;
+	text-align: center;
+	color:white;
+}
+
+.hotel-search-box input{
+    margin:5px auto;
+    height:35px;
+	width:95%;
+	border-radius: 5px;
+	background-color: rgba(248, 248, 248, 0.49);
+	border:0;
+	padding:0 0 0 10px;
+	font-size:16px;
+}
+.hotel-search-box i{
+	position: absolute;
+	right:6%;
+	top:15px;
+	font-size:16px;
+}
+
+.section-header{
+	height:50px;
+	width:100%;
+	text-align: center;
+	font-size:18px;
+	font-weight: 600;
+	line-height: 50px;
+	color:#505050;
+}
+
+.topic-box{
+	text-align: center;
+	position: relative;
+	font-size:14px;
+	width: 100%;
+	margin: 0 0 15px 0 ;
+
+}
+
+.topic-box img{
+	width: 95%;
+	border-radius: 5px;
+}
+
+.center-text-circle{
+	top:50%;
+	left:50%;
+	position: absolute;
+	height:80px;
+	width:80px;
+}
+
+.center-text-circle div{
+	border-radius: 100%;
+	height:80px;
+	width:80px;
+	border: 1px solid white;
+	background-color: rgba(0, 0, 0, 0.4);
+	line-height: 80px;
+	color:white;
+	margin:0 auto;
+	left: -50%;
+	top: -50%;
+	position: absolute;
+}
+
+
+.destin-section{
+	padding:5px;
+
+	overflow: hidden;
+}
+
+.destin-box{
+	width:50%;
+
+	float:left;
+	position: relative;
+}
+
+.destin-box img{
+	width:calc(100% - 10px);
+	margin:5px 5px 5px 5px;
+	border-radius: 5px;
+}
+
+.center-text-destin{
+	top:50%;
+	left:50%;
+	position: absolute;
+	height:40px;
+	width:100px;
+}
+
+.center-text-destin div{
+
+	height:40px;
+	width:100px;
+	line-height: 40px;
+	color:white;
+	margin:0 auto;
+	left: -50%;
+	top: -50%;
+	position: absolute;
+	text-align:center;
+	font-size:18px;
+	font-weight:600;
+}
+.center-text-destin i{
+	margin-top:-5px!important;
+
+}
+
+
+.search-sidebar{
+	background-color:white;
+}
+.destination-box{
+	overflow: hidden;
+	margin:0 10px 10px 10px;
+	border-bottom: 1px  solid #767676;
+	padding:0 0 20px 0 ;
+}
+
+
+
+.destination-box input,.date-box input{
+	margin-top:10px ;
+	width:100%;
+	height:35px;
+	background: transparent;
+	border:1px solid #767676;
+	display: block;
+	border-radius: 3px;
+	box-shadow: 0;
+	color:#767676;
+}
+
+.destination-box i{
+	position: absolute;
+	right:6%;
+	top:18px;
+	font-size:16px;
+}
+.destin-recommend-box{
+
+	margin:10px 5px 5px 10px;
+}
+
+.destin-recommend-text{
+	height:30px;
+	line-height: 30px;
+	font-size:14px;
+	text-align: center;
+	border-radius: 5px;
+	border:1px solid #ff5f76;
+	color:#ff5f76;
+	padding:0 10px ;
+	float:left;
+	margin:10px 10px 0 0;
+}
+
+.date-box{
+
+	margin:20px 10px 10px 10px;
+}
+.select-date{
+	height:30px;
+	line-height:31px;
+	width:95%;
+	border:1px solid  #767676;
+	border-radius: 5px;
+	padding:0 5px;
+	font-size: 14px;
+	margin:0 0 10px 0;
+}
+
+.select-date i {
+	color:#ff5f76;
+
+	margin:0 5px;
+	display: inline-block;
+}
+.select-date span{
+	display: inline-block;
+}
+
+.calendar{
+
+}
+.calendar table{
+	width:100%;
+
+}
+
+.calendar table tr th{
+	font-weight: 500;
+	padding:10px 0;
+}
+.calendar table tr td{
+	border:1px solid lightgrey;
+
+	height:30px;
+	line-height: 30px;
+	text-align: center;
+}
+.disable-day{
+	background-color:#e6e6e6;
+	color:#a0a0a0;
+}
+.selected-day{
+	background-color:#f8f8f8;
+	color:#ff5f76;
+
+}
+.selected-days{
+	background-color:#f8f8f8;
+	color:#ee0224;
+}
+
+/*******************/
+
+
