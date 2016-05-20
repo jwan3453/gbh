@@ -12,6 +12,12 @@
 	<link rel="stylesheet" type="text/css" href= {{ asset('../semantic/grid.css') }}>
 	<link rel="stylesheet" type="text/css" href= {{ asset('../semantic/icon.css') }}>
 	<link rel="stylesheet" type="text/css" href= {{ asset('../semantic/button.css') }}>
+	<style type="text/css">
+		::-webkit-input-placeholder { color:#f8f8f8; }
+		::-moz-placeholder { color:#f8f8f8; } /* firefox 19+ */
+		:-ms-input-placeholder { color:#f8f8f8; } /* ie */
+		input:-moz-placeholder { color:#f8f8f8; }
+	</style>
 </head>
 	<script src={{ asset('../js/jquery-2.1.4.min.js') }}></script>
 <body>
@@ -54,7 +60,7 @@
 			<div class="login-button-box">
 				<div class=" login-button  regular-btn">登录</div>
 
-				<button class="regular-btn register-button">注册</button>
+				<button class="regular-btn login-to-register-button">注册</button>
 			</div>
 			
 		</div>
