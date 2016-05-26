@@ -302,7 +302,7 @@
                             $td.eq( week % 7 +i).addClass('disable-day');
                         }
 
-                        if(i=(day-1))
+                        if(i===(day-1))
                         {
                             $td.eq( week % 7 +i).addClass('selected-day');
                         }

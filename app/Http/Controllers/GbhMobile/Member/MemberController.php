@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Member;
+namespace App\Http\Controllers\GbhMobile\Member;
 
 use Illuminate\Http\Request;
 
@@ -22,6 +22,11 @@ class MemberController extends Controller
     public function memberCenter()
     {
         return view('GbhMobile.memberCenter');
+    }
+
+    public function editUserInfoPage()
+    {
+        return view('GbhMobile.editUserInfoPage');
     }
 
     /**
