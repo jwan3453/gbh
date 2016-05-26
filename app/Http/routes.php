@@ -15,12 +15,30 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('auth/login','Auth\AuthController@loginPage');
+/**********Vincent*************/
 
+Route::get('auth/login','Auth\AuthController@loginPage');
 
 Route::get('auth/register','Auth\AuthController@registerPage');
 
-Route::get('memberCenter','Member\MemberController@memberCenter');
+Route::get('memberCenter','GbhMobile\Member\MemberController@memberCenter');
+
+Route::get('editUserInfo','GbhMobile\Member\MemberController@editUserInfoPage');
+
+Route::get('orderListAll','GbhMobile\Order\OrderController@orderListAll');
+
+Route::post('order/selectUnpaid','GbhMobile\Order\OrderController@selectUnpaid');
+
+Route::post('order/selectOrderSuccess','GbhMobile\Order\OrderController@selectOrderSuccess');
+
+Route::post('order/selectFinished','GbhMobile\Order\OrderController@selectFinished');
+
+Route::get('orderInfo','GbhMobile\Order\OrderController@orderInfo');
+
+/************end*****************/
+
 
 Route::get('/', 'GbhMobile\homeController@home');
+
+
 

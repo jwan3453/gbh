@@ -56,14 +56,14 @@ body{
 	width:100%; 
 	height: 100%;
 	z-index: -1;
-	margin-top: -6.33%;
+	margin-top: -35px;
 }
 
 .logo-div{
 	width: 50%;
 	text-align: center;
 	margin: 0 auto;
-	margin-top: 6.33%;
+	margin-top: 35px;
 }
 
 .logo-div img{
@@ -73,52 +73,50 @@ body{
 
 .login-form-box{
 	width: 87.5%;
-	height :15.845%;
+	height :112px;
 	margin: 0 auto;
-	margin-top: 12.323%;
+	margin-top: 70px;
 }
 
 .login-username-box{
 	width: 100%;
-	height: 45px;
+	height: 40px;
 	border-bottom: 1px solid #f8f8f8;
-	line-height: 60px;
+	line-height: 40px;
 	position: relative;
 }
 
 .login-password-box{
 	width: 100%;
-	height: 45px;
-	margin-top: 2.333%;
+	height: 40px;
+	margin-top: 10px;
 	border-bottom: 1px solid #f8f8f8;
 	align:middle;
-	line-height: 60px;
+	line-height: 40px;
 	position: relative;
 }
 
 
 .login-input-icon{
-	width:26px;
-	height:26px;
-	margin-left:8px;
-}
-
-.login-input-icon .login-input-icon{
-	width: 	100%;
+	width:23px;
+	height:23px;
+	margin-left:10px;
+	vertical-align:middle;
 }
 
 .login-button-box{
-	width: 100%;
-	margin-top:30px;
+	width: 87.5%;
+	margin: 0 auto;
+	margin-top:45px;
 }
 
 
 .login-button{
 	width: 100%;
-	font-size: 20px;
+	font-size: 14px;
 	background: #f8f8f8;
 	color: #eda26a ;
-	border-radius: 6px;
+	border-radius: 3px;
 	border: 0;
 	height:40px;
 	line-height: 40px;
@@ -126,12 +124,12 @@ body{
 
 .login-to-register-button{
 	width: 100%;
-	font-size: 20px;
+	font-size: 14px;
 	background: transparent none;
 	box-shadow: 0px 0px 0px 1px #f8f8f8 inset;
 	color: #f8f8f8 ;
-	border-radius: 6px;
-	margin-top: 20px;
+	border-radius: 3px;
+	margin-top: 10px;
 	height:40px;
 	line-height: 40px;
 }
@@ -157,16 +155,15 @@ body{
 
 .text-forget{
 	color: #f8f8f8;
-	font-size: 18px;
+	font-size: 14px;
 }
 
 .login-username-input{
 	width: 80%;
-	font-size: 16px;
+	font-size: 14px;
 	height: 30px;
-	top:6px;
-	left:48px;
-	position: absolute;
+	line-height: 30px;
+	margin-left: 10px;
 	background: transparent none;
 	border: 0;
 }
@@ -187,15 +184,15 @@ body{
 
 .nav-header{
 	width: 100%;
-	height: 45px;
+	height: 40px;
 	background-color: #ff5776;
-	line-height: 45px;
+	line-height: 40px;
 	text-align: center;
 }
 
 .nav-header-left{
-	width: 15px;
-	height: 24px;
+	width: 12px;
+	height: 20px;
 	margin: 10px 0 10px 10px;
 	left:0px;
 	position: absolute;
@@ -203,26 +200,26 @@ body{
 
 .nav-header-text{
 	font-weight: bold;
-	font-size: 20px;
+	font-size: 14px;
 	color: #f8f8f8;
 }
 
 .middle-box{
 	width: 100%;
-	height: 304px;
+	height: 254px;
 	background-color: #f8f8f8;
 }
 
 .register-input-div{
 	width: 96.875%;
-	height: 305px;
+	height: 254px;
 	position: absolute;
 	right: 0;
 }
 
 .input-div-column{
-	height: 60px;
-	line-height: 60px;
+	height: 50px;
+	line-height: 50px;
 	position : relative;
 }
 
@@ -232,39 +229,43 @@ body{
 }
 
 .input-div-column img{
-	width: 28px;
+	width: 23px;
 	vertical-align:middle;
 }
 
 .register-input{
 	width: 80%;
 	height: 40px;
-	font-size: 14px;
+	font-size: 12px;
 	background: transparent none;
 	border: 0;
-	margin-left: 8px;
+	margin-left: 10px;
+	line-height: 40px;
+	color: #a0a0a0;
 }
 
 .mobile-code-input{
 	width: 53.125%;
 	height: 40px;
-	font-size: 14px;
+	font-size: 12px;
 	background: transparent none;
 	border: 0;
-	margin-left: 8px;
+	margin-left: 10px;
+	line-height: 40px;
+	color: #a0a0a0;
 }
 
 .register-button-box{
 	width: 100%;
-	margin-top: 40px;
+	margin-top: 20px;
 }
 
 .register-button{
 	width: 62.5%;
-	font-size: 20px;
+	font-size: 14px;
 	background: #ff5f76;
 	color: #f8f8f8;
-	border-radius: 4px;
+	border-radius: 3px;
 	border: 0;
 	height:40px;
 	line-height: 40px;
@@ -273,11 +274,11 @@ body{
 
 .mobile-code-button{
 	width: 28.125%;
-	height: 40px;
+	height: 30px;
 	background: transparent none;
 	border: 1px solid #ff5f76;
-	border-radius: 4px;
-	line-height: 40px;
+	border-radius: 3px;
+	line-height: 30px;
 
 	position: absolute;
 	right: 1.5em;
@@ -303,42 +304,42 @@ body{
 .personnel-header-brackground{
 	top: 0;
 	width: 100%;
-	height: 233.333333333333333px;
+	height: 208px;
 	background-image: url(../img/personnel-background.png);
-	padding-top: 40px;
+	padding-top: 30px;
 	
 }
 
 .personnel-portrait-box{
-	width: 94.6666666666px;
-	height: 94.6666666666px;
+	width: 71px;
+	height: 71px;
 	margin: 0 auto;
 	border: 2px solid #f8f8f8;
-	-moz-border-radius: 94.6666666666px; 
-	-webkit-border-radius: 94.6666666666px; 
-	border-radius: 94.6666666666px; 
+	-moz-border-radius: 71px; 
+	-webkit-border-radius: 71px; 
+	border-radius: 71px; 
 }
 
 .personnel-portrait-img{
-	width: 94.6666666666px;
-	height: 94.6666666666px;
-	border-radius: 94.6666666666px; 
+	width: 71px;
+	height: 71px;
+	border-radius: 71px; 
 }
 
 .personnel-username-box{
 	width: 100%;
-	margin-top: 6px;
+	margin-top: 9px;
 	text-align: center;
 }
 
 .personnel-username-text{
-	font-size: 18px;
+	font-size: 14px;
 	color: #f8f8f8;
 }
 
 .personnel-content-box{
 	width: 100%;
-	margin-top: 46px;
+	margin-top: 40px;
 	position : relative;
 }
 
@@ -392,105 +393,107 @@ body{
 
 .personnel-content-number{
 	color: #f8f8f8;
-	font-size: 18px;
+	font-size: 14px;
 }
 
 .personnel-menu-box{
 	width: 100%;
-	height: 243px;
+	height: 163px;
 	background-color: #f8f8f8;
 	
 }
 
 .personnel-menu-colmun{
 	width: 96.875%;
-	margin-left: 3.125%;
+	margin-left: 10px;
 	border-bottom: 1px solid #b4b4b4;
-	height: 60px;
-	line-height: 60px;
+	height: 40px;
+	line-height: 40px;
 	position:relative;
 }
 
 .personnel-menu-colmun-last{
 	width: 96.875%;
-	margin-left: 3.125%;
-	height: 60px;
+	margin-left: 10px;
+	height: 40px;
 	position:relative;
-	line-height: 60px;
+	line-height: 40px;
 }
 
 .personnel-menu-separate-foot{
 	width: 100%;
-	height: 20px;
+	height: 10px;
 	background-color: #e6e6e6;
 }
 
 .personnel-menu-icon{
-	width:20px;
-	height:20px;
+	width:15px;
+	height:15px;
 	position: absolute;
 	top:50%;
-	margin-top: -10px;
+	margin-top: -5px;
 }
 
 
 .personnel-menu-colmun span{
-	margin-left: 30px;
+	margin-left: 25px;
 	color: #505050;
+	font-size: 12px;
 }
 
 .personnel-menu-colmun-last span{
-	margin-left: 30px;
+	margin-left: 25px;
 	color: #505050;
+	font-size: 12px;
 }
 
 .personnel-menu-box .personnel-menu-colmun i{
 	position: absolute;
-	right: 10px;
+	right: 0;
 	color: #a0a0a0;
 }
 
 .personnel-menu-box .personnel-menu-colmun-last i{
 	position: absolute;
-	right: 10px;
+	right: 0;
 	color: #a0a0a0;
 }
 
 .personnel-menu-box .personnel-menu-colmun a{
 	position: absolute;
-	right: 40px;
+	right: 35px;
 	color: #a0a0a0;
-	font-size: 14px;
+	font-size: 12px;
 }
 
 .return-mall-button{
 	width: 56.25%;
-	font-size: 18px;
+	font-size: 14px;
 	background: #ff5f76;
 	color: #f8f8f8 ;
-	border-radius: 4px;
+	border-radius: 3px;
 	border: 0;
-	height:40px;
-	line-height: 40px;
+	height:30px;
+	line-height: 30px;
 	margin: 0 auto;
-	margin-top: 20px;
+	margin-top: 15px;
 }
 
 .change-user-button{
 	width: 56.25%;
-	font-size: 18px;
+	font-size: 14px;
 	background: #d5d5d5;
 	color: #505050 ;
-	border-radius: 4px;
+	border-radius: 3px;
 	border: 0;
-	height:40px;
-	line-height: 40px;
+	height:30px;
+	line-height: 30px;
 	margin: 0 auto;
-	margin-top: 20px;
+	margin-top: 15px;
 }
 
 .personnel-foot-box{
-	padding-bottom: 30px;
+	padding-bottom: 15px;
 }
 
 /***************个人中心**end***************/
@@ -733,4 +736,248 @@ body{
 
 /*******************/
 
+
+
+/**********订单列表************/
+
+.order-menu{
+	width: 100%;
+	overflow: auto;
+	height: 50px;
+	line-height: 50px;
+	position:relative;
+
+}
+
+.order-menu .menu-element{
+	width: 25%;
+	text-align: center;
+	float: left;
+}
+
+.scroll-line{
+	position:absolute;
+	background-color:#ff5f76;
+	width:25%;
+	bottom:0;
+	left:0;
+	height:5px
+}
+
+.menu-element .item{
+	font-size: 12px;
+	color: #bababa;
+}
+
+.order-menu .menu-element .menu-select-color{
+	color: #505050;
+}
+
+.menu-separate-colmun{
+	height: 10px;
+	width: 100%;
+	background-color: #e6e6e6;
+}
+
+.order-list-box{
+	width: 100%;
+}
+
+.order-colmun{
+	padding: 12.5px 10px 10px 10px;
+	border-bottom: 1px solid #e6e6e6;
+}
+
+.order-number-time{
+	position:relative;
+	height: 12px;
+	line-height: 12px;
+}
+
+.order-number-time span{
+	font-size: 12px;
+}
+
+.order-list-time{
+	position:absolute;
+	right: 0;
+}
+
+.order-list-time img{
+	width: 12px;
+	vertical-align:middle;
+	margin-right: 5px;
+}
+
+.order-colmun-img-text{
+	width: 100%;
+	height: 55px;
+	margin-top: 10px;
+}
+
+.order-colmun-img{
+	width: 28.125%;
+	height: 55px;
+	float: left;
+}
+
+.order-colmun-img img {
+	width: 100%;
+	border-radius: 3px;
+}
+
+.order-colmun-text{
+	width: 62.5%;
+	/*height: 55px;*/
+	margin-left: 10px;
+	padding: 6px 0 6px 0;
+	float: left;
+}
+
+.order-colmun-room-name{
+	font-size: 14px;
+	color: #505050;
+	width: 100%;
+}
+
+.order-colmun-arrive-time{
+	margin-top: 12.5px;
+	font-size: 12px;
+	color: #505050;
+	width: 100%;
+}
+
+.order-colmun-foot{
+	width: 100%;
+	height: 32px;
+	line-height: 32px;
+	margin-top: 10px;
+}
+
+.order-colmun-foot span{
+	font-size: 12px;
+	/*color: #505050;*/
+}
+
+.order-colmun-foot .order-status-cancle{
+	border: 1px solid #a0a0a0;
+}
+
+.order-colmun-foot .order-status-cancle .mobile-code-text{
+	color: #a0a0a0;
+}
+
+.order-colmun-button{
+	width: 28.125%;
+	height: 30px;
+	background: transparent none;
+	border: 1px solid #ff5f76;
+	border-radius: 3px;
+	line-height: 30px;
+	float: right;
+}
+
+.order-colmun-rating{
+	width: 35%;
+	height: 30px;
+	line-height: 30px;
+	float: right;
+}
+
+.order-colmun-rating img{
+	width: 12px;
+}
+
+/***********end****************/
+
+
+/*************订单详情**************/
+
+.order-info-hotel{
+	height: 55px;
+	padding: 10px;
+}
+
+.order-hotel-img{
+	width: 34.375%;
+	height: 55px;
+	float: left;
+	overflow: hidden;
+	border-radius: 3px;
+}
+
+.order-hotel-img img{
+	width: 100%;
+	border-radius: 3px;
+	overflow: hidden;
+}
+
+.order-hotel-content{
+	width: 59.375%;
+	float: left;
+	height: 55px;
+	margin-top: 6px;
+	margin-left: 10px;
+	position: relative;
+}
+
+.order-hotel-content-name{
+	font-size: 14px;
+	color: #505050;
+}
+
+.order-hotel-content-info{
+	font-size: 12px;
+	color: #adadad;
+	position: absolute;
+	bottom: 11px;
+}
+
+.orderinfo-detail-list-box{
+	width: 100%;
+}
+
+.orderinfo-detail-colmun{
+	border-bottom: 1px solid #e6e6e6;
+	padding: 10px;
+}
+
+.orderinfo-detail-colmun-above{
+	height: 12px;
+	line-height: 12px;
+}
+
+.orderinfo-detail-colmun-above .name{
+	font-size: 12px;
+}
+
+.orderinfo-detail-colmun-above .money{
+	font-size: 11px;
+	color: #a0a0a0;
+	float: right;
+}
+
+.orderinfo-detail-colmun-middle{
+	margin-top: 10px;
+	height: 10px;
+	line-height: 10px;
+}
+
+.orderinfo-detail-colmun-middle span{
+	font-size: 10px;
+	color: #a0a0a0;
+}
+
+.orderinfo-detail-colmun-below{
+	height: 12px;
+	line-height: 12px;
+	margin-top: 10px;
+
+	font-size: 12px;
+}
+
+.orderinfo-detail-colmun-below .user img{
+	width: 12px;
+}
+/************end************************/
 
