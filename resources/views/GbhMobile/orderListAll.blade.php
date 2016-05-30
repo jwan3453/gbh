@@ -10,7 +10,7 @@
 @section('content')
 <div class="ui container orderlist-wrapper" >
 	<div class="nav-header">
-		<img src="../GbhMobile/img/left-icon.png" class="nav-header-left"/>
+		<img src="../GbhMobile/img/left-icon.png" class="nav-header-left" onclick="javascript:history.go(-1);"/>
 		<span class="nav-header-text">订单列表</span>
 	</div>
 
@@ -81,7 +81,7 @@
 
 			<div class="order-colmun-foot">
 				<span>订单状态：已取消</span>
-				<div class="order-status-cancle order-colmun-button regular-btn">
+				<div class="order-status-cancle order-colmun-button regular-btn" onclick="location.href='orderInfo'">
 					<span class="mobile-code-text">查看详情</span>
 				</div>
 			</div>

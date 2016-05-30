@@ -29,7 +29,7 @@
 <body>
 	<div class="ui container register-wrapper" >
 		<div class="nav-header">
-			<img src="../GbhMobile/img/left-icon.png" class="nav-header-left"/>
+			<img src="../GbhMobile/img/left-icon.png" class="nav-header-left" onclick="javascript:history.go(-1);"/>
 			<span class="nav-header-text">注册</span>
 		</div>
 

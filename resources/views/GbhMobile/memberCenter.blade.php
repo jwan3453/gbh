@@ -63,7 +63,7 @@
 
 		<div class="personnel-menu-box">
 
-			<div class="personnel-menu-colmun">
+			<div class="personnel-menu-colmun" onclick="location.href='orderListAll'">
 				<img src="../GbhMobile/img/personnel-order.png" class="personnel-menu-icon">
 				<span>订单详情</span>
 				<i class="chevron right icon"></i>
@@ -76,13 +76,13 @@
 				<i class="chevron right icon"></i>
 			</div>
 
-			<div class="personnel-menu-colmun">
+			<div class="personnel-menu-colmun" onclick="location.href='myCollection'">
 				<img src="../GbhMobile/img/personnel-collection.png" class="personnel-menu-icon">
 				<span>我的收藏</span>
 				<i class="chevron right icon"></i>
 			</div>
 
-			<div class="personnel-menu-colmun-last">
+			<div class="personnel-menu-colmun-last" onclick="location.href='editUserInfo'">
 				<img src="../GbhMobile/img/personnel-setting.png" class="personnel-menu-icon">
 				<span>账户设置</span>
 				<i class="chevron right icon"></i>
@@ -94,7 +94,7 @@
 
 		<div class="personnel-foot-box">
 
-			<div class=" return-mall-button  regular-btn">返回商城</div>
+			<div class=" return-mall-button  regular-btn" onclick="location.href='/'">返回商城</div>
 
 			<div class=" change-user-button  regular-btn">切换账户</div>
 		</div>
