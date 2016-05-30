@@ -35,6 +35,10 @@ Route::post('order/selectFinished','GbhMobile\Order\OrderController@selectFinish
 
 Route::get('orderInfo','GbhMobile\Order\OrderController@orderInfo');
 
+Route::get('myCollection','GbhMobile\Collection\CollectionController@myCollection');
+
+Route::get('evaluateHotel','GbhMobile\Evaluate\EvaluateController@evaluateHotel');
+
 /************end*****************/
 
 
