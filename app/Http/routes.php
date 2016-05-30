@@ -43,6 +43,6 @@ Route::get('evaluateHotel','GbhMobile\Evaluate\EvaluateController@evaluateHotel'
 
 
 Route::get('/', 'GbhMobile\homeController@home');
-
+Route::get('/search','GbhMobile\homeController@search');
 
 

@@ -8,9 +8,7 @@ use App\Http\Controllers\Controller;
 class homeController extends Controller
 {
     //
-    private $user;
-    private $setting;
-    private $product;
+
     public function __construct()
     {
 
@@ -19,6 +17,11 @@ class homeController extends Controller
     {
 
         return view('GbhMobile.home');
+    }
+
+    public function search(Request $request)
+    {
+        return view('GbhMobile.search');
     }
 }
 
