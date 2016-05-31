@@ -65,7 +65,6 @@
 		$("input").focus(function(){
 			$(this).next('span').css('display','none');
 			$(this).data('placeholder', $(this).prop('placeholder')).removeAttr('placeholder')
-			console.log($(this).data('placeholder'));
 		})
 
 		$("input").blur(function(){

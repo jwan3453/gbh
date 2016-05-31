@@ -18,7 +18,7 @@ class CreateRoomTypeTable extends Migration
             $table->increments('id');
             $table->float('rack_rate');//门市价
             $table->integer('check_number');//可住人数
-            $table->integer('check_children')//可携带儿童人数
+            $table->integer('check_children');//可携带儿童人数
             $table->integer('room_num');//房间数量
             $table->float('size');//房间面积
             $table->integer('floor');//楼层
