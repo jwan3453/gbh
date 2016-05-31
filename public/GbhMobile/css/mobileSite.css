@@ -2,6 +2,8 @@
 body{
 	margin: 0;
 	background: #f8f8f8;
+	color:#505050;
+	font-family: "Microsoft YaHei" ! important;
 }
 
 /***************公用*******************/
@@ -61,6 +63,7 @@ body{
 
 a{
 	text-decoration: none;
+	color:#505050;
 }
 /*****************公用***end*********************/
 
@@ -729,22 +732,26 @@ a{
 }
 
  .hotel-location{
-	height: 30px;
-	line-height: 35px;
+	height: 25px;
+	line-height: 25px;
 	color:#505050;
-	overflow: hidden;
+	 overflow: hidden;
 }
 
 .hotel-location i{
-	margin:5px 2px 0 10px!important;
+	/*//margin:5px 2px 0 10px!important;*/
 }
 
-.hotel-location span{
+.hotel-location .g-info{
 
-	margin:0 0 0 10px;
+	margin:0  5px;
+	font-size:12px;
+
+
+}
+.hotel-location .p-info{
+	margin:0  10px;
 	font-size:14px;
-
-
 }
 .hotel-location s{
 
@@ -752,6 +759,13 @@ a{
 	margin-right:10px;
 }
 
+.hotel-location label{
+	font-size: 16px;
+
+	clear:both;
+	margin:0 10px;
+
+}
 
 .destin-section{
 	padding:5px;
@@ -952,6 +966,510 @@ a{
 
 /*******************/
 
+
+/**********酒店搜索结果页面**/
+
+.redefine-search{
+	height:40px;
+	/*width:100%;*/
+	background-color:#ff5776;
+	border:1px solid #ff5776;
+	padding:5px 10px;
+	color:#505050;
+
+}
+.redefine-date-box{
+	height:40px;
+
+	background: #f8f8f8;
+	width:130px;
+	position: relative;
+	border-radius: 5px;
+}
+.redefine-date-box .from,.redefine-date-box .to{
+	height:20px;
+	width:100%;
+	font-size: 13px;
+	padding: 0 0 0 10px;
+	line-height: 20px;
+}
+
+.redefine-date-box i{
+	position: absolute;
+	right:3px;
+	top:12px;
+	color:#ff5f76;
+}
+
+.redefine-destin-box{
+	width:calc(100% - 160px);
+	height:40px;
+	background:#f8f8f8 ;
+	margin-left:10px;
+	border-radius: 5px;
+	padding: 0 10px;
+	font-size:14px;
+	line-height: 40px;
+	position: relative;
+}
+.redefine-destin-box i
+{
+	color:#ff5f76;
+	position: absolute;
+	top:10px;
+	right:10px;
+}
+
+.filter-box{
+	height:40px;
+	width: 100%;
+}
+.filter{
+	height:40px;
+	line-height: 40px;
+	width:25%;
+	text-align: center;
+
+	float:left;
+	font-size: 14px;
+}
+
+.filter img{
+	position: absolute;
+	margin-top: 12px;
+	margin-left:5px;
+	width:10px;
+	height:15px;
+}
+.hotel-list-section{
+
+}
+
+.hotel-list-section img{
+	width: 100%;
+}
+
+
+.general-price{
+	width:100%;
+	height:25px;
+
+	position: absolute;
+	margin-top:-25px;
+}
+.general-price img{
+	width:100%;
+	height:25px;
+}
+.general-price label{
+	font-size:16px;
+	color:#f8f8f8;
+	position: absolute;
+	margin:3px 0 0 10px;
+	font-weight: 700;
+
+}
+.general-price span{
+
+	font-size:16px;
+	display: inline-block;
+}
+
+
+
+
+
+/**************************/
+
+
+/*********酒店详情*************/
+.hotel-img-section {
+	position:relative;
+}
+
+.hotel-img-section i{
+
+	position: absolute;
+	top:10px;
+	right:10px;
+	color:#f8f8f8;
+}
+.hotel-detail-img{
+	width: 100%;
+}
+
+.f-t-detail{
+	width:100%;
+	margin:10px 0 0 0  ;
+	height:45px;
+	overflow: hidden;
+}
+.f-date{
+	width:50%;
+	float:left;
+	height:40px;
+	text-align: center;
+	border-right:1px solid #505050;
+}
+.f-date .text,.t-date .text{
+	font-size:14px;
+	display: block;
+}
+.f-date .date,.t-date .date{
+	margin-top:5px;
+	font-size:16px!important;
+	display: block;
+	color:#ff4200;
+	font-weight: 600;
+}
+
+.t-date{
+	width:calc(100% - 50% - 1px);
+	float:left;
+	height:40px;
+	text-align: center;
+}
+.t-days{
+	clear:both;
+	text-align: center;
+	font-size:14px;
+	color:#505050;
+	font-weight: 600;
+	margin:5px 0 ;
+}
+.geo-detail{
+
+	height:40px;
+	line-height:40px;
+	margin:0 10px;
+	font-size:14px;
+
+}
+.geo-detail .marker{
+	margin-top:-5px!important;
+
+}
+.geo-detail .angle{
+	margin-top:6px;
+}
+
+.room-type{
+
+}
+
+.r-detail{
+	height:90px;
+	margin:0 10px;
+	border-top: 1px solid lightgrey;
+	clear:both;
+	display: block;
+}
+.r-detail img{
+	width:80px;
+	height:70px;
+	margin:10px 5px 10px 0;
+	border-radius: 5px;
+	float:left;
+}
+.r-info{
+	margin:10px 10px 10px 5px;
+	float:left;
+}
+.r-info .up{
+
+	font-weight: 600;
+	display: block;
+	font-size:14px;
+	margin-top:10px;
+}
+.r-info .down{
+	color: #9a9a9a;
+	font-size:14px;
+	display: block;
+	margin-top:10px;
+
+}
+.r-price{
+	color:#ff4200;
+	font-weight: 600;
+	float:right;
+	margin:10px 0 0 0 ;
+	height:80px;
+	line-height:80px;
+	font-size: 12px;
+}
+.r-price .pri{
+
+	font-size:15px;
+}
+.r-fac{
+
+	overflow:hidden;
+}
+.r-fac-header {
+	height:40px;
+	font-size:16px;
+	text-align: center;
+	line-height: 40px;
+}
+.r-fac-grid{
+	width:25%;
+	float:left;
+	margin:0 0 10px 0;
+}
+.r-fac-list{
+	margin-top:10px;
+}
+.r-fac-icon{
+	width:60px;
+	height:60px;
+	text-align: center;
+}
+.r-fac-icon img{
+	width:40px;
+	height:40px;
+}
+.r-fac-icon span{
+	display: block;
+	font-size:12px;
+
+}
+.r-fac-more{
+	margin:10px;
+	text-align: center;
+	clear:both;
+	height:30px;
+	line-height: 30px;
+	font-size:14px;
+}
+
+.r-comments{
+
+}
+.r-point{
+	margin:10px;
+	height:40px;
+	line-height: 40px;
+	border-bottom: 1px solid lightgrey;
+}
+.r-point .ave-point{
+
+}
+.r-point .t-point{
+	color:#9a9a9a;;
+
+}
+.r-com-box{
+	margin: 10px;
+	overflow: hidden;
+
+}
+.r-com-box img{
+	margin:0 10px 5px 0 ;
+	width:40px;
+	height:40px;
+	float:left;
+}
+.cus-info{
+	float:left;
+}
+.cus-info .up{
+	font-size:14px;
+	display:block;
+}
+.cus-info .down{
+	margin-top:2px;
+	font-size:12px;
+	display:block;
+	color:#9a9a9a;
+}
+.star-point{
+	float:right;
+	height:40px;
+	line-height: 40px;
+}
+
+
+.comm-detail{
+
+	clear: both;
+	position: relative;
+	border:1px solid #f8f8f8;
+
+}
+.comm-detail .triangle-up-small{
+
+	width: 0;
+	height: 0;
+	border-left: 5px solid transparent;
+	border-right: 5px solid transparent;
+	border-bottom: 10px solid #e6e6e6;
+	position: absolute;
+	left:15px;
+
+}
+.comm-detail .text{
+	clear: both;
+	margin:10px 0;
+	padding:10px;
+	border-radius: 5px;
+	background-color:#e6e6e6;
+}
+
+.h-policy{
+	margin: 10px;
+}
+
+.h-policy .h-p-header{
+
+	height:40px;
+	font-size:16px;
+	text-align: center;
+	line-height: 40px;
+}
+.h-policy .h-p-detail{
+	color:#9a9a9a;
+	margin: 5px 5px;
+	font-size: 14px;
+}
+	/*****************************/
+
+
+
+/*********预定页面**************/
+.booking-info{
+	margin:10px;
+}
+
+.r-number{
+	height:40px;
+	line-height:40px;
+}
+.r-number .text{
+	font-size:16px;
+	display: inline-block;
+	margin:0 5px 0 0 ;
+	float:left;
+}
+.r-number .price{
+	color:#9a9a9a;
+	font-size:14px;
+	float:left;
+}
+
+.r-num-count{
+
+	float:right;
+}
+.r-num-count .icon-count{
+	margin-top:8px;
+	margin-right:0!important;
+	/*border:1px solid lightgray;*/
+	height:28px!important;
+	width:30px!important;
+	line-height: 28px!important;
+}
+.r-num-count .quantity{
+	width:50px;
+	margin-top:5px;
+	height:25px!important;
+	border:1px solid lightgray;
+	text-align: center;
+	line-height: 25px!important;
+	border-radius: 0%!important;
+}
+
+.r-num-count .minus{
+	color:#9a9a9a;
+}
+
+.r-num-count .plus{
+
+	color:#ff5f76;
+}
+
+.in-h-time{
+	height:40px;
+	line-height:40px;
+}
+
+.in-h-time .text{
+	font-size:16px;
+	display: inline-block;
+
+	float:left;
+}
+.in-h-time .time{
+	font-size:14px;
+	color:#9a9a9a;
+}
+.in-h-time .time i{
+	display: inline-block;
+	margin-top:-3px;
+}
+
+
+.cus-detail{
+	margin:10px;
+	overflow: hidden;
+}
+
+.cus-contact{
+	margin:10px;
+}
+.cus-line-detail,.cus-contact{
+
+	height:40px;
+	line-height: 40px;
+	overflow: hidden;
+}
+
+.cus-line-detail .text,.cus-contact .text{
+
+	font-size:16px;
+	display: inline-block;
+	float:left;
+}
+
+.cus-line-detail input, .cus-contact input{
+	display: inline-block;
+	margin-top:3px;
+	font-size:14px;
+	background: transparent;
+	border: 0;
+	height:30px;
+}
+
+
+.confirm-booking{
+	overflow: hidden;
+	height:40px;
+	width:100%;
+}
+.b-t-amount{
+	height:40px;
+	line-height: 40px;
+	width:calc(100% - 200px);
+	padding:0 10px;
+	font-size:14px;
+
+}
+.b-t-amount span{
+	display: inline-block;
+}
+.b-t-amount .t-amount{
+	color:#ff4200;
+	font-size:16px;
+}
+.b-confirm-btn{
+	height:40px;
+	width:150px;
+	background-color:#ff5f76 ;
+	color:white;
+	text-align: center;
+	line-height: 40px;
+}
+/******************************/
 
 
 /**********订单列表************/

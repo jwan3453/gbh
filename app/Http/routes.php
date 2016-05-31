@@ -46,6 +46,9 @@ Route::get('evaluateHotel','GbhMobile\Evaluate\EvaluateController@evaluateHotel'
 
 Route::get('/', 'GbhMobile\homeController@home');
 Route::get('/search','GbhMobile\homeController@search');
+Route::get('/hotel/{hotelId}','GbhMobile\Hotel\hotelController@hotelDetail');
+Route::get('/hotel/{hotelId}/booking/{roomId}','GbhMobile\Hotel\hotelController@booking');
+Route::get('/orderDetail/{orderNo}','GbhMobile\Order\orderController@orderDetail');
 
 
 /*******************************end**************************************/
