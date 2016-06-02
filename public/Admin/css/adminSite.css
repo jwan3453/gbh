@@ -15,6 +15,7 @@ body{
 	bottom: 0;
 	left: 0;
 	height: 100%;
+	z-index:1001;
 }
 
 .menu-logo{
@@ -29,14 +30,15 @@ body{
 	margin-bottom: 20px;
 }
 
-.admin-menu-list li{
+.admin-menu-list li, .admin-menu-list a{
 	height: 60px;
 	line-height: 60px;
 	font-size: 14px;
 	border-bottom: 1px solid #5c718c;
 	color: #86a0c2;
 	cursor:pointer;
-	list-style:none
+	list-style:none;
+	display:block;
 }
 
 .admin-menu-list .menu-selected{
@@ -129,10 +131,95 @@ body{
 .center{
 	position: absolute;
 	left: 200px;
+	min-height: calc(100% - 60px);
+	/*width:calc(100% - 160px);*/
 }
 
+.padding-80{
+	height:90px;
+	width: 100%;
+
+
+}
+
+.admin-copy-right{
+	height:80px;
+	width:calc(100% + 40px);
+	background: #9bbebe;
+	position: absolute;
+	bottom: 0;
+	right:0;
+	text-align: center;
+	line-height: 70px;
+
+}
+.admin-copy-right span{
+	display: block;
+	height:25px;
+	font-size:14px;
+}
 /*************end*********************/
 
+/***************公用*******************/
+
+.regular-btn{
+	line-height: 40px;
+	text-align: center;
+	font-size:16px;
+	border: none;
+	height:40px;
+	color:white;
+	width:150px;
+	border-radius: 5px;
+}
+.red-btn{
+	background-color:#ff5f76;
+}
+
+
+
+.footer-section{
+	margin-top:10px;
+	padding:10px 5px;
+	background-color: #c4bfbf;
+	color: #1f1f1f;
+}
+.tech-support{
+	text-align: center;
+}
+.copy-right{
+	margin-top: 5px !important;;
+	width:90%;
+	text-align: center;
+	font-size:14px;
+}
+.auto-margin{
+	margin-left: auto!important;
+	margin-right: auto!important;
+}
+.f-left{
+	float:left;
+}
+
+.f-right{
+	float:right;
+}
+
+.none-display{
+	display: none;
+}
+
+.padding-15{
+	width: 100%;
+	height:15px;
+	background-color: #e6e6e6;
+}
+
+a{
+	text-decoration: none;
+	color:#505050;
+}
+/*****************公用***end*********************/
 
 
 /************首页************/
@@ -455,6 +542,7 @@ body{
 }
 /***********end**************/
 
+
 /*********菜单设置*************/
 
 .menusetting-box{
@@ -624,4 +712,127 @@ body{
 }
 
 /************end*****************/
+
+
+
+
+/********酒店管理界面********/
+
+.hotel-search-bar{
+	height:40px;
+	width:1000px;
+	background: #f8f8f8;
+	border:1px solid #f8f8f8;
+	position: relative;
+}
+
+.hotel-search-bar input{
+	margin:5px 10px 0 0 ;
+	height:25px;
+	float:right;
+	width:300px;
+	border:1px solid #f8f8f8;
+	background: transparent;
+	border-bottom: 1px solid #505050;
+}
+
+.hotel-search-bar .search{
+	position: absolute;
+	top:8px;
+	right:20px;
+}
+
+.add-hotel-btn{
+
+	width:150px;
+	height:30px;
+	background: #639ae3;
+	margin:5px 0 0 10px;
+	border-radius: 2px;
+	line-height: 30px;
+	text-align: center;
+	color:white;
+	cursor: pointer;
+
+}
+
+.add-hotel-btn:hover{
+
+	color: #f8f8f8;
+	background: #0d71bb;
+	transition:background-color 0.5s ease;
+
+}
+
+.hotel-list-header{
+	font-size: 14px;
+	background: #dfe8f4;
+	color:#505050;
+	height:40px;
+	margin-top:20px;
+
+}
+
+.select-all{
+	height:40px;
+	line-height: 40px;
+	margin-left:12px;
+	margin-right:20px;
+	cursor:pointer;
+}
+
+.select-all label{
+	font-size:14px;
+
+
+}
+.select-all label input[type=checkbox]{
+	height:18px;
+	width:18px;
+	vertical-align:-4px;
+	margin-right:5px;
+}
+
+.header-option{
+	cursor:pointer;
+	height:40px;
+	line-height: 40px;
+	margin-right:20px;
+}
+.header-option img{
+	vertical-align:-4px;
+	height:18px;
+	width:18px;
+}
+.header-option span{
+	display: inline-block;
+	margin-left:2px;
+
+}
+.hotel-table {
+	margin-top:0px!important;
+	font-size:14px!important;
+}
+.hotel-table td{
+	overflow: hidden;
+
+}
+
+.hotel-table .s-td{
+	width:30px;
+}
+.hotel-table .l-td{
+	width:250px;
+}
+.hotel-table input[type=checkbox]{
+	height:18px;
+	width:18px;
+	vertical-align: middle;
+}
+.hotel-table .hotel-img{
+	width:100px;
+	height:60px;
+	border-radius: 5px;
+}
+/**************************/
 

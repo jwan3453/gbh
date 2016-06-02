@@ -31,7 +31,7 @@
 						<div class="order-currency-text">今日新增用户</div>
 					</div>
 				</div>
-				
+
 			</div>
 		</div>
 
@@ -124,7 +124,7 @@
 					</span>
 				</div>
 
-				<div class="refresh-content-colmun"> 
+				<div class="refresh-content-colmun">
 					<span class="home-box-refresh">
 						换一批
 					</span>
@@ -229,7 +229,6 @@
 
 		</div>
 	</div>
-
 
 </div>
 @stop

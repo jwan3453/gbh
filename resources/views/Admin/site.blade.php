@@ -12,6 +12,8 @@
     <script src={{ asset('js/jquery-2.1.4.min.js') }}></script>
     <link  rel="stylesheet" type="text/css"  href ={{ asset('Admin/css/adminSite.css') }}>
     <link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/transition.css') }}>
+    <link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/icon.css') }}>
+    <link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/table.css') }}>
     <script src={{ asset('semantic/transition.js') }}></script>
     @yield('resources')
 
@@ -46,6 +48,10 @@
                 <img src="../Admin/icon/menu-setting.png" name="menu-setting">
                 <span>菜单设置</span>
             </li>
+            <li >
+                <img src="../Admin/icon/menu-setting.png" name="menu-setting">
+                <span>酒店管理</span>
+            </li>
         </div>
 
         
@@ -67,15 +73,27 @@
         </span>
     </div>
 
+
+
+
+
+
     <div class="center">
         @yield('content')
+            <div class="padding-80">
 
+            </div>
 
+        {{--<div class="admin-copy-right">--}}
+            {{--<span>全球精品酒店 版权所有 2016-2028 保留所有权利</span>--}}
+            {{--<span>Copyright 2016-2028 Opulun.com All right reserved</span>--}}
+        {{--</div>--}}
     </div>
 
+
+
    <!--  <div class="foot-box">
-            <span>全球精品酒店 版权所有 2016-2028 保留所有权利</span>
-            <span>Copyright 2016-2028 Opulun.com All right reserved</span>
+
         </div> -->
     
 
@@ -94,6 +112,7 @@
     $(document).ready(function(){
         var selectimgname = 'home';
         var newimgname = 'home';
+
 
         $(".admin-menu-list > li").click(function(){
             var srcPath = '../Admin/icon/';
@@ -137,9 +156,9 @@
 
         })
 
-
         for(i in document.images)document.images[i].ondragstart=imgdragstart; 
     })
+
 
     
     function imgdragstart(){return false;} 
