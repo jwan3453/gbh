@@ -12,13 +12,13 @@
 <div class="ui container orderinfo-wrapper" >
 	
 	<div class="nav-header">
-		<img src="../GbhMobile/img/left-icon.png" class="nav-header-left" onclick="javascript:history.go(-1);"/>
+		<img src="/GbhMobile/img/left-icon.png" class="nav-header-left" onclick="javascript:history.go(-1);"/>
 		<span class="nav-header-text">订单详情</span>
 	</div>
 
 	<div class="order-info-hotel">
 		<div class="order-hotel-img">
-			<img src="../GbhMobile/personnelportrait/order-img.png">
+			<img src="/GbhMobile/personnelportrait/order-img.png">
 		</div>
 
 		<div class="order-hotel-content">
@@ -41,7 +41,7 @@
 			<div class="orderinfo-detail-colmun-below">
 				<span class="time">入住 5月16日 - 退房 5月23日</span>
 				<span class="user">
-					<img src="../GbhMobile/img/register-username-icon.png">
+					<img src="/GbhMobile/img/register-username-icon.png">
 					陈泽
 				</span>
 			</div>
@@ -60,7 +60,7 @@
 			<div class="orderinfo-detail-colmun-below">
 				<span class="time">入住 5月16日 - 退房 5月23日</span>
 				<span class="user">
-					<img src="../GbhMobile/img/register-username-icon.png">
+					<img src="/GbhMobile/img/register-username-icon.png">
 					陈泽
 				</span>
 			</div>
@@ -79,7 +79,7 @@
 			<div class="orderinfo-detail-colmun-below">
 				<span class="time">入住 5月16日 - 退房 5月23日</span>
 				<span class="user">
-					<img src="../GbhMobile/img/register-username-icon.png">
+					<img src="/GbhMobile/img/register-username-icon.png">
 					陈泽
 				</span>
 			</div>
@@ -98,7 +98,7 @@
 
 		<div class="orderinfo-menu-map">
 			<div class="orderinfo-menu-colmun">
-				<img src="../GbhMobile/img/orderinfo-marker.png" class="orderinfo-menu-icon">
+				<img src="/GbhMobile/img/orderinfo-marker.png" class="orderinfo-menu-icon">
 				<span class="menu-name">厦门滨南斗西路口金陵大厦旁</span>
 				<span class="menu-remarks">
 					进入定位
@@ -108,7 +108,7 @@
 		</div>
 
 		<div class="orderinfo-menu-map">
-			<img src="../GbhMobile/img/orderinfo-phone.png" class="orderinfo-menu-icon">
+			<img src="/GbhMobile/img/orderinfo-phone.png" class="orderinfo-menu-icon">
 			<span class="menu-name">联系电话 : 13959205032</span>
 			<span class="menu-remarks">
 				复制到拨号界面
@@ -117,7 +117,7 @@
 		</div>
 
 		<div class="orderinfo-menu-map">
-			<img src="../GbhMobile/img/personnel-points.png" class="orderinfo-menu-icon">
+			<img src="/GbhMobile/img/personnel-points.png" class="orderinfo-menu-icon">
 			<span class="menu-name">总金额 : ￥2994.00</span>
 			<span class="menu-remarks">
 				查看明细

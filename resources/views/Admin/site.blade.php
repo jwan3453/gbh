@@ -27,7 +27,7 @@
 
         <div class="admin-menu-list">
             <li class="menu-selected">
-                <img src="../Admin/icon/home-select.png" name="home">
+                <img src="../Admin/icon/home-select.png" name="home" style="draggable='false'">
                 <span>首页</span>
             </li>
             <li>
@@ -92,53 +92,57 @@
 <script type="text/javascript">
 
     $(document).ready(function(){
+        var selectimgname = 'home';
+        var newimgname = 'home';
+
+        $(".admin-menu-list > li").click(function(){
+            var srcPath = '../Admin/icon/';
+
+            selectimgname = $(".admin-menu-list .menu-selected > img").attr('name');
+            $(".admin-menu-list .menu-selected > img").attr('src' , srcPath + selectimgname + '.png');
+            $(".admin-menu-list .menu-selected").removeClass('menu-selected');
+
+            $(this).addClass('menu-selected');
+            newimgname = $(this).children('img').attr('name');
+            $(this).children('img').attr('src' , srcPath + newimgname + '-select.png');
+
+            if (newimgname === 'home') {
+                $(".breadcrumb-menu").html('');
+                $('.second-level-menu-box').transition('hide');
+                return false;
+            }
+
+            $(".second-level-menu-box").attr('one-level' , $(this).children('span').html());
+
+            if (selectimgname === newimgname) {
+                $('.second-level-menu-box').transition('swing right');
+            }else{
+                $('.second-level-menu-box').transition('hide').transition('swing right');
+            }
+
+        })
         
+
+        $(".second-level-menu-box > li").click(function(){
+            var oneLevel = $(".second-level-menu-box").attr('one-level');
+            var secondLevel = $(this).children('span').html();
+
+            var rightImg = '<img src="../Admin/icon/breadcrumb-right.png" class="breadcrumb-right">';
+            var oneLevelDocument = '<a class="breadcrumb-menu-text">'+oneLevel+'</a>';
+            var secondLevelDocument = '<a class="breadcrumb-menu-text">'+secondLevel+'</a>';
+
+            $(".breadcrumb-menu").html(rightImg + oneLevelDocument + rightImg + secondLevelDocument);
+
+            $('.second-level-menu-box').transition('hide')
+
+        })
+
+
+        for(i in document.images)document.images[i].ondragstart=imgdragstart; 
     })
 
-    var selectimgname = 'home';
-    var newimgname = 'home';
-
-    $(".admin-menu-list > li").click(function(){
-        var srcPath = '../Admin/icon/';
-
-        selectimgname = $(".admin-menu-list .menu-selected > img").attr('name');
-        $(".admin-menu-list .menu-selected > img").attr('src' , srcPath + selectimgname + '.png');
-        $(".admin-menu-list .menu-selected").removeClass('menu-selected');
-
-        $(this).addClass('menu-selected');
-        newimgname = $(this).children('img').attr('name');
-        $(this).children('img').attr('src' , srcPath + newimgname + '-select.png');
-
-        if (newimgname === 'home') {
-            $(".breadcrumb-menu").html('');
-            $('.second-level-menu-box').transition('hide');
-            return false;
-        }
-
-        $(".second-level-menu-box").attr('one-level' , $(this).children('span').html());
-
-        if (selectimgname === newimgname) {
-            $('.second-level-menu-box').transition('swing right');
-        }else{
-            $('.second-level-menu-box').transition('hide').transition('swing right');
-        }
-
-    })
-
-    $(".second-level-menu-box > li").click(function(){
-        var oneLevel = $(".second-level-menu-box").attr('one-level');
-        var secondLevel = $(this).children('span').html();
-
-        var rightImg = '<img src="../Admin/icon/breadcrumb-right.png" class="breadcrumb-right">';
-        var oneLevelDocument = '<a class="breadcrumb-menu-text">'+oneLevel+'</a>';
-        var secondLevelDocument = '<a class="breadcrumb-menu-text">'+secondLevel+'</a>';
-
-        $(".breadcrumb-menu").html(rightImg + oneLevelDocument + rightImg + secondLevelDocument);
-
-        $('.second-level-menu-box').transition('hide')
-
-    })
-
+    
+    function imgdragstart(){return false;} 
     
 </script>
 
