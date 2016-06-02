@@ -63,7 +63,7 @@
 
 		<div class="personnel-menu-box">
 
-			<div class="personnel-menu-colmun" onclick="location.href='orderListAll'">
+			<div class="personnel-menu-colmun" onclick="location.href='order/orderListAll'">
 				<img src="../GbhMobile/img/personnel-order.png" class="personnel-menu-icon">
 				<span>订单详情</span>
 				<i class="chevron right icon"></i>

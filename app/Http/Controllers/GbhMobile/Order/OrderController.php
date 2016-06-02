@@ -87,9 +87,9 @@ class OrderController extends Controller
         return response($jsonResult->toJson());
     }
 
-    public function orderInfo()
+    public function orderDetail(Request $request)
     {
-        return view('GbhMobile.orderInfo');
+        return view('GbhMobile.orderDetail');
     }
 
     /**

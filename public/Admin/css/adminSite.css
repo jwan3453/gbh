@@ -455,3 +455,173 @@ body{
 }
 /***********end**************/
 
+/*********菜单设置*************/
+
+.menusetting-box{
+	width: 1140px;
+	min-height: 500px;
+
+	-moz-box-shadow: 0 0 6px rgba(0,0,0,0.11) ;               /* For Firefox3.6+ */
+	-webkit-box-shadow: 0 0 6px rgba(0,0,0,0.11) ;            /* For Chrome5+, Safari5+ */
+	box-shadow: 0 0 6px rgba(0,0,0,0.11) ;                    /* For Latest Opera */
+}
+
+.menusetting-upper{
+	width: 100%;
+	height: 50px;
+	line-height: 50px;
+	background-color: #dfe8f4;
+	border-bottom: 1px solid #9db1cf;
+}
+
+
+
+.menusetting-content{
+	width: 100%;
+	min-height: 450px;
+
+	background-color: #f8f8f8;
+}
+
+.menusetting-add{
+	width: 100px;
+	height: 50px;
+	float: left;
+	cursor: pointer;
+}
+
+.menusetting-open{
+	width: 100px;
+	height: 50px;
+	float: right;
+	text-align: right;
+	cursor: pointer;
+}
+
+.menusetting-add img{
+	position: absolute;
+	top: 15px;
+	left: 10px;
+}
+
+.menusetting-add span{
+	font-size: 14px;
+	margin-left: 40px;
+	color: #787878;
+}
+
+.menusetting-open span{
+	font-size: 14px;
+	margin-right: 28px;
+	color: #787878;
+}
+.menusetting-open img{
+	position: absolute;
+	top: 21px;
+	right: 10px;
+}
+
+.menu-colmun{
+	width: 100%;
+}
+
+.one-level-menu-colmun{
+	width: 1085px;
+	margin-left: 35px;
+	height: 50px;
+	line-height: 50px;
+	border-bottom: 1px solid #c8c8c8;
+	position: relative;
+}
+
+.menu-icon{
+	position: absolute;
+	top: 13px;
+	left: 20px;
+}
+
+.menu-edit{
+	position: absolute;
+	right: 32px;
+	top: 19px;
+	cursor: pointer;
+}
+
+.menu-delete{
+	position: absolute;
+	right: 0;
+	top: 19px;
+	cursor: pointer;
+}
+
+.menu-open{
+	position: absolute;
+	left: -15px;
+	bottom: -7.5px;
+	cursor: pointer;
+}
+
+.one-level-menu-colmun span{
+	margin-left: 50px;
+	font-size: 14px;
+	color: #505050;
+}
+
+.one-level-menu-colmun .menusetting-desc-text{
+	font-size: 12px;
+	color: #a0a0a0;
+	margin-left: 6px;
+}
+
+.second-level-box{
+	width: 1060px;
+	margin-left: 60px;
+}
+
+.second-level-colmun{
+	width: 100%;
+	height: 40px;
+	line-height: 40px;
+	border-bottom: 1px solid #c8c8c8;
+	border-left: 1px solid #c8c8c8;
+	position: relative;
+}
+
+.second-level-menu-icon{
+	position: absolute;
+	top: 13px;
+	left: 10px;
+}
+
+.second-level-colmun span{
+	font-size: 12px;
+	color: #505050;
+	margin-left: 28px;
+}
+
+.second-level-colmun .menusetting-desc-text{
+	font-size: 12px;
+	color: #a0a0a0;
+	margin-left: 6px;
+}
+
+.second-level-colmun .menu-edit{
+	top: 14px;
+}
+
+.second-level-colmun .menu-delete{
+	top: 14px;
+}
+
+.edit-add-box{
+	min-height: 400px; 
+
+}
+
+.edit-add-box-title{
+	height: 52px;
+	border-bottom: 1px dashed #cccccc;
+}
+
+/************end*****************/
+

@@ -81,7 +81,7 @@
 
 			<div class="order-colmun-foot">
 				<span>订单状态：已取消</span>
-				<div class="order-status-cancle order-colmun-button regular-btn" onclick="location.href='orderInfo'">
+				<div class="order-status-cancle order-colmun-button regular-btn" onclick="location.href='orderDetail/abc123123'">
 					<span class="mobile-code-text">查看详情</span>
 				</div>
 			</div>
