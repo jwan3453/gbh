@@ -14,11 +14,11 @@ class CreateAddressTable extends Migration
     {
         Schema::create('address', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('province')->default(0);
-            $table->integer('city')->default(0);
-            $table->integer('district_id')->default(0);
-            $table->string('detailed',100);
-            $table->string('detailed_english',100);
+            $table->integer('province_code')->default(0);
+            $table->integer('city_code')->default(0);
+            $table->integer('district_code')->default(0);
+            $table->string('detail',100);
+            $table->string('detail_english',100);
             $table->string('longtitute',15);//经度
             $table->string('latitude',15);//纬度
             

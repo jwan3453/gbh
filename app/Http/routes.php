@@ -51,12 +51,17 @@ Route::group(['prefix' => 'order'], function() {
 /************end*****************/
 
 
-Route::get('/', 'GbhMobile\homeController@home');
-Route::get('/search','GbhMobile\homeController@search');
-Route::get('/hotel/{hotelId}','GbhMobile\Hotel\hotelController@hotelDetail');
-Route::get('/hotel/{hotelId}/booking/{roomId}','GbhMobile\Hotel\hotelController@booking');
+//Route::get('/', 'GbhMobile\HomeController@home');
+Route::get('/', 'Gbh\HomeController@home');
+Route::get('/search','GbhMobile\HomeController@search');
+Route::get('/hotel/{hotelId}','GbhMobile\Hotel\HotelController@hotelDetail');
+Route::get('/hotel/{hotelId}/booking/{roomId}','GbhMobile\Hotel\HotelController@booking');
 
-Route::get('/admin/manageHotel','Admin\hotelController@index');
+Route::get('/admin/manageHotel','Admin\Hotel\HotelController@index');
+
+Route::get('/admin/manageHotel/create','Admin\Hotel\HotelController@createHotel');
+
+Route::post('/admin/manageHotel/create','Admin\Hotel\HotelController@storeHotel');
 
 
 

@@ -847,7 +847,7 @@ a{
 
 .hotel-search-bar{
 	height:40px;
-	width:1000px;
+	width:960px;
 	background: #f8f8f8;
 	border:1px solid #f8f8f8;
 	position: relative;
@@ -962,6 +962,7 @@ a{
 	border-radius: 5px;
 }
 /**************************/
+
 
 /***********订单查询**************/
 
@@ -1229,6 +1230,37 @@ a{
 	margin-top: 16px;
 }
 
+.search-result-single .untreated{
+	color: #fd2f2f;
+}
+
+.search-result-single .refuse{
+	color: #a0a0a0;
+}
+
+.search-result-detailed .order-handle{
+	display: inline;
+	cursor: pointer;
+}
+
+.search-result-detailed .order-rewrite{
+	display: inline;
+	cursor: pointer;
+}
+
+.search-result-detailed .order-operation{
+	margin-top: -40px;
+	cursor: pointer;
+}
+
+.search-result-detailed .margin-left-20{
+	margin-left: 20px;
+}
+
+.operation-icon{
+	vertical-align: -4px;
+}
+
 .dashed{
 	width:100%;
 	height:0;
@@ -1237,4 +1269,237 @@ a{
 	margin: 0 auto;
 }
 /***********订单查询***end***********/
+
+/*********创建酒店页面*******/
+
+.h-c-steps{
+	height:80px;
+	background: #f8f8f8;
+
+	width:960px;
+	padding:15px 80px;
+}
+.h-c-steps .step{
+	width:70px;
+	height:70px;
+	border-radius: 100%;
+
+	font-size:18px;
+	text-align: center;
+	line-height: 70px;
+	background-color: rgba(159, 159, 159, 0.91);
+	color:#f8f8f8;
+	float:left;
+	border:5px solid #e6e6e6;
+}
+.h-c-steps .s-active{
+	background-color:  #6392e3;;
+
+}
+.h-c-steps .s-line{
+	float:left;
+	height:5px;
+	width:80px;
+	vertical-align: middle;
+	background-color: rgba(159, 159, 159, 0.91);
+	margin-top:33px;
+	border-top:5px solid #e6e6e6;
+	border-bottom:5px solid #e6e6e6;
+}
+.h-c-steps .s-l-active{
+	background-color: #6392e3;;
+
+}
+
+.hotel-info{
+	margin-top:10px;
+	width:960px;
+	background-color: #f8f8f8;
+	overflow: hidden;
+}
+.hotel-info .header{
+	height:30px;
+	line-height: 30px;
+	font-size:16px;
+
+	margin:0 10px;
+	border-bottom: 1px dashed #505050;
+}
+.detail-form{
+	padding:20px 10px;
+	overflow: hidden;
+	margin-bottom: 20px;
+
+}
+.short-input-box {
+	float:left;
+	margin:15px 30px 10px 0 ;
+	width:400px;
+}
+.short-input-box label{
+	font-size:14px;
+	display: inline-block;
+	width:70px;
+}
+.short-input-box input{
+	height:30px;
+	width:150px;
+	font-size:12px;
+	background-color: #f8f8f8;
+	border:1px solid #505050;
+
+}
+.short-input-box span{
+	font-size:12px;
+	display: inline-block;
+	color: #cfcfcf;
+}
+
+.long-input-box {
+	float:left;
+	margin:15px 30px 10px 0 ;
+	width:800px;
+}
+.long-input-box label{
+	font-size:14px;
+	display: inline-block;
+	width:70px;
+}
+.long-input-box input{
+	height:30px;
+	width:360px;
+	font-size:12px;
+	background-color: #f8f8f8;
+	border:1px solid #505050;
+
+}
+.long-input-box textarea{
+	width:360px;
+	height:240px;
+	font-size:12px;
+	background-color: #f8f8f8;
+	border:1px solid #505050;
+}
+.long-input-box span{
+	font-size:12px;
+	display: inline-block;
+	color: #cfcfcf;
+	vertical-align: middle;
+}
+
+.next-step-btn{
+	width:200px;
+	height:40px;
+	font-size:16px;
+	line-height: 40px;
+	text-align: center;
+	background: #6392e3;
+	margin-bottom: 10px;
+	color:#f8f8f8;
+	cursor: pointer;
+}
+/**************************/
+
+
+/*** jquery plugin*****/
+
+.c-caption-section{
+	height:30px;
+	font-size: 14px;
+	text-align: center;
+	line-height: 30px;
+
+}
+.c-caption-section .active{
+
+	color:#505050;
+	background-color:#f8f8f8 ;
+}
+.c-caption-section span{
+	background: #c2cbd4;;
+	float:left;
+	width:33.3333%;
+	color:#f8f8f8;
+	cursor: pointer;
+}
+.province-section{
+	font-size:12px;
+	padding:5px 2px 0 2px;
+
+}
+.province-section span {
+	margin:2px 0;
+	cursor:pointer;
+	display:inline-block;
+	padding:5px 5px;
+	border-radius: 2px;
+}
+.province-section span:hover {
+	background:  #fe875e;
+	color:white;
+}
+
+.province-section hr{
+	height:2px;
+	border:none;
+	border-top:3px double rgba(6, 148, 204, 0.98);
+	margin:3px 10px;
+}
+.city-section{
+	font-size:12px;
+	padding:5px 2px 0 2px;
+	display:none;
+}
+.city-section span{
+	margin:2px 0;
+	cursor:pointer;
+	display:inline-block;
+	padding:5px 5px;
+	border-radius: 2px;
+}
+.city-section span:hover{
+	background:  #fe875e;
+	color:white;
+}
+
+.district-section{
+	font-size:12px;
+	padding:5px 2px 0 2px;
+	display:none;
+}
+.district-section span{
+	margin:2px 0;
+	cursor:pointer;
+	display:inline-block;
+	padding:5px 5px;
+	border-radius: 2px;
+}
+.district-section span:hover{
+	background:  #fe875e;;
+	color:white;
+}
+
+.geo-search-line{
+	cursor: pointer;
+	font-size:12px;
+	padding:5px 5px 0 5px;
+}
+
+.geo-search-line:hover{
+	background-color: #00aced;
+	color:#f8f8f8;
+}
+.geo-search-line span{
+	display:inline-block;
+	margin:0 5px 0 0 ;
+	padding:2px;
+
+
+}
+
+.geo-selected {
+	background:#00aced;
+	color:#f8f8f8;
+}
+/**********************/
 

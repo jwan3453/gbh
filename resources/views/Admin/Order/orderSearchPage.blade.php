@@ -154,7 +154,7 @@
 			<span class="down">(外宾)</span>
 		</div>
 		<div class="search-result-single width-160">
-			<span >未处理</span>
+			<span class="untreated">未处理</span>
 		</div>
 		<div class="search-result-detailed width-200">
 			<span>2106-06-08</span>
@@ -164,8 +164,15 @@
 			<span>胡歌</span>
 		</div>
 		<div class="search-result-detailed width-240">
-			<span>操作订单</span>
-			<span class="down">操作订单</span>
+			<span class="order-handle"> 
+				<img src="/Admin/icon/order-handle.png" class="operation-icon"> 处理订单
+			</span>
+			<span class="order-rewrite  margin-left-20"> 
+				<img src="/Admin/icon/order-rewrite.png"  class="operation-icon"> 改写订单 
+			</span>
+			<span class="order-operation"> 
+				<img src="/Admin/icon/order-operation-log.png"  class="operation-icon"> 操作日志
+			</span>
 		</div>
 	</div>
 	<div class="dashed"></div>
@@ -180,7 +187,7 @@
 			<span class="down">(外宾)</span>
 		</div>
 		<div class="search-result-single width-160">
-			<span >未处理</span>
+			<span >接受</span>
 		</div>
 		<div class="search-result-detailed width-200">
 			<span>2106-06-08</span>
@@ -190,8 +197,15 @@
 			<span>胡歌</span>
 		</div>
 		<div class="search-result-detailed width-240">
-			<span>操作订单</span>
-			<span class="down">操作订单</span>
+			<span class="order-handle"> 
+				<img src="/Admin/icon/order-handle.png" class="operation-icon"> 处理订单
+			</span>
+			<span class="order-rewrite  margin-left-20"> 
+				<img src="/Admin/icon/order-rewrite.png"  class="operation-icon"> 改写订单 
+			</span>
+			<span class="order-operation"> 
+				<img src="/Admin/icon/order-operation-log.png"  class="operation-icon"> 操作日志
+			</span>
 		</div>
 	</div>
 	<div class="dashed"></div>
@@ -206,7 +220,7 @@
 			<span class="down">(外宾)</span>
 		</div>
 		<div class="search-result-single width-160">
-			<span >未处理</span>
+			<span class="refuse">拒绝</span>
 		</div>
 		<div class="search-result-detailed width-200">
 			<span>2106-06-08</span>
@@ -216,8 +230,15 @@
 			<span>胡歌</span>
 		</div>
 		<div class="search-result-detailed width-240">
-			<span>操作订单</span>
-			<span class="down">操作订单</span>
+			<span class="order-handle"> 
+				<img src="/Admin/icon/order-handle.png" class="operation-icon"> 处理订单
+			</span>
+			<span class="order-rewrite  margin-left-20"> 
+				<img src="/Admin/icon/order-rewrite.png"  class="operation-icon"> 改写订单 
+			</span>
+			<span class="order-operation"> 
+				<img src="/Admin/icon/order-operation-log.png"  class="operation-icon"> 操作日志
+			</span>
 		</div>
 	</div>
 	<div class="dashed"></div>
@@ -232,7 +253,7 @@
 			<span class="down">(外宾)</span>
 		</div>
 		<div class="search-result-single width-160">
-			<span >未处理</span>
+			<span class="untreated">未处理</span>
 		</div>
 		<div class="search-result-detailed width-200">
 			<span>2106-06-08</span>
@@ -242,8 +263,15 @@
 			<span>胡歌</span>
 		</div>
 		<div class="search-result-detailed width-240">
-			<span>操作订单</span>
-			<span class="down">操作订单</span>
+			<span class="order-handle"> 
+				<img src="/Admin/icon/order-handle.png" class="operation-icon"> 处理订单
+			</span>
+			<span class="order-rewrite  margin-left-20"> 
+				<img src="/Admin/icon/order-rewrite.png"  class="operation-icon"> 改写订单 
+			</span>
+			<span class="order-operation"> 
+				<img src="/Admin/icon/order-operation-log.png"  class="operation-icon"> 操作日志
+			</span>
 		</div>
 	</div>
 	<div class="dashed"></div>
@@ -258,7 +286,7 @@
 			<span class="down">(外宾)</span>
 		</div>
 		<div class="search-result-single width-160">
-			<span >未处理</span>
+			<span >接受</span>
 		</div>
 		<div class="search-result-detailed width-200">
 			<span>2106-06-08</span>
@@ -268,8 +296,15 @@
 			<span>胡歌</span>
 		</div>
 		<div class="search-result-detailed width-240">
-			<span>操作订单</span>
-			<span class="down">操作订单</span>
+			<span class="order-handle"> 
+				<img src="/Admin/icon/order-handle.png" class="operation-icon"> 处理订单
+			</span>
+			<span class="order-rewrite  margin-left-20"> 
+				<img src="/Admin/icon/order-rewrite.png"  class="operation-icon"> 改写订单 
+			</span>
+			<span class="order-operation"> 
+				<img src="/Admin/icon/order-operation-log.png"  class="operation-icon"> 操作日志
+			</span>
 		</div>
 	</div>
 	<div class="dashed"></div>
@@ -284,7 +319,7 @@
 			<span class="down">(外宾)</span>
 		</div>
 		<div class="search-result-single width-160">
-			<span >未处理</span>
+			<span class="refuse">拒绝</span>
 		</div>
 		<div class="search-result-detailed width-200">
 			<span>2106-06-08</span>
@@ -294,8 +329,15 @@
 			<span>胡歌</span>
 		</div>
 		<div class="search-result-detailed width-240">
-			<span>操作订单</span>
-			<span class="down">操作订单</span>
+			<span class="order-handle"> 
+				<img src="/Admin/icon/order-handle.png" class="operation-icon"> 处理订单
+			</span>
+			<span class="order-rewrite  margin-left-20"> 
+				<img src="/Admin/icon/order-rewrite.png"  class="operation-icon"> 改写订单 
+			</span>
+			<span class="order-operation"> 
+				<img src="/Admin/icon/order-operation-log.png"  class="operation-icon"> 操作日志
+			</span>
 		</div>
 	</div>
 	<div class="dashed"></div>

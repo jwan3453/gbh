@@ -1,5 +1,5 @@
 
-<div class="ui right sidebar   search-sidebar">
+<div class="ui top sidebar   search-sidebar">
     <div class="destination-box ">
 
         <input class="auto-margin" type="text" placeholder="输入您要搜索的城市"/>

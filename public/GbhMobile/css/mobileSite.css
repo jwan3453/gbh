@@ -817,6 +817,7 @@ a{
 
 .search-sidebar{
 	background-color:white;
+	width:100%!important;
 }
 .destination-box{
 	overflow: hidden;

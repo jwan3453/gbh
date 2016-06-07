@@ -4,6 +4,7 @@
 
 @section('content')
 
+    <div>
     <div class="hotel-search-bar">
         <div class="add-hotel-btn f-left">
            <i class="icon plus "></i> 添加酒店
@@ -179,4 +180,6 @@
 
         </tbody>
     </table>
+
+    </div>
 @stop

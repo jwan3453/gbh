@@ -1,0 +1,150 @@
+
+/*****公共部分****/
+body{
+	margin: 0;
+	background: #f8f8f8;
+	color:#505050;
+	font-family: "Microsoft YaHei" ! important;
+}
+a{
+	text-decoration: none;
+	color:#f8f8f8;
+}
+
+
+.auto-margin{
+	margin: 0 auto;
+}
+/******/
+
+
+/******网站首页******/
+
+.home-page{
+
+}
+.home-slide{
+
+	position: relative;
+}
+.home-slide img{
+	max-height: 400px!important;
+}
+.slide-caption{
+
+	width:100%;
+	height:100%;
+	border:1px solid red;
+
+	position: absolute;
+
+}
+.slide-caption span{
+
+	font-size:1.6em;
+	color:white;
+	position:absolute;
+	z-index: 1001;
+	bottom:80px;
+	left:80px;
+}
+.sub-slogan{
+	color: rgba(44, 0, 0, 0.91);
+	text-align:center;
+	margin-top:20px;
+	margin-bottom: 20px;
+
+}
+.sub-slogan h2{
+
+	margin:0;
+	font-size:1.6em;
+}
+.sub-slogan h3{
+	margin:0;
+	font-size:1.2em;
+
+}
+.home-hotel-warp{
+
+
+	overflow: hidden;
+	display: block;
+}
+
+.hotel-warp{
+
+	margin-bottom: 40px;
+
+}
+
+.hotel-box{
+	height:300px;
+	width:360px;
+	position:relative;
+	float:left;
+	border:1px solid #ddd;
+	margin-top:20px;
+}
+.hotel-box:nth-of-type(1),.hotel-box:nth-of-type(2){
+	margin-right:20px;
+}
+
+.hotel-box img{
+	width:100%;
+	height:300px;
+}
+.hotel-box-mark{
+	top:0;
+	left:0;
+	border-top: 80px solid rgba(255, 75, 72, 0.9);
+	border-right: 80px solid transparent;
+	position:absolute;
+
+}
+.hotel-box-mask{
+	position:absolute;
+	height:300px;
+	width:360px;
+	top:0;
+	right:0;
+	background: rgba(0, 0, 0, 0.3);
+	display:none;
+
+	text-align:center;
+	font-size:18px;
+	font-weight:500;
+	color:white;
+	padding: 60px 0 0 0;
+}
+
+.hotel-box-mask a{
+
+	padding:10px 5px;
+	display:block;
+}
+
+.hotel-box-mask span{
+
+}
+
+
+/**********特效******/
+.blur {
+	filter: url(blur.svg#blur); /* FireFox, Chrome, Opera */
+
+	-webkit-filter: blur(9px); /* Chrome, Opera */
+	-moz-filter: blur(9px);
+	-ms-filter: blur(9px);
+	filter: blur(9px);
+
+	filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=10, MakeShadow=false); /* IE6~IE9 */
+
+	-webkit-transition-duration: 0.6s;
+	-webkit-transition-timing-function: linear;
+
+
+	-moz-transition-duration: 0.6s;
+	-moz-transition-timing-function: linear;
+}
+/*******************/
