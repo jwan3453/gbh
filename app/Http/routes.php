@@ -71,12 +71,31 @@ Route::get('/admin/manageHotel','Admin\hotelController@index');
 
 Route::get('/AdminCenter','Admin\homeController@index');
 
-Route::get('menuSetting','Admin\MenuSetting\MenuSettingController@index');
+Route::get('admin/menuSetting','Admin\Menu\MenuSettingController@index');
 
 Route::group(['prefix' => 'menuSetting'], function() {
-    Route::post('getSecondMenu','Admin\MenuSetting\MenuSettingController@getSecondMenu');
+    Route::post('getSecondMenu','Admin\Menu\MenuSettingController@getSecondMenu');
+
+    Route::post('createMenu','Admin\Menu\MenuSettingController@createMenu');
+
+    Route::post('uploadIcon','Admin\Menu\MenuSettingController@uploadIcon');
+
+    Route::post('getMenuInfo','Admin\Menu\MenuSettingController@getMenuInfo');
+
+    Route::post('menuDelete','Admin\Menu\MenuSettingController@menuDelete');
+
+    Route::post('getFirstMenu','Admin\Menu\MenuSettingController@getFirstMenu');
 
 });
+
+
+Route::get('orderSearchPage','Admin\Order\OrderController@orderSearchPage');
+
+// Route::group(['prefix' => 'admin/Order'], function() {
+// 	Route::get('orderSearchPage','Admin\Order\OrderController@orderSearchPage');
+// });
+
+
 
 /************************end*************************************/
 

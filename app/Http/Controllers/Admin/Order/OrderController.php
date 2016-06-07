@@ -1,27 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Admin\MenuSetting;
+namespace App\Http\Controllers\Admin\Order;
 
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Service\Admin\MenuSettingService;
 
-use App\Tool\MessageResult;
-
-class MenuSettingController extends Controller
+class OrderController extends Controller
 {
-
-
-    private $menuSetting;
-    public function __construct(MenuSettingService $menuSetting ){
-
-        $this->menuSetting = $menuSetting ;
-    }
-
-    
-
     /**
      * Display a listing of the resource.
      *
@@ -29,18 +16,12 @@ class MenuSettingController extends Controller
      */
     public function index()
     {
-        $menuList = $this->menuSetting->getOneMenu();
-        // dd($menuList);
-        return view('Admin.Menu.menuSetting')->with('menuList',$menuList);
+        //
     }
 
-    public function getSecondMenu(Request $request)
+    public function orderSearchPage()
     {
-        $jsonResult = new MessageResult();
-
-        $jsonResult->getSecondMenu = $this->menuSetting->getSecondMenu($request->input('menuId'));
-
-        return response($jsonResult->toJson());
+        return view('Admin.Order.orderSearchPage');
     }
 
     /**
