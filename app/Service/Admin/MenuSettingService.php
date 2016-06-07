@@ -71,7 +71,7 @@ class MenuSettingService {
 		$jsonResult->statusCode = 1;
    		$jsonResult->statusMsg = "成功";
    		$jsonResult->name = $menuName[0];
-   		$jsonResult->imgPath = '../'.$pic_path;
+   		$jsonResult->imgPath = '/'.$pic_path;
 
    		return response($jsonResult->toJson());
    		
