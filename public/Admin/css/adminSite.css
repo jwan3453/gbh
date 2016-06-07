@@ -10,7 +10,7 @@ body{
 	width: 160px;
 	background-color: #2d3c4f;
 	/*padding-top: 20px;*/
-	position: absolute;
+	position: fixed;
 	top: 0;
 	bottom: 0;
 	left: 0;
@@ -63,7 +63,7 @@ body{
 .second-level-menu-box{
 	width: 120px;
 	background-color: #2d3c4f;
-	position: absolute;
+	position: fixed;
 	left: 160px;
 	top: 0;
 	bottom: 0;
@@ -702,13 +702,140 @@ a{
 }
 
 .edit-add-box{
-	min-height: 400px; 
-
+	/*min-height: 400px; */
+	width: 510px !important;
+	margin-left: -200px !important;
 }
 
-.edit-add-box-title{
+.edit-add-title{
 	height: 52px;
+	line-height: 52px;
 	border-bottom: 1px dashed #cccccc;
+}
+
+.first-menu{
+	margin-left: 10px;
+}
+
+.second-menu{
+	margin-left: 12px;
+}
+
+.edit-add-content{
+	width: 490px;
+	margin: 0 auto;
+	margin-top: 14px;
+}
+
+.select-box{
+	width: 174px;
+	height: 28px !important;
+	border-radius: 4px;
+	font-size: 12px;
+}
+
+.edit-add-content label{
+	font-size: 14px;
+	margin-right: 10px;
+}
+
+.content-colmun{
+	width: 100%;
+	margin-bottom: 20px;
+	height: 28px;
+}
+
+.content-colmun-left{
+	float: left;
+}
+
+.content-colmun-right{
+	float: left;
+	margin-left: 10px;
+}
+
+.content-colmun-right .select-box{
+	width: 164px;
+}
+
+.edit-add-content .content-input{
+	width: 172px;
+	border-radius: 4px;
+	height: 24px;
+	border: 1px solid #dedede;
+}
+
+.content-colmun-right .content-input{
+	width: 162px;
+}
+
+.content-colmun .overall-length{
+	width: 414px;
+}
+
+.content-upload-colmun{
+	width: 100%;
+	height: 80px;
+}
+
+.content-upload-colmun label{
+	font-size: 14px;
+	/*margin-right: 10px;*/
+	float: left;
+}
+
+.upload-box{
+	width: 80px;
+	height: 80px;
+	border: 1px solid #a0a0a0;
+	float: left;
+	border-radius: 4px;
+	margin-left: 10px;
+	cursor: pointer;
+}
+
+.upload-box img{
+	width: 40px;
+	margin-left: 20px;
+	margin-top: 20px;
+}
+
+.content-button-colmun{
+	height: 30px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.currency-btu{
+	width: 200px;
+	height: 30px;
+	line-height: 30px;
+	background-color: #639ae3;
+	border-radius: 4px;
+	margin: 0 auto;
+	text-align: center;
+	cursor: pointer;
+}
+.currency-btu span{
+	color: #f8f8f8;
+	font-size: 14px;
+}
+
+.upload-tip-box{
+	width: 125px;
+	margin-left: 10px;
+	height: 80px;
+	float: left;
+}
+
+.upload-tip-box span{
+	margin-top: 10px;
+	font-size: 12px;
+	float: left;
+}
+
+.upload-input{
+	display: none;
 }
 
 /************end*****************/
@@ -835,4 +962,204 @@ a{
 	border-radius: 5px;
 }
 /**************************/
+
+/***********订单查询**************/
+
+.order-upper{
+	width: 1144px;
+	height: 60px;
+	background-color: #f8f8f8;
+
+	-moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+}
+
+.order-upper-row{
+	width: 228px;
+	float: left;
+	height: 60px;
+	line-height: 60px;
+	text-align: center;
+}
+
+.order-upper-row span{
+	color: #a0a0a0;
+	font-size: 16px;
+	cursor: pointer;
+}
+
+.order-upper-select span{
+	color: #505050;
+}
+
+.order-upper-row-separate{
+	height: 10px;
+	width: 1px;
+	background-color: #a0a0a0;
+	float: left;
+	margin-top: 25px;
+}
+
+.order-inquiry-condition-box{
+	width: 1144px;
+	height: 255px;
+	background-color: #f8f8f8;
+	margin-top: 20px;
+	padding-top: 20px;
+
+	-moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+}
+
+.inquiry-condition-row{
+	width: 1134px;
+	margin-bottom: 20px;
+	margin-left: 10px;
+}
+
+.height-24{
+	height: 24px;
+	line-height: 24px;
+}
+
+.height-32{
+	height: 32px;
+	line-height: 32px;
+}
+
+.inquiry-condition-row .title-font{
+	font-size: 14px;
+	color: #505050;
+	float: left;
+}
+
+.check-radio{
+	margin-left: 5px;
+}
+
+.small-font{
+	font-size: 12px;
+	color: #505050;
+	/*margin-right: 20px;*/
+}
+
+.dateinput{
+	height: 18px;
+	width: 92px;
+	border-radius: 2px;
+	border: 1px solid #a0a0a0;
+	background-color: #F4F4F4;
+	text-align: center;
+}
+
+.margin-right-20{
+	margin-right: 20px;
+}
+
+.margin-right-10{
+	margin-right: 10px;
+}
+
+.order-inquiry-condition-tag{
+	border: 1px solid #B4B4B4;
+	padding: 0 10px;
+	line-height: 20px;
+	float: left;
+	border-radius: 4px;
+	margin-left: 10px;
+	cursor: pointer;
+}
+
+.select{
+	border: 1px solid #505050;
+	color: #505050;
+}
+
+.inquiry-condition-row .select span{
+	color: #505050;
+}
+
+.order-inquiry-condition-tag span{
+	font-size: 12px;
+	color: #B4B4B4;
+}
+
+.inquiry-condition-input{
+	height: 26px;
+	width: 176px;
+	border: 1px solid #505050;
+	float: left;
+	border-radius: 2px;
+}
+
+.inquiry-condition-select{
+	height: 32px;
+	width: 180px;
+	border: 1px solid #505050;
+	float: left;
+	border-radius: 2px;
+}
+
+.height-40{
+	height: 40px;
+	line-height: 40px;
+}
+
+.order-search-btu{
+	width: 200px;
+	height: 40px;
+	line-height: 40px;
+	background-color: #639ae3;
+	border-radius: 4px;
+	margin: 0 auto;
+	text-align: center;
+	cursor: pointer;
+}
+
+.order-search-btu span{
+	color: #f8f8f8;
+	font-size: 16px;
+}
+
+.order-search-btu img{
+	vertical-align: -4px;
+	margin-left: 20px;
+}
+
+.order-search-number{
+	height: 14px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.order-search-number .number{
+	color: #3f5e85;
+	font-size: 14px;
+	font-weight: bold;
+
+}
+
+.order-search-number .title-font{
+	font-size: 14px;
+	color: #787878;
+}
+
+.search-result-list-box{
+	width: 1144px;
+}
+
+.search-result-title{
+	height: 50px;
+	line-height: 50px;
+	width: 100%;
+	background-color: #dfe8f4;
+	border-bottom: 1px solid #9db1cf;
+}
+
+.search-result-title-name{
+	float: left;
+}
+/***********订单查询***end***********/
 

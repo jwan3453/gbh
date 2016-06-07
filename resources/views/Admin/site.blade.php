@@ -28,29 +28,13 @@
         </div>
 
         <div class="admin-menu-list">
-            <li class="menu-selected">
+            <li href="AdminCenter" name="home" onclick="firstMenuClick(this)">
                 <img src="../Admin/icon/home-select.png" name="home" style="draggable='false'">
                 <span>首页</span>
             </li>
-            <li>
-                <img src="../Admin/icon/order.png" name="order">
-                <span>订单处理</span>
-            </li>
-            <li>
-                <img src="../Admin/icon/roomstatus.png" name="roomstatus">
-                <span>房态维护</span>
-            </li>
-            <li>
-                <img src="../Admin/icon/discount.png" name="discount">
-                <span>优惠促销</span>
-            </li>
-            <li>
+            <li href="admin/menuSetting" name="menu-setting" onclick="firstMenuClick(this)">
                 <img src="../Admin/icon/menu-setting.png" name="menu-setting">
                 <span>菜单设置</span>
-            </li>
-            <li >
-                <img src="../Admin/icon/menu-setting.png" name="menu-setting">
-                <span>酒店管理</span>
             </li>
         </div>
 
@@ -59,10 +43,10 @@
     </div>
 
     <div class="second-level-menu-box" one-level="">
-        <li>
+        <!-- <li onclick="secondMenuClick(this)">
             <img src="../Admin/icon/todayorder.png" name="todayorder">
             <span>今日订单</span>
-        </li>
+        </li> -->
     </div>
 
     <div class="breadcrumb">
@@ -92,16 +76,7 @@
 
 
 
-   <!--  <div class="foot-box">
-
-        </div> -->
-    
-
 </body>
-
-
-
-
 
 
 
@@ -110,54 +85,141 @@
 <script type="text/javascript">
 
     $(document).ready(function(){
-        var selectimgname = 'home';
-        var newimgname = 'home';
-
-
-        $(".admin-menu-list > li").click(function(){
-            var srcPath = '../Admin/icon/';
-
-            selectimgname = $(".admin-menu-list .menu-selected > img").attr('name');
-            $(".admin-menu-list .menu-selected > img").attr('src' , srcPath + selectimgname + '.png');
-            $(".admin-menu-list .menu-selected").removeClass('menu-selected');
-
-            $(this).addClass('menu-selected');
-            newimgname = $(this).children('img').attr('name');
-            $(this).children('img').attr('src' , srcPath + newimgname + '-select.png');
-
-            if (newimgname === 'home') {
-                $(".breadcrumb-menu").html('');
-                $('.second-level-menu-box').transition('hide');
-                return false;
-            }
-
-            $(".second-level-menu-box").attr('one-level' , $(this).children('span').html());
-
-            if (selectimgname === newimgname) {
-                $('.second-level-menu-box').transition('swing right');
-            }else{
-                $('.second-level-menu-box').transition('hide').transition('swing right');
-            }
-
-        })
         
+        if (sessionStorage.getItem("breadcrumb") != null) {
+            $(".breadcrumb-menu").html(sessionStorage.getItem("breadcrumb"));
+        }
 
-        $(".second-level-menu-box > li").click(function(){
-            var oneLevel = $(".second-level-menu-box").attr('one-level');
-            var secondLevel = $(this).children('span').html();
+        $.ajax({
+            type: 'POST',
+            url: '/menuSetting/getFirstMenu',
+            data: {},
+            dataType: 'json',
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+            },
+            success : function(data){
+                var menuList = '';
+                for (var i = 0; i < data.length; i++) {
+                    // console.log(data[i]);
+                    menuList += '<li href="'+data[i].menu_chaining+'" name="'+data[i].menu_name_eg+'" onclick="firstMenuClick(this)" menuId="'+data[i].id+'">';
+                    menuList += '<img src="'+data[i].icon_img_1+'" name="'+data[i].menu_name_eg+'">';
+                    menuList += '<span>'+data[i].menu_name+'</span>';
+                    menuList += '</li>';
+                }
+                
+                $('.admin-menu-list').children().eq(0).after(menuList);
 
-            var rightImg = '<img src="../Admin/icon/breadcrumb-right.png" class="breadcrumb-right">';
-            var oneLevelDocument = '<a class="breadcrumb-menu-text">'+oneLevel+'</a>';
-            var secondLevelDocument = '<a class="breadcrumb-menu-text">'+secondLevel+'</a>';
+                //------验证本地存储中的菜单名----------
+                if (sessionStorage.getItem("clickMenuImgName") != null) {
+                    
+                    $(".admin-menu-list").find("li[name='"+sessionStorage.getItem("clickMenuImgName")+"']").children("img").attr('src','../Admin/icon/'+sessionStorage.getItem("clickMenuImgName")+'-select.png');
 
-            $(".breadcrumb-menu").html(rightImg + oneLevelDocument + rightImg + secondLevelDocument);
-
-            $('.second-level-menu-box').transition('hide')
-
+                    $(".admin-menu-list").find("li[name='"+sessionStorage.getItem("clickMenuImgName")+"']").addClass("menu-selected");
+                   
+                }
+            }
         })
+
+
 
         for(i in document.images)document.images[i].ondragstart=imgdragstart; 
     })
+
+    var selectimgname = 'home';
+    var newimgname = 'home';
+
+    function firstMenuClick(_this) {
+        var srcPath = '../Admin/icon/';
+
+        //----将已选中的一级菜单文字颜色及图片切换为未选中的-----
+        selectimgname = $(".admin-menu-list .menu-selected > img").attr('name');
+        $(".admin-menu-list .menu-selected > img").attr('src' , srcPath + selectimgname + '.png');
+        $(".admin-menu-list .menu-selected").removeClass('menu-selected');
+
+        //----将当前选中的一级菜单文字颜色及图片切换为已选中的-------
+        $(_this).addClass('menu-selected');
+        newimgname = $(_this).children('img').attr('name');
+        $(_this).children('img').attr('src' , srcPath + newimgname + '-select.png');
+
+        //-----如果点击的是首页则直接跳转------
+        if (newimgname === 'home') {
+            // console.log($(_this).attr('href'));
+            sessionStorage.removeItem("breadcrumb");
+            sessionStorage.setItem("clickMenuImgName", "home");
+            location.href = '../'+$(_this).attr('href');
+            $(".breadcrumb-menu").html('');
+            $('.second-level-menu-box').transition('hide');
+            return false;
+        }
+
+        //---将一级菜单名称填充入二级菜单dom中--------
+        $(".second-level-menu-box").attr('one-level' , $(_this).children('span').html());
+
+        if (selectimgname === newimgname) { //--如果选中同一个菜单则收起二级菜单
+            $('.second-level-menu-box').transition('swing right');
+        }else{
+            //------将菜单名存入本地存储-------------
+            
+            sessionStorage.setItem("clickMenuImgName", $(_this).attr('name'));
+
+            // console.log($(_this).attr('menuId'));
+
+            $.ajax({
+                type: 'POST',
+                url: '/menuSetting/getSecondMenu',
+                data: {menuId : $(_this).attr('menuId')},
+                dataType: 'json',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                },
+                success : function(data){
+                    
+                    var secondMenuList = '';
+                    for (var i = 0; i < data.getSecondMenu.length; i++) {
+                       
+                        secondMenuList += '<li href="'+data.getSecondMenu[i].menu_chaining+'" onclick="secondMenuClick(this)">';
+                        secondMenuList += '<img src="'+data.getSecondMenu[i].icon_img_1+'" name="todayorder">';
+                        secondMenuList += '<span>'+data.getSecondMenu[i].menu_name+'</span>';
+                        secondMenuList += '</li>';
+        
+                    }
+                    $(".second-level-menu-box").html(secondMenuList);
+                }
+            })
+
+            if ($(_this).attr('href') == '' || $(_this).attr('href') == 'undefined') {
+                    
+                $('.second-level-menu-box').transition('hide').transition('swing right');
+            }
+            else{
+                var rightImg = '<img src="../Admin/icon/breadcrumb-right.png" class="breadcrumb-right">';
+                var oneLevelDocument = '<a class="breadcrumb-menu-text">'+$(_this).children("span").html()+'</a>';
+
+                sessionStorage.setItem("breadcrumb", rightImg + oneLevelDocument);
+                location.href = '../'+$(_this).attr('href');
+            }
+                
+        }
+
+    }
+
+    function secondMenuClick(_this) {
+        console.log($(_this).attr('href'));
+        var oneLevel = $(".second-level-menu-box").attr('one-level');
+        var secondLevel = $(_this).children('span').html();
+
+        var rightImg = '<img src="../Admin/icon/breadcrumb-right.png" class="breadcrumb-right">';
+        var oneLevelDocument = '<a class="breadcrumb-menu-text">'+oneLevel+'</a>';
+        var secondLevelDocument = '<a class="breadcrumb-menu-text">'+secondLevel+'</a>';
+
+        $(".breadcrumb-menu").html(rightImg + oneLevelDocument + rightImg + secondLevelDocument);
+
+        sessionStorage.setItem("breadcrumb", rightImg + oneLevelDocument + rightImg + secondLevelDocument);
+        //-------收起二级菜单------
+        $('.second-level-menu-box').transition('hide');
+        location.href = '../'+$(_this).attr('href');
+    }
 
 
     
