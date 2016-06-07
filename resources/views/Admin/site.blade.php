@@ -23,16 +23,16 @@
 <div class="menu-box">
 
     <div class="menu-logo">
-        <img src="../Admin/img/logo.png">
+        <img src="/Admin/img/logo.png">
     </div>
 
     <div class="admin-menu-list">
         <li href="AdminCenter" name="home" onclick="firstMenuClick(this)">
-            <img src="../Admin/icon/home-select.png" name="home" style="draggable='false'">
+            <img src="/Admin/icon/home-select.png" name="home" style="draggable='false'">
             <span>首页</span>
         </li>
         <li href="admin/menuSetting" name="menu-setting" onclick="firstMenuClick(this)">
-            <img src="../Admin/icon/menu-setting.png" name="menu-setting">
+            <img src="/Admin/icon/menu-setting.png" name="menu-setting">
             <span>菜单设置</span>
         </li>
     </div>
@@ -43,13 +43,13 @@
 
 <div class="second-level-menu-box" one-level="">
     <!-- <li onclick="secondMenuClick(this)">
-        <img src="../Admin/icon/todayorder.png" name="todayorder">
+        <img src="/Admin/icon/todayorder.png" name="todayorder">
         <span>今日订单</span>
     </li> -->
 </div>
 
 <div class="breadcrumb">
-    <img src="../Admin/icon/home-breadcrumb.png">
+    <img src="/Admin/icon/home-breadcrumb.png">
     <span>首页</span>
         <span class="breadcrumb-menu">
             
@@ -106,17 +106,19 @@
                 $('.admin-menu-list').children().eq(0).after(menuList);
                 //------验证本地存储中的菜单名----------
                 if (sessionStorage.getItem("clickMenuImgName") != null) {
-                    $(".admin-menu-list").find("li[name='"+sessionStorage.getItem("clickMenuImgName")+"']").children("img").attr('src','../Admin/icon/'+sessionStorage.getItem("clickMenuImgName")+'-select.png');
+                    $(".admin-menu-list").find("li[name='"+sessionStorage.getItem("clickMenuImgName")+"']").children("img").attr('src','/Admin/icon/'+sessionStorage.getItem("clickMenuImgName")+'-select.png');
                     $(".admin-menu-list").find("li[name='"+sessionStorage.getItem("clickMenuImgName")+"']").addClass("menu-selected");
                 }
             }
         })
         for(i in document.images)document.images[i].ondragstart=imgdragstart;
     })
+
     var selectimgname = 'home';
     var newimgname = 'home';
+
     function firstMenuClick(_this) {
-        var srcPath = '../Admin/icon/';
+        var srcPath = '/Admin/icon/';
         //----将已选中的一级菜单文字颜色及图片切换为未选中的-----
         selectimgname = $(".admin-menu-list .menu-selected > img").attr('name');
         $(".admin-menu-list .menu-selected > img").attr('src' , srcPath + selectimgname + '.png');
@@ -130,62 +132,79 @@
             // console.log($(_this).attr('href'));
             sessionStorage.removeItem("breadcrumb");
             sessionStorage.setItem("clickMenuImgName", "home");
-            location.href = '../'+$(_this).attr('href');
+            location.href = '/'+$(_this).attr('href');
             $(".breadcrumb-menu").html('');
             $('.second-level-menu-box').transition('hide');
             return false;
         }
         //---将一级菜单名称填充入二级菜单dom中--------
         $(".second-level-menu-box").attr('one-level' , $(_this).children('span').html());
+
+
+        $.ajax({
+            type: 'POST',
+            url: '/menuSetting/getSecondMenu',
+            data: {menuId : $(_this).attr('menuId')},
+            dataType: 'json',
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+            },
+            success : function(data){
+            var secondMenuList = '';
+                for (var i = 0; i < data.getSecondMenu.length; i++) {
+                    secondMenuList += '<li href="'+data.getSecondMenu[i].menu_chaining+'" onclick="secondMenuClick(this)">';
+                    secondMenuList += '<img src="'+data.getSecondMenu[i].icon_img_1+'" name="todayorder">';
+                    secondMenuList += '<span>'+data.getSecondMenu[i].menu_name+'</span>';
+                    secondMenuList += '</li>';
+                }
+                $(".second-level-menu-box").html(secondMenuList);
+            }
+        })
+
         if (selectimgname === newimgname) { //--如果选中同一个菜单则收起二级菜单
-            $('.second-level-menu-box').transition('swing right');
+
+            if ($(_this).attr('href') == '' || $(_this).attr('href') == 'undefined') {
+                $('.second-level-menu-box').transition('swing right');
+            }
+            else{
+                var rightImg = '<img src="/Admin/icon/breadcrumb-right.png" class="breadcrumb-right">';
+                var oneLevelDocument = '<a class="breadcrumb-menu-text">'+$(_this).children("span").html()+'</a>';
+                sessionStorage.setItem("breadcrumb", rightImg + oneLevelDocument);
+                location.href = '/'+$(_this).attr('href');
+            }
+
+
         }else{
             //------将菜单名存入本地存储-------------
             sessionStorage.setItem("clickMenuImgName", $(_this).attr('name'));
             // console.log($(_this).attr('menuId'));
-            $.ajax({
-                type: 'POST',
-                url: '/menuSetting/getSecondMenu',
-                data: {menuId : $(_this).attr('menuId')},
-                dataType: 'json',
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-                },
-                success : function(data){
-                    var secondMenuList = '';
-                    for (var i = 0; i < data.getSecondMenu.length; i++) {
-                        secondMenuList += '<li href="'+data.getSecondMenu[i].menu_chaining+'" onclick="secondMenuClick(this)">';
-                        secondMenuList += '<img src="'+data.getSecondMenu[i].icon_img_1+'" name="todayorder">';
-                        secondMenuList += '<span>'+data.getSecondMenu[i].menu_name+'</span>';
-                        secondMenuList += '</li>';
-                    }
-                    $(".second-level-menu-box").html(secondMenuList);
-                }
-            })
+            
             if ($(_this).attr('href') == '' || $(_this).attr('href') == 'undefined') {
                 $('.second-level-menu-box').transition('hide').transition('swing right');
             }
             else{
-                var rightImg = '<img src="../Admin/icon/breadcrumb-right.png" class="breadcrumb-right">';
+                var rightImg = '<img src="/Admin/icon/breadcrumb-right.png" class="breadcrumb-right">';
                 var oneLevelDocument = '<a class="breadcrumb-menu-text">'+$(_this).children("span").html()+'</a>';
                 sessionStorage.setItem("breadcrumb", rightImg + oneLevelDocument);
-                location.href = '../'+$(_this).attr('href');
+                location.href = '/'+$(_this).attr('href');
             }
         }
     }
+
     function secondMenuClick(_this) {
         console.log($(_this).attr('href'));
         var oneLevel = $(".second-level-menu-box").attr('one-level');
         var secondLevel = $(_this).children('span').html();
-        var rightImg = '<img src="../Admin/icon/breadcrumb-right.png" class="breadcrumb-right">';
+        var rightImg = '<img src="/Admin/icon/breadcrumb-right.png" class="breadcrumb-right">';
         var oneLevelDocument = '<a class="breadcrumb-menu-text">'+oneLevel+'</a>';
         var secondLevelDocument = '<a class="breadcrumb-menu-text">'+secondLevel+'</a>';
         $(".breadcrumb-menu").html(rightImg + oneLevelDocument + rightImg + secondLevelDocument);
         sessionStorage.setItem("breadcrumb", rightImg + oneLevelDocument + rightImg + secondLevelDocument);
         //-------收起二级菜单------
         $('.second-level-menu-box').transition('hide');
-        location.href = '../'+$(_this).attr('href');
+        location.href = '/'+$(_this).attr('href');
     }
+
     function imgdragstart(){return false;}
 </script>
 
