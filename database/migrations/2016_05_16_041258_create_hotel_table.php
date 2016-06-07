@@ -16,28 +16,29 @@ class CreateHotelTable extends Migration
     {
         Schema::create('hotel', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('hotel_name',100);
-            $table->string('hotel_english_name',100);
+            $table->string('name',100);
+            $table->string('english_name',100);
             $table->integer('address_id')->default(0);
             $table->integer('category_id')->default(0);
             $table->integer('style_id')->default(0);
             $table->integer('brand_id')->default(0);
             $table->integer('star_level')->default(0);
-            $table->integer('is_isted_stars');//是否挂牌星级
-            $table->integer('to_admin_user')->default(0);
+            $table->integer('has_stars_mark');//是否挂牌星级
+            $table->integer('admin_user')->default(0);
             $table->integer('status')->default(0);
             $table->string('description',1000);
             $table->string('description_english',1000);
             $table->integer('policy_id')->default(0);
             $table->string('tag',200);
             $table->integer('postcode');
-            $table->string('switchboard',20);//酒店总机号码
-            $table->string('business_center_fax',20);//商务中心传真
+            $table->string('phone',20);//酒店总机号码
+            $table->string('fax',20);//商务中心传真
             $table->string('website',50);//网址
             $table->integer('total_rooms');//酒店房间总数
             $table->string('surrounding_environment',250);//周边环境
+            $table->string('hotel_brief');
             $table->string('hotel_features',300);//酒店特色
-            $table->string('hotel_features_englist',300);
+            $table->string('hotel_features_english',300);
 
             $table->timestamps();
         });

@@ -25,5 +25,6 @@ class BackendServiceProvider extends ServiceProvider
     {
         //
         $this->app->bind('App\Service\Admin\MenuSettingService', 'App\Service\Admin\MenuSettingService');
+        $this->app->bind('App\Service\Common\CommonService', 'App\Service\Common\CommonService');
     }
 }
