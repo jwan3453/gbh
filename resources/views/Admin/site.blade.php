@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -84,7 +83,6 @@
 
 <script type="text/javascript">
     $(document).ready(function(){
-
         if (sessionStorage.getItem("breadcrumb") != null) {
             $(".breadcrumb-menu").html(sessionStorage.getItem("breadcrumb"));
         }
@@ -105,14 +103,11 @@
                     menuList += '<span>'+data[i].menu_name+'</span>';
                     menuList += '</li>';
                 }
-
                 $('.admin-menu-list').children().eq(0).after(menuList);
                 //------验证本地存储中的菜单名----------
                 if (sessionStorage.getItem("clickMenuImgName") != null) {
-
                     $(".admin-menu-list").find("li[name='"+sessionStorage.getItem("clickMenuImgName")+"']").children("img").attr('src','../Admin/icon/'+sessionStorage.getItem("clickMenuImgName")+'-select.png');
                     $(".admin-menu-list").find("li[name='"+sessionStorage.getItem("clickMenuImgName")+"']").addClass("menu-selected");
-
                 }
             }
         })
@@ -146,7 +141,6 @@
             $('.second-level-menu-box').transition('swing right');
         }else{
             //------将菜单名存入本地存储-------------
-
             sessionStorage.setItem("clickMenuImgName", $(_this).attr('name'));
             // console.log($(_this).attr('menuId'));
             $.ajax({
@@ -158,21 +152,17 @@
                     'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
                 },
                 success : function(data){
-
                     var secondMenuList = '';
                     for (var i = 0; i < data.getSecondMenu.length; i++) {
-
                         secondMenuList += '<li href="'+data.getSecondMenu[i].menu_chaining+'" onclick="secondMenuClick(this)">';
                         secondMenuList += '<img src="'+data.getSecondMenu[i].icon_img_1+'" name="todayorder">';
                         secondMenuList += '<span>'+data.getSecondMenu[i].menu_name+'</span>';
                         secondMenuList += '</li>';
-
                     }
                     $(".second-level-menu-box").html(secondMenuList);
                 }
             })
             if ($(_this).attr('href') == '' || $(_this).attr('href') == 'undefined') {
-
                 $('.second-level-menu-box').transition('hide').transition('swing right');
             }
             else{
@@ -181,7 +171,6 @@
                 sessionStorage.setItem("breadcrumb", rightImg + oneLevelDocument);
                 location.href = '../'+$(_this).attr('href');
             }
-
         }
     }
     function secondMenuClick(_this) {
@@ -197,9 +186,7 @@
         $('.second-level-menu-box').transition('hide');
         location.href = '../'+$(_this).attr('href');
     }
-
     function imgdragstart(){return false;}
-
 </script>
 
 </html>

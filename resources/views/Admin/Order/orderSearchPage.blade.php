@@ -124,8 +124,223 @@
 
 <div class="search-result-list-box">
 	<div class="search-result-title">
-		<div class="search-result-title-name"></div>
+		<div class="search-result-title-name width-240">
+			<span>订单号</span>
+		</div>
+		<div class="search-result-title-name width-160">
+			<span>房型</span>
+		</div>
+		<div class="search-result-title-name width-160">
+			<span>订单状态</span>
+		</div>
+		<div class="search-result-title-name width-200">
+			<span>入离时间</span>
+		</div>
+		<div class="search-result-title-name width-140">
+			<span>客户姓名</span>
+		</div>
+		<div class="search-result-title-name width-240">
+			<span>编辑|操作</span>
+		</div>
 	</div>
+
+	<div class="search-result-row">
+		<div class="search-result-detailed width-240">
+			<span class="up">2016060776273627</span>
+			<span class="down">(未处理)</span>
+		</div>
+		<div class="search-result-detailed width-160">
+			<span>高级双人床</span>
+			<span class="down">(外宾)</span>
+		</div>
+		<div class="search-result-single width-160">
+			<span class="untreated">未处理</span>
+		</div>
+		<div class="search-result-detailed width-200">
+			<span>2106-06-08</span>
+			<span class="down">2106-06-11</span>
+		</div>
+		<div class="search-result-single width-140">
+			<span>胡歌</span>
+		</div>
+		<div class="search-result-detailed width-240">
+			<span class="order-handle"> 
+				<img src="/Admin/icon/order-handle.png" class="operation-icon"> 处理订单
+			</span>
+			<span class="order-rewrite  margin-left-20"> 
+				<img src="/Admin/icon/order-rewrite.png"  class="operation-icon"> 改写订单 
+			</span>
+			<span class="order-operation"> 
+				<img src="/Admin/icon/order-operation-log.png"  class="operation-icon"> 操作日志
+			</span>
+		</div>
+	</div>
+	<div class="dashed"></div>
+
+	<div class="search-result-row">
+		<div class="search-result-detailed width-240">
+			<span class="up">2016060776273627</span>
+			<span class="down">(未处理)</span>
+		</div>
+		<div class="search-result-detailed width-160">
+			<span>高级双人床</span>
+			<span class="down">(外宾)</span>
+		</div>
+		<div class="search-result-single width-160">
+			<span >接受</span>
+		</div>
+		<div class="search-result-detailed width-200">
+			<span>2106-06-08</span>
+			<span class="down">2106-06-11</span>
+		</div>
+		<div class="search-result-single width-140">
+			<span>胡歌</span>
+		</div>
+		<div class="search-result-detailed width-240">
+			<span class="order-handle"> 
+				<img src="/Admin/icon/order-handle.png" class="operation-icon"> 处理订单
+			</span>
+			<span class="order-rewrite  margin-left-20"> 
+				<img src="/Admin/icon/order-rewrite.png"  class="operation-icon"> 改写订单 
+			</span>
+			<span class="order-operation"> 
+				<img src="/Admin/icon/order-operation-log.png"  class="operation-icon"> 操作日志
+			</span>
+		</div>
+	</div>
+	<div class="dashed"></div>
+
+	<div class="search-result-row">
+		<div class="search-result-detailed width-240">
+			<span class="up">2016060776273627</span>
+			<span class="down">(未处理)</span>
+		</div>
+		<div class="search-result-detailed width-160">
+			<span>高级双人床</span>
+			<span class="down">(外宾)</span>
+		</div>
+		<div class="search-result-single width-160">
+			<span class="refuse">拒绝</span>
+		</div>
+		<div class="search-result-detailed width-200">
+			<span>2106-06-08</span>
+			<span class="down">2106-06-11</span>
+		</div>
+		<div class="search-result-single width-140">
+			<span>胡歌</span>
+		</div>
+		<div class="search-result-detailed width-240">
+			<span class="order-handle"> 
+				<img src="/Admin/icon/order-handle.png" class="operation-icon"> 处理订单
+			</span>
+			<span class="order-rewrite  margin-left-20"> 
+				<img src="/Admin/icon/order-rewrite.png"  class="operation-icon"> 改写订单 
+			</span>
+			<span class="order-operation"> 
+				<img src="/Admin/icon/order-operation-log.png"  class="operation-icon"> 操作日志
+			</span>
+		</div>
+	</div>
+	<div class="dashed"></div>
+
+	<div class="search-result-row">
+		<div class="search-result-detailed width-240">
+			<span class="up">2016060776273627</span>
+			<span class="down">(未处理)</span>
+		</div>
+		<div class="search-result-detailed width-160">
+			<span>高级双人床</span>
+			<span class="down">(外宾)</span>
+		</div>
+		<div class="search-result-single width-160">
+			<span class="untreated">未处理</span>
+		</div>
+		<div class="search-result-detailed width-200">
+			<span>2106-06-08</span>
+			<span class="down">2106-06-11</span>
+		</div>
+		<div class="search-result-single width-140">
+			<span>胡歌</span>
+		</div>
+		<div class="search-result-detailed width-240">
+			<span class="order-handle"> 
+				<img src="/Admin/icon/order-handle.png" class="operation-icon"> 处理订单
+			</span>
+			<span class="order-rewrite  margin-left-20"> 
+				<img src="/Admin/icon/order-rewrite.png"  class="operation-icon"> 改写订单 
+			</span>
+			<span class="order-operation"> 
+				<img src="/Admin/icon/order-operation-log.png"  class="operation-icon"> 操作日志
+			</span>
+		</div>
+	</div>
+	<div class="dashed"></div>
+
+	<div class="search-result-row">
+		<div class="search-result-detailed width-240">
+			<span class="up">2016060776273627</span>
+			<span class="down">(未处理)</span>
+		</div>
+		<div class="search-result-detailed width-160">
+			<span>高级双人床</span>
+			<span class="down">(外宾)</span>
+		</div>
+		<div class="search-result-single width-160">
+			<span >接受</span>
+		</div>
+		<div class="search-result-detailed width-200">
+			<span>2106-06-08</span>
+			<span class="down">2106-06-11</span>
+		</div>
+		<div class="search-result-single width-140">
+			<span>胡歌</span>
+		</div>
+		<div class="search-result-detailed width-240">
+			<span class="order-handle"> 
+				<img src="/Admin/icon/order-handle.png" class="operation-icon"> 处理订单
+			</span>
+			<span class="order-rewrite  margin-left-20"> 
+				<img src="/Admin/icon/order-rewrite.png"  class="operation-icon"> 改写订单 
+			</span>
+			<span class="order-operation"> 
+				<img src="/Admin/icon/order-operation-log.png"  class="operation-icon"> 操作日志
+			</span>
+		</div>
+	</div>
+	<div class="dashed"></div>
+
+	<div class="search-result-row">
+		<div class="search-result-detailed width-240">
+			<span class="up">2016060776273627</span>
+			<span class="down">(未处理)</span>
+		</div>
+		<div class="search-result-detailed width-160">
+			<span>高级双人床</span>
+			<span class="down">(外宾)</span>
+		</div>
+		<div class="search-result-single width-160">
+			<span class="refuse">拒绝</span>
+		</div>
+		<div class="search-result-detailed width-200">
+			<span>2106-06-08</span>
+			<span class="down">2106-06-11</span>
+		</div>
+		<div class="search-result-single width-140">
+			<span>胡歌</span>
+		</div>
+		<div class="search-result-detailed width-240">
+			<span class="order-handle"> 
+				<img src="/Admin/icon/order-handle.png" class="operation-icon"> 处理订单
+			</span>
+			<span class="order-rewrite  margin-left-20"> 
+				<img src="/Admin/icon/order-rewrite.png"  class="operation-icon"> 改写订单 
+			</span>
+			<span class="order-operation"> 
+				<img src="/Admin/icon/order-operation-log.png"  class="operation-icon"> 操作日志
+			</span>
+		</div>
+	</div>
+	<div class="dashed"></div>
 </div>
 @stop
 
