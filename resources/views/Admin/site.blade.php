@@ -156,16 +156,7 @@
         //---将一级菜单名称填充入二级菜单dom中--------
         $(".second-level-menu-box").attr('one-level' , $(_this).children('span').html());
 
-        if (selectimgname === newimgname) { //--如果选中同一个菜单则收起二级菜单
-            $('.second-level-menu-box').transition('swing right');
-        }else{
-            //------将菜单名存入本地存储-------------
-            
-            sessionStorage.setItem("clickMenuImgName", $(_this).attr('name'));
-
-            // console.log($(_this).attr('menuId'));
-
-            $.ajax({
+        $.ajax({
                 type: 'POST',
                 url: '/menuSetting/getSecondMenu',
                 data: {menuId : $(_this).attr('menuId')},
@@ -188,8 +179,27 @@
                 }
             })
 
+        if (selectimgname === newimgname) { //--如果选中同一个菜单则收起二级菜单
+
             if ($(_this).attr('href') == '' || $(_this).attr('href') == 'undefined') {
-                    
+                
+                $('.second-level-menu-box').transition('swing right');
+            }
+            else{
+                var rightImg = '<img src="../Admin/icon/breadcrumb-right.png" class="breadcrumb-right">';
+                var oneLevelDocument = '<a class="breadcrumb-menu-text">'+$(_this).children("span").html()+'</a>';
+
+                sessionStorage.setItem("breadcrumb", rightImg + oneLevelDocument);
+                location.href = '../'+$(_this).attr('href');
+            }
+
+        }else{
+            //------将菜单名存入本地存储-------------
+            
+            sessionStorage.setItem("clickMenuImgName", $(_this).attr('name'));
+
+            if ($(_this).attr('href') == '' || $(_this).attr('href') == 'undefined') {
+                console.log("12312312312");
                 $('.second-level-menu-box').transition('hide').transition('swing right');
             }
             else{

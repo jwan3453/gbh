@@ -1160,6 +1160,81 @@ a{
 
 .search-result-title-name{
 	float: left;
+	height: 100%;
+}
+
+.width-240{
+	width: 240px;
+}
+
+.width-160{
+	width: 160px;
+}
+
+.width-200{
+	width: 200px;
+}
+
+.width-140{
+	width: 140px;
+}
+
+.search-result-title-name span{
+	font-size: 14px;
+	margin-left: 10px;
+	color: #787878;
+}
+
+.search-result-row{
+	height: 100px;
+	/*line-height: 100px;*/
+
+	width: 100%;
+	background-color: #f8f8f8;
+}
+
+
+.search-result-detailed{
+	float: left;
+	height: 100px;
+	line-height: 70px;
+
+}
+
+.search-result-single{
+	float: left;
+	height: 100px;
+	line-height: 100px;
+}
+
+.search-result-detailed span{
+	color: #505050;
+	font-size: 14px;
+	display: block;
+	height: 14px;
+	margin-left: 10px;
+ 	vertical-align: middle;
+}
+
+.search-result-single span{
+	color: #505050;
+	font-size: 14px;
+	display: block;
+	height: 14px;
+	margin-left: 10px;
+ 	vertical-align: middle;
+}
+
+.search-result-detailed  .down{
+	margin-top: 16px;
+}
+
+.dashed{
+	width:100%;
+	height:0;
+	border-bottom: 1px dashed #a0a0a0;
+	width: 1124px;
+	margin: 0 auto;
 }
 /***********订单查询***end***********/
 

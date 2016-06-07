@@ -124,8 +124,181 @@
 
 <div class="search-result-list-box">
 	<div class="search-result-title">
-		<div class="search-result-title-name"></div>
+		<div class="search-result-title-name width-240">
+			<span>订单号</span>
+		</div>
+		<div class="search-result-title-name width-160">
+			<span>房型</span>
+		</div>
+		<div class="search-result-title-name width-160">
+			<span>订单状态</span>
+		</div>
+		<div class="search-result-title-name width-200">
+			<span>入离时间</span>
+		</div>
+		<div class="search-result-title-name width-140">
+			<span>客户姓名</span>
+		</div>
+		<div class="search-result-title-name width-240">
+			<span>编辑|操作</span>
+		</div>
 	</div>
+
+	<div class="search-result-row">
+		<div class="search-result-detailed width-240">
+			<span class="up">2016060776273627</span>
+			<span class="down">(未处理)</span>
+		</div>
+		<div class="search-result-detailed width-160">
+			<span>高级双人床</span>
+			<span class="down">(外宾)</span>
+		</div>
+		<div class="search-result-single width-160">
+			<span >未处理</span>
+		</div>
+		<div class="search-result-detailed width-200">
+			<span>2106-06-08</span>
+			<span class="down">2106-06-11</span>
+		</div>
+		<div class="search-result-single width-140">
+			<span>胡歌</span>
+		</div>
+		<div class="search-result-detailed width-240">
+			<span>操作订单</span>
+			<span class="down">操作订单</span>
+		</div>
+	</div>
+	<div class="dashed"></div>
+
+	<div class="search-result-row">
+		<div class="search-result-detailed width-240">
+			<span class="up">2016060776273627</span>
+			<span class="down">(未处理)</span>
+		</div>
+		<div class="search-result-detailed width-160">
+			<span>高级双人床</span>
+			<span class="down">(外宾)</span>
+		</div>
+		<div class="search-result-single width-160">
+			<span >未处理</span>
+		</div>
+		<div class="search-result-detailed width-200">
+			<span>2106-06-08</span>
+			<span class="down">2106-06-11</span>
+		</div>
+		<div class="search-result-single width-140">
+			<span>胡歌</span>
+		</div>
+		<div class="search-result-detailed width-240">
+			<span>操作订单</span>
+			<span class="down">操作订单</span>
+		</div>
+	</div>
+	<div class="dashed"></div>
+
+	<div class="search-result-row">
+		<div class="search-result-detailed width-240">
+			<span class="up">2016060776273627</span>
+			<span class="down">(未处理)</span>
+		</div>
+		<div class="search-result-detailed width-160">
+			<span>高级双人床</span>
+			<span class="down">(外宾)</span>
+		</div>
+		<div class="search-result-single width-160">
+			<span >未处理</span>
+		</div>
+		<div class="search-result-detailed width-200">
+			<span>2106-06-08</span>
+			<span class="down">2106-06-11</span>
+		</div>
+		<div class="search-result-single width-140">
+			<span>胡歌</span>
+		</div>
+		<div class="search-result-detailed width-240">
+			<span>操作订单</span>
+			<span class="down">操作订单</span>
+		</div>
+	</div>
+	<div class="dashed"></div>
+
+	<div class="search-result-row">
+		<div class="search-result-detailed width-240">
+			<span class="up">2016060776273627</span>
+			<span class="down">(未处理)</span>
+		</div>
+		<div class="search-result-detailed width-160">
+			<span>高级双人床</span>
+			<span class="down">(外宾)</span>
+		</div>
+		<div class="search-result-single width-160">
+			<span >未处理</span>
+		</div>
+		<div class="search-result-detailed width-200">
+			<span>2106-06-08</span>
+			<span class="down">2106-06-11</span>
+		</div>
+		<div class="search-result-single width-140">
+			<span>胡歌</span>
+		</div>
+		<div class="search-result-detailed width-240">
+			<span>操作订单</span>
+			<span class="down">操作订单</span>
+		</div>
+	</div>
+	<div class="dashed"></div>
+
+	<div class="search-result-row">
+		<div class="search-result-detailed width-240">
+			<span class="up">2016060776273627</span>
+			<span class="down">(未处理)</span>
+		</div>
+		<div class="search-result-detailed width-160">
+			<span>高级双人床</span>
+			<span class="down">(外宾)</span>
+		</div>
+		<div class="search-result-single width-160">
+			<span >未处理</span>
+		</div>
+		<div class="search-result-detailed width-200">
+			<span>2106-06-08</span>
+			<span class="down">2106-06-11</span>
+		</div>
+		<div class="search-result-single width-140">
+			<span>胡歌</span>
+		</div>
+		<div class="search-result-detailed width-240">
+			<span>操作订单</span>
+			<span class="down">操作订单</span>
+		</div>
+	</div>
+	<div class="dashed"></div>
+
+	<div class="search-result-row">
+		<div class="search-result-detailed width-240">
+			<span class="up">2016060776273627</span>
+			<span class="down">(未处理)</span>
+		</div>
+		<div class="search-result-detailed width-160">
+			<span>高级双人床</span>
+			<span class="down">(外宾)</span>
+		</div>
+		<div class="search-result-single width-160">
+			<span >未处理</span>
+		</div>
+		<div class="search-result-detailed width-200">
+			<span>2106-06-08</span>
+			<span class="down">2106-06-11</span>
+		</div>
+		<div class="search-result-single width-140">
+			<span>胡歌</span>
+		</div>
+		<div class="search-result-detailed width-240">
+			<span>操作订单</span>
+			<span class="down">操作订单</span>
+		</div>
+	</div>
+	<div class="dashed"></div>
 </div>
 @stop
 
