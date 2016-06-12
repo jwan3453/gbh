@@ -61,6 +61,8 @@ Route::get('/admin/manageHotel','Admin\Hotel\HotelController@index');
 
 Route::get('/admin/manageHotel/create','Admin\Hotel\HotelController@createHotel');
 
+Route::get('/admin/manageHotel/create/geolocation','Admin\Hotel\HotelController@geolocation');
+
 Route::post('/admin/manageHotel/create','Admin\Hotel\HotelController@storeHotel');
 
 

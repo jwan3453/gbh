@@ -1503,3 +1503,194 @@ a{
 }
 /**********************/
 
+
+
+/********添加酒店第二部**********/
+
+.geoLocation-box{
+	width: 1140px;
+	background-color: #f8f8f8;
+	margin-top: 20px;
+}
+
+.geoLocation-title{
+	width: 100%;
+	height: 50px;
+}
+
+.geoLocation-title-font{
+	width: 1120px;
+	height: 50px;
+	line-height: 50px;
+	margin: 0 auto;
+	font-size: 16px;
+	color: #505050;
+	border-bottom: 1px dashed #a0a0a0;
+}
+
+.map-information-row{
+	height: 280px;
+	width: 1120px;
+	margin: 0 auto;
+	margin-top: 20px;
+}
+
+.map-box{
+	width: 550px;
+	height: 280px;
+	float: left;
+	border: 1px solid #c8c8c8;
+}
+
+.map-information-box{
+	width: 500px;
+	height: 280px;
+	float: left;
+	/*border: 1px solid red;*/
+	margin-left: 10px;
+}
+
+.hotel-address{
+	width: 100%;
+	margin-top: 54px;
+	height: 48px;
+}
+
+
+.longitude-latitude-box span , .hotel-address span{
+	display: block;
+}
+
+.longitude-latitude-box .down , .hotel-address .down{
+	margin-top: 12px;
+}
+
+.longitude-latitude-box{
+	width: 100%;
+	margin-top: 32px;
+	height: 48px;
+}
+
+.manual-locate-btn{
+	width: 120px;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	font-size: 12px;
+	color: #639ae3;
+	margin-top: 30px;
+	border: 1px solid #639ae3;
+	border-radius: 2px;
+	cursor: pointer;
+}
+
+.manual-locate-btn img{
+	vertical-align: -2px;
+	margin-right: 6px;
+}
+
+.surrounding-environment{
+	width: 100%;
+	height: 70px;
+	/*line-height: 70px;*/
+	margin-top: 30px;
+}
+
+.surrounding-environment span{
+	font-size: 14px;
+	margin-left: 10px;
+	color: #787878;
+	float: left;
+}
+
+.scenic-spot{
+	width: 116px;
+	height: 36px;
+	margin-left: 10px;
+	border-radius: 2px;
+	border: 1px solid #a0a0a0;
+	float: left;
+}
+
+.surrounding-environment .manual-locate-btn{
+	float: left;
+	margin-left: 20px;
+	margin-top: -1px;
+}
+
+.hotel-policy-box{
+	width: 1140px;
+	background-color: #f8f8f8;
+}
+
+.hotel-policy-title-font{
+	height: 50px;
+	width: 1120px;
+	margin: 0 auto;
+	line-height: 50px;
+	font-size: 16px;
+	color: #505050;
+	border-bottom: 1px dashed #a0a0a0;
+	margin-bottom: 20px;
+}
+
+.hotel-policy-row{
+	width: 100%;
+	margin-bottom: 30px;
+}
+
+.policy-title-font{
+	font-size: 14px;
+	color: #787878;
+	margin-left: 10px;
+}
+
+.float-left{
+	float: left;
+}
+
+.hotel-policy-input{
+	width: 120px;
+	height: 40px;
+	line-height: 40px;
+	margin-left: 10px;
+	border-radius: 2px;
+	border: 1px solid #a0a0a0;
+	/*float: left;*/
+}
+
+.policy-tips-font{
+	font-size: 12px;
+	color: #a0a0a0;
+}
+
+.policy-input-font{
+	font-size: 12px;
+	color: #505050;
+	margin-left: 10px;
+}
+
+.hotel-policy-input img{
+	float: right;
+	margin-top: 14px;
+	margin-right: 10px;
+}
+
+.height-80{
+	height: 80px;
+}
+
+.hotel-policy-row .title-font-box{
+	float: left;
+	line-height: 40px;
+}
+
+.hotel-policy-textarea{
+	width: 494px;
+	height: 74px;
+	max-height: 74px;
+	float: left;
+	max-width: 600px;
+	/*margin-left: 10px;*/
+}
+/*************end******************/
