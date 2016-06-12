@@ -1694,3 +1694,102 @@ a{
 	/*margin-left: 10px;*/
 }
 /*************end******************/
+
+/****文章管理页面 创建 编辑**********/
+.article-error {
+	color: #d95a5d;
+
+}
+
+.article-input-field{
+	margin-top:15px;
+
+}
+.article-input-field .article-cate{
+
+	min-height:0!important;
+	min-width:140px!important;
+	border-radius: 0!important;
+}
+.article-input-field label{
+	margin-right:10px;
+	font-size:16px;
+	font-weight: 500;
+}
+.article-input-field input{
+	height:40px;
+	width:200px;
+}
+
+.article-btn-section{
+	margin:0 auto;
+	width:300px;
+	overflow: hidden;
+
+}
+
+
+.upload-image{
+	display:none!important;
+}
+.upload-article-image{
+	margin-left:50px;
+	width:150px;
+	height:150px;
+	border:1px solid #505050;
+	text-align: center;
+	line-height: 150px;
+}
+.upload-article-image:hover{
+	cursor: pointer;
+}
+.upload-article-image-show {
+	margin-left:50px;
+	width:150px;
+	height:150px;
+
+}
+.upload-article-image-show img{
+
+	width:147px;
+	height:147px;
+	border:none;
+}
+.upload-article-image-show span{
+	display:none;
+}
+
+
+.upload-cover-image input{
+	opacity: 0;
+}
+.file {
+	position: relative;
+	display: inline-block;
+	background: #D0EEFF;
+	border: 1px dotted #99D3F5;
+	border-radius: 4px;
+	padding: 4px 12px;
+	overflow: hidden;
+	color: #1E88C7;
+	text-decoration: none;
+	text-indent: 0;
+	line-height: 20px;
+
+}
+.file input {
+	position: absolute;
+	font-size: 100px;
+	right: 0;
+	top: 0;
+	opacity: 0;
+	height:150px;
+	width:150px;
+}
+.file:hover {
+	background: #AADFFD;
+	border-color: #78C3F3;
+	color: #004974;
+	text-decoration: none;
+}
+/*********************************/

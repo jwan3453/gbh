@@ -2,13 +2,13 @@
 /*****公共部分****/
 body{
 	margin: 0;
-	background: #f8f8f8;
+	background: #09010c;
 	color:#505050;
 	font-family: "Microsoft YaHei" ! important;
 }
 a{
 	text-decoration: none;
-	color:#f8f8f8;
+
 }
 
 
@@ -20,15 +20,55 @@ a{
 
 /******网站首页******/
 
+
+
+
 .home-page{
 
 }
+
+.site-header{
+	top:0;
+	right:10px;
+	position: absolute;
+	height:50px;
+
+	line-height: 50px;
+	z-index:1001;
+}
+
+.site-menu-nav{
+	float:right;
+	margin-right:10px;
+}
+
+.site-menu-nav span{
+	font-size:16px;
+	display: inline-block;
+	margin-right:10px;
+	color:#f8f8f8;
+	padding:0 10px;
+}
+.site-menu-nav span:hover{
+	cursor: pointer;
+	background: rgba(0, 0, 0, 0.6);
+	transition:background-color 0.3s ease;
+}
+.site-menu-nav i{
+	color:#f8f8f8;
+	display: block;
+	margin-top:-5px!important;
+
+}
+
+
+
 .home-slide{
 
 	position: relative;
 }
 .home-slide img{
-	max-height: 400px!important;
+	max-height: 500px!important;
 }
 .slide-caption{
 
@@ -39,14 +79,59 @@ a{
 	position: absolute;
 
 }
-.slide-caption span{
+ .slide-center-text{
 
-	font-size:1.6em;
+	 top:50%;
+	 left:50%;
+	 position: absolute;
+	 width:600px;
+	 height: 160px;
+
+}
+
+
+
+.slide-center-text div{
+
+	width:600px;
+	height: 160px;
+
 	color:white;
 	position:absolute;
 	z-index: 1001;
-	bottom:80px;
-	left:80px;
+	left: -50%;
+	top: -50%;
+	background-color: rgba(0, 0, 0, 0.6);
+	border-radius: 2px;
+	text-align: center;
+
+}
+.slide-center-text img{
+	margin: 0 50px;
+	width:500px!important;
+	display: block;
+}
+
+
+.slide-caption .up{
+
+	font-size: 30px;
+	display: block;
+	margin:44px 0 10px 0 ;
+}
+
+.slide-caption .down{
+
+	font-size:16px;
+	display: block;
+	background-color: #00aced;
+	border-radius: 2px;
+	height:40px;
+	line-height: 40px;
+
+	width:150px;
+	margin: 10px auto;
+	cursor: pointer;
 }
 .sub-slogan{
 	color: rgba(44, 0, 0, 0.91);
@@ -67,9 +152,41 @@ a{
 }
 .home-hotel-warp{
 
-
+	margin-top:-100px;
 	overflow: hidden;
 	display: block;
+	z-index:1003;
+	position: relative;
+}
+
+.h-cate-nav{
+
+	height:42px;
+	width:100%;
+
+	clear: both;
+	overflow: hidden;
+}
+.cate-nav-btn{
+	height:40px;
+	width:120px;
+	line-height: 40px;
+	font-size: 14px;
+	float: left;
+	margin-right:20px;
+	border:1px solid #f8f8f8;
+	text-align: center;
+	color:#f8f8f8;
+	cursor:pointer;
+	border-radius: 5px;
+
+}
+
+.cate-nav-btn:hover{
+
+	background-color:#f8f8f8;
+	color:#505050;
+	transition:background-color 0.5s ease;
 }
 
 .hotel-warp{
@@ -79,15 +196,16 @@ a{
 }
 
 .hotel-box{
-	height:300px;
-	width:360px;
+
+	width:340px;
 	position:relative;
 	float:left;
-	border:1px solid #ddd;
+	/*border:1px solid #ddd;*/
 	margin-top:20px;
+	background: #f8f8f8;
 }
 .hotel-box:nth-of-type(1),.hotel-box:nth-of-type(2){
-	margin-right:20px;
+	margin-right:40px;
 }
 
 .hotel-box img{
@@ -104,11 +222,11 @@ a{
 }
 .hotel-box-mask{
 	position:absolute;
-	height:300px;
+	height:450px;
 	width:360px;
 	top:0;
 	right:0;
-	background: rgba(0, 0, 0, 0.3);
+	background: rgba(0, 0, 0, 0.5);
 	display:none;
 
 	text-align:center;
@@ -117,6 +235,9 @@ a{
 	color:white;
 	padding: 60px 0 0 0;
 }
+
+
+
 
 .hotel-box-mask a{
 
@@ -128,8 +249,97 @@ a{
 
 }
 
+.h-article-title{
+	width:100%;
+	height:50px;
+	line-height:50px;
+	font-size:24px;
+	text-align: center;
 
-/**********特效******/
+}
+.h-hotel-brief{
+	width:calc(100% - 40px );
+	height:90px;
+	padding:10px 20px;
+	font-size:12px;
+
+}
+
+.h-hotel-name{
+
+	height:40px;
+	width:100%;
+	background: #595959;
+	color:#f8f8f8;
+	line-height: 40px;
+	text-align: center;
+	font-size:14px;
+
+}
+
+.home-rec-article{
+	margin:20px 0;
+	background:#f8f8f8;
+	color:#505050;
+
+	font-size:14px;
+	width:800px;
+
+
+}
+
+.hor-article-line{
+
+	margin:20px;
+	overflow: hidden;
+
+}
+.hor-article-line .image{
+	float: left;
+}
+.hor-article-line .image img{
+	height:124px;
+	width:220px;
+
+	border-radius:5px;
+
+}
+
+.hor-article-line
+{
+
+}
+
+.hor-article-line .content{
+	float:left;
+	margin-left:20px;
+	margin-top:10px;
+	width:500px;
+
+}
+.hor-article-line .content .header{
+
+	font-size:18px;
+	font-weight:600;
+
+}
+.hor-article-line .meta{
+	margin: 10px 0 10px;
+	font-size: 14px;
+	line-height: 14px;
+	color:rgba(0, 0, 0, 0.4);
+
+}
+
+.hor-article-line .description{
+	margin-top: 10px;
+	font-size: 16px;
+	line-height: 16px;
+	color: rgba(0, 0, 0, 0.87);
+}
+
+
+	/**********特效******/
 .blur {
 	filter: url(blur.svg#blur); /* FireFox, Chrome, Opera */
 

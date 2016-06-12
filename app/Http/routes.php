@@ -58,7 +58,6 @@ Route::get('/hotel/{hotelId}','GbhMobile\Hotel\HotelController@hotelDetail');
 Route::get('/hotel/{hotelId}/booking/{roomId}','GbhMobile\Hotel\HotelController@booking');
 
 Route::get('/admin/manageHotel','Admin\Hotel\HotelController@index');
-
 Route::get('/admin/manageHotel/create','Admin\Hotel\HotelController@createHotel');
 
 Route::get('/admin/manageHotel/create/geolocation','Admin\Hotel\HotelController@geolocation');
@@ -66,6 +65,9 @@ Route::get('/admin/manageHotel/create/geolocation','Admin\Hotel\HotelController@
 Route::post('/admin/manageHotel/create','Admin\Hotel\HotelController@storeHotel');
 
 
+Route::get('/admin/manageArticle','Admin\Article\ArticleController@index');
+Route::get('/admin/manageArticle/create','Admin\Article\ArticleController@createArticle');
+Route::post('/admin/manageArticle/create','Admin\Article\ArticleController@storeArticle');
 
 /*******************************end**************************************/
 
