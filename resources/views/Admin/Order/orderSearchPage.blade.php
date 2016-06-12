@@ -111,7 +111,7 @@
 
 	<div class="inquiry-condition-row height-40">
 		<div class="order-search-btu">
-			<span>确认添加</span>
+			<span>搜索结果</span>
 			<img src="/Admin/icon/search-btn.png">
 		</div>
 	</div>

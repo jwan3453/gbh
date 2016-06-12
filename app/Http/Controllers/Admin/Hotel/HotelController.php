@@ -60,6 +60,12 @@ class HotelController extends Controller
 
     }
 
+    public function geolocation()
+    {
+        $address = "福建省厦门市思明区凡悦咖啡厅";
+        return view('Admin.Hotel.geoLocation')->with('address',$address);
+    }
+
     /**
      * Display the specified resource.
      *
