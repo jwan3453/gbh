@@ -69,6 +69,13 @@ Route::get('/admin/manageArticle','Admin\Article\ArticleController@index');
 Route::get('/admin/manageArticle/create','Admin\Article\ArticleController@createArticle');
 Route::post('/admin/manageArticle/create','Admin\Article\ArticleController@storeArticle');
 
+Route::get('admin/manageArticle/classificationandtag','Admin\Article\ArticleController@classificationandtag');
+
+Route::post('/admin/manageArticle/addArticleTag','Admin\Article\ArticleController@addArticleTag');
+Route::post('/admin/manageArticle/delArticleTag','Admin\Article\ArticleController@delArticleTag');
+Route::post('/admin/manageArticle/classificationOperate','Admin\Article\ArticleController@classificationOperate');
+Route::post('/admin/manageArticle/delArticleCategory','Admin\Article\ArticleController@delArticleCategory');
+
 /*******************************end**************************************/
 
 

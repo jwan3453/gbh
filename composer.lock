@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "58b401431340c37d11de28f69824d911",
+    "hash": "6e44fda03ea65fcf295bf693a18e3f0f",
     "content-hash": "3ecc1c3cfd8f5843026776aec37ffdec",
     "packages": [
         {
@@ -364,16 +364,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.1.37",
+            "version": "v5.1.38",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "ecf782a2eef21380ae40b1462f0a792ccfaac060"
+                "reference": "67848753f16a639da6d0871019ae792111941933"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://packagist.phpcomposer.com/files/laravel/framework/ecf782a2eef21380ae40b1462f0a792ccfaac060.zip",
-                "reference": "ecf782a2eef21380ae40b1462f0a792ccfaac060",
+                "url": "https://packagist.phpcomposer.com/files/laravel/framework/67848753f16a639da6d0871019ae792111941933.zip",
+                "reference": "67848753f16a639da6d0871019ae792111941933",
                 "shasum": ""
             },
             "require": {
@@ -489,7 +489,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2016-06-06 15:19:14"
+            "time": "2016-06-10 22:10:07"
         },
         {
             "name": "league/flysystem",
@@ -2084,6 +2084,104 @@
             "time": "2015-05-11 14:41:42"
         },
         {
+            "name": "illuminate/contracts",
+            "version": "v5.2.37",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/illuminate/contracts.git",
+                "reference": "f4f44d7c6d20404da8dfc655bd3d6dd788dfdce5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://packagist.phpcomposer.com/files/illuminate/contracts/f4f44d7c6d20404da8dfc655bd3d6dd788dfdce5.zip",
+                "reference": "f4f44d7c6d20404da8dfc655bd3d6dd788dfdce5",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.9"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "5.2-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Illuminate\\Contracts\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylorotwell@gmail.com"
+                }
+            ],
+            "description": "The Illuminate Contracts package.",
+            "homepage": "http://laravel.com",
+            "time": "2016-05-31 21:36:13"
+        },
+        {
+            "name": "illuminate/support",
+            "version": "v5.2.37",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/illuminate/support.git",
+                "reference": "6e86ac2b4e3d0c42c2dc846dbac3e74d378a812b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://packagist.phpcomposer.com/files/illuminate/support/6e86ac2b4e3d0c42c2dc846dbac3e74d378a812b.zip",
+                "reference": "6e86ac2b4e3d0c42c2dc846dbac3e74d378a812b",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/inflector": "~1.0",
+                "ext-mbstring": "*",
+                "illuminate/contracts": "5.2.*",
+                "paragonie/random_compat": "~1.4",
+                "php": ">=5.5.9"
+            },
+            "suggest": {
+                "illuminate/filesystem": "Required to use the composer class (5.2.*).",
+                "jeremeamia/superclosure": "Required to be able to serialize closures (~2.2).",
+                "symfony/polyfill-php56": "Required to use the hash_equals function on PHP 5.5 (~1.0).",
+                "symfony/process": "Required to use the composer class (2.8.*|3.0.*).",
+                "symfony/var-dumper": "Improves the dd function (2.8.*|3.0.*)."
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "5.2-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Illuminate\\Support\\": ""
+                },
+                "files": [
+                    "helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylorotwell@gmail.com"
+                }
+            ],
+            "description": "The Illuminate Support package.",
+            "homepage": "http://laravel.com",
+            "time": "2016-05-30 02:40:53"
+        },
+        {
             "name": "mockery/mockery",
             "version": "0.9.5",
             "source": {
@@ -2204,22 +2302,22 @@
         },
         {
             "name": "phpdocumentor/reflection-docblock",
-            "version": "3.0.2",
+            "version": "3.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/ReflectionDocBlock.git",
-                "reference": "45ada3e3fd09789fbfbd6d65b3f0901f0030dc61"
+                "reference": "9270140b940ff02e58ec577c237274e92cd40cdd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://packagist.phpcomposer.com/files/phpDocumentor/ReflectionDocBlock/45ada3e3fd09789fbfbd6d65b3f0901f0030dc61.zip",
-                "reference": "45ada3e3fd09789fbfbd6d65b3f0901f0030dc61",
+                "url": "https://packagist.phpcomposer.com/files/phpDocumentor/ReflectionDocBlock/9270140b940ff02e58ec577c237274e92cd40cdd.zip",
+                "reference": "9270140b940ff02e58ec577c237274e92cd40cdd",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.5",
                 "phpdocumentor/reflection-common": "^1.0@dev",
-                "phpdocumentor/type-resolver": "^0.1.5",
+                "phpdocumentor/type-resolver": "^0.2.0",
                 "webmozart/assert": "^1.0"
             },
             "require-dev": {
@@ -2245,20 +2343,20 @@
                 }
             ],
             "description": "With this component, a library can provide support for annotations via DocBlocks or otherwise retrieve information that is embedded in a DocBlock.",
-            "time": "2016-06-06 06:44:13"
+            "time": "2016-06-10 09:48:41"
         },
         {
             "name": "phpdocumentor/type-resolver",
-            "version": "0.1.8",
+            "version": "0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/TypeResolver.git",
-                "reference": "9891754231e55d42f0d16988ffb799af39f31a12"
+                "reference": "b39c7a5b194f9ed7bd0dd345c751007a41862443"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://packagist.phpcomposer.com/files/phpDocumentor/TypeResolver/9891754231e55d42f0d16988ffb799af39f31a12.zip",
-                "reference": "9891754231e55d42f0d16988ffb799af39f31a12",
+                "url": "https://packagist.phpcomposer.com/files/phpDocumentor/TypeResolver/b39c7a5b194f9ed7bd0dd345c751007a41862443.zip",
+                "reference": "b39c7a5b194f9ed7bd0dd345c751007a41862443",
                 "shasum": ""
             },
             "require": {
@@ -2267,7 +2365,7 @@
             },
             "require-dev": {
                 "mockery/mockery": "^0.9.4",
-                "phpunit/phpunit": "^5.2"
+                "phpunit/phpunit": "^5.2||^4.8.24"
             },
             "type": "library",
             "extra": {
@@ -2292,7 +2390,7 @@
                     "email": "me@mikevanriel.com"
                 }
             ],
-            "time": "2016-03-28 10:02:29"
+            "time": "2016-06-10 07:14:17"
         },
         {
             "name": "phpspec/php-diff",

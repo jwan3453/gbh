@@ -1793,3 +1793,159 @@ a{
 	text-decoration: none;
 }
 /*********************************/
+
+
+
+/**********文章分类标签管理************/
+
+.classification-box{
+	width: 1140px;
+	background-color: #f8f8f8;
+	
+}
+
+.classification-box-title{
+	width: 1120px;
+	margin: 0 auto;
+	height: 40px;
+	line-height: 40px;
+	border-bottom: 1px dashed #a0a0a0;
+	
+}
+
+.classification-box-title span{
+	color: #505050;
+	font-size: 14px;
+	float: left;
+}
+
+.classificationandtag-btn{
+	width: 100px;
+	height: 28px;
+	line-height: 28px;
+	font-size: 12px;
+	text-align: center;
+	border: 1px solid #639ae3;
+	float: left;
+	margin-left: 20px;
+	margin-top: 5px;
+	border-radius: 2px;
+	cursor: pointer;
+}
+
+.classificationandtag-btn img{
+	vertical-align: -1px;
+}
+
+.classification-list-box{
+	width: 1140px;
+	/*height: 200px;*/
+}
+
+.classification-list-row{
+	height: 40px;
+	line-height: 40px;
+	width: 1120px;
+	margin: 0 auto;
+	border-bottom: 1px solid #a0a0a0;
+
+}
+
+.classification-colmun{
+	text-align: center;
+	float: left;
+	color: #505050;
+	font-size: 14px;
+}
+
+.width-50{
+	width: 50px;
+}
+
+.width-120{
+	width: 120px;
+}
+
+.width-200{
+	width: 200px;
+}
+
+.classification-colmun img{
+	cursor: pointer;
+}
+
+.classification-edit{
+	margin-right: 40px;
+}
+
+.tag-box{
+	width: 1140px;
+	margin-top: 20px;
+	background-color: #f8f8f8;
+}
+
+.tag-add-row{
+	width: 1120px;
+	margin: 0 auto;
+	height: 60px;
+}
+
+.tag-add-row input{
+	width: 116px;
+	height: 34px;
+	margin-top: 20px;
+}
+
+.tag-add-row img{
+	vertical-align: middle;
+	margin-left: 20px;
+	cursor: pointer;
+}
+
+.tag-list-box{
+	width: 1120px;
+	margin: 0 auto;
+	overflow: hidden;
+	padding-bottom: 20px;
+}
+
+
+.tag-content-block{
+	min-width: 120px;
+	height: 40px;
+	line-height: 40px;
+	border: 1px solid #639ae3;
+	text-align: center;
+
+	float: left;
+	/*margin-right:20px;*/
+	margin-left: 10px;
+	margin-top: 20px;
+
+}
+
+.tag-content-block span {
+	font-size: 14px;
+	color: #505050;
+}
+
+.tag-content-block img{
+	vertical-align: middle;
+
+	cursor: pointer;
+	margin-left: 5px;
+
+	-webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+  	filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1.5);
+}
+
+.title-font{
+	font-size: 14px;
+	color: #505050;
+}
+
+.margin-left-20{
+	margin-left: 20px;
+}
+/***************end**********************/
