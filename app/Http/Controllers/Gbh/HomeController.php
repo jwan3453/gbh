@@ -20,6 +20,21 @@ class HomeController extends Controller
     }
 
 
+    public function aboutUs(Request $request)
+    {
+        return view('Gbh.aboutUs');
+    }
+
+
+    public function joinUs(Request $request)
+    {
+        return view('Gbh.joinUs');
+    }
+    public function history(Request $request)
+    {
+        return view('Gbh.history');
+    }
+
 }
 
 ?>

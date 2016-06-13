@@ -135,12 +135,7 @@ body{
 	/*width:calc(100% - 160px);*/
 }
 
-.padding-80{
-	height:90px;
-	width: 100%;
 
-
-}
 
 .admin-copy-right{
 	height:80px;
@@ -1703,7 +1698,7 @@ a{
 
 .article-input-field{
 	margin-top:15px;
-
+	margin-bottom: 15px;
 }
 .article-input-field .article-cate{
 

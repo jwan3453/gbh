@@ -16,14 +16,12 @@
     <div class="pusher">
         <div class="home-page">
 
-            <div class="site-header">
-                <div class="site-menu-nav">
+            <div class="home-site-header">
+                <div class="home-menu-nav">
                     <div>
-                        <span>首页</span>
+                        <a href="/"><span>首页</span></a>
                         <span>最新文章</span>
-                        <span>团队介绍</span>
-                        <span>联系我们</span>
-                        <span>品牌合作</span>
+                        <a href="/aboutUs"><span>关于我们</span></a>
                         <i class="icon user large"></i>
                     </div>
                 </div>

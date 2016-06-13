@@ -1,8 +1,9 @@
 
 /*****公共部分****/
 body{
+	width: 100%;
 	margin: 0;
-	background: #09010c;
+	/*background: #09010c;*/
 	color:#505050;
 	font-family: "Microsoft YaHei" ! important;
 }
@@ -11,9 +12,30 @@ a{
 
 }
 
+.auto-margin{
+	margin:0 auto;
+}
 
 .auto-margin{
 	margin: 0 auto;
+}
+.padding-10{
+	height:10px;
+}
+.padding-15{
+	height:15px;
+}
+.padding-30{
+	height:30px;
+}
+.padding-60{
+	height:60px;
+
+}
+.padding-80{
+	height:90px;
+	width: 100%;
+
 }
 /******/
 
@@ -24,22 +46,25 @@ a{
 
 
 .home-page{
+	min-width:1080px;
 
 }
-
 .site-header{
 	top:0;
-	right:10px;
+
 	position: absolute;
 	height:50px;
-
+	background-color: rgba(23, 10, 34, 0.8);
 	line-height: 50px;
 	z-index:1001;
+	width: 100%;
 }
+
 
 .site-menu-nav{
 	float:right;
 	margin-right:10px;
+
 }
 
 .site-menu-nav span{
@@ -51,10 +76,44 @@ a{
 }
 .site-menu-nav span:hover{
 	cursor: pointer;
-	background: rgba(0, 0, 0, 0.6);
+	background: rgba(0, 136, 163, 0.98);
 	transition:background-color 0.3s ease;
 }
 .site-menu-nav i{
+	color:#f8f8f8;
+	display: block;
+	margin-top:-5px!important;
+
+}
+
+.home-site-header{
+	top:0;
+	right:10px;
+	position: absolute;
+	height:50px;
+
+	line-height: 50px;
+	z-index:1001;
+}
+
+.home-menu-nav{
+	float:right;
+	margin-right:10px;
+}
+
+.home-menu-nav span{
+	font-size:16px;
+	display: inline-block;
+	margin-right:10px;
+	color:#f8f8f8;
+	padding:0 10px;
+}
+.home-menu-nav span:hover{
+	cursor: pointer;
+	background: rgba(0, 0, 0, 0.6);
+	transition:background-color 0.3s ease;
+}
+.home-menu-nav i{
 	color:#f8f8f8;
 	display: block;
 	margin-top:-5px!important;
@@ -337,6 +396,211 @@ a{
 	line-height: 16px;
 	color: rgba(0, 0, 0, 0.87);
 }
+
+/*********************************/
+
+
+
+/************about us 页面********/
+.about-menu-nav{
+	height:50px;
+	width:100%;
+	margin:70px 0 0 0;
+
+	background-color:#f8f8f8;
+	border-radius: 5px;
+
+}
+
+
+.about-menu-nav span{
+	display: inline-block;
+	width: 20% ;
+	text-align: center;
+	font-size:14px;
+	height:50px;
+	line-height: 50px;
+	float: left;
+}
+.about-menu-nav span:hover{
+	cursor: pointer;
+	background: rgba(0, 0, 0, 0.6);
+	color:#f8f8f8;
+	transition:background-color 0.6s ease;
+}
+
+/********************************/
+
+
+
+
+/*************加入我们************/
+
+.recruit-section{
+
+	width:100%;
+	/*border-top:1px solid #505050;*/
+	height:100px;
+
+}
+
+.recruit-title-list {
+
+	width:100%;
+	padding:10px 0 ;
+
+	position:relative;
+	background-color: white;
+}
+.recruit-title-list span{
+	display: inline-block;
+	height:30px;
+	width:120px;
+
+	margin-top:20px;
+	margin-right:20px;
+	border: 1px solid #c8c8c8;
+	border-radius: 20px;
+	line-height: 30px;
+	text-align: center;
+	color:#c8c8c8;
+}
+.recruit-title-list .selected,.recruit-title-list span:hover{
+	color:#505050;
+	border: 1px solid #505050;
+	cursor: pointer;
+}
+
+.recruit-title-list-scroll{
+
+
+}
+
+.recruit-title-list-scroll span{
+	color:white;
+	border:1px solid #ff8400;
+	background-color: #ff8400;
+	-webkit-transition-duration: 0.6s;
+	-webkit-transition-timing-function: ease;
+
+}
+
+
+
+.recruit-box{
+
+	width: 100%;
+
+	padding:20px 0 ;
+
+}
+
+.recruit-box span{
+	color:#505050;
+	display: inline;
+}
+.recruit-box .header{
+	margin-left:20px;
+}
+.recruit-box .title{
+
+	font-size:20px;
+
+}
+.recruit-box .depart{
+	font-size:12px;
+}
+
+.recruit-box .salary{
+	color:#ff8400;
+	font-size: 18px;
+	margin-top:40px;
+
+}
+.recruit-box .brief{
+	font-size: 14px;
+	margin-left:10px;
+
+}
+
+.recruit-box .submit-resume{
+	border:1px solid #ff8400;
+	height:30px;
+	line-height: 30px;
+	text-align: center;
+	width:100px;
+	color:#ff8400;
+	float:right;
+	margin-top: -5px;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.recruit-detail{
+	background: #f0f0f0;
+	font-size: 14px;
+	padding:20px;
+	margin-top:20px;
+
+}
+.recruit-detail span{
+	display: block;
+}
+/*******************************/
+
+
+/*!***********关于我们***********/
+
+.history-box{
+
+	width:100%;
+
+
+}
+
+
+
+.history-img{
+
+	width:150px;
+	display: none;
+}
+
+
+.history-img1{
+
+	width:150px;
+	display: none;
+}
+
+.history-img img,.history-img1 img {
+	margin:5px auto;
+	width:150px;
+	height:150px;
+	border-radius: 100%;
+}
+
+.vertical-line{
+	width:5px;
+	height:50px;
+	background-color: #0698d8;
+}
+
+.history-detail{
+
+}
+.history-detail .year{
+	height:60px;
+	line-height: 60px;
+	border-radius: 100%;
+	border:4px solid #0698d8;
+	width:60px;
+	background-color: #a4bcff;
+	color:white;
+	text-align: center;
+	font-size:14px;
+}
+/******************************/
 
 
 	/**********特效******/
