@@ -7,7 +7,11 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\Service\Admin\ArticleService;
+
 use App\Models\Article;
+
+use App\Tool\MessageResult;
 
 class ArticleController extends Controller
 {
@@ -18,9 +22,9 @@ class ArticleController extends Controller
      */
 
 
-
-    public function __construct(){
-
+    private $article;
+    public function __construct( ArticleService $article){
+        $this->article = $article ;
 
     }
 
@@ -40,6 +44,85 @@ class ArticleController extends Controller
         $article = new Article();
         return view('Admin.Article.createArticle')->with('article',$article);
         //
+    }
+
+    public function classificationandtag()
+    {
+        $tagNameList = $this->article->getAllArticleTag();
+        $categoryList = $this->article->getAllArticleCategory();
+
+        $oneLevelCategoryList = $this->article->getOneLevelCategory();
+       
+        return view('Admin.Article.ClassificationAndTag')->with('tagNameList',$tagNameList)->with('categoryList',$categoryList)->with('oneLevelCategoryList',$oneLevelCategoryList);
+    }
+
+    public function addArticleTag(Request $request)
+    {   
+        $jsonResult = new MessageResult();
+
+        $del = $this->article->addArticleTag($request->input('tag_name'));
+
+        if ($del) {
+            $jsonResult->statusCode = 1;
+            $jsonResult->statusMsg = "成功";
+            $jsonResult->tagName = $request->input('tag_name');
+        }else{
+            $jsonResult->statusCode = 0;
+            $jsonResult->statusMsg = "失败";
+        }
+
+        return response($jsonResult->toJson());
+    }
+
+    public function delArticleTag(Request $request)
+    {
+        $jsonResult = new MessageResult();
+
+        $addTag = $this->article->delArticleTag($request->input('tag_id'));
+
+        if ($addTag) {
+            $jsonResult->statusCode = 1;
+            $jsonResult->statusMsg = "成功";
+        }else{
+            $jsonResult->statusCode = 0;
+            $jsonResult->statusMsg = "失败";
+        }
+
+        return response($jsonResult->toJson());
+    }
+
+    public function classificationOperate(Request $request)
+    {
+        $jsonResult = new MessageResult();
+
+        $createMenu = $this->article->classificationOperate($request->input());
+
+        if ($createMenu) {
+            $jsonResult->statusCode = 1;
+            $jsonResult->statusMsg = "成功";
+        }else{
+            $jsonResult->statusCode = 0;
+            $jsonResult->statusMsg = "失败";
+        }
+
+        return response($jsonResult->toJson());
+    }
+
+    public function delArticleCategory(Request $request)
+    {
+        $jsonResult = new MessageResult();
+
+        $del = $this->article->delArticleCategory($request->input('categoryId'));
+
+        if ($del) {
+            $jsonResult->statusCode = 1;
+            $jsonResult->statusMsg = "成功";
+        }else{
+            $jsonResult->statusCode = 0;
+            $jsonResult->statusMsg = "失败";
+        }
+
+        return response($jsonResult->toJson());
     }
 
     /**

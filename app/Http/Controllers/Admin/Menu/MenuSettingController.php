@@ -56,7 +56,7 @@ class MenuSettingController extends Controller
             $jsonResult->statusCode = 1;
             $jsonResult->statusMsg = "成功";
         }else{
-            $jsonResult->statusCode = 1;
+            $jsonResult->statusCode = 0;
             $jsonResult->statusMsg = "失败";
         }
 
