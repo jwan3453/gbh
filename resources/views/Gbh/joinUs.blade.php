@@ -226,6 +226,7 @@
 
                 </div>
 
+
             </div>
            
         </div>
@@ -245,7 +246,8 @@
             if(!ele){
                 $("html,body").animate({scrollTop:0},speed);
             }else{
-                if(ele.length>0) $("html,body").animate({scrollTop:$(ele).offset().top},speed);
+
+                if(ele.length>0) $("html,body").animate({scrollTop:$(ele).offset().top-200},speed);
             }
             return false;
         }

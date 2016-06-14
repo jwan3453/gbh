@@ -35,9 +35,14 @@ class HomeController extends Controller
         return view('Gbh.history');
     }
 
+
     public function contactUs()
     {
         return view('Gbh.contactUs');
+
+    public function team()
+    {
+        return view('Gbh.team');
     }
 
 }

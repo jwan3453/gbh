@@ -34,8 +34,15 @@ a{
 }
 .padding-80{
 	height:80px;
+<<<<<<< Updated upstream
 	width: 100%;
+=======
 
+>>>>>>> Stashed changes
+
+}
+.none-display{
+	display: none;
 }
 /******/
 
@@ -46,7 +53,7 @@ a{
 
 
 .home-page{
-	min-width:1080px;
+
 
 }
 .site-header{
@@ -94,6 +101,10 @@ a{
 
 	line-height: 50px;
 	z-index:1001;
+}
+
+.mobile-menu-nav{
+	display: none;
 }
 
 .home-menu-nav{
@@ -560,47 +571,110 @@ a{
 
 
 
-.history-img{
+.history-people{
 
 	width:150px;
-	display: none;
+	visibility: hidden;
 }
 
 
-.history-img1{
 
-	width:150px;
-	display: none;
-}
-
-.history-img img,.history-img1 img {
-	margin:5px auto;
+.history-people img{
+	margin:0 auto;
 	width:150px;
 	height:150px;
 	border-radius: 100%;
+
 }
 
 .vertical-line{
 	width:5px;
-	height:50px;
-	background-color: #0698d8;
+	height:60px;
+	background-color: #64c5d8;
+	visibility: hidden;
 }
 
 .history-detail{
+	position: relative;
+
+	overflow: hidden;
+
 
 }
-.history-detail .year{
-	height:60px;
-	line-height: 60px;
+.history-detail .year {
+	height: 80px;
+	line-height: 80px;
 	border-radius: 100%;
-	border:4px solid #0698d8;
-	width:60px;
-	background-color: #a4bcff;
-	color:white;
+	border: 4px solid #64c5d8;
+	width: 80px;
+	background-color: #d86c79;
+	color: white;
 	text-align: center;
-	font-size:14px;
+	font-size: 14px;
+	visibility: hidden;
 }
-/******************************/
+.history-detail .join-btn{
+	height: 80px;
+	border-radius: 100%;
+	border: 4px solid #64c5d8;
+	width: 80px;
+	background-color: #d86c79;
+	color: white;
+	text-align: center;
+	cursor: pointer;
+	visibility: hidden;
+
+}
+.history-detail .join-btn .up{
+	margin:20px 0 0 0;
+}
+.history-detail .join-btn span{
+	display: block;
+
+	font-size: 12px;
+}
+
+.history-detail .join-btn:hover{
+	cursor: pointer;
+	background: #ff8400;
+	color:#f8f8f8;
+	transition:background-color 0.6s ease;
+	border:4px solid #ff8400;
+}
+
+.history-detail .desc-left{
+	height:60px;
+	width:400px;
+
+	position: absolute;
+	left:calc(50% + 60px);
+	top: 10px;;
+	line-height: 30px;
+	visibility: hidden;
+
+}
+.history-detail .desc-right{
+	height:60px;
+	width:400px;
+
+	position: absolute;
+	right:calc(50% + 60px);
+	top: 10px;;
+	vertical-align:middle;
+	line-height: 30px;
+	visibility: hidden;
+	text-align: right;
+}
+
+.history-detail .logo-img{
+	height:60px;
+	width:60px;
+	border-radius: 100%;
+	visibility: hidden;
+
+
+}
+	/******************************/
 
 
 	/**********特效******/
@@ -622,6 +696,7 @@ a{
 	-moz-transition-timing-function: linear;
 }
 /*******************/
+
 
 
 /**********联系我们**************/
@@ -775,3 +850,34 @@ a{
 
 
 /****************end**********/
+
+
+/* Mobily Only */
+@media only screen and (max-width: 767px) {
+	.home-menu-nav{
+
+		border:1px solid red;
+		display: none;
+	}
+	.mobile-menu-nav{
+		display: block;
+	}
+
+	.slide-center-text {
+		display: none;
+	}
+	.hotel-box{
+
+		width:100%;
+		position:relative;
+		float:left;
+		/*border:1px solid #ddd;*/
+		margin-top:20px;
+		background: #f8f8f8;
+	}
+
+	.hotel-box-mask{
+		width:100%;
+	}
+}
+

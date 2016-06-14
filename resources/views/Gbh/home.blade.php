@@ -25,6 +25,13 @@
                         <i class="icon user large"></i>
                     </div>
                 </div>
+
+                <div class="mobile-menu-nav">
+                    <i class="sidebar icon large"></i>
+                </div>
+
+
+
             </div>
             <div class="owl-carousel owl-theme home-slide">
                 <div class="slide">
