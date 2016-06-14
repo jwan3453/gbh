@@ -39,7 +39,7 @@
                 <span>团队介绍</span>
                 <span>团队经历</span>
                 <a href="/joinUs"><span>加入我们</span></a>
-                <span>联系我们</span>
+                <a href="/contactUs"><span>联系我们</span></a>
             </div>
 
 
@@ -227,11 +227,11 @@
                 </div>
 
             </div>
-
+           
         </div>
 
-
     </div>
+
 @stop
 
 

@@ -33,7 +33,7 @@ a{
 
 }
 .padding-80{
-	height:90px;
+	height:80px;
 	width: 100%;
 
 }
@@ -440,7 +440,7 @@ a{
 
 	width:100%;
 	/*border-top:1px solid #505050;*/
-	height:100px;
+	
 
 }
 
@@ -622,3 +622,156 @@ a{
 	-moz-transition-timing-function: linear;
 }
 /*******************/
+
+
+/**********联系我们**************/
+
+.contactus-box{
+	width: 100%;
+}
+
+.contactus-title{
+	height: 90px;
+	line-height: 90px;
+	margin-top: 80px;
+	text-align: center;
+}
+
+.contactus-title h1{
+	font-size: 60px;
+	color: #181818;
+	font-family: "Microsoft XiYuan" ! important;
+}
+
+.contactus-small-title-box{
+	width: 80%;
+	margin: 0 auto;
+	margin-top: 40px;
+	height: 120px;
+}
+
+.contactus-small-title{
+	width: 25%;
+	height: 30px;
+	float: left;
+	text-align: center;
+	line-height: 30px;
+}
+
+.contactus-small-title span{
+	font-size: 20px;
+	color: #6b6b6b;
+	/*border-bottom: 1px dashed #a0a0a0;*/
+	font-family: "Microsoft XiYuan" ! important;
+}
+
+.map-box{
+	width: 80%;
+	margin: 0 auto;
+	height: 300px;
+	border: 1px solid #a0a0a0;
+	margin-top: -10px;
+	border-radius: 2px;
+}
+
+.detail-box{
+	width: 80%;
+	margin: 0 auto;
+	margin-top: 30px;
+	height: 200px;
+}
+
+.detail-address label{
+	font-size: 18px;
+	color: #181818;
+}
+
+.detail-address span{
+	font-size: 14px;
+	color: #6b6b6b;
+}
+
+.detail-row{
+	width: 100%;
+	margin-top: 10px;
+}
+
+.detail-row img{
+	margin-right: 10px;
+	vertical-align: middle;
+}
+
+.contactus-title-img{
+	width: 80px;
+	height: 80px;
+	line-height: 80px;
+	background-color: #C5C5C5;
+	border-radius: 100%;
+	margin: 0 auto;
+	margin-bottom: 8px;
+}
+
+.contactus-title-img:hover{
+	background-color: #ff8400;
+	transition:background-color 1s ease;
+
+}
+
+.contactus-title-img img{
+	vertical-align: middle;
+}
+
+.find-us{
+	width: 100%;
+	height: 100px;
+	text-align: center;
+	line-height: 100px;
+	/*border: 1px solid red;*/
+
+	margin-top: 120px;
+}
+
+.find-us-line{
+	width: 120px;
+	height: 1px;
+	background-color: #C5C5C5;
+	margin: 0 auto;
+	margin-bottom: -18px;
+}
+
+.find-us-font{
+	font-size: 18px;
+	color: #c5c5c5;
+}
+
+/************end**********************/
+
+/***********底部***************/
+
+.center-box{
+	margin-bottom: 70px;
+}
+
+.foot-box{
+	width: 100%;
+	height: 70px;
+	margin: 0 auto;
+	text-align: center;
+
+	background-color: #505050;
+	border:1px solid #505050;
+	color:#f8f8f8;
+	position: fixed;
+	bottom: 0;
+}
+
+.foot-box span{
+	display: block;
+	
+}
+.foot-box .up{
+	margin-top:20px;
+}
+
+
+/****************end**********/

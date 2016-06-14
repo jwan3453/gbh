@@ -20,12 +20,15 @@
 
 <body>
 
-    <div>
+    <div class="center-box">
         @yield('content')
     </div>
-<!--  <div class="foot-box">
 
-     </div> -->
+
+    <div class="foot-box">
+        <span class="up">全球精品酒店 版权所有 2016-2028 保留所有权利</span>
+        <span>Copyright 2016-2028 Opulun.com All right reserved</span>
+    </div>
 </body>
 
 
