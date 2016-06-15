@@ -789,6 +789,7 @@ a{
 .contactus-title-img:hover{
 	background-color: #ff8400;
 	transition:background-color 1s ease;
+	cursor: pointer;
 
 }
 
@@ -851,6 +852,50 @@ a{
 
 /****************end**********/
 
+/*****************AboutUs*********/
+
+.about-us-img{
+	width: 100%;
+	height: 300px;
+	margin-top: 20px;
+}
+
+.about-us-img img{
+	width: 100%;
+	height: 300px;
+}
+
+.about-us-desc-box{
+	width: 100%;
+	margin-top: 40px;
+}
+
+.about-us-title span{
+	font-size: 20px;
+	color: #505050;
+	font-family: "Microsoft XiYuan" ! important;
+}
+
+.about-us-desc span{
+	display: block;
+	/*margin-left: 10px;*/
+	text-indent: 2em;
+	color: #a0a0a0;
+	margin-top: 8px;
+}
+
+.about-us-slogan{
+	text-align: center;
+}
+
+.about-us-slogan span{
+	display: block;
+	color: #646464;
+	margin-top: 15px;
+}
+
+/******************end************/
+
 
 /* Mobily Only */
 @media only screen and (max-width: 767px) {
@@ -879,5 +924,45 @@ a{
 	.hotel-box-mask{
 		width:100%;
 	}
+
+	.contactus-title{
+		margin-top: 20px;
+	}
+
+	.contactus-title h1{
+		font-size: 30px;
+	}
+
+	.contactus-small-title span{
+		font-size: 13px;
+	}
+
+	.contactus-title-img{
+		width: 40px;
+		height: 40px;
+		line-height: 40px;
+	}
+
+	.contactus-title-img img{
+		width: 16px;
+	}
+
+	.find-us{
+		margin-top: 20px;
+	}
+
+	.contactus-small-title-box{
+		margin-top: 20px;
+	}
+	
+	.map-box{
+		width: 90%;
+	}
+
+	.detail-box{
+		width: 90%;
+	}
+
+
 }
 

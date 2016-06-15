@@ -1944,3 +1944,85 @@ a{
 	margin-left: 20px;
 }
 /***************end**********************/
+
+
+/***********登录*******************/
+
+.login-box{
+	background-image: url(/Admin/img/login_bgx.gif);
+	width: 100%;
+	position: fixed;
+	top: 0;
+	bottom: 0;
+}
+
+.login-logo{
+	width: 100%;
+	margin-top: 100px;
+	text-align: center;
+
+}
+
+.login-input-box{
+	width: 600px;
+	height: 300px;
+	background-color: #f8f8f8;
+	margin: 0 auto;
+
+	margin-top: 50px;
+	border-radius: 4px;
+
+	border: 1px solid #f8f8f8;
+
+	box-shadow:-5px 0 5px #DDDDDD, 
+    5px 0 5px #DDDDDD, 
+    0 -5px 5px #DDDDDD, 
+    0 5px 5px #DDDDDD;
+}
+
+.login-small-box{
+	width: 400px;
+	height: 200px;
+	margin: 0 auto;
+	margin-top: 50px;
+}
+
+.login-input-row{
+	width: 100%;
+	margin-top: 40px;
+}
+
+.input-login{
+	width: 100%;
+	height: 30px;
+	border: 1px solid #a0a0a0;
+	border-radius: 3px;
+	text-indent: 1em;
+}
+
+.login-btn{
+	width: 200px;
+	height: 40px;
+	background-color: #639ae3;
+	border-radius: 3px;
+	margin: 0 auto;
+	text-align: center;
+	line-height: 40px;
+	cursor: pointer;
+
+	moz-user-select: -moz-none;
+	-moz-user-select: none;
+	-o-user-select:none;
+	-khtml-user-select:none;
+	-webkit-user-select:none;
+	-ms-user-select:none;
+	user-select:none;
+}
+
+.login-btn span{
+	font-size: 20px;
+	color: #f8f8f8;
+	font-family: "Microsoft YaHei" !important;
+}
+
+/***************end***************/
