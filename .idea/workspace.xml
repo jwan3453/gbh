@@ -25,8 +25,8 @@
       <file leaf-file-name="website.css" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/Gbh/css/website.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.5662189">
-              <caret line="1311" column="23" selection-start-line="1311" selection-start-column="23" selection-end-line="1311" selection-end-column="23" />
+            <state vertical-scroll-proportion="6.303263">
+              <caret line="1240" column="8" selection-start-line="1240" selection-start-column="8" selection-end-line="1240" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -75,8 +75,8 @@
       <file leaf-file-name="contactUs.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/Gbh/contactUs.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="38.576923">
-              <caret line="43" column="30" selection-start-line="43" selection-start-column="30" selection-end-line="43" selection-end-column="30" />
+            <state vertical-scroll-proportion="-9.807693">
+              <caret line="28" column="35" selection-start-line="28" selection-start-column="35" selection-end-line="28" selection-end-column="35" />
               <folding />
             </state>
           </provider>
@@ -85,9 +85,13 @@
       <file leaf-file-name="aboutUs.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/Gbh/aboutUs.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-17.692308">
-              <caret line="219" column="0" selection-start-line="219" selection-start-column="0" selection-end-line="219" selection-end-column="0" />
-              <folding />
+            <state vertical-scroll-proportion="4.576923">
+              <caret line="49" column="14" selection-start-line="49" selection-start-column="14" selection-end-line="49" selection-end-column="14" />
+              <folding>
+                <element signature="e#1667#2652#0#HTML" expanded="false" />
+                <element signature="e#2674#3663#0#HTML" expanded="false" />
+                <element signature="e#3686#4680#0#HTML" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -95,8 +99,8 @@
       <file leaf-file-name="team.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/Gbh/team.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.2692308">
-              <caret line="47" column="28" selection-start-line="47" selection-start-column="28" selection-end-line="47" selection-end-column="28" />
+            <state vertical-scroll-proportion="-12.375">
+              <caret line="50" column="43" selection-start-line="50" selection-start-column="43" selection-end-line="50" selection-end-column="43" />
               <folding />
             </state>
           </provider>
@@ -105,8 +109,8 @@
       <file leaf-file-name="history.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/Gbh/history.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-10.846154">
-              <caret line="176" column="34" selection-start-line="176" selection-start-column="34" selection-end-line="176" selection-end-column="34" />
+            <state vertical-scroll-proportion="-15.692307">
+              <caret line="46" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="53" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -173,13 +177,13 @@
         <option value="$PROJECT_DIR$/resources/views/Gbh/home.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Gbh/HomeController.php" />
         <option value="$PROJECT_DIR$/resources/views/GbhMobile/site.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/Gbh/contactUs.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/routes.php" />
-        <option value="$PROJECT_DIR$/resources/views/Gbh/team.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/Gbh/site.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/Gbh/joinUs.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/Gbh/history.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/Gbh/contactUs.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/Gbh/aboutUs.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/Gbh/team.blade.php" />
         <option value="$PROJECT_DIR$/public/Gbh/css/website.css" />
       </list>
     </option>
@@ -1123,14 +1127,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/Gbh/team.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.2692308">
-          <caret line="47" column="28" selection-start-line="47" selection-start-column="28" selection-end-line="47" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/Gbh/site.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-16.26923">
@@ -1141,32 +1137,44 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/Gbh/contactUs.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="38.576923">
-          <caret line="43" column="30" selection-start-line="43" selection-start-column="30" selection-end-line="43" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/Gbh/history.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.846154">
-          <caret line="176" column="34" selection-start-line="176" selection-start-column="34" selection-end-line="176" selection-end-column="34" />
+        <state vertical-scroll-proportion="-9.807693">
+          <caret line="28" column="35" selection-start-line="28" selection-start-column="35" selection-end-line="28" selection-end-column="35" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/Gbh/aboutUs.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-17.692308">
-          <caret line="219" column="0" selection-start-line="219" selection-start-column="0" selection-end-line="219" selection-end-column="0" />
+        <state vertical-scroll-proportion="4.576923">
+          <caret line="49" column="14" selection-start-line="49" selection-start-column="14" selection-end-line="49" selection-end-column="14" />
+          <folding>
+            <element signature="e#1667#2652#0#HTML" expanded="false" />
+            <element signature="e#2674#3663#0#HTML" expanded="false" />
+            <element signature="e#3686#4680#0#HTML" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/Gbh/history.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-15.692307">
+          <caret line="46" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="53" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/Gbh/team.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-12.375">
+          <caret line="50" column="43" selection-start-line="50" selection-start-column="43" selection-end-line="50" selection-end-column="43" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/Gbh/css/website.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.5662189">
-          <caret line="1311" column="23" selection-start-line="1311" selection-start-column="23" selection-end-line="1311" selection-end-column="23" />
+        <state vertical-scroll-proportion="6.303263">
+          <caret line="1240" column="8" selection-start-line="1240" selection-start-column="8" selection-end-line="1240" selection-end-column="8" />
           <folding />
         </state>
       </provider>
