@@ -1,15 +1,22 @@
 
 /*****公共部分****/
-body{
+html,body{
 	width: 100%;
+	height:100%;
 	margin: 0;
-	/*background: #09010c;*/
+
 	color:#505050;
 	font-family: "Microsoft YaHei" ! important;
 }
 a{
 	text-decoration: none;
+	color:white;
 
+}
+
+.dark-anchor{
+	text-decoration: none;
+	color:#505050;
 }
 
 .auto-margin{
@@ -34,15 +41,30 @@ a{
 }
 .padding-80{
 	height:80px;
-<<<<<<< Updated upstream
 	width: 100%;
-=======
-
->>>>>>> Stashed changes
-
 }
 .none-display{
 	display: none;
+}
+.pusher{
+	min-height: 100%!important;
+}
+
+.f-left{
+	float:left;
+}
+.f-right{
+	float:right;
+}
+.grey-background{
+	background-color: #f2f2f2;
+}
+.page{
+	min-height:100%;
+
+
+	margin:auto;
+
 }
 /******/
 
@@ -440,6 +462,109 @@ a{
 	transition:background-color 0.6s ease;
 }
 
+
+.about-bg{
+	display: none;
+}
+.about-bg img{
+	width:100%;
+}
+.about-content{
+	margin-top:10px;
+
+}
+
+
+.about-line-box{
+	min-width:900px;
+	width:80%;
+	height:180px;
+	position: relative;
+	margin:0 auto;
+	display: none;
+}
+
+.about-text{
+
+	margin:30px 80px 0 80px;
+}
+
+.about-text .header{
+
+	font-size:24px;
+
+	width:200px;
+}
+.about-text .detail{
+	height:50px;
+	line-height:16px;
+	font-size:14px;
+	width:500px;
+	margin:10px 0 0 0;
+
+}
+.about-line-box .bottom-line{
+	height:10px;
+	width:100%;
+	position: absolute;
+	bottom: 0;
+}
+.about-right-triangle{
+
+	width: 0;
+	height: 0;
+	border-left: 70px solid transparent;
+
+}
+.about-left-triangle{
+
+	width: 0;
+	height: 0;
+	border-right: 70px solid transparent;
+
+}
+.about-square{
+
+	height:180px;
+	width:150px;
+
+}
+
+.about-icon{
+	height:100px;
+	width:100px;
+	background: rgba(0, 0, 0, 0.3);
+	border-radius: 100%;
+	margin:40px;
+}
+.about-icon img{
+	height:80px;
+	width:80px;
+	margin:10px;
+}
+
+.about-red-bg{
+	background-color: #f26060;
+}
+.about-blue-bg{
+	background-color: #319bc3;
+}
+.about-yellow-bg{
+	background-color: #f2c81c;
+}
+
+.about-red-border-bg{
+	border-bottom: 180px solid #f26060;
+}
+.about-blue-border-bg{
+	border-bottom: 180px solid #319bc3;
+}
+.about-yellow-border-bg{
+	border-bottom: 180px solid #f2c81c;
+}
+
+
+
 /********************************/
 
 
@@ -496,7 +621,11 @@ a{
 
 }
 
+.recruit-box-list{
 
+	overflow: hidden;
+	border:1px solid transparent;
+}
 
 .recruit-box{
 
@@ -837,8 +966,9 @@ a{
 	background-color: #505050;
 	border:1px solid #505050;
 	color:#f8f8f8;
-	position: fixed;
-	bottom: 0;
+	display: block;
+
+
 }
 
 .foot-box span{
@@ -897,32 +1027,221 @@ a{
 /******************end************/
 
 
+
+/************团队介绍***********/
+.team-member{
+	margin:50px auto;
+	width:80%;
+	overflow: hidden;
+
+}
+.team-member div{
+	width:calc(33.333% - 100px);
+	margin: 0 50px;
+	float:left;
+	cursor: pointer;
+}
+.team-member div img{
+	width:100%;
+}
+/******************************/
+
+
 /* Mobily Only */
 @media only screen and (max-width: 767px) {
-	.home-menu-nav{
 
-		border:1px solid red;
+	.mobile-side-bar {
+		width: 150px !important;
+		color: #ecf5fc;
+		background: #121d25;
+		padding: 30px 0 !important;
+		font-size: 16px;
+	}
+
+	.mobile-side-bar a {
+		height: 50px;
+		line-height: 50px;
+		padding: 0 10px;
+		display: block;
+		/*border-bottom: 1px solid #b4b4b4;*/
+
+	}
+
+	.mobile-side-bar span {
+		display: inline-block;
+	}
+
+	.mobile-side-bar i {
+		margin-top: -5px !important;
+	}
+
+	.home-menu-nav {
+
+		border: 1px solid red;
 		display: none;
 	}
-	.mobile-menu-nav{
+
+	.site-menu-nav {
+		display: none;
+	}
+
+	.mobile-menu-nav {
 		display: block;
+		float: right;
+		color:#f8f8f8;
 	}
 
 	.slide-center-text {
 		display: none;
 	}
-	.hotel-box{
 
-		width:100%;
-		position:relative;
-		float:left;
+	.hotel-box {
+
+		width: 100%;
+		position: relative;
+		float: left;
 		/*border:1px solid #ddd;*/
-		margin-top:20px;
+		margin-top: 20px;
 		background: #f8f8f8;
 	}
 
-	.hotel-box-mask{
+	.hotel-box-mask {
+		width: 100%;
+	}
+
+	.h-cate-nav {
+
+		height: 42px;
+		width: 100%;
+
+		clear: both;
+		overflow: hidden;
+
+		margin-top:100px;
+	}
+
+	.cate-nav-btn {
+		height: 40px;
+		width: calc(25% - 7px);
+		line-height: 40px;
+		font-size: 14px;
+		float: left;
+		margin-right: 5px;
+		border: 1px solid #505050;
+		text-align: center;
+		color: #505050;
+		cursor: pointer;
+		border-radius: 5px;
+
+	}
+
+
+	.about-menu-nav{
+		margin-top:50px;
+	}
+
+
+	.about-line-box{
+		min-width:100%;
 		width:100%;
+		position: relative;
+		margin:0 auto;
+		padding: 10px 0;
+	}
+
+	.about-line-box{
+		display: block;
+	}
+
+	.about-left-triangle{
+		display: none;
+	}
+
+	.about-right-triangle{
+		display: none;
+	}
+
+	.about-square{
+		display: none;
+	}
+
+	.about-text{
+
+		margin:10px;
+	}
+
+	.about-text .header{
+
+		font-size:24px;
+
+		width:200px;
+	}
+	.about-text .detail{
+
+		line-height:16px;
+		font-size:14px;
+		width:100%;
+		margin:10px 0 0 0;
+
+	}
+
+
+
+
+
+	.recruit-title-list {
+
+		width:100%;
+		padding:10px 0 ;
+
+		position:relative;
+		background-color: white;
+	}
+	.recruit-title-list span{
+		display: inline-block;
+		height:30px;
+		width: calc(33.33% - 16px);
+
+		margin-top:20px;
+		margin-right:5px;
+		margin-left:5px;
+		border: 1px solid #c8c8c8;
+		border-radius: 20px;
+		line-height: 30px;
+		text-align: center;
+
+	}
+	.submit-resume{
+		margin-right:10px;
+	}
+
+
+	.history-detail .desc-right{
+
+		width: 350px;
+		margin:0 auto;
+		position:static!important;
+		vertical-align: middle;
+
+		visibility: hidden;
+		text-align: center;
+	}
+	.history-detail .desc-left{
+
+		width: 350px;
+		margin:0 auto;
+		position:static!important;
+		vertical-align: middle;
+		line-height: 30px;
+		visibility: hidden;
+		text-align: center;
+	}
+
+	.team-member{
+		margin:50px auto;
+		width:100%;
+
+
 	}
 
 	.contactus-title{
@@ -965,4 +1284,36 @@ a{
 
 
 }
+	.team-member div{
+		width:calc(33.333% - 20px);
+		margin: 0 10px;
+		float:left;
+		cursor: pointer;
+	}
+	.team-member div img{
+		width:100%;
+	}
 
+	.foot-box{
+		width: 100%;
+		height: 60px;
+		margin: 0 auto;
+		text-align: center;
+
+		background-color: #505050;
+		border:1px solid #505050;
+		color:#f8f8f8;
+		display: block;
+
+		font-size:12px;
+	}
+
+	.foot-box span{
+		display: block;
+
+	}
+	.foot-box .up{
+		margin-top:20px;
+		font-size:14px;
+	}
+}

@@ -13,8 +13,9 @@
     <link  rel="stylesheet" type="text/css"  href ={{ asset('GbhMobile/css/mobileSite.css') }}>
     <link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/icon.css') }}>
     <link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/sidebar.css') }}>
-    <link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/transition.css') }}>
     <script src={{ asset('semantic/sidebar.js') }}></script>
+    <link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/transition.css') }}>
+
     <script src={{ asset('semantic/transition.js') }}></script>
     @yield('resources')
 

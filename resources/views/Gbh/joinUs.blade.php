@@ -16,7 +16,7 @@
 
 @section('content')
 
-    <div>
+    <div class="pusher">
 
         <div class="site-header">
             <div class="site-menu-nav">
@@ -28,6 +28,9 @@
                     <i class="icon user large"></i>
                 </div>
             </div>
+            <div class="mobile-menu-nav">
+                <i class="sidebar icon large"></i>
+            </div>
         </div>
 
         <div class="ui container">
@@ -35,11 +38,11 @@
             <div class="about-menu-nav">
 
 
-                <span>关于我们</span>
-                <span>团队介绍</span>
-                <span>团队经历</span>
-                <a href="/joinUs"><span>加入我们</span></a>
-                <a href="/contactUs"><span>联系我们</span></a>
+                <a href="/aboutUs" class="dark-anchor"><span>关于我们</span></a>
+                <a href="/team" class="dark-anchor"><span>团队介绍</span></a>
+                <a href="/history"  class="dark-anchor"><span>团队经历</span></a>
+                <a href="/joinUs"  class="dark-anchor"><span>加入我们</span></a>
+                <a href="/contactUs"  class="dark-anchor"><span>联系我们</span></a>
             </div>
 
 
@@ -59,7 +62,7 @@
 
                     </div>
 
-                <div id="recruitBoxList">
+                <div class="recruit-box-list" id="recruitBoxList">
                     <div class="recruit-box" id="ui">
 
                         <div class="header">

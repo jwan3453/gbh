@@ -57,6 +57,8 @@ Route::get('/aboutUs','Gbh\HomeController@aboutUs');
 Route::get('/joinUs','Gbh\HomeController@joinUs');
 Route::get('/history', 'Gbh\HomeController@history');
 Route::get('/contactUs','Gbh\HomeController@contactUs');
+Route::get('/team','Gbh\HomeController@team');
+
 Route::get('/search','GbhMobile\HomeController@search');
 Route::get('/hotel/{hotelId}','GbhMobile\Hotel\HotelController@hotelDetail');
 Route::get('/hotel/{hotelId}/booking/{roomId}','GbhMobile\Hotel\HotelController@booking');

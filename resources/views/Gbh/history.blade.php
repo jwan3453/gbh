@@ -20,7 +20,7 @@
 
 @section('content')
 
-    <div>
+    <div class="pusher">
 
 
         <div class="site-header">
@@ -33,6 +33,9 @@
                     <i class="icon user large"></i>
                 </div>
             </div>
+            <div class="mobile-menu-nav">
+                <i class="sidebar icon large"></i>
+            </div>
         </div>
 
 
@@ -42,11 +45,11 @@
             <div class="about-menu-nav">
 
 
-                <span>关于我们</span>
-                <span>团队介绍</span>
-                <a href="/history"><span>团队经历</span></a>
-                <a href="/joinUs"><span>加入我们</span></a>
-                <span>联系我们</span>
+                <a href="/aboutUs" class="dark-anchor"><span>关于我们</span></a>
+                <a href="/team" class="dark-anchor"><span>团队介绍</span></a>
+                <a href="/history"  class="dark-anchor"><span>团队经历</span></a>
+                <a href="/joinUs"  class="dark-anchor"><span>加入我们</span></a>
+                <a href="/contactUs"  class="dark-anchor"><span>联系我们</span></a>
 
             </div>
 
@@ -167,11 +170,11 @@
         $(document).ready(function(){
 
             $('.first-show').find('.history-people,.year ').transition({
-                animation : 'fly left',
+                animation : 'scale',
                 duration  : 800
             });
             $('.first-show').find('.vertical-line, .desc-right ').transition({
-                animation : 'fly right',
+                animation : 'scale',
                 duration  : 800
 
             });
@@ -190,7 +193,7 @@
 
                             if($(this).css('visibility') === 'hidden')
                                 $(this).transition({
-                                    animation : 'fly left',
+                                    animation : 'scale',
                                     duration  : 800
                                 });
                         }
@@ -202,7 +205,7 @@
                         if( $(window).scrollTop() > $(this).offset().top -500 ) {
                             if($(this).css('visibility') === 'hidden')
                             $(this).transition({
-                                animation : 'fly right',
+                                animation : 'scale',
                                 duration  : 800
                             });
                         }
@@ -216,7 +219,7 @@
 
                             if($(this).css('visibility') === 'hidden')
                                 $(this).transition({
-                                    animation : 'fly left',
+                                    animation : 'scale',
                                     duration  : 800
                                 });
                         }
@@ -228,7 +231,7 @@
 
                             if($(this).css('visibility') === 'hidden')
                                 $(this).transition({
-                                    animation : 'fly left',
+                                    animation : 'scale',
                                     duration  : 800
                                 });
                         }
@@ -240,7 +243,7 @@
 
                             if($(this).css('visibility') === 'hidden')
                                 $(this).transition({
-                                    animation : 'fly right',
+                                    animation : 'scale',
                                     duration  : 800
                                 });
                         }
@@ -252,7 +255,7 @@
 
                             if($(this).css('visibility') === 'hidden')
                                 $(this).transition({
-                                    animation : 'fly right',
+                                    animation : 'scale',
                                     duration  : 800
                                 });
                         }
@@ -263,7 +266,7 @@
 
                             if($(this).css('visibility') === 'hidden')
                                 $(this).transition({
-                                    animation : 'fly right',
+                                    animation : 'scale',
                                     duration  : 800
                                 });
                         }
