@@ -89,6 +89,10 @@ Route::post('/admin/manageArticle/delArticleCategory','Admin\Article\ArticleCont
 
 /*************************Vincent*********************************/
 
+Route::get('/admin/Login','Admin\homeController@login');
+
+Route::post('/admin/Sign','Admin\homeController@toSign');
+
 Route::get('/AdminCenter','Admin\homeController@index');
 
 Route::get('admin/menuSetting','Admin\Menu\MenuSettingController@index');

@@ -143,6 +143,8 @@
             map.addOverlay(marker);               // 将标注添加到地图中
             marker.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
             // map.enableScrollWheelZoom(false); //设置鼠标滚轮
+            // map.enableScrollWheelZoom(true);
+             map.disableDragging();
                 
           })
     </script>
