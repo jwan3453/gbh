@@ -161,7 +161,7 @@
 
 		$.ajax({
 			type: 'POST',
-            url: '/menuSetting/getSecondMenu',
+            url: '/admin/menuSetting/getSecondMenu',
             data: {menuId : menuId},
             dataType: 'json',
             headers: {
@@ -263,7 +263,7 @@
 	function submitMenu() {
 		$.ajax({
 			type: 'POST',
-            url: '/menuSetting/createMenu',
+            url: '/admin/menuSetting/createMenu',
             data: $("#edit-add-form").serialize(),
             dataType: 'json',
             headers: {
@@ -301,7 +301,7 @@
 		$("#EditOrAdd").val('edit');
 		$.ajax({
 			type: 'POST',
-            url: '/menuSetting/getMenuInfo',
+            url: '/admin/menuSetting/getMenuInfo',
             data: {menuId : id},
             dataType: 'json',
             headers: {
@@ -370,7 +370,7 @@
 	function menuDelete(id) {
 		$.ajax({
 			type: 'POST',
-            url: '/menuSetting/menuDelete',
+            url: '/admin/menuSetting/menuDelete',
             data: {menuId : id},
             dataType: 'json',
             headers: {

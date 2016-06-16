@@ -37,7 +37,7 @@ class AdminUserService{
     	$info = AdminUser::where('username',$username)->first();
     	
     	if ($info->permission != 'all') {
-    		
+    		$info->permission = explode("|", $info->permission);
     	}
         return $info;
     }

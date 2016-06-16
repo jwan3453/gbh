@@ -1990,6 +1990,7 @@ a{
 .login-input-row{
 	width: 100%;
 	margin-top: 40px;
+	text-align: center;
 }
 
 .input-login{
@@ -2023,6 +2024,13 @@ a{
 	font-size: 20px;
 	color: #f8f8f8;
 	font-family: "Microsoft YaHei" !important;
+}
+
+.login-msg{
+	text-align: center;
+	line-height: 50px;
+	color: #FF0000;
+	font-size: 18px;
 }
 
 /***************end***************/
