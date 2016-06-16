@@ -45,6 +45,21 @@ class HomeController extends Controller
         return view('Gbh.team');
     }
 
+    public function login()
+    {
+        return view('Gbh.login');
+    }
+
+    public function register()
+    {
+        return view('Gbh.register');
+    }
+
+    public function PageNotFound()
+    {
+        return view('Gbh.pageNotFound');
+    }
+
 }
 
 ?>

@@ -1047,6 +1047,212 @@ a{
 /******************************/
 
 
+/*********登录************/
+
+.background{
+	width: 100%;
+	height: 100%;
+	background-image: url(/Gbh/img/banner.png);
+	position: relative;
+	top: 0;
+	bottom: 0;
+	background-size:cover; 
+}
+
+.login-input-box{
+	width: 450px;
+	height: 480px;
+	position: absolute;
+	right: 100px;
+	top: 100px;
+	background-color: #000;
+	border-radius: 4px;
+
+	filter:alpha(opacity=70); /*IE滤镜，透明度50%*/
+	-moz-opacity:0.7; /*Firefox私有，透明度50%*/
+	opacity:0.7;/*其他，透明度50%*/
+}
+
+.login-input-title{
+	width: 100%;
+	height: 50px;
+	line-height: 50px;
+	text-align: center;
+	border-bottom: 1px solid #242424;
+
+}
+
+.login-input-title{
+	color: #FFFFFF;
+	font-weight: bold;
+}
+
+.login-input-buttom{
+	width: 340px;
+	/*height: 250px;*/
+	margin: 0 auto;
+	margin-top: 50px;
+}
+
+.login-input-row{
+	width: 340px;
+	height: 50px;
+	line-height: 50px;
+	border: 1px solid #FFFFFF;
+	border-radius: 2px;
+}
+
+.margin-top-30{
+	margin-top: 30px;
+}
+
+.login-input-row img{
+	width: 24px;
+	vertical-align: middle;
+	margin-left: 15px;
+}
+
+.login-input-row input{
+	width: 290px;
+	height: 44px;
+	border: 0;
+	background-color: #000;
+	color: #FFFFFF;
+	font-size: 16px;
+	text-indent: 1em;
+}
+
+.remember-me{
+	width: 100%;
+}
+
+.remember-me input{
+	width: 20px;
+	margin-right: 10px;
+	vertical-align: middle;
+}
+
+.remember-me span{
+	font-size: 16px;
+	color: #FFFFFF;
+}
+
+.gbh-login-btn{
+	width: 340px;
+	height: 40px;
+	background-color: #639be3;
+	line-height: 40px;
+	text-align: center;
+	cursor: pointer;
+	border-radius: 2px;
+}
+
+.gbh-login-btn span{
+	color: #FFFFFF;
+	font-size: 18px;
+	letter-spacing:10px;
+	margin-left : 10px;
+}
+
+.login-foot-box{
+	position: absolute;
+	bottom: 10px;
+	width: 100%;
+	text-align: center;
+	/*margin: 0 auto;*/
+}
+
+.login-foot-box span{
+	display: block;
+	border-bottom: 10px;
+	color: #FFFFFF;
+	font-size: 14px;
+}
+
+/***********end***************/
+
+/************注册****************/
+
+.register-background{
+	width: 100%;
+	height: 100%;
+	background-image: url(/Gbh/img/register.jpg);
+	position: relative;
+	top: 0;
+	bottom: 0;
+	background-size:cover; 
+}
+
+.register-input-box{
+	width: 450px;
+	height: 480px;
+	margin: 0 auto;
+	background-color: #000;
+	border-radius: 4px;
+
+	filter:alpha(opacity=70); /*IE滤镜，透明度50%*/
+	-moz-opacity:0.7; /*Firefox私有，透明度50%*/
+	opacity:0.7;/*其他，透明度50%*/
+}
+
+.height-100{
+	width: 100%;
+	height: 100px;
+}
+
+.register-input-buttom{
+	width: 340px;
+	/*height: 250px;*/
+	margin: 0 auto;
+	margin-top: 30px;
+}
+
+.login-input-row-240{
+	width: 240px;
+	height: 50px;
+	line-height: 50px;
+	border: 1px solid #FFFFFF;
+	border-radius: 2px;
+}
+
+.login-input-row-240 img{
+	width: 24px;
+	vertical-align: middle;
+	margin-left: 15px;
+}
+.login-input-row-240 input{
+	width: 190px;
+	height: 44px;
+	border: 0;
+	background-color: #000;
+	color: #FFFFFF;
+	font-size: 16px;
+	text-indent: 1em;
+}
+
+.mobile-code-btn{
+	width: 90px;
+	height: 50px;
+	border: 1px solid #FFFFFF;
+	float: right;
+	margin-top: -52px;
+	border-radius: 2px;
+	line-height: 50px;
+	text-align: center;
+	cursor: pointer;
+}
+
+.mobile-code-btn span{
+	color: #FFFFFF;
+	font-size: 14px;
+}
+
+.register-mobile-code{
+	width: 100%;
+}
+/************end***********8/
+
+
 /* Mobily Only */
 @media only screen and (max-width: 767px) {
 

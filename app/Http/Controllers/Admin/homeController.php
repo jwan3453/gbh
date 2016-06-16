@@ -28,6 +28,8 @@ class HomeController extends Controller
      */
     public function index()
     {
+        
+
         return view('Admin.home');
     }
 
@@ -38,20 +40,23 @@ class HomeController extends Controller
 
     public function toSign(Request $request)
     {
-        dd($request->session()->all());
+        
         $resultjson = new MessageResult();
+
         $adminSuccess = false;
-        $adminUser = $this->adminUser->isAdmin($request->input());
 
-        if ($adminUser) {
-            $adminInfo = $this->adminUser->getAdminInfo($request->input('username'));
-            $request->session()->put('adminusername',$adminInfo->username);
-            $request->session()->put('adminstatus',$adminInfo->admin_level);
-            $request->session()->put('adminid',$adminInfo->id);
-            
-            $adminSuccess = true;
+        if ($request->input('username') != '' || $request->input('password') != '') {
+            $adminUser = $this->adminUser->isAdmin($request->input());
+
+            if ($adminUser) {
+                $adminInfo = $this->adminUser->getAdminInfo($request->input('username'));
+                $request->session()->put('adminusername',$adminInfo->username);
+                $request->session()->put('adminstatus',$adminInfo->admin_level);
+                $request->session()->put('adminid',$adminInfo->id);
+                $request->session()->put('permission',$adminInfo->permission);
+                $adminSuccess = true;
+            }
         }
-
 
         if ($adminSuccess) {
             $resultjson->status = 1;
@@ -62,6 +67,11 @@ class HomeController extends Controller
         }
 
         return response($resultjson->toJson());
+    }
+
+    public function NotPermission($value='')
+    {
+        return view('Admin.Error.NotPermission');
     }
 
     /**

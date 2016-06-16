@@ -52,13 +52,15 @@
                 </div>
 
                 <div class="login-input-row">
-                    <input type="text" class="input-login" name="password" placeholder="请输入密码" />
+                    <input type="password" class="input-login" name="password" placeholder="请输入密码" />
                 </div>
 
                 <div class="login-input-row">
                     <div class="login-btn" onclick="ToSubmit()">
                         <span>登录</span>
                     </div>
+
+                    <span class="login-msg" id="msg"></span>
                 </div>
 
             </form>
@@ -87,6 +89,13 @@
             },
             success: function(data){
                 console.log(data);
+
+                if (data.status == 1) {
+                    $("#msg").html(data.Msg);
+                    location.href = "AdminCenter";
+                }else{
+                    $("#msg").html(data.Msg);
+                }
             },
             error: function(xhr, type){
                 alert('Ajax error!')

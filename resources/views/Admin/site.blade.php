@@ -27,7 +27,7 @@
     </div>
 
     <div class="admin-menu-list">
-        <li href="AdminCenter" name="home" onclick="firstMenuClick(this)">
+        <li href="admin/AdminCenter" name="home" onclick="firstMenuClick(this)">
             <img src="/Admin/icon/home-select.png" name="home" style="draggable='false'">
             <span>首页</span>
         </li>
@@ -88,7 +88,7 @@
         }
         $.ajax({
             type: 'POST',
-            url: '/menuSetting/getFirstMenu',
+            url: '/admin/menuSetting/getFirstMenu',
             data: {},
             dataType: 'json',
             headers: {
@@ -143,7 +143,7 @@
 
         $.ajax({
             type: 'POST',
-            url: '/menuSetting/getSecondMenu',
+            url: '/admin/menuSetting/getSecondMenu',
             data: {menuId : $(_this).attr('menuId')},
             dataType: 'json',
             headers: {
