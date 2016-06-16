@@ -34,18 +34,7 @@
 
             </div>
             <div class="owl-carousel owl-theme home-slide">
-                <div class="slide">
-                    <div class="slide-caption">
-                        <div class="slide-center-text">
-                            <div>
-                                <span class="up">温泉和酒店如此完美的结合</span>
-                                <img src = '/Gbh/img/横线.png'>
-                                <span class="down ">安溪 - 悦泉行馆</span>
-                            </div>
-                        </div>
-                    </div>
-                    <img src = '/Gbh/img/banner.png'>
-                </div>
+
                 <div class="slide">
                     <div class="slide-caption">
                         <div class="slide-center-text">
@@ -55,8 +44,13 @@
                                 <span class="down ">杭州 - 富春山居</span>
                             </div>
                         </div>
+
+                        <div class="slide-left-text">
+                            <span class="up">温泉和酒店如此完美的结合</span>
+                            <span class="down ">安溪 - 悦泉行馆</span>
+                        </div>
                     </div>
-                    <img src = '/Gbh/img/banner.png'>
+                    <img src = '/Gbh/img/2.jpg'>
                 </div>
                 <div class="slide">
                     <div class="slide-caption">
@@ -66,6 +60,29 @@
                                 <img src = '/Gbh/img/横线.png'>
                                 <span class="down ">安溪 - 悦泉行馆</span>
                             </div>
+                        </div>
+
+                        <div class="slide-left-text">
+                            <span class="up">温泉和酒店如此完美的结合</span>
+                            <span class="down ">安溪 - 悦泉行馆</span>
+                        </div>
+                    </div>
+                    <img src = '/Gbh/img/banner.png'>
+                </div>
+
+                <div class="slide">
+                    <div class="slide-caption">
+                        <div class="slide-center-text">
+                            <div>
+                                <span class="up">温泉和酒店如此完美的结合</span>
+                                <img src = '/Gbh/img/横线.png'>
+                                <span class="down ">安溪 - 悦泉行馆</span>
+                            </div>
+                        </div>
+
+                        <div class="slide-left-text">
+                            <span class="up">温泉和酒店如此完美的结合</span>
+                            <span class="down ">安溪 - 悦泉行馆</span>
                         </div>
                     </div>
                     <img src = '/Gbh/img/banner.png'>
@@ -99,100 +116,64 @@
 
                     {{--<h3>热门推荐</h3>--}}
                     <div class="hotel-warp">
-                        <div class="hotel-box">
-                            <img src="/Gbh/img/banner.png">
 
-                            <div class="hotel-box-mask">
-                                <a class="anchor-white" href="/hotel/8">广东 - 惠州 - 十字水度假村</a>
-                                <span><i class="icon-map-marker"></i>    ￥1800起</span>
-                            </div>
-                            <div class="h-article-title">
-                                悦泉之旅
-                            </div>
 
-                            <div class="h-hotel-brief">
-                                安溪悦泉行馆为安溪"世界温泉小镇"首期工程,采用闽南瓦房及结合燕尾脊建筑元素,采用新古典后现代的设计理念,让客人享受最安静的尊贵与最昂贵的品味,内设有别墅、中西....
-                            </div>
+                        @foreach($articleList['精品酒店'] as $article)
 
-                            <div class="h-hotel-name">
-                               <i class="ui icon marker"> </i> 悦泉行馆
-                            </div>
-                            {{--<div class="hotel-box-mark">--}}
 
-                            {{--</div>--}}
-                        </div>
-                        <div class="hotel-box">
-                            <img src="/Gbh/img/banner.png">
+                            <div class="hotel-box">
+                                <img src="{{$article->cover_image  }}">
 
-                            <div class="hotel-box-mask">
-                                <a class="anchor-white" href="/hotel/8">广东 - 惠州 - 十字水度假村</a>
-                                <span><i class="icon-map-marker"></i>    ￥1800起</span>
-                            </div>
-                            <div class="h-article-title">
-                                悦泉之旅
-                            </div>
+                                <div class="hotel-box-mask">
+                                    <span class="mark-brief"> {{$article->brief  }}</span>
+                                    <a class="anchor-white" href="{{url('/article/'.$article->id)}}"> <span><i class="icon book"></i>  查看全文</span></a>
 
-                            <div class="h-hotel-brief">
-                                安溪悦泉行馆为安溪"世界温泉小镇"首期工程,采用闽南瓦房及结合燕尾脊建筑元素,采用新古典后现代的设计理念,让客人享受最安静的尊贵与最昂贵的品味,内设有别墅、中西....
-                            </div>
+                                </div>
+                                <div class="h-article-title">
+                                    {{$article->title  }}
+                                </div>
 
-                            <div class="h-hotel-name">
-                                悦泉行馆
-                            </div>
-                            {{--<div class="hotel-box-mark">--}}
+                                <div class="h-hotel-brief">
+                                    {{$article->brief  }}
+                                </div>
 
-                            {{--</div>--}}
-                        </div>
-                        <div class="hotel-box">
-                            <img src="/Gbh/img/banner.png">
+                                {{--<div class="h-hotel-name">--}}
+                                   {{--<i class="ui icon marker"> </i> 悦泉行馆--}}
+                                {{--</div>--}}
+                                {{--<div class="hotel-box-mark">--}}
 
-                            <div class="hotel-box-mask">
-                                <a class="anchor-white" href="/hotel/8">广东 - 惠州 - 十字水度假村</a>
-                                <span><i class="icon-map-marker"></i>    ￥1800起</span>
+                                {{--</div>--}}
                             </div>
-                            <div class="h-article-title">
-                                悦泉之旅
-                            </div>
+                    @endforeach
 
-                            <div class="h-hotel-brief">
-                                安溪悦泉行馆为安溪"世界温泉小镇"首期工程,采用闽南瓦房及结合燕尾脊建筑元素,采用新古典后现代的设计理念,让客人享受最安静的尊贵与最昂贵的品味,内设有别墅、中西....
-                            </div>
-
-                            <div class="h-hotel-name">
-                                悦泉行馆
-                            </div>
-                            {{--<div class="hotel-box-mark">--}}
-
-                            {{--</div>--}}
-                        </div>
                     </div>
 
 
             </div>
 
 
-                <div class="home-rec-article ui container">
+                {{--<div class="home-rec-article ui container">--}}
 
-                    <div class="hor-article-line">
+                    {{--<div class="hor-article-line">--}}
 
-                        <div class="image">
-                            <img src = "/Gbh/img/hotel1.jpg">
-                        </div>
-                        <div class="content">
-                            <a class="header">哪些呗遗忘的精品酒店</a>
-                            <div class="meta">
-                                <a>2015-02-23</a>
-                                <a>酒店专栏</a>
-                            </div>
-                            <div class="description">
-                                可能有些酒店在建成的那一刻就注定是为一小部分人服务的. 甚至有些时候他们会被人慢慢遗忘
-                            </div>
+                        {{--<div class="image">--}}
+                            {{--<img src = "/Gbh/img/hotel1.jpg">--}}
+                        {{--</div>--}}
+                        {{--<div class="content">--}}
+                            {{--<a class="header">哪些呗遗忘的精品酒店</a>--}}
+                            {{--<div class="meta">--}}
+                                {{--<a>2015-02-23</a>--}}
+                                {{--<a>酒店专栏</a>--}}
+                            {{--</div>--}}
+                            {{--<div class="description">--}}
+                                {{--可能有些酒店在建成的那一刻就注定是为一小部分人服务的. 甚至有些时候他们会被人慢慢遗忘--}}
+                            {{--</div>--}}
 
-                        </div>
+                        {{--</div>--}}
 
-                    </div>
+                    {{--</div>--}}
 
-                </div>
+                {{--</div>--}}
             </div>
     </div>
 @stop
@@ -200,16 +181,14 @@
 @section('script')
 
     <script type="text/javascript">
-        $('.slide-caption').transition('fly left');
+//        $('.slide-caption').transition('fly left');
         $(window).load(function(){
             $('.owl-carousel').owlCarousel({
                 loop:true,
                 responsiveClass:true,
                 autoplay:true,
-                autoplayTimeout:6000,
+                autoplayTimeout:4000,
                 autoHeight:true,
-                animateOut: 'fadeOut',
-                animateIn: 'fadeIn',
 
                 responsive:{
                     0:{

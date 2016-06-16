@@ -1,5 +1,5 @@
 <input type="hidden" name="_token" value="{{csrf_token()}}">
-<input type="hidden" name="coverImage" id="coverImage" value="{{$article->page_image}}">
+<input type="hidden" name="coverImage" id="coverImage" value="{{$article->cover_image}}">
 <input type="hidden" id="article_content" value="{{ $article->content_raw }}">
 
 
@@ -7,6 +7,20 @@
 <script type="text/plain" id="editor" style="width:1000px;height:400px;">
 
 </script>
+
+
+
+<div class="article-input-field">
+    <label>分类:</label>
+    <select class=" ui dropdown article-cate">
+        @foreach(  $articleCategories as $articleCategory )
+
+            <option value="{{$articleCategory->id}}">{{$articleCategory->category_name}}</option>
+
+        @endforeach
+    </select>
+    <input type="hidden" name="selectedCate" id="selectedCate" value="1">
+</div>
 
 <div class="article-input-field">
     <label>标题:</label>
@@ -16,13 +30,9 @@
 
 
 <div class="article-input-field">
-    <label>分类:</label>
-    <select class=" ui dropdown article-cate">
-        <option value="1">精品酒店</option>
-        <option value="2">精品民宿</option>
-        <option value="3">杂志</option>
-        <option value="4">视频</option>
-    </select>
+    <label>描述:</label>
+    <textarea   class="long-input" name="brief" id="brief" value={{ $article->title }}>{{ $article->title }}</textarea>
+    <span class="article-error">标题不能为空</span>
 </div>
 
 <div class="article-input-field">
@@ -48,14 +58,21 @@
         })
 
         //文章分类下拉菜单
-        $('.ui.dropdown')
-                .dropdown()
-        ;
+        $(' .article-cate').dropdown({
+            onChange: function(value, text, $selectedItem) {
+                $('#selectedCate').val(value);
+            }
+        })
+
+        //设置默认选中
+        $(' .article-cate option:first').attr("selected", 'selected');
+        $('#selectedCate').val($(' .article-cate option:selected').val());
+
 
         //设置封面图片
         if($('#coverImage').val() !== '')
         {
-            $('#uploadImageShow').find('img').attr('src', $.trim($('#coverImage').val()));
+            $('#uploadImageShow').removeClass('upload-article-image').addClass('upload-article-image-show').find('img').attr('src', $.trim($('#coverImage').val()));
 
         }
 
@@ -94,8 +111,9 @@
         });
 
         //上传文章
-        $('#submitPost').click(function()
+        $('#submitArticle').click(function()
         {
+
             var post= true;
             if(!ue.hasContents())
             {
@@ -109,6 +127,15 @@
             {
                 $('#title').siblings('.article-error').fadeIn();
                 post=false;
+            }
+
+            if($('#coverImage').val() ==='')
+            {
+                $('#uploadForm').find('.article-error').fadeIn();
+                post=false;
+            }
+            else{
+                $('#uploadForm').find('.article-error').fadeOut();
             }
             if(post === true)
             {

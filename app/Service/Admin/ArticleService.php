@@ -4,6 +4,9 @@ namespace App\Service\Admin;
 
 use App\Models\ArticleTag;
 use App\Models\ArticleCategory;
+use App\Models\Article;
+
+use Carbon\Carbon;
 
 use App\Tool\MessageResult;
 
@@ -11,7 +14,37 @@ use App\Tool\MessageResult;
 * 
 */
 class ArticleService {
-	
+
+
+
+	public function getArticle($articleId)
+	{
+		return Article::find($articleId);
+	}
+	public function getArticles()
+	{
+
+		$articles = Article::all();
+		$articleCategories = ArticleCategory::all();
+
+		foreach( $articles as $article)
+		{
+			foreach( $articleCategories as $category)
+			{
+
+				if($article->category == $category->id)
+				{
+
+					$article->category_name = $category->category_name;
+				}
+			}
+
+		}
+		return $articles;
+
+	}
+
+
 	public function addArticleTag($TagName)
 	{	
 		$addTag = ArticleTag::insert([
@@ -101,7 +134,45 @@ class ArticleService {
 		return ArticleCategory::where('id' , $categoryId)->delete();
 	}
 
+	public function storeArticle($request)
+	{
 
+
+		$newArticle = new Article();
+
+		$newArticle->category=$request->input('selectedCate');
+		$newArticle->title = $request->input('title');
+		$newArticle->author = 'Admin';
+		$newArticle->brief = $request->input('brief');
+		$newArticle->content_raw = $request->input('editorValue');
+		$newArticle->content_html = $request->input('editorValue');
+		$newArticle->cover_image = $request->input('coverImage');
+		$newArticle->published_at =carbon::now();
+		return $newArticle->save();
+
+	}
+	public function showArticle($articleId)
+	{
+		return Article::find($articleId);
+	}
+
+	public function updateArticle($request,$articleId)
+	{
+
+
+		$newArticle = Article::find($articleId);
+
+		$newArticle->category=$request->input('selectedCate');
+		$newArticle->title = $request->input('title');
+		$newArticle->author = 'Admin';
+		$newArticle->brief = $request->input('brief');
+		$newArticle->content_raw = $request->input('editorValue');
+		$newArticle->content_html = $request->input('editorValue');
+		$newArticle->cover_image = $request->input('coverImage');
+
+		return $newArticle->save();
+
+	}
 }
 
 

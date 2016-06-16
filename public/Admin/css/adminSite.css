@@ -166,11 +166,14 @@ body{
 	color:white;
 	width:150px;
 	border-radius: 5px;
+	cursor: pointer;
+}
+.blue-btn{
+	background-color:#9bbebe;
 }
 .red-btn{
 	background-color:#ff5f76;
 }
-
 
 
 .footer-section{
@@ -213,6 +216,17 @@ body{
 a{
 	text-decoration: none;
 	color:#505050;
+}
+
+.f-left{
+	float:left;
+}
+
+.f-right{
+	float:right;
+}
+.auto-margin{
+	margin:0 auto;
 }
 /*****************公用***end*********************/
 
@@ -1690,15 +1704,125 @@ a{
 }
 /*************end******************/
 
+
+
+
+
+
+
+/**********管理文章**********/
+.article-search-bar{
+	height:40px;
+	width:960px;
+	background: #f8f8f8;
+	border:1px solid #f8f8f8;
+	position: relative;
+}
+
+.article-search-bar input{
+	margin:5px 10px 0 0 ;
+	height:25px;
+	float:right;
+	width:300px;
+	border:1px solid #f8f8f8;
+	background: transparent;
+	border-bottom: 1px solid #505050;
+}
+
+.article-search-bar .search{
+	position: absolute;
+	top:8px;
+	right:20px;
+}
+
+.add-article-btn{
+
+	width:150px;
+	height:30px;
+	background: #639ae3;
+	margin:5px 0 0 10px;
+	border-radius: 2px;
+	line-height: 30px;
+	text-align: center;
+	color:white;
+	cursor: pointer;
+
+}
+
+.add-article-btn:hover{
+
+	color: #f8f8f8;
+	background: #0d71bb;
+	transition:background-color 0.5s ease;
+
+}
+
+.article-list-header{
+	font-size: 14px;
+	background: #dfe8f4;
+	color:#505050;
+	height:40px;
+	margin-top:20px;
+
+}
+
+
+.header-option{
+	cursor:pointer;
+	height:40px;
+	line-height: 40px;
+	margin-right:20px;
+}
+.header-option img{
+	vertical-align:-4px;
+	height:18px;
+	width:18px;
+}
+.header-option span{
+	display: inline-block;
+	margin-left:2px;
+
+}
+.article-table {
+	margin-top:0px!important;
+	font-size:14px!important;
+}
+.article-table td{
+	overflow: hidden;
+
+}
+
+.article-table .s-td{
+	width:30px;
+}
+.article-table .l-td{
+	width:250px;
+}
+.article-table input[type=checkbox]{
+	height:18px;
+	width:18px;
+	vertical-align: middle;
+}
+.article-table .article-img{
+	width:100px;
+	height:60px;
+	border-radius: 5px;
+}
+/**************************/
+
+
 /****文章管理页面 创建 编辑**********/
 .article-error {
 	color: #d95a5d;
+	display: none;
 
 }
 
 .article-input-field{
 	margin-top:15px;
 	margin-bottom: 15px;
+	vertical-align: top;
+
 }
 .article-input-field .article-cate{
 
@@ -1710,16 +1834,26 @@ a{
 	margin-right:10px;
 	font-size:16px;
 	font-weight: 500;
+	display: inline-block;
+	margin-top:10px;
+
+	vertical-align: top;
 }
 .article-input-field input{
 	height:40px;
-	width:200px;
+	width:300px;
+	display: inline-block;
+}
+.article-input-field textarea{
+	height:80px;
+	width:300px;
 }
 
 .article-btn-section{
-	margin:0 auto;
-	width:300px;
+	margin:30px;
+	width:100%;
 	overflow: hidden;
+	text-align: center;
 
 }
 
@@ -1737,6 +1871,11 @@ a{
 }
 .upload-article-image:hover{
 	cursor: pointer;
+}
+.upload-article-image img{
+	width:150px;
+	height:150px;
+	display: none;
 }
 .upload-article-image-show {
 	margin-left:50px;

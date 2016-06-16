@@ -12,13 +12,13 @@
 
     <script src={{ asset('semantic/transition.js') }}></script>
 
-
+@stop
 
 
 @section('content')
 
 
-
+<div class="pusher">
     <div class="site-header">
         <div class="site-menu-nav">
             <div>
@@ -34,8 +34,6 @@
         </div>
     </div>
 
-
-
     <div class="ui container">
 
         <div class="about-menu-nav">
@@ -46,7 +44,6 @@
             <a href="/history"  class="dark-anchor"><span>团队经历</span></a>
             <a href="/joinUs"  class="dark-anchor"><span>加入我们</span></a>
             <a href="/contactUs"  class="dark-anchor"><span>联系我们</span></a>
-
         </div>
 
 

@@ -23,9 +23,6 @@ a{
 	margin:0 auto;
 }
 
-.auto-margin{
-	margin: 0 auto;
-}
 .padding-10{
 	height:10px;
 }
@@ -66,6 +63,20 @@ a{
 	margin:auto;
 
 }
+.regular-btn{
+	line-height: 40px;
+	text-align: center;
+	font-size:16px;
+	border: none;
+	height:40px;
+	color:white;
+	width:150px;
+	border-radius: 5px;
+	cursor: pointer;
+}
+.red-btn{
+	background-color:#ff5f76;
+}
 /******/
 
 
@@ -75,7 +86,7 @@ a{
 
 
 .home-page{
-
+/*background-color: rgba(16, 16, 16, 0.86);*/
 
 }
 .site-header{
@@ -166,8 +177,6 @@ a{
 
 	width:100%;
 	height:100%;
-	border:1px solid red;
-
 	position: absolute;
 
 }
@@ -204,15 +213,18 @@ a{
 	display: block;
 }
 
+.slide-left-text{
+	display: none;
+}
 
-.slide-caption .up{
+.slide-center-text .up{
 
 	font-size: 30px;
 	display: block;
 	margin:44px 0 10px 0 ;
 }
 
-.slide-caption .down{
+.slide-center-text .down{
 
 	font-size:16px;
 	display: block;
@@ -225,6 +237,8 @@ a{
 	margin: 10px auto;
 	cursor: pointer;
 }
+
+
 .sub-slogan{
 	color: rgba(44, 0, 0, 0.91);
 	text-align:center;
@@ -285,6 +299,8 @@ a{
 
 	margin-bottom: 40px;
 
+	overflow: hidden;
+
 }
 
 .hotel-box{
@@ -295,6 +311,7 @@ a{
 	/*border:1px solid #ddd;*/
 	margin-top:20px;
 	background: #f8f8f8;
+	border-radius: 5px;
 }
 .hotel-box:nth-of-type(1),.hotel-box:nth-of-type(2){
 	margin-right:40px;
@@ -305,6 +322,7 @@ a{
 	height:300px;
 }
 .hotel-box-mark{
+	border-radius: 5px;
 	top:0;
 	left:0;
 	border-top: 80px solid rgba(255, 75, 72, 0.9);
@@ -315,7 +333,7 @@ a{
 .hotel-box-mask{
 	position:absolute;
 	height:450px;
-	width:360px;
+	width:100%;
 	top:0;
 	right:0;
 	background: rgba(0, 0, 0, 0.5);
@@ -328,13 +346,17 @@ a{
 	padding: 60px 0 0 0;
 }
 
-
+.mark-brief{
+	display: block;
+	padding:10px;
+	font-size:14px;
+}
 
 
 .hotel-box-mask a{
-
-	padding:10px 5px;
+	margin-top:40px;
 	display:block;
+	font-size:20px;
 }
 
 .hotel-box-mask span{
@@ -342,19 +364,26 @@ a{
 }
 
 .h-article-title{
-	width:100%;
+	width:calc(100% - 20px);
 	height:50px;
 	line-height:50px;
-	font-size:24px;
+	font-size:20px;
 	text-align: center;
-
+	white-space:nowrap;
+	text-overflow:ellipsis;
+	-o-text-overflow:ellipsis;
+	overflow: hidden;
+	padding:0 10px;
 }
 .h-hotel-brief{
 	width:calc(100% - 40px );
 	height:90px;
 	padding:10px 20px;
 	font-size:12px;
-
+	white-space:nowrap;
+	text-overflow:ellipsis;
+	-o-text-overflow:ellipsis;
+	overflow: hidden;
 }
 
 .h-hotel-name{
@@ -1047,6 +1076,7 @@ a{
 /******************************/
 
 
+
 /*********登录************/
 
 .background{
@@ -1251,6 +1281,110 @@ a{
 	width: 100%;
 }
 /************end***********8/
+=======
+
+
+
+
+/********文章页面*************/
+.article-page{
+	margin:50px auto 20px auto;
+	width:800px;
+
+
+}
+/****************************/
+
+	.contactus-title{
+		margin-top: 20px;
+	}
+
+	.contactus-title h1{
+		font-size: 30px;
+	}
+
+	.contactus-small-title span{
+		font-size: 13px;
+	}
+
+	.contactus-title-img{
+		width: 40px;
+		height: 40px;
+		line-height: 40px;
+	}
+
+	.contactus-title-img img{
+		width: 16px;
+	}
+
+	.find-us{
+		margin-top: 20px;
+	}
+
+	.contactus-small-title-box{
+		margin-top: 20px;
+	}
+	
+	.map-box{
+		width: 90%;
+	}
+
+	.detail-box{
+		width: 90%;
+	}
+
+
+
+
+
+	.foot-box{
+		width: 100%;
+		height: 60px;
+		margin: 0 auto;
+		text-align: center;
+
+		background-color: #505050;
+		border:1px solid #505050;
+		color:#f8f8f8;
+		display: block;
+
+		font-size:12px;
+	}
+
+	.foot-box span{
+		display: block;
+
+	}
+	.foot-box .up{
+		margin-top:20px;
+		font-size:14px;
+	}
+
+/***错误页面*****/
+
+
+.error-box{
+	text-align: center;
+	padding:30px 20px 0 20px;
+	color: #ff8715;
+}
+.error-box img{
+
+	width:250px;
+	height:300px;
+	margin:20px;
+
+}
+.error-box span{
+	display: block;
+	font-size:18px;
+}
+.error-box p{
+	font-size:18px;
+}
+
+/***************/
+
 
 
 /* Mobily Only */
@@ -1283,7 +1417,7 @@ a{
 
 	.home-menu-nav {
 
-		border: 1px solid red;
+
 		display: none;
 	}
 
@@ -1299,6 +1433,24 @@ a{
 
 	.slide-center-text {
 		display: none;
+	}
+	.slide-left-text{
+
+		bottom:20px;
+		left:20px;
+		position: absolute;
+		display: block;
+		color:#f8f8f8;
+		z-index:1001;
+	}
+	.slide-left-text .up{
+		font-size:16px;
+		display: block;
+	}
+	.slide-left-text .down{
+		display: block;
+		margin-top:5px;
+		font-size:14px;
 	}
 
 	.hotel-box {
@@ -1445,7 +1597,7 @@ a{
 		margin: 50px auto;
 		width: 100%;
 		height:100%;
-		border:1px solid red;
+
 	}
 
 	.team-member div{
@@ -1457,72 +1609,10 @@ a{
 	.team-member div img{
 		width:100%;
 	}
-}
+	.article-page{
+		margin:70px 10px 20px 10px;
 
+		width: calc(100% - 20px);
 
-
-	.contactus-title{
-		margin-top: 20px;
-	}
-
-	.contactus-title h1{
-		font-size: 30px;
-	}
-
-	.contactus-small-title span{
-		font-size: 13px;
-	}
-
-	.contactus-title-img{
-		width: 40px;
-		height: 40px;
-		line-height: 40px;
-	}
-
-	.contactus-title-img img{
-		width: 16px;
-	}
-
-	.find-us{
-		margin-top: 20px;
-	}
-
-	.contactus-small-title-box{
-		margin-top: 20px;
-	}
-	
-	.map-box{
-		width: 90%;
-	}
-
-	.detail-box{
-		width: 90%;
-	}
-
-
-}
-
-
-	.foot-box{
-		width: 100%;
-		height: 60px;
-		margin: 0 auto;
-		text-align: center;
-
-		background-color: #505050;
-		border:1px solid #505050;
-		color:#f8f8f8;
-		display: block;
-
-		font-size:12px;
-	}
-
-	.foot-box span{
-		display: block;
-
-	}
-	.foot-box .up{
-		margin-top:20px;
-		font-size:14px;
 	}
 }

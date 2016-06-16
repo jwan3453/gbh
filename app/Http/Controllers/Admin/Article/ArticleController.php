@@ -10,8 +10,10 @@ use App\Http\Controllers\Controller;
 use App\Service\Admin\ArticleService;
 
 use App\Models\Article;
+use App\Models\ArticleCategory;
 
 use App\Tool\MessageResult;
+use Carbon\Carbon;
 
 class ArticleController extends Controller
 {
@@ -30,7 +32,9 @@ class ArticleController extends Controller
 
     public function index()
     {
-        return view('Admin.Article.manageArticle');
+
+        $articles = $this->article->getArticles();
+        return view('Admin.Article.manageArticle')->with('articles',$articles);
     }
 
     /**
@@ -42,7 +46,9 @@ class ArticleController extends Controller
     {
 
         $article = new Article();
-        return view('Admin.Article.createArticle')->with('article',$article);
+        $articleCategories = ArticleCategory::all();
+
+        return view('Admin.Article.createArticle')->with('article',$article)->with('articleCategories',$articleCategories);
         //
     }
 
@@ -52,12 +58,12 @@ class ArticleController extends Controller
         $categoryList = $this->article->getAllArticleCategory();
 
         $oneLevelCategoryList = $this->article->getOneLevelCategory();
-       
+
         return view('Admin.Article.ClassificationAndTag')->with('tagNameList',$tagNameList)->with('categoryList',$categoryList)->with('oneLevelCategoryList',$oneLevelCategoryList);
     }
 
     public function addArticleTag(Request $request)
-    {   
+    {
         $jsonResult = new MessageResult();
 
         $del = $this->article->addArticleTag($request->input('tag_name'));
@@ -131,10 +137,18 @@ class ArticleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function storeHotel(Request $request)
+    public function storeArticle(Request $request)
     {
 
-       // return view('Admin.Article.createArticle');
+
+        if($this->article->storeArticle($request))
+            return redirect('/AdminCenter');
+        else{
+            //返回表单提交的页面 并带有错误提示
+            return  redirect('/AdminCenter');
+
+        }
+        // return view('Admin.Article.createArticle');
     }
 
     /**
@@ -145,7 +159,8 @@ class ArticleController extends Controller
      */
     public function show($id)
     {
-        //
+
+
     }
 
     /**
@@ -154,8 +169,11 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function editArticle($articleId)
     {
+        $articleCategories = ArticleCategory::all();
+        $article = $this->article->getArticle($articleId);
+        return view('Admin.Article.editArticle')->with('article',$article)->with('articleCategories',$articleCategories);
         //
     }
 
@@ -166,9 +184,15 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function updateArticle(Request $request, $articleId)
     {
-        //
+        if($this->article->updateArticle($request,$articleId))
+            return redirect('/article/'.$articleId);
+        else {
+            //返回表单提交的页面 并带有错误提示
+            return redirect('/AdminCenter');
+        }
+
     }
 
     /**

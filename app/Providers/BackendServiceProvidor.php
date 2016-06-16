@@ -28,5 +28,6 @@ class BackendServiceProvider extends ServiceProvider
         $this->app->bind('App\Service\Common\CommonService', 'App\Service\Common\CommonService');
 
         $this->app->bind('App\Service\Admin\ActicleService', 'App\Service\Admin\ActicleService');
+        $this->app->bind('App\Service\Gbh\ActicleService', 'App\Service\Gbh\ActicleService');
     }
 }
