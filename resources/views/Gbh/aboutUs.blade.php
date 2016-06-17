@@ -3,9 +3,9 @@
 @section('resources')
 
     <link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/container.css') }}>
-    <link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/item.css') }}>
-    <link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/image.css') }}>
-    <link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/icon.css') }}>
+    {{--<link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/item.css') }}>--}}
+    {{--<link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/image.css') }}>--}}
+    {{--<link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/icon.css') }}>--}}
 
 
     <link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/transition.css') }}>
@@ -23,10 +23,12 @@
         <div class="site-menu-nav">
             <div>
                 <a href="/"><span>首页</span></a>
-                <span>最新文章</span>
+                <a href="/newArticles">
+                    <span>最新文章</span>
+                </a>
                 <span>酒店预定</span>
                 <a href="/aboutUs"><span>关于我们</span></a>
-                <i class="icon user large"></i>
+
             </div>
         </div>
         <div class="mobile-menu-nav">
@@ -52,7 +54,7 @@
                 </div>
 
                 <div class="about-content ">
-                    <div class="about-line-box light-background">
+                    <div class="about-line-box what-we-do">
                         <div class="about-text f-right">
                             <div class="header">我们是谁</div>
                             <div class="detail">
@@ -73,7 +75,7 @@
                         {{--</div>--}}
                     </div>
 
-                    <div class="about-line-box grey-background">
+                    <div class="about-line-box who-we-are">
                         <div class="about-text f-left">
                             <div class="header">我们是谁</div>
                             <div class="detail">
@@ -95,7 +97,7 @@
                     </div>
 
 
-                    <div class="about-line-box light-background">
+                    <div class="about-line-box our-mission">
                         <div class="about-text f-right">
                             <div class="header">我们是谁</div>
                             <div class="detail">
@@ -141,11 +143,17 @@
             {
 
 
-                $('.light-background').transition({animation:'scale',
-                                                    duration:1500});
-                $('.grey-background').transition({animation:'scale',
-                    duration:800});
+                $('.what-we-do').transition({animation:'scale',
+                                                    duration:800});
+
+                $('.who-we-are').transition({animation:'scale',
+                    duration:1400});
+
+                $('.our-mission').transition({animation:'scale',
+                    duration:2000});
+                $('html, body').animate({scrollTop:960}, 'slow');
             }
+
         })
 
     </script>

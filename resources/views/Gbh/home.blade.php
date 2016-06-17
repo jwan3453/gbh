@@ -20,9 +20,11 @@
                 <div class="home-menu-nav">
                     <div>
                         <a href="/"><span>首页</span></a>
-                        <span>最新文章</span>
+                        <a href="/newArticles">
+                            <span>最新文章</span>
+                        </a>
                         <a href="/aboutUs"><span>关于我们</span></a>
-                        <i class="icon user large"></i>
+
                     </div>
                 </div>
 
@@ -99,29 +101,27 @@
 
 
                     <div class="h-cate-nav">
-                        <div class="cate-nav-btn">
+                        <div class="cate-nav-btn cate-nav-btn-selected hotel-btn">
                             精品酒店
                         </div>
-                        <div class="cate-nav-btn">
+                        <div class="cate-nav-btn bnb-btn">
                             精品名宿
                         </div>
-                        <div class="cate-nav-btn">
+                        <div class="cate-nav-btn video-btn">
                             视频
                         </div>
-                        <div class="cate-nav-btn">
+                        <div class="cate-nav-btn magazine-btn">
                             杂志
                         </div>
                     </div>
 
 
                     {{--<h3>热门推荐</h3>--}}
-                    <div class="hotel-warp">
 
-
+                    <div class="hotel-warp" id="hotel_article_list" >
                         @foreach($articleList['精品酒店'] as $article)
 
-
-                            <div class="hotel-box">
+                            <div class="hotel-box ">
                                 <img src="{{$article->cover_image  }}">
 
                                 <div class="hotel-box-mask">
@@ -145,9 +145,95 @@
                                 {{--</div>--}}
                             </div>
                     @endforeach
-
                     </div>
 
+
+                <div class="hotel-warp none-display" id="bnb_article_list" >
+                    @foreach($articleList['精品酒店'] as $article)
+
+                        <div class="hotel-box ">
+                            <img src="{{$article->cover_image  }}">
+
+                            <div class="hotel-box-mask">
+                                <span class="mark-brief"> {{$article->brief  }}</span>
+                                <a class="anchor-white" href="{{url('/article/'.$article->id)}}"> <span><i class="icon book"></i>  查看全文</span></a>
+
+                            </div>
+                            <div class="h-article-title">
+                                {{$article->title  }}
+                            </div>
+
+                            <div class="h-hotel-brief">
+                                {{$article->brief  }}
+                            </div>
+
+                            {{--<div class="h-hotel-name">--}}
+                            {{--<i class="ui icon marker"> </i> 悦泉行馆--}}
+                            {{--</div>--}}
+                            {{--<div class="hotel-box-mark">--}}
+
+                            {{--</div>--}}
+                        </div>
+                    @endforeach
+                </div>
+
+                <div class="hotel-warp none-display" id="magazine_article_list" >
+                    @foreach($articleList['精品酒店'] as $article)
+
+                        <div class="hotel-box ">
+                            <img src="{{$article->cover_image  }}">
+
+                            <div class="hotel-box-mask">
+                                <span class="mark-brief"> {{$article->brief  }}</span>
+                                <a class="anchor-white" href="{{url('/article/'.$article->id)}}"> <span><i class="icon book"></i>  查看全文</span></a>
+
+                            </div>
+                            <div class="h-article-title">
+                                {{$article->title  }}
+                            </div>
+
+                            <div class="h-hotel-brief">
+                                {{$article->brief  }}
+                            </div>
+
+                            {{--<div class="h-hotel-name">--}}
+                            {{--<i class="ui icon marker"> </i> 悦泉行馆--}}
+                            {{--</div>--}}
+                            {{--<div class="hotel-box-mark">--}}
+
+                            {{--</div>--}}
+                        </div>
+                    @endforeach
+                </div>
+
+                <div class="hotel-warp none-display" id="video_article_list" >
+                    @foreach($articleList['精品酒店'] as $article)
+
+                        <div class="hotel-box ">
+                            <img src="{{$article->cover_image  }}">
+
+                            <div class="hotel-box-mask">
+                                <span class="mark-brief"> {{$article->brief  }}</span>
+                                <a class="anchor-white" href="{{url('/article/'.$article->id)}}"> <span><i class="icon book"></i>  查看全文</span></a>
+
+                            </div>
+                            <div class="h-article-title">
+                                {{$article->title  }}
+                            </div>
+
+                            <div class="h-hotel-brief">
+                                {{$article->brief  }}
+                            </div>
+
+                            {{--<div class="h-hotel-name">--}}
+                            {{--<i class="ui icon marker"> </i> 悦泉行馆--}}
+                            {{--</div>--}}
+                            {{--<div class="hotel-box-mark">--}}
+
+                            {{--</div>--}}
+                        </div>
+                    @endforeach
+                </div>
 
             </div>
 
@@ -210,6 +296,26 @@
             })
         })
 
+
+        function switchArticles(section)
+        {
+            section.siblings('.hotel-warp').each(function(){
+                if($(this).css('display') !== 'none')
+                {
+                    $(this)
+                            .transition({
+                                animation  : 'scale',
+                                duration   : '0.5s',
+                                onHide : function() {
+                                    section .transition({
+                                        animation  : 'scale',
+                                        duration   : '0.5s'
+                                    });
+                                }
+                            })
+                }
+            })
+        }
         $(document).ready(function(){
 
 
@@ -223,6 +329,23 @@
                     })
 
 
+
+            $('.hotel-btn').click(function(){
+                $(this).addClass('cate-nav-btn-selected').siblings('.cate-nav-btn').removeClass('cate-nav-btn-selected');
+                switchArticles($('#hotel_article_list'));
+            })
+            $('.bnb-btn').click(function(){
+                $(this).addClass('cate-nav-btn-selected').siblings('.cate-nav-btn').removeClass('cate-nav-btn-selected');
+                switchArticles($('#bnb_article_list'));
+            })
+            $('.video-btn').click(function(){
+                $(this).addClass('cate-nav-btn-selected').siblings('.cate-nav-btn').removeClass('cate-nav-btn-selected');
+                switchArticles($('#video_article_list'));
+            })
+            $('.magazine-btn').click(function(){
+                $(this).addClass('cate-nav-btn-selected').siblings('.cate-nav-btn').removeClass('cate-nav-btn-selected');
+                switchArticles($('#magazine_article_list'));
+            })
         })
 
     </script>

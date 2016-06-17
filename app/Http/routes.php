@@ -53,6 +53,7 @@ Route::group(['prefix' => 'order'], function() {
 
 //Route::get('/', 'GbhMobile\HomeController@home');
 Route::get('/', 'Gbh\HomeController@home');
+Route::get('/newArticles', 'Gbh\HomeController@newArticles');
 Route::get('/aboutUs','Gbh\HomeController@aboutUs');
 Route::get('/joinUs','Gbh\HomeController@joinUs');
 Route::get('/history', 'Gbh\HomeController@history');

@@ -77,6 +77,8 @@ a{
 .red-btn{
 	background-color:#ff5f76;
 }
+
+
 /******/
 
 
@@ -228,7 +230,7 @@ a{
 
 	font-size:16px;
 	display: block;
-	background-color: #00aced;
+	background-color: rgba(0, 136, 163, 0.98);
 	border-radius: 2px;
 	height:40px;
 	line-height: 40px;
@@ -258,11 +260,12 @@ a{
 }
 .home-hotel-warp{
 
-	margin-top:-100px;
+	margin-top:10px;
 	overflow: hidden;
 	display: block;
 	z-index:1003;
 	position: relative;
+	min-height:600px;
 }
 
 .h-cate-nav{
@@ -280,9 +283,9 @@ a{
 	font-size: 14px;
 	float: left;
 	margin-right:20px;
-	border:1px solid #f8f8f8;
+	border:1px solid rgba(0, 136, 163, 0.98);
 	text-align: center;
-	color:#f8f8f8;
+	color:rgba(0, 136, 163, 0.98);
 	cursor:pointer;
 	border-radius: 5px;
 
@@ -290,15 +293,19 @@ a{
 
 .cate-nav-btn:hover{
 
-	background-color:#f8f8f8;
-	color:#505050;
+	background-color:rgba(0, 136, 163, 0.98);
+	color:#f8f8f8;
 	transition:background-color 0.5s ease;
+}
+
+.cate-nav-btn-selected{
+	background-color:rgba(0, 136, 163, 0.98);
+	color:#f8f8f8;
 }
 
 .hotel-warp{
 
 	margin-bottom: 40px;
-
 	overflow: hidden;
 
 }
@@ -320,9 +327,10 @@ a{
 .hotel-box img{
 	width:100%;
 	height:300px;
+	border-radius: 5px 5px 0 0;
 }
 .hotel-box-mark{
-	border-radius: 5px;
+
 	top:0;
 	left:0;
 	border-top: 80px solid rgba(255, 75, 72, 0.9);
@@ -332,7 +340,7 @@ a{
 }
 .hotel-box-mask{
 	position:absolute;
-	height:450px;
+	height:365px;
 	width:100%;
 	top:0;
 	right:0;
@@ -344,12 +352,13 @@ a{
 	font-weight:500;
 	color:white;
 	padding: 60px 0 0 0;
+	border-radius: 5px;
 }
 
 .mark-brief{
 	display: block;
 	padding:10px;
-	font-size:14px;
+	font-size:13px;
 }
 
 
@@ -377,7 +386,7 @@ a{
 }
 .h-hotel-brief{
 	width:calc(100% - 40px );
-	height:90px;
+	height:50px;
 	padding:10px 20px;
 	font-size:12px;
 	white-space:nowrap;
@@ -398,21 +407,27 @@ a{
 
 }
 
-.home-rec-article{
-	margin:20px 0;
-	background:#f8f8f8;
+
+/*********************************/
+
+
+
+/************最新文章*************/
+.new-articles{
+
+	width:900px!important;
+	margin:70px auto 0 auto;
 	color:#505050;
-
 	font-size:14px;
-	width:800px;
-
 
 }
 
 .hor-article-line{
+	padding:20px 5px;
 
 	margin:20px;
 	overflow: hidden;
+	border-bottom: 1px solid #e3e3e3;
 
 }
 .hor-article-line .image{
@@ -422,7 +437,7 @@ a{
 	height:124px;
 	width:220px;
 
-	border-radius:5px;
+
 
 }
 
@@ -434,18 +449,18 @@ a{
 .hor-article-line .content{
 	float:left;
 	margin-left:20px;
-	margin-top:10px;
+	margin-top:5px;
 	width:500px;
 
 }
 .hor-article-line .content .header{
-
+	margin:0 0 10px 0;
 	font-size:18px;
 	font-weight:600;
 
 }
 .hor-article-line .meta{
-	margin: 10px 0 10px;
+	margin: 20px 0 20px;
 	font-size: 14px;
 	line-height: 14px;
 	color:rgba(0, 0, 0, 0.4);
@@ -457,9 +472,12 @@ a{
 	font-size: 16px;
 	line-height: 16px;
 	color: rgba(0, 0, 0, 0.87);
+	white-space:nowrap;
+	text-overflow:ellipsis;
+	-o-text-overflow:ellipsis;
+	overflow: hidden;
 }
-
-/*********************************/
+/*******************************/
 
 
 
@@ -499,8 +517,7 @@ a{
 	width:100%;
 }
 .about-content{
-	margin-top:10px;
-
+	margin:20px 0 ;
 }
 
 
@@ -904,7 +921,7 @@ a{
 	height: 300px;
 	border: 1px solid #a0a0a0;
 	margin-top: -10px;
-	border-radius: 2px;
+	border-radius: 5px;
 }
 
 .detail-box{
@@ -1287,13 +1304,12 @@ a{
 
 
 /********文章页面*************/
+
 .article-page{
 	margin:50px auto 20px auto;
 	width:800px;
 
-
 }
-
 
 .article-foot{
 	width: 80%;
@@ -1316,70 +1332,6 @@ a{
 
 /****************************/
 
-	.contactus-title{
-		margin-top: 20px;
-	}
-
-	.contactus-title h1{
-		font-size: 30px;
-	}
-
-	.contactus-small-title span{
-		font-size: 13px;
-	}
-
-	.contactus-title-img{
-		width: 40px;
-		height: 40px;
-		line-height: 40px;
-	}
-
-	.contactus-title-img img{
-		width: 16px;
-	}
-
-	.find-us{
-		margin-top: 20px;
-	}
-
-	.contactus-small-title-box{
-		margin-top: 20px;
-	}
-	
-	.map-box{
-		width: 90%;
-	}
-
-	.detail-box{
-		width: 90%;
-	}
-
-
-
-
-
-	.foot-box{
-		width: 100%;
-		height: 60px;
-		margin: 0 auto;
-		text-align: center;
-
-		background-color: #505050;
-		border:1px solid #505050;
-		color:#f8f8f8;
-		display: block;
-
-		font-size:12px;
-	}
-
-	.foot-box span{
-		display: block;
-
-	}
-	.foot-box .up{
-		margin-top:20px;
-		font-size:14px;
-	}
 
 /***错误页面*****/
 
@@ -1474,6 +1426,8 @@ a{
 		font-size:14px;
 	}
 
+
+
 	.hotel-box {
 
 		width: 100%;
@@ -1495,8 +1449,6 @@ a{
 
 		clear: both;
 		overflow: hidden;
-
-		margin-top: 100px;
 	}
 
 	.cate-nav-btn {
@@ -1506,9 +1458,9 @@ a{
 		font-size: 14px;
 		float: left;
 		margin-right: 5px;
-		border: 1px solid #505050;
+
 		text-align: center;
-		color: #505050;
+
 		cursor: pointer;
 		border-radius: 5px;
 
@@ -1636,4 +1588,110 @@ a{
 		width: calc(100% - 20px);
 
 	}
+
+	.new-articles{
+
+		width:100%!important;
+
+
+	}
+
+	.hor-article-line{
+
+
+	}
+	.hor-article-line .image{
+		float: left;
+	}
+	.hor-article-line .image img{
+		width:100%;
+	}
+
+	.hor-article-line
+	{
+		margin:10px ;
+	}
+
+	.hor-article-line .content{
+
+
+		margin:10px auto;
+		width:calc(100% - 20px);
+
+	}
+	.hor-article-line .content .header{
+		margin:0 0 10px 0;
+		font-size:16px;
+		font-weight:600;
+
+	}
+	.hor-article-line .meta{
+		margin: 20px 0 20px;
+		font-size: 14px;
+		line-height: 14px;
+		color:rgba(0, 0, 0, 0.4);
+
+	}
+
+	.hor-article-line .description{
+		margin-top: 10px;
+		font-size: 16px;
+		line-height: 16px;
+		color: rgba(0, 0, 0, 0.87);
+		white-space:nowrap;
+		text-overflow:ellipsis;
+		-o-text-overflow:ellipsis;
+		overflow: hidden;
+	}
+
+
+	.contactus-title{
+		margin-top: 20px;
+	}
+
+	.contactus-title h1{
+		font-size: 36px;
+	}
+
+	.contactus-small-title-box {
+		width: 100%;
+		margin: 0 auto;
+		margin-top: 20px;
+		height: 120px;
+
+	}
+
+	.contactus-small-title span{
+		font-size: 13px;
+	}
+
+	.contactus-title-img{
+		width: 60px;
+		height: 60px;
+		line-height: 60px;
+	}
+
+	.contactus-title-img img{
+		width: 32px;
+	}
+
+	.find-us{
+		margin-top: 20px;
+	}
+
+	.contactus-small-title-box{
+		margin-top: 20px;
+	}
+
+	.map-box{
+		width: 100%;
+		border:0;
+		border-radius: 0;
+	}
+
+	.detail-box{
+		width: 90%;
+	}
+
+
 }

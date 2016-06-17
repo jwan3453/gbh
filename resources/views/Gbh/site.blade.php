@@ -33,7 +33,7 @@
                 <a class="" href="/">
                   <i class="icon home large"></i>首页
                 </a>
-                <a class="">
+                <a class=""  href="/newArticles">
                     <i class="icon home large"></i>最新文章
                 </a>
                 <a class="" href="/aboutUs">

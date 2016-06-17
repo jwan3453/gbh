@@ -22,10 +22,12 @@
             <div class="site-menu-nav">
                 <div>
                     <a  href="/"><span>首页</span></a>
-                    <span>最新文章</span>
+                    <a href="/newArticles">
+                        <span>最新文章</span>
+                    </a>
                     <span>酒店预定</span>
                     <a href="/aboutUs"><span>关于我们</span></a>
-                    <i class="icon user large"></i>
+
                 </div>
             </div>
             <div class="mobile-menu-nav">

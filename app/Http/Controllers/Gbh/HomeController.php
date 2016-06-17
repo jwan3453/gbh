@@ -24,6 +24,12 @@ class HomeController extends Controller
     }
 
 
+    public function newArticles()
+    {
+        $newArticles = $this->article->getNewArticleList();
+        return view('Gbh.newArticles')->with('newArticles',$newArticles);;
+    }
+
     public function aboutUs(Request $request)
     {
         return view('Gbh.aboutUs');

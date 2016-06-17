@@ -36,11 +36,35 @@ class ArticleService {
         return $articleList;
     }
 
+
     public function toPraise($articleId)
     {
-        $praise = Article::where('id',$articleId)->select('praise')->first()->praise;
+        $praise = Article::where('id', $articleId)->select('praise')->first()->praise;
         $praiseCount = $praise + 1;
-        return Article::where('id',$articleId)->update(['praise'=>$praiseCount]);
+        return Article::where('id', $articleId)->update(['praise' => $praiseCount]);
+    }
+
+    public function getNewArticleList()
+    {
+        $articles = Article::select('category','id','title','author','brief','cover_image','published_at')->get();
+        $articleCategories = ArticleCategory::all();
+
+        foreach( $articles as $article)
+        {
+            foreach( $articleCategories as $category)
+            {
+
+                if($article->category == $category->id)
+                {
+
+                    $article->category_name = $category->category_name;
+                }
+            }
+
+        }
+
+        return $articles;
+
     }
 }
 
