@@ -17,6 +17,9 @@ class ArticleService {
 
     public function showArticle($articleId)
     {
+        $count = Article::where('id',$articleId)->select('view_count')->first()->view_count;
+        $view_count = $count + 1;
+        Article::where('id',$articleId)->update(['view_count'=>$view_count]);
         return Article::find($articleId);
     }
 
@@ -31,6 +34,13 @@ class ArticleService {
         }
 
         return $articleList;
+    }
+
+    public function toPraise($articleId)
+    {
+        $praise = Article::where('id',$articleId)->select('praise')->first()->praise;
+        $praiseCount = $praise + 1;
+        return Article::where('id',$articleId)->update(['praise'=>$praiseCount]);
     }
 }
 
