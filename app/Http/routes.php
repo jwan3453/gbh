@@ -69,6 +69,7 @@ Route::get('/hotel/{hotelId}/booking/{roomId}','GbhMobile\Hotel\HotelController@
 Route::get('/gbh/login','Gbh\HomeController@login');
 Route::get('/gbh/register','Gbh\HomeController@register');
 Route::get('/gbh/PageNotFound','Gbh\HomeController@PageNotFound');
+Route::post('/gbh/article/praise','Gbh\ArticleController@praise');
 
 
 Route::get('/admin/manageHotel/create/geolocation','Admin\Hotel\HotelController@geolocation');

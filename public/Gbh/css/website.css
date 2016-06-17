@@ -1293,6 +1293,27 @@ a{
 
 
 }
+
+
+.article-foot{
+	width: 80%;
+	height: 50px;
+	line-height: 40px;
+	border-top: 1px dashed #a0a0a0;
+	margin: 0 auto;
+}
+
+.article-foot .article-foot-span{
+	margin-left: 20px;
+	font-size: 14px;
+	color: #a0a0a0;
+}
+
+.article-foot .view-count{
+	font-size: 16px;
+	color: #000000;
+}
+
 /****************************/
 
 	.contactus-title{

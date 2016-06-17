@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 
 use App\Service\Gbh\ArticleService;
 
+use App\Tool\MessageResult;
+
 
 class ArticleController extends Controller
 {
@@ -25,6 +27,23 @@ class ArticleController extends Controller
 
         }
         return view('Gbh.article')->with('article',$article);
+    }
+
+    public function praise(Request $request)
+    {
+        $jsonResult = new MessageResult();
+        
+        $praise = $this->article->toPraise($request->input('articleId'));
+        
+        if ($praise) {
+            $jsonResult->statusCode = 1;
+            $jsonResult->statusMsg = "成功";
+        }else{
+            $jsonResult->statusCode = 0;
+            $jsonResult->statusMsg = "失败";
+        }
+
+        return response($jsonResult->toJson());
     }
 
 }
