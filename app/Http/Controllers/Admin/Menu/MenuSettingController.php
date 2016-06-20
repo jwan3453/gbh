@@ -31,7 +31,6 @@ class MenuSettingController extends Controller
     {
 
         $is = $this->isRolePermission("all");
-
         if (!$is) {
             return redirect(url('admin/Error/NotPermission'));
         }

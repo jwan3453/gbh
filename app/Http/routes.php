@@ -127,6 +127,9 @@ Route::group(['prefix' => '/admin/', 'middleware' => 'App\Http\Middleware\AdminA
 
     Route::post('manageHotel/create','Admin\Hotel\HotelController@storeHotel');
 
+    Route::get('manageHotel/create/facility','Admin\Hotel\HotelController@facility');
+
+    Route::get('manageHotel/create/contactAndPayment','Admin\Hotel\HotelController@contactAndPayment');
 
     Route::get('manageArticle','Admin\Article\ArticleController@index');
     Route::get('manageArticle/create','Admin\Article\ArticleController@createArticle');
@@ -134,12 +137,19 @@ Route::group(['prefix' => '/admin/', 'middleware' => 'App\Http\Middleware\AdminA
 
     Route::get('manageArticle/classificationandtag','Admin\Article\ArticleController@classificationandtag');
 
+
     Route::post('manageArticle/addArticleTag','Admin\Article\ArticleController@addArticleTag');
     Route::post('manageArticle/delArticleTag','Admin\Article\ArticleController@delArticleTag');
     Route::post('manageArticle/classificationOperate','Admin\Article\ArticleController@classificationOperate');
     Route::post('manageArticle/delArticleCategory','Admin\Article\ArticleController@delArticleCategory');
 
     Route::get('Error/NotPermission','Admin\homeController@NotPermission');
+
+
+    Route::get('system/slideConfigure','Admin\System\SystemController@slideConfigure');
+    Route::post('system/uploadImg','Admin\System\SystemController@uploadImg');
+    Route::post('system/createSlide','Admin\System\SystemController@createSlide');
+    Route::post('system/delSlide','Admin\System\SystemController@delSlide');
 
 });
 

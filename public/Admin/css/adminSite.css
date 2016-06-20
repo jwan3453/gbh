@@ -1351,7 +1351,7 @@ a{
 	width:70px;
 }
 .short-input-box input{
-	height:30px;
+	height:36px;
 	width:150px;
 	font-size:12px;
 	background-color: #f8f8f8;
@@ -1375,7 +1375,7 @@ a{
 	width:70px;
 }
 .long-input-box input{
-	height:30px;
+	height:36px;
 	width:360px;
 	font-size:12px;
 	background-color: #f8f8f8;
@@ -1601,7 +1601,7 @@ a{
 .surrounding-environment{
 	width: 100%;
 	height: 70px;
-	/*line-height: 70px;*/
+	line-height: 40px;
 	margin-top: 30px;
 }
 
@@ -2173,3 +2173,180 @@ a{
 }
 
 /***************end***************/
+
+/***********新增酒店第四部*********/
+
+.facility-box{
+	width: 1140px;
+	background-color: #f8f8f8;
+	margin-top: 20px;
+}
+
+.facility-items-box{
+	width: 100%;
+	/*height: 200px;*/
+	overflow: hidden;
+	padding-bottom: 40px;
+}
+
+.facility-item-title{
+	width: 1120px;
+	margin: 0 auto;
+	height: 40px;
+	line-height: 40px;
+	border-bottom: 1px dashed #a0a0a0;
+}
+
+.facility-item-title span{
+	color: #505050;
+	font-size: 16px;
+}
+
+.item-box{
+	width: 1120px;
+	margin: 0 auto;
+}
+
+.item-block{
+	min-width: 120px;
+	height: 40px;
+	line-height: 40px;
+	border: 1px solid #505050;
+	text-align: center;
+	float: left;
+	margin-top: 20px;
+	margin-right: 20px;
+	cursor: pointer;
+	border-radius: 2px;
+}
+
+.item-block span{
+	font-size: 14px;
+}
+
+.click-item-block{
+	border: 1px solid #639ae3;
+	background-color: #639ae3;
+}
+
+.click-item-block span{
+	color: #f8f8f8;
+}
+
+.radio-item-block{
+	width: 240px;
+	height: 40px;
+	line-height: 40px;
+	border: 1px solid #a0a0a0;
+	text-align: center;
+	float: left;
+	margin-top: 20px;
+	margin-right: 20px;
+	border-radius: 2px;
+	position: relative;
+}
+
+.radio-item-title{
+	background-color: #f8f8f8;
+	padding-left: 3px;
+	padding-right: 3px;
+	position: absolute;
+	top: -20px;
+	left: -240px;
+	font-size: 14px;
+	height: 20px;
+}
+
+.radio-item-input{
+	float: left;
+	margin-top: 14px;
+	margin-right: 10px;
+	margin-left: 20px;
+}
+
+.radio-item-span{
+	float: left;
+}
+
+/***************end***************/
+
+/*************新增酒店第三步********/
+
+.contact-box{
+	width: 100%;
+	border-bottom: 1px dashed #a0a0a0;
+	padding-bottom: 20px;
+}
+
+.contact-box-row{
+	width: 100%;
+	height: 40px;
+	margin-top: 20px;
+
+}
+
+.contact-box-row label{
+	letter-spacing : 8px;
+}
+
+.contact-box-row span{
+	margin-right: 10px;
+}
+
+.contact-input{
+	width: 176px;
+	height: 34px;
+	/*margin-left: 10px;*/
+	margin-right: 20px;
+}
+
+.width-200{
+	width: 200px;
+}
+
+.border-blue{
+	border-color: #639ae3;
+	color: #639ae3;
+}
+
+.pandding-20{
+	padding: 0 20px;
+}
+
+.credit-row{
+	width: 100%;
+	height: 70px;
+}
+
+/*************end*******************/
+
+/************轮播图*******************/
+
+.content-upload-colmun .upload-box .slide-img{
+	width: 80px;
+	height: 80px;
+	position: relative;
+    top: -20px;
+    left: -20px;
+}
+
+.slide-list-row{
+	height: 100px;
+	/*line-height: 100px;*/
+	width: 1120px;
+	margin: 0 auto;
+	border-bottom: 1px solid #a0a0a0;
+
+}
+
+.list-slide-img{
+	margin-top: 10px;
+	width: 100%;
+	height: 80px;
+}
+
+.line-height-100{
+	line-height: 100px;
+}
+
+/****************end*********************/

@@ -18,7 +18,7 @@ abstract class Controller extends BaseController
     	$isPermission = false;
 
     	$permissionArr = Session::get('permission');
-    	
+
     	if ($permissionArr == "all") {
     		$isPermission = true;
     	}else{
