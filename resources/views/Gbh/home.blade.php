@@ -4,10 +4,6 @@
     <script src={{ asset('js/swiper/owl.carousel.min.js') }}></script>
     <link rel="stylesheet" type="text/css" href= {{ asset('js/swiper/owl.carousel.min.css') }}>
     <link rel="stylesheet" type="text/css" href= {{ asset('js/swiper/owl.theme.default.min.css') }}>
-    <link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/container.css') }}>
-    <link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/item.css') }}>
-    <link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/image.css') }}>
-    <link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/icon.css') }}>
 @stop
 
 @section('content')

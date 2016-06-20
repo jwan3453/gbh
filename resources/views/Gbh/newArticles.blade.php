@@ -1,9 +1,6 @@
 @extends('Gbh.site')
 
 @section('resources')
-    <link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/container.css') }}>
-    <link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/icon.css') }}>
-    <link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/loader.css') }}>
 @stop
 
 

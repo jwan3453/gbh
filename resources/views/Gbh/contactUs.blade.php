@@ -1,15 +1,6 @@
 @extends('Gbh.site')
 
 @section('resources')
-<link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/container.css') }}>
-<link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/item.css') }}>
-<link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/image.css') }}>
-<link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/icon.css') }}>
-
-<link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/sticky.css') }}>
-
-<script src={{ asset('semantic/sticky.js') }}></script>
-
 <script type="text/javascript" src="http://api.map.baidu.com/api?v=1.3"></script>
 @stop
 

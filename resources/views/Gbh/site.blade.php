@@ -10,16 +10,9 @@
     <meta name="_token" content="{{ csrf_token() }}"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <script src={{ asset('js/jquery-2.1.4.min.js') }}></script>
-    <link  rel="stylesheet" type="text/css"  href ={{ asset('Gbh/css/website.css') }}>
-    <link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/transition.css') }}>
-    <script src={{ asset('semantic/transition.js') }}></script>
 
-
-
-    <link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/icon.css') }}>
-    <link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/sidebar.css') }}>
-    <script src={{ asset('semantic/sidebar.js') }}></script>
-
+    <script src={{ asset('Gbh/js/site.min.js') }}></script>
+    <link  rel="stylesheet" type="text/css"  href ={{ asset('Gbh/css/site.min.css') }}>
     @yield('resources')
 
 </head>
