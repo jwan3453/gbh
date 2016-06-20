@@ -17,8 +17,6 @@ Route::get('/', function () {
 
 /*******************************GbhMibile*********************************************/
 
-/**********Vincent*************/
-
 Route::get('auth/login','Auth\AuthController@loginPage');
 
 Route::get('auth/register','Auth\AuthController@registerPage');
@@ -30,6 +28,13 @@ Route::get('editUserInfo','GbhMobile\Member\MemberController@editUserInfoPage');
 Route::get('myCollection','GbhMobile\Collection\CollectionController@myCollection');
 
 Route::get('evaluateHotel','GbhMobile\Evaluate\EvaluateController@evaluateHotel');
+
+Route::get('/search','GbhMobile\HomeController@search');
+
+Route::get('/hotel/{hotelId}','GbhMobile\Hotel\HotelController@hotelDetail');
+
+Route::get('/hotel/{hotelId}/booking/{roomId}','GbhMobile\Hotel\HotelController@booking');
+
 
 
 Route::group(['prefix' => 'order'], function() {
@@ -45,63 +50,54 @@ Route::group(['prefix' => 'order'], function() {
 });
 
 
-
-
-
 /************end*****************/
 
 
-//Route::get('/', 'GbhMobile\HomeController@home');
+
+
+/**********Gbh website***************/
+
+
 Route::get('/', 'Gbh\HomeController@home');
+
 Route::get('/newArticles', 'Gbh\HomeController@newArticles');
+
 Route::get('/aboutUs','Gbh\HomeController@aboutUs');
+
 Route::get('/joinUs','Gbh\HomeController@joinUs');
+
 Route::get('/history', 'Gbh\HomeController@history');
+
 Route::get('/contactUs','Gbh\HomeController@contactUs');
+
 Route::get('/team','Gbh\HomeController@team');
 
 Route::get('/article/{articleId}', 'Gbh\ArticleController@showArticle');
+
 Route::post('/getArticleByCate','Gbh\ArticleController@getArticleByCate');
 
-
-Route::get('/search','GbhMobile\HomeController@search');
-Route::get('/hotel/{hotelId}','GbhMobile\Hotel\HotelController@hotelDetail');
-Route::get('/hotel/{hotelId}/booking/{roomId}','GbhMobile\Hotel\HotelController@booking');
-
 Route::get('/gbh/login','Gbh\HomeController@login');
+
 Route::get('/gbh/register','Gbh\HomeController@register');
+
 Route::get('/gbh/PageNotFound','Gbh\HomeController@PageNotFound');
+
 Route::post('/gbh/article/praise','Gbh\ArticleController@praise');
 
-
-//Route::get('/admin/manageHotel/create/geolocation','Admin\Hotel\HotelController@geolocation');
-//Route::post('/admin/manageHotel/create','Admin\Hotel\HotelController@storeHotel');
-
-
-/*******************************end**************************************/
-
-//
-//
-Route::get('/admin/manageArticle/edit/{articleId}','Admin\Article\ArticleController@editArticle');
-Route::post('/admin/manageArticle/edit/{articleId}','Admin\Article\ArticleController@updateArticle');
-//
-//Route::get('admin/manageArticle/classificationandtag','Admin\Article\ArticleController@classificationandtag');
-
-Route::post('/upload/image','Common\CommonController@uploadImage');
-
-/******************************GbhAdmin**************************************/
-
-
-
-
 /*******************************end**************************************/
 
 
-/*************************Vincent*********************************/
+
+
+
+
+/*************************AdminCenter*********************************/
 
 Route::group(['prefix' => '/admin/', 'middleware' => 'App\Http\Middleware\AdminAuthenticate'], function() {
     Route::get('AdminCenter','Admin\homeController@index');
 
+    //--------菜单设置
+    Route::get('menuSetting','Admin\Menu\MenuSettingController@index');
     Route::group(['prefix' => 'menuSetting/'], function() {
         Route::post('getSecondMenu','Admin\Menu\MenuSettingController@getSecondMenu');
 
@@ -117,50 +113,79 @@ Route::group(['prefix' => '/admin/', 'middleware' => 'App\Http\Middleware\AdminA
 
     });
 
-    Route::get('orderSearchPage','Admin\Order\OrderController@orderSearchPage');
-
-    Route::get('menuSetting','Admin\Menu\MenuSettingController@index');
-
+    //---------酒店管理
     Route::get('manageHotel','Admin\Hotel\HotelController@index');
-    Route::get('manageHotel/create','Admin\Hotel\HotelController@createHotel');
+    Route::group(['prefix' => 'manageHotel/'], function() {
+        Route::get('create/geolocation','Admin\Hotel\HotelController@geolocation');
 
-    Route::get('manageHotel/create/geolocation','Admin\Hotel\HotelController@geolocation');
+        Route::post('create','Admin\Hotel\HotelController@storeHotel');
 
-    Route::post('manageHotel/create','Admin\Hotel\HotelController@storeHotel');
+        Route::get('create','Admin\Hotel\HotelController@createHotel');
 
-    Route::get('manageHotel/create/facility','Admin\Hotel\HotelController@facility');
+        Route::get('create/geolocation','Admin\Hotel\HotelController@geolocation');
 
-    Route::get('manageHotel/create/contactAndPayment','Admin\Hotel\HotelController@contactAndPayment');
+        Route::get('create/facility','Admin\Hotel\HotelController@facility');
 
+        Route::get('create/contactAndPayment','Admin\Hotel\HotelController@contactAndPayment');
+
+    });
+
+    //----------文章管理
     Route::get('manageArticle','Admin\Article\ArticleController@index');
-    Route::get('manageArticle/create','Admin\Article\ArticleController@createArticle');
-    Route::post('manageArticle/create','Admin\Article\ArticleController@storeArticle');
+    Route::group(['prefix' => 'manageArticle/'], function() {
+        Route::get('create','Admin\Article\ArticleController@createArticle');
 
-    Route::get('manageArticle/classificationandtag','Admin\Article\ArticleController@classificationandtag');
+        Route::post('create','Admin\Article\ArticleController@storeArticle');
 
+        Route::get('classificationandtag','Admin\Article\ArticleController@classificationandtag');
 
-    Route::post('manageArticle/addArticleTag','Admin\Article\ArticleController@addArticleTag');
-    Route::post('manageArticle/delArticleTag','Admin\Article\ArticleController@delArticleTag');
-    Route::post('manageArticle/classificationOperate','Admin\Article\ArticleController@classificationOperate');
-    Route::post('manageArticle/delArticleCategory','Admin\Article\ArticleController@delArticleCategory');
+        Route::get('edit/{articleId}','Admin\Article\ArticleController@editArticle');
+        
+        Route::post('edit/{articleId}','Admin\Article\ArticleController@updateArticle');
 
+        Route::post('addArticleTag','Admin\Article\ArticleController@addArticleTag');
+        
+        Route::post('delArticleTag','Admin\Article\ArticleController@delArticleTag');
+        
+        Route::post('classificationOperate','Admin\Article\ArticleController@classificationOperate');
+        
+        Route::post('delArticleCategory','Admin\Article\ArticleController@delArticleCategory');
+        
+        Route::post('articleOnline','Admin\Article\ArticleController@articleOnline');
+        
+        Route::post('articleOffline','Admin\Article\ArticleController@articleOffline');
+        
+        Route::post('delArticle','Admin\Article\ArticleController@delArticle');
+
+        Route::get('edit/{articleId}','Admin\Article\ArticleController@editArticle');
+        
+        Route::post('edit/{articleId}','Admin\Article\ArticleController@updateArticle');
+    });
+
+    //--------系统设置
+    Route::group(['prefix' => 'system/'], function() {
+        Route::get('slideConfigure','Admin\System\SystemController@slideConfigure');
+        Route::post('uploadImg','Admin\System\SystemController@uploadImg');
+        Route::post('createSlide','Admin\System\SystemController@createSlide');
+        Route::post('delSlide','Admin\System\SystemController@delSlide');
+    });
+
+    //--------订单处理
+    Route::group(['prefix' => 'order/'], function() {
+        Route::get('orderSearchPage','Admin\Order\OrderController@orderSearchPage');
+        Route::get('untreatedPage','Admin\Order\OrderController@untreatedPage');
+    });
+
+    //-----无权限访问
     Route::get('Error/NotPermission','Admin\homeController@NotPermission');
-
-
-    Route::get('system/slideConfigure','Admin\System\SystemController@slideConfigure');
-    Route::post('system/uploadImg','Admin\System\SystemController@uploadImg');
-    Route::post('system/createSlide','Admin\System\SystemController@createSlide');
-    Route::post('system/delSlide','Admin\System\SystemController@delSlide');
-
+    
 });
 
 Route::get('/admin/Login','Admin\homeController@login');
 
 Route::post('/admin/Sign','Admin\homeController@toSign');
 
-
-
-/************************end*************************************/
+Route::post('/upload/image','Common\CommonController@uploadImage');
 
 
 /******************************end*******************************************/

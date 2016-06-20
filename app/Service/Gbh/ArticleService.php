@@ -33,8 +33,7 @@ class ArticleService {
         $articleCategories = ArticleCategory::all();
         foreach($articleCategories as $articleCategory)
         {
-            $articleList[$articleCategory->category_name] = Article::where('category',$articleCategory->id)
-                                                                    ->orderBy('published_at','desc')->take(6)->select('id','title','author','brief','cover_image')->get();
+            $articleList[$articleCategory->category_name] = Article::where(['category'=>$articleCategory->id,'is_draft'=>0])->orderBy('published_at','desc')->take(6)->select('id','title','author','brief','cover_image')->get();
         }
 
         return $articleList;
@@ -74,6 +73,7 @@ class ArticleService {
     public function getArticleByCate($category)
     {
 
+        $articles = Article::where('is_draft',0)->select('category','id','title','author','brief','cover_image','published_at')->get();
         $articleCategories = ArticleCategory::all();
         if($category != 0 )
         {

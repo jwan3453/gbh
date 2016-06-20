@@ -49,17 +49,19 @@
                 <td><span>{{$article->category_name}}</span></td>
                 <td class="l-td">
 
-                    <div class="header-option f-left">
-
+                @if($article->is_draft == 1)
+                    <div class="header-option f-left" onclick="online({{$article->id}})">
                         <img src = '/Admin/img/上架.png'/>
                         <span class="on-line">上线</span>
                     </div>
+                @endif
 
-                    <div class="header-option f-left">
-
+                @if($article->is_draft == 0)
+                    <div class="header-option f-left" onclick="offline({{$article->id}})">
                         <img src = '/Admin/img/下架.png'/>
                         <span class="off-line">下线</span>
                     </div>
+                @endif
 
                     <div class="header-option f-left">
 
@@ -69,7 +71,7 @@
                         </a>
                     </div>
 
-                    <div class="header-option f-left">
+                    <div class="header-option f-left" onclick="delArticle({{$article->id}},this)">
 
                         <img src = '/Admin/img/垃圾桶.png'/>
                         <span class="delete">删除</span>
@@ -91,9 +93,75 @@
 @stop
 
 @section('script')
-        <script type="text/javascript">
+<script type="text/javascript">
 
-            $()
+    function online(id) {
+        $.ajax({
+            type: 'POST',
+            url: '/admin/manageArticle/articleOnline',
+            data: {articleId : id},
+            dataType: 'json',
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+            },
+            success: function(data){
+                console.log(data);
 
-        </script>
+                alert(data.statusMsg);
+                    location.reload();
+            },
+            error: function(xhr, type){
+                alert('Ajax error!')
+            }
+        });
+    }
+
+
+    function offline(id) {
+        $.ajax({
+            type: 'POST',
+            url: '/admin/manageArticle/articleOffline',
+            data: {articleId : id},
+            dataType: 'json',
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+            },
+            success: function(data){
+                console.log(data);
+
+                alert(data.statusMsg);
+                location.reload();
+            },
+            error: function(xhr, type){
+                alert('Ajax error!')
+            }
+        });
+    }
+
+    function delArticle(id,_this) {
+        if (confirm("确定删除  ? ")) {
+            $.ajax({
+                type: 'POST',
+                url: '/admin/manageArticle/delArticle',
+                data: {articleId : id},
+                dataType: 'json',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                },
+                success: function(data){
+                    if (data.statusCode == 0) {
+                        alert('删除失败');
+                    }else{
+                        $(_this).parent().parent().remove();
+                        alert("删除成功");
+                    }
+                },
+                error: function(xhr, type){
+                    alert('Ajax error!')
+                }
+            });
+        }
+    }
+
+</script>
 @stop

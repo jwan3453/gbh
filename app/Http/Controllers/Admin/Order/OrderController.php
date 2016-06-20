@@ -31,6 +31,11 @@ class OrderController extends Controller
         return view('Admin.Order.orderSearchPage');
     }
 
+    public function untreatedPage()
+    {
+        return view('Admin.Order.untreatedPage');
+    }
+
     /**
      * Show the form for creating a new resource.
      *
