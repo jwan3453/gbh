@@ -144,9 +144,11 @@ class ArticleService {
 		$newArticle->title = $request->input('title');
 		$newArticle->author = 'Admin';
 		$newArticle->brief = $request->input('brief');
+		$newArticle->is_draft = $request->input('draft');
 		$newArticle->content_raw = $request->input('editorValue');
 		$newArticle->content_html = $request->input('editorValue');
 		$newArticle->cover_image = $request->input('coverImage');
+		$newArticle->wechat_Url = $request->input('wechatUrl');
 		$newArticle->published_at =carbon::now();
 		return $newArticle->save();
 
@@ -160,17 +162,19 @@ class ArticleService {
 	{
 
 
-		$newArticle = Article::find($articleId);
+		$article = Article::find($articleId);
 
-		$newArticle->category=$request->input('selectedCate');
-		$newArticle->title = $request->input('title');
-		$newArticle->author = 'Admin';
-		$newArticle->brief = $request->input('brief');
-		$newArticle->content_raw = $request->input('editorValue');
-		$newArticle->content_html = $request->input('editorValue');
-		$newArticle->cover_image = $request->input('coverImage');
+		$article->category=$request->input('selectedCate');
+		$article->title = $request->input('title');
+		$article->author = 'Admin';
+		$article->brief = $request->input('brief');
+		$article->is_draft = $request->input('draft');
+		$article->content_raw = $request->input('editorValue');
+		$article->content_html = $request->input('editorValue');
+		$article->cover_image = $request->input('coverImage');
+		$article->wechat_Url = $request->input('wechatUrl');
 
-		return $newArticle->save();
+		return $article->save();
 
 	}
 }

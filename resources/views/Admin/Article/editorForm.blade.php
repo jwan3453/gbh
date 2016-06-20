@@ -40,6 +40,20 @@
         <input type="text" class="long-input" placeholder="标签之间用逗号隔开" name="tags"/>
 </div>
 
+<div class="article-input-field">
+    <label>微信链接:</label>
+    <input type="text" class="long-input"  placeholder="如果没有不用填写" name="wechatUrl" value='{{ $article->wechat_url }}'/>
+</div>
+
+<div class="article-input-field">
+    <label>草稿:</label>
+    <input type="checkbox" id="draftChecbox" />
+    <input type="hidden" name="draft" id="draft" value="0"/>
+</div>
+
+
+
+
 
 @section('script')
     <script type="text/javascript">
@@ -67,6 +81,27 @@
         //设置默认选中
         $(' .article-cate option:first').attr("selected", 'selected');
         $('#selectedCate').val($(' .article-cate option:selected').val());
+
+
+        //设置是否为草稿
+
+
+        if ('{{$article->is_draft}}' === '1')
+        {
+            $('#draftChecbox').attr("checked", true);
+        }
+
+
+        $('#draftChecbox').change(function(){
+            if($('#draftChecbox').is(':checked'))
+            {
+                $('#draft').val(1);
+            }
+            else{
+                $('#draft').val(0);
+            }
+
+        })
 
 
         //设置封面图片

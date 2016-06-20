@@ -2,9 +2,9 @@
 
 @section('resources')
     <link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/container.css') }}>
-    <link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/item.css') }}>
-    <link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/image.css') }}>
-    <link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/icon.css') }}>
+    {{--<link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/item.css') }}>--}}
+    {{--<link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/image.css') }}>--}}
+    {{--<link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/icon.css') }}>--}}
 
 
     <link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/popup.css') }}>

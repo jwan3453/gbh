@@ -149,7 +149,7 @@
 
 
                 <div class="hotel-warp none-display" id="bnb_article_list" >
-                    @foreach($articleList['精品酒店'] as $article)
+                    @foreach($articleList['精品名宿'] as $article)
 
                         <div class="hotel-box ">
                             <img src="{{$article->cover_image  }}">
@@ -178,7 +178,7 @@
                 </div>
 
                 <div class="hotel-warp none-display" id="magazine_article_list" >
-                    @foreach($articleList['精品酒店'] as $article)
+                    @foreach($articleList['杂志'] as $article)
 
                         <div class="hotel-box ">
                             <img src="{{$article->cover_image  }}">
@@ -207,7 +207,7 @@
                 </div>
 
                 <div class="hotel-warp none-display" id="video_article_list" >
-                    @foreach($articleList['精品酒店'] as $article)
+                    @foreach($articleList['视频'] as $article)
 
                         <div class="hotel-box ">
                             <img src="{{$article->cover_image  }}">

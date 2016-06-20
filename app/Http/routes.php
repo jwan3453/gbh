@@ -61,6 +61,7 @@ Route::get('/contactUs','Gbh\HomeController@contactUs');
 Route::get('/team','Gbh\HomeController@team');
 
 Route::get('/article/{articleId}', 'Gbh\ArticleController@showArticle');
+Route::post('/getArticleByCate','Gbh\ArticleController@getArticleByCate');
 
 
 Route::get('/search','GbhMobile\HomeController@search');
@@ -73,18 +74,18 @@ Route::get('/gbh/PageNotFound','Gbh\HomeController@PageNotFound');
 Route::post('/gbh/article/praise','Gbh\ArticleController@praise');
 
 
-Route::get('/admin/manageHotel/create/geolocation','Admin\Hotel\HotelController@geolocation');
-Route::post('/admin/manageHotel/create','Admin\Hotel\HotelController@storeHotel');
+//Route::get('/admin/manageHotel/create/geolocation','Admin\Hotel\HotelController@geolocation');
+//Route::post('/admin/manageHotel/create','Admin\Hotel\HotelController@storeHotel');
 
 
 /*******************************end**************************************/
 
-
-
+//
+//
 Route::get('/admin/manageArticle/edit/{articleId}','Admin\Article\ArticleController@editArticle');
 Route::post('/admin/manageArticle/edit/{articleId}','Admin\Article\ArticleController@updateArticle');
-
-Route::get('admin/manageArticle/classificationandtag','Admin\Article\ArticleController@classificationandtag');
+//
+//Route::get('admin/manageArticle/classificationandtag','Admin\Article\ArticleController@classificationandtag');
 
 Route::post('/upload/image','Common\CommonController@uploadImage');
 

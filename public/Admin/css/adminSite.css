@@ -1829,6 +1829,7 @@ a{
 	min-height:0!important;
 	min-width:140px!important;
 	border-radius: 0!important;
+
 }
 .article-input-field label{
 	margin-right:10px;
@@ -1836,7 +1837,7 @@ a{
 	font-weight: 500;
 	display: inline-block;
 	margin-top:10px;
-
+	width:80px;
 	vertical-align: top;
 }
 .article-input-field input{
@@ -1844,6 +1845,13 @@ a{
 	width:300px;
 	display: inline-block;
 }
+
+.article-input-field input[type=checkbox]{
+	height:25px;
+	width:25px;
+	margin-top: 10px!important;
+}
+
 .article-input-field textarea{
 	height:80px;
 	width:300px;
@@ -1862,7 +1870,7 @@ a{
 	display:none!important;
 }
 .upload-article-image{
-	margin-left:50px;
+	margin-left:100px;
 	width:150px;
 	height:150px;
 	border:1px solid #505050;

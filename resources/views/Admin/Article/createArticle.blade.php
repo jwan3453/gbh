@@ -21,6 +21,10 @@
 
         </form>
 
+
+
+
+
         <div class="article-input-field">
             <form method="POST" action="{{url('/upload/image')}}"  enctype="multipart/form-data" id="uploadForm" >
                 <input type="hidden" name="_token" value="{{csrf_token()}}">
@@ -30,7 +34,7 @@
                     <span>上传封面图片</span>
                     <img src=""/>
                 </div>
-                <span class="article-error" style="padding:10px 0  0 50px ">文章封面不能为空</span>
+                <span class="article-error" style="padding:10px 0  0 100px ">文章封面不能为空</span>
                 <input type="file"  id="uploadImage" name="uploadImage" class="upload-image" multiple/>
 
             </form>

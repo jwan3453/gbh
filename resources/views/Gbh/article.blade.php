@@ -8,6 +8,9 @@
     <link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/icon.css') }}>
 
     <link  rel="stylesheet" type="text/css"  href ={{ asset('Gbh/css/css/style.css') }}>
+    <link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/popup.css') }}>
+
+    <script src={{ asset('semantic/popup.js') }}></script>
 @stop
 
 @section('content')
@@ -47,47 +50,42 @@
         </div>
 
         <div class="article-foot">
-            <span class="article-foot-span">阅读量 (  <span class="view-count">{{ $article->view_count }}</span>  )</span>
-
+            <div class="article-foot-span">阅读量 (  <span class="view-count">{{ $article->view_count }}</span>  )</div>
+            @if( !empty($article->wechat_url))
+                <div class="article-foot-span ">
+                    <img src ='/Gbh/img/wechat.png' class="footer-icon"   data-html='test'/>
+                </div>
+                <div class="qr-image">
+                    {!!  \SimpleSoftwareIO\QrCode\Facades\QrCode::size(200)->generate($article->wechat_url) !!}
+                    <p>微信扫一扫，打开微信原文</p>
+                </div>
+            @endif
             <div class="heart " id="like" rel="like"></div> 
             <div class="likeCount" id="likeCount">{{ $article->praise }}</div>
             <input type="hidden" id="IPdata" value="0.0.0.0" />
             <input type="hidden" id="articleId" value="{{ $article->id }}" />
+
+
+
+
         </div>
+
+        <!--高速版-->
+        <div id="SOHUCS"></div>
+        <script charset="utf-8" type="text/javascript" src="http://changyan.sohu.com/upload/changyan.js" ></script>
+        <script type="text/javascript">
+            window.changyan.api.config({
+                appid: 'cysapDDLk',
+                conf: 'prod_a32b64575fcb80032a6a060281e43884'
+            });
+        </script>
     </div>
 @stop
 
 @section('script')
     <script type="text/javascript">
 
-        //        $('.slide-caption').transition('fly left');
-        $(window).load(function(){
-            $('.owl-carousel').owlCarousel({
-                loop:true,
-                responsiveClass:true,
-                autoplay:true,
-                autoplayTimeout:4000,
-                autoHeight:true,
 
-                responsive:{
-                    0:{
-                        items:1,
-
-                        loop:true
-                    },
-                    600:{
-                        items:1,
-
-                        loop:true
-                    },
-                    1000:{
-                        items:1,
-
-                        loop:true
-                    }
-                }
-            })
-        })
 
         $(document).ready(function(){
             var url = 'http://chaxun.1616.net/s.php?type=ip&output=json&callback=?&_='+Math.random();  
@@ -158,6 +156,16 @@
                     return false;
                 }
             });
+
+           //加载二维码
+            @if( !empty($article->wechat_url))
+                $('.footer-icon').attr('data-html',$('.qr-image').html())
+                    .popup({
+                        position : 'top center'
+                    })
+            ;
+            @endif
+
         })
 
     </script>

@@ -19,6 +19,7 @@ class HomeController extends Controller
     public function home(Request $request)
     {
 
+
         $articleList = $this->article->getHomeArticleList();
         return view('Gbh.home')->with('articleList',$articleList);
     }

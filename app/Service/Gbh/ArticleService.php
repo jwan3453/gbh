@@ -17,10 +17,14 @@ class ArticleService {
 
     public function showArticle($articleId)
     {
-        $count = Article::where('id',$articleId)->select('view_count')->first()->view_count;
-        $view_count = $count + 1;
-        Article::where('id',$articleId)->update(['view_count'=>$view_count]);
-        return Article::find($articleId);
+        $article = Article::find($articleId);
+        if($article != null)
+        {
+            $count = Article::where('id',$articleId)->select('view_count')->first()->view_count;
+            $view_count = $count + 1;
+            Article::where('id',$articleId)->update(['view_count'=>$view_count]);
+        }
+        return $article;
     }
 
     public function getHomeArticleList()
@@ -46,12 +50,12 @@ class ArticleService {
 
     public function getNewArticleList()
     {
-        $articles = Article::select('category','id','title','author','brief','cover_image','published_at')->get();
-        $articleCategories = ArticleCategory::all();
+        $articles['article'] = Article::select('category','id','title','author','brief','cover_image','view_count','praise','published_at')->get();
+        $articles['category'] = ArticleCategory::all();
 
-        foreach( $articles as $article)
+        foreach( $articles['article'] as $article)
         {
-            foreach( $articleCategories as $category)
+            foreach(  $articles['category']  as $category)
             {
 
                 if($article->category == $category->id)
@@ -65,6 +69,37 @@ class ArticleService {
 
         return $articles;
 
+    }
+
+    public function getArticleByCate($category)
+    {
+
+        $articleCategories = ArticleCategory::all();
+        if($category != 0 )
+        {
+            $articles = Article::where('category',$category)->select('category','id','title','author','brief','cover_image','view_count','praise','published_at')->get();
+        }
+        else{
+            $articles = Article::select('category','id','title','author','brief','cover_image','view_count','praise','published_at')->get();
+        }
+
+        foreach( $articles as $article)
+        {
+            foreach(  $articleCategories  as $category)
+            {
+
+                if($article->category == $category->id)
+                {
+
+                    $article->category_name = $category->category_name;
+                }
+            }
+
+        }
+
+
+
+        return $articles;
     }
 }
 

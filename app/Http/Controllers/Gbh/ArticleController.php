@@ -24,7 +24,7 @@ class ArticleController extends Controller
         $article= $this->article->showArticle($articleId);
         if($article == null)
         {
-
+            return view('Gbh.pageNotFound');
         }
         return view('Gbh.article')->with('article',$article);
     }
@@ -44,6 +44,18 @@ class ArticleController extends Controller
         }
 
         return response($jsonResult->toJson());
+    }
+
+    public function getArticleByCate(Request $request)
+    {
+        $jsonResult = new MessageResult();
+        $articles = $this->article->getArticleByCate($request->input('category'));
+
+        $jsonResult->statusCode = 1;
+        $jsonResult->statusMsg = "成功";
+        $jsonResult->extra = $articles;
+        return response($jsonResult->toJson());
+
     }
 
 }
