@@ -72,6 +72,16 @@ class HotelController extends Controller
         return view('Admin.Hotel.geoLocation')->with('address',$address);
     }
 
+    public function facility()
+    {
+        return view('Admin.Hotel.facility');
+    }
+
+    public function contactAndPayment()
+    {
+        return view('Admin.Hotel.contactAndPayment');
+    }
+
     /**
      * Display the specified resource.
      *

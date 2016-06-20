@@ -92,7 +92,7 @@
 
                 if (data.status == 1) {
                     $("#msg").html(data.Msg);
-                    location.href = "AdminCenter";
+                    location.href = "http://localhost/admin/AdminCenter";
                 }else{
                     $("#msg").html(data.Msg);
                 }

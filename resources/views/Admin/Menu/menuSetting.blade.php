@@ -217,7 +217,7 @@
 	//----------上传图标1-------
 	$("#uploadBoxOne").click(function(){
 		$(this).siblings('#uploadBoxOneInput').val('').trigger('click');
-		$("#uploadBoxOneInput").wrap("<form id='myupload' action='/menuSetting/uploadIcon' method='post' enctype='multipart/form-data'></form>");
+		$("#uploadBoxOneInput").wrap("<form id='myupload' action='/admin/menuSetting/uploadIcon' method='post' enctype='multipart/form-data'></form>");
 	})
 
 	$("#uploadBoxOneInput").change(function(){
@@ -240,7 +240,7 @@
 	//-------上传图标2-------
 	$("#uploadBoxTwo").click(function(){
 		$(this).siblings('#uploadBoxTwoInput').val('').trigger('click');
-		$("#uploadBoxTwoInput").wrap("<form id='myupload' action='/menuSetting/uploadIcon' method='post' enctype='multipart/form-data'></form>");
+		$("#uploadBoxTwoInput").wrap("<form id='myupload' action='/admin/menuSetting/uploadIcon' method='post' enctype='multipart/form-data'></form>");
 	})
 
 	$("#uploadBoxTwoInput").change(function(){
