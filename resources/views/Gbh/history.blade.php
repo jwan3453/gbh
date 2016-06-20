@@ -1,19 +1,6 @@
 @extends('Gbh.site')
 
 @section('resources')
-
-    <link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/container.css') }}>
-    <link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/item.css') }}>
-    <link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/image.css') }}>
-    <link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/icon.css') }}>
-    <link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/sticky.css') }}>
-
-    <script src={{ asset('semantic/sticky.js') }}></script>
-
-
-    <link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/transition.css') }}>
-
-    <script src={{ asset('semantic/transition.js') }}></script>
 @stop
 
 
