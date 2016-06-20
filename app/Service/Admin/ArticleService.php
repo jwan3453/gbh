@@ -177,6 +177,21 @@ class ArticleService {
 		return $article->save();
 
 	}
+
+	public function articleOnline($articleId)
+	{
+		return Article::where('id',$articleId)->update(['is_draft'=>0]);
+	}
+
+	public function articleOffline($articleId)
+	{
+		return Article::where('id',$articleId)->update(['is_draft'=>1]);
+	}
+
+	public function delArticle($articleId)
+	{
+		return Article::where('id',$articleId)->delete();
+	}
 }
 
 

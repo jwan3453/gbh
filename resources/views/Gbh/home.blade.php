@@ -36,59 +36,26 @@
 
             </div>
             <div class="owl-carousel owl-theme home-slide">
+                @foreach($slideList as $slide)
+                    <div class="slide">
+                        <div class="slide-caption">
+                            <div class="slide-center-text">
+                                <div>
+                                    <span class="up">{{$slide->slide_desc}}</span>
+                                    <img src = '/Gbh/img/横线.png'>
+                                    <span class="down ">{{$slide->slide_name}}</span>
+                                </div>
+                            </div>
 
-                <div class="slide">
-                    <div class="slide-caption">
-                        <div class="slide-center-text">
-                            <div>
-                                <span class="up">西湖边上的另一个天堂</span>
-                                <img src = '/Gbh/img/横线.png'>
-                                <span class="down ">杭州 - 富春山居</span>
+                            <div class="slide-left-text">
+                                <span class="up">{{$slide->slide_desc}}</span>
+                                <span class="down ">{{$slide->slide_name}}</span>
                             </div>
                         </div>
-
-                        <div class="slide-left-text">
-                            <span class="up">温泉和酒店如此完美的结合</span>
-                            <span class="down ">安溪 - 悦泉行馆</span>
-                        </div>
+                        <img src = '{{$slide->img_url}}'>
                     </div>
-                    <img src = '/Gbh/img/2.jpg'>
-                </div>
-                <div class="slide">
-                    <div class="slide-caption">
-                        <div class="slide-center-text">
-                            <div>
-                                <span class="up">钢筋水泥的后花园</span>
-                                <img src = '/Gbh/img/横线.png'>
-                                <span class="down ">安溪 - 悦泉行馆</span>
-                            </div>
-                        </div>
-
-                        <div class="slide-left-text">
-                            <span class="up">温泉和酒店如此完美的结合</span>
-                            <span class="down ">安溪 - 悦泉行馆</span>
-                        </div>
-                    </div>
-                    <img src = '/Gbh/img/banner.png'>
-                </div>
-
-                <div class="slide">
-                    <div class="slide-caption">
-                        <div class="slide-center-text">
-                            <div>
-                                <span class="up">温泉和酒店如此完美的结合</span>
-                                <img src = '/Gbh/img/横线.png'>
-                                <span class="down ">安溪 - 悦泉行馆</span>
-                            </div>
-                        </div>
-
-                        <div class="slide-left-text">
-                            <span class="up">温泉和酒店如此完美的结合</span>
-                            <span class="down ">安溪 - 悦泉行馆</span>
-                        </div>
-                    </div>
-                    <img src = '/Gbh/img/banner.png'>
-                </div>
+                @endforeach
+                
             </div>
 
             {{--<div class="sub-slogan">--}}

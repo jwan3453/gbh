@@ -17,7 +17,7 @@ class SystemService
       return Slide::all();
    }
 	
-	public function uploadImg($file)
+	public function uploadImg($file,$path = '')
 	{
 		$jsonResult = new MessageResult();
 
@@ -33,7 +33,10 @@ class SystemService
    			$jsonResult->statusMsg = "文件大小不得超过1M";
    		}
 
-   		$path = 'uploads/slide';
+         if ($path == '') {
+            $path = 'uploads/default';
+         }
+   		
 
    		$pic_path = $path. '/' .$file['name'];
 

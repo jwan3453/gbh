@@ -4,24 +4,26 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Service\Gbh\ArticleService;
-
+use App\Service\Gbh\SlideService;
 
 class HomeController extends Controller
 {
     //
 
     private $article;
-    public function __construct( ArticleService $article){
+    private $slide;
+    public function __construct( ArticleService $article ,SlideService $slide){
         $this->article = $article ;
-
-    }
+        $this->slide = $slide;
+    }   
 
     public function home(Request $request)
     {
 
 
         $articleList = $this->article->getHomeArticleList();
-        return view('Gbh.home')->with('articleList',$articleList);
+        $slideList = $this->slide->getSlideList();
+        return view('Gbh.home')->with('articleList',$articleList)->with('slideList',$slideList);
     }
 
 

@@ -195,6 +195,57 @@ class ArticleController extends Controller
 
     }
 
+    public function articleOnline(Request $request)
+    {
+        $jsonResult = new MessageResult();
+
+        $online = $this->article->articleOnline($request->input('articleId'));
+
+        if ($online) {
+            $jsonResult->statusCode = 1;
+            $jsonResult->statusMsg = "成功";
+        }else{
+            $jsonResult->statusCode = 0;
+            $jsonResult->statusMsg = "失败";
+        }
+
+        return response($jsonResult->toJson());
+    }
+
+    public function articleOffline(Request $request)
+    {
+        $jsonResult = new MessageResult();
+
+        $online = $this->article->articleOffline($request->input('articleId'));
+
+        if ($online) {
+            $jsonResult->statusCode = 1;
+            $jsonResult->statusMsg = "成功";
+        }else{
+            $jsonResult->statusCode = 0;
+            $jsonResult->statusMsg = "失败";
+        }
+
+        return response($jsonResult->toJson());
+    }
+
+    public function delArticle(Request $request)
+    {
+        $jsonResult = new MessageResult();
+
+        $online = $this->article->delArticle($request->input('articleId'));
+
+        if ($online) {
+            $jsonResult->statusCode = 1;
+            $jsonResult->statusMsg = "成功";
+        }else{
+            $jsonResult->statusCode = 0;
+            $jsonResult->statusMsg = "失败";
+        }
+
+        return response($jsonResult->toJson());
+    }
+
     /**
      * Remove the specified resource from storage.
      *
