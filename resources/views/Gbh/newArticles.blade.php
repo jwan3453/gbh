@@ -6,7 +6,7 @@
 
 
 @section('content')
-        <div class="pusher">
+        <div >
 
         <div class="site-header">
             <div class="site-menu-nav">

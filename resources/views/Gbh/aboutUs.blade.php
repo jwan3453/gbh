@@ -47,7 +47,7 @@
                         <div class="about-text f-right">
                             <div class="header">我们是谁</div>
                             <div class="detail">
-                                果壳传媒是一家致力于面向公众倡导科技理念、传播科技内容的企业。2010年11月，公司推出果壳网（Guokr.com） 。在创始人兼CEO姬十三带领的专业团队努力下，果壳传媒已成为国内领先的科技传媒机构，现拥有果壳网（Guokr.com）和果壳阅读两个品牌。果壳传媒还致力于为企业量身打造面向公众的科技品牌传播方案.
+                                全球精品酒店（Global Boutique Hotel）成立于2015年11月，总部设于美丽的海滨城市厦门，并于上海设有办公室，是一个拥有25人小团队的精简公司。
                             </div>
 
                         </div>
@@ -66,9 +66,12 @@
 
                     <div class="about-line-box who-we-are">
                         <div class="about-text f-left">
-                            <div class="header">我们是谁</div>
+                            <div class="header">我们在做什么</div>
                             <div class="detail">
-                                果壳传媒是一家致力于面向公众倡导科技理念、传播科技内容的企业。2010年11月，公司推出果壳网（Guokr.com） 。在创始人兼CEO姬十三带领的专业团队努力下，果壳传媒已成为国内领先的科技传媒机构，现拥有果壳网（Guokr.com）和果壳阅读两个品牌。果壳传媒还致力于为企业量身打造面向公众的科技品牌传播方案.
+                                提供全球精品酒店的挖掘，分享精品酒店入住体验；
+                                拥有严谨的品牌甄选体系，在各目的地甄选符合标准的精品酒店；
+                                提供PC端和移动端的精品酒店预定功能，涉及从预定到退房等各环节的在线服务；
+                                引导和支持精品酒店的品牌推广和酒店运营。
                             </div>
 
                         </div>
@@ -88,9 +91,10 @@
 
                     <div class="about-line-box our-mission">
                         <div class="about-text f-right">
-                            <div class="header">我们是谁</div>
+                            <div class="header">我们目标</div>
                             <div class="detail">
-                                果壳传媒是一家致力于面向公众倡导科技理念、传播科技内容的企业。2010年11月，公司推出果壳网（Guokr.com） 。在创始人兼CEO姬十三带领的专业团队努力下，果壳传媒已成为国内领先的科技传媒机构，现拥有果壳网（Guokr.com）和果壳阅读两个品牌。果壳传媒还致力于为企业量身打造面向公众的科技品牌传播方案.
+                                帮助您和您的家人找到最棒的精品酒店.
+                                关注“全球精品酒店”官方微信：gbhchina，获得更多关于全球精品酒店信息和服务！
                             </div>
 
                         </div>

@@ -58,10 +58,7 @@ a{
 }
 .page{
 	min-height:100%;
-
-
 	margin:auto;
-
 }
 .regular-btn{
 	line-height: 40px;
@@ -588,7 +585,7 @@ a{
 .about-line-box{
 	min-width:900px;
 	width:80%;
-	height:180px;
+	min-height:180px;
 	position: relative;
 	margin:0 auto;
 	display: none;
@@ -613,6 +610,7 @@ a{
 	margin:10px 0 0 0;
 
 }
+
 .about-line-box .bottom-line{
 	height:10px;
 	width:100%;
@@ -1450,6 +1448,7 @@ a{
 		background: #121d25;
 		padding: 30px 0 !important;
 		font-size: 16px;
+
 	}
 
 	.mobile-side-bar a {
@@ -1457,6 +1456,7 @@ a{
 		line-height: 50px;
 		padding: 0 10px;
 		display: block;
+
 		/*border-bottom: 1px solid #b4b4b4;*/
 
 	}
@@ -1557,6 +1557,9 @@ a{
 		position: relative;
 		margin: 0 auto;
 		padding: 10px 0;
+		height:auto;
+		min-height:0
+
 	}
 
 	.about-line-box {
@@ -1576,7 +1579,7 @@ a{
 	}
 
 	.about-text {
-
+		float:none!important;
 		margin: 10px;
 	}
 
@@ -1593,7 +1596,7 @@ a{
 		font-size: 14px;
 		width: 100%;
 		margin: 10px 0 0 0;
-
+		height:auto;
 	}
 
 	.recruit-title-list {
@@ -1849,5 +1852,21 @@ a{
 		width: 90%;
 	}
 
+	.foot-box{
+
+	}
+
+	.foot-box span{
+		display: block;
+
+	}
+	.foot-box .up{
+		margin-top:10px;
+		font-size:14px;
+	}
+	.foot-box .down{
+		margin-top:5px;
+		font-size:12px;
+	}
 
 }

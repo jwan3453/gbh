@@ -9,7 +9,7 @@
 @section('content')
 
 
-    <div class="pusher">
+    <div>
         <div class="home-page">
 
             <div class="home-site-header">

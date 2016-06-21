@@ -17,7 +17,7 @@
                     <span>最新文章</span>
                     <span>酒店预定</span>
                     <a href="/aboutUs"><span>关于我们</span></a>
-                    <i class="icon user large"></i>
+
                 </div>
             </div>
             <div class="mobile-menu-nav">

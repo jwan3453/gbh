@@ -13,35 +13,37 @@
 
     <script src={{ asset('Gbh/js/site.min.js') }}></script>
     <link  rel="stylesheet" type="text/css"  href ={{ asset('Gbh/css/site.min.css') }}>
+    <link  rel="stylesheet" type="text/css"  href ={{ asset('Gbh/css/website.css') }}>
     @yield('resources')
 
 </head>
 
-<body>
+<body >
 
-        <div class="page">
-            @yield('content')
-
-            <div class="ui sidebar   mobile-side-bar">
-                <a class="" href="/">
-                  <i class="icon home large"></i>首页
-                </a>
-                <a class=""  href="/newArticles">
-                    <i class="icon home large"></i>最新文章
-                </a>
-                <a class="" href="/aboutUs">
-                    <i  class="icon home large"></i>关于我们
-                </a>
-                <a class="">
-                    <i class="icon home large"></i>酒店预定
-                </a>
-            </div>
+        <div class="ui sidebar right   mobile-side-bar">
+            <a class="" href="/">
+                <i class="icon home large"></i>首页
+            </a>
+            <a class=""  href="/newArticles">
+                <i class="icon home large"></i>最新文章
+            </a>
+            <a class="" href="/aboutUs">
+                <i  class="icon home large"></i>关于我们
+            </a>
+            <a class="">
+                <i class="icon home large"></i>酒店预定
+            </a>
         </div>
+        <div class="page pusher" style="min-height:500px;">
+            @yield('content')
+        </div>
+
+
+
         <div class="foot-box">
             <span class="up">全球精品酒店 版权所有 2016-2028 保留所有权利</span>
-            <span>Copyright 2016-2028 Opulun.com All right reserved</span>
+            <span class="down">Copyright 2016-2028 Opulun.com All right reserved</span>
         </div>
-
 
 </body>
 

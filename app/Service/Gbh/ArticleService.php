@@ -17,7 +17,7 @@ class ArticleService {
 
     public function showArticle($articleId)
     {
-        $article = Article::find($articleId);
+        $article = Article::findOrfail($articleId);
         if($article != null)
         {
             $count = Article::where('id',$articleId)->select('view_count')->first()->view_count;

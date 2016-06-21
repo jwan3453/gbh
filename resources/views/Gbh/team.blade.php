@@ -7,10 +7,10 @@
 
 @section('content')
 
-    <div class="pusher">
+    <div >
 
         <div class="site-header">
-            <div class="site-menu-nav">
+            <div class="site-menu-nav ">
                 <div>
                     <a  href="/"><span>首页</span></a>
                     <a href="/newArticles">
@@ -28,7 +28,7 @@
 
         <div class="ui container">
 
-            <div class="about-menu-nav">
+            <div class="about-menu-nav " >
 
                 <a href="/aboutUs" class="dark-anchor"><span>关于我们</span></a>
                 <a href="/team" class="dark-anchor"><span>团队介绍</span></a>

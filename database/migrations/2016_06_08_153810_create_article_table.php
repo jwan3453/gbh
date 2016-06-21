@@ -22,7 +22,7 @@ class CreateArticleTable extends Migration
             $table->text('brief');
             $table->text('content_raw');
             $table->text('content_html');
-            $table->string('cover-image');
+            $table->string('cover_image');
             $table->string('wechat_url',500);
             $table->string('meta_description');
             $table->boolean('is_draft');

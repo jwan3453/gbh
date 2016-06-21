@@ -7,7 +7,7 @@
 
 @section('content')
 
-    <div class="pusher">
+    <div >
 
 
         <div class="site-header">
