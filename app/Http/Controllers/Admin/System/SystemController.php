@@ -70,6 +70,99 @@ class SystemController extends Controller
         return response($jsonResult->toJson());
 	}
 
+	public function creditCardManage()
+	{
+		$InternalList = $this->system->getCreditCardList(1);
+		$AbroadList = $this->system->getCreditCardList(2);
+		return view('Admin.System.creditCardManage')->with('InternalList',$InternalList)->with('AbroadList',$AbroadList);
+	}
+
+	public function createCreditCard(Request $request)
+	{
+		$jsonResult = new MessageResult();
+
+		$createCreditCard = $this->system->createOrUpdateCreditCard($request->input());
+
+		if ($createCreditCard) {
+            $jsonResult->statusCode = 1;
+            $jsonResult->statusMsg = "成功";
+        }else{
+            $jsonResult->statusCode = 0;
+            $jsonResult->statusMsg = "失败";
+        }
+
+        return response($jsonResult->toJson());
+	}
+
+	public function delCredit(Request $request)
+	{
+		$jsonResult = new MessageResult();
+
+        $delCredit = $this->system->delCredit($request->input('creditId'));
+
+        if ($delCredit) {
+            $jsonResult->statusCode = 1;
+            $jsonResult->statusMsg = "成功";
+        }else{
+            $jsonResult->statusCode = 0;
+            $jsonResult->statusMsg = "失败";
+        }
+
+        return response($jsonResult->toJson());
+	}
+
+
+	public function serviceSetting()
+	{
+		$serviceCategorylist = $this->system->getServiceCategoryList();
+		return view('Admin.System.serviceSetting')->with('serviceCategorylist',$serviceCategorylist);
+	}
+
+	public function createServiceCategory(Request $request)
+	{
+		$jsonResult = new MessageResult();
+
+		$createServiceCategory = $this->system->createOrUpdateServiceCategory($request->input());
+
+		if ($createServiceCategory) {
+            $jsonResult->statusCode = 1;
+            $jsonResult->statusMsg = "成功";
+        }else{
+            $jsonResult->statusCode = 0;
+            $jsonResult->statusMsg = "失败";
+        }
+
+        return response($jsonResult->toJson());
+	}
+
+	public function delServiceCategory(Request $request)
+	{
+		$jsonResult = new MessageResult();
+
+        $delServiceCategory = $this->system->delServiceCategory($request->input('serviceId'));
+
+        if ($delServiceCategory) {
+            $jsonResult->statusCode = 1;
+            $jsonResult->statusMsg = "成功";
+        }else{
+            $jsonResult->statusCode = 0;
+            $jsonResult->statusMsg = "失败";
+        }
+
+        return response($jsonResult->toJson());
+	}
+
+
+
+
+
+
+	public function serviceItems()
+	{
+		$serviceItemsList = $this->system->getServiceItemsList();
+		return view('Admin.System.serviceItemsPage')->with('serviceItemsList',$serviceItemsList);
+	}
+
 
 
 
