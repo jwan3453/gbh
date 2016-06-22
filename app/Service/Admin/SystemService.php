@@ -4,6 +4,12 @@ namespace App\Service\Admin;
 
 use App\Tool\MessageResult;
 use App\Models\Slide;
+use App\Models\CreditCard;
+use App\Models\AdminUser;
+use App\Models\ServiceCategory;
+use App\Models\ExtraService;
+
+use Session;
 
 
 /**
@@ -91,6 +97,104 @@ class SystemService
    {
       return Slide::where('id' , $slideId)->delete();
    }
+
+   public function createOrUpdateCreditCard($dataArr)
+   {
+      $adminId = Session::get('adminid');
+
+      $creditName = $dataArr['creditName'];
+      $creditType = $dataArr['creditType'];
+
+      $EditOrAdd = $dataArr['EditOrAdd'];
+      $creditId = $dataArr['creditId'];
+
+      if ($EditOrAdd == 'edit') {
+         $isUpdateOrAdd = CreditCard::where('id',$creditId)->update(['credit_name'=>$creditName,'credit_type'=>$creditType,'admin_id'=>$adminId]);
+      }else if ($EditOrAdd == 'add') {
+         $isUpdateOrAdd = CreditCard::insert([
+            'credit_name'=>$creditName,'credit_type'=>$creditType,'admin_id'=>$adminId
+         ]);
+      }
+
+      if ($isUpdateOrAdd) {
+         return true;
+      }
+      else{
+         return false;
+      }
+   }
+
+   public function getCreditCardList($credit_type)
+   {
+      $list = CreditCard::where('credit_type',$credit_type)->get();
+      foreach ($list as $item) {
+         if ($item->admin_id != 0) {
+            $item->admin = AdminUser::where('id',$item->admin_id)->select('username')->first()->username;
+         }
+      }
+      return $list;
+   }
+
+   public function delCredit($creditId)
+   {
+      return CreditCard::where('id' , $creditId)->delete();
+   }
+
+   public function createOrUpdateServiceCategory($dataArr)
+   {
+      $adminId = Session::get('adminid');
+
+      $serviceName = $dataArr['serviceName'];
+      $serviceType = $dataArr['serviceType'];
+      $serviceNameEg = $dataArr['serviceNameEg'];
+
+      $EditOrAdd = $dataArr['EditOrAdd'];
+      $serviceId = $dataArr['serviceId'];
+
+      if ($EditOrAdd == 'edit') {
+         $isUpdateOrAdd = ServiceCategory::where('id',$serviceId)->update(['service_name'=>$serviceName,'service_name_eg'=>$serviceNameEg,'service_type'=>$serviceType,'admin_id'=>$adminId]);
+      }else if ($EditOrAdd == 'add') {
+         $isUpdateOrAdd = ServiceCategory::insert([
+            'service_name'=>$serviceName,'service_name_eg'=>$serviceNameEg,'service_type'=>$serviceType,'admin_id'=>$adminId
+         ]);
+      }
+
+      if ($isUpdateOrAdd) {
+         return true;
+      }
+      else{
+         return false;
+      }
+   }
+
+   public function getServiceCategoryList()
+   {
+      $list = ServiceCategory::all();
+      foreach ($list as $item) {
+         if ($item->admin_id != 0) {
+            $item->admin = AdminUser::where('id',$item->admin_id)->select('username')->first()->username;
+         }
+      }
+      return $list;
+   }
+
+   public function delServiceCategory($serviceId)
+   {
+      return ServiceCategory::where('id' , $serviceId)->delete();
+   }
+
+   public function getServiceItemsList()
+   {
+      $list = ServiceCategory::orderBy('service_type','ASC')->get();
+      foreach ($list as $item) {
+         $itemlist = ExtraService::where('service_type',$item->service_type)->get();
+         if ($itemlist == '') {
+            $itemlist = "0";
+         }
+      }
+      return $list;
+   }
+
 }
 
 

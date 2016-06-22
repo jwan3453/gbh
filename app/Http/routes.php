@@ -164,10 +164,24 @@ Route::group(['prefix' => '/admin/', 'middleware' => 'App\Http\Middleware\AdminA
 
     //--------系统设置
     Route::group(['prefix' => 'system/'], function() {
+        //-------轮播图设置---
         Route::get('slideConfigure','Admin\System\SystemController@slideConfigure');
         Route::post('uploadImg','Admin\System\SystemController@uploadImg');
         Route::post('createSlide','Admin\System\SystemController@createSlide');
         Route::post('delSlide','Admin\System\SystemController@delSlide');
+
+        //--------信用卡、银行卡管理---
+        Route::get('creditCardManage','Admin\System\SystemController@creditCardManage');
+        Route::post('createCreditCard','Admin\System\SystemController@createCreditCard');
+        Route::post('delCredit','Admin\System\SystemController@delCredit');
+
+        //--------酒店服务项目------
+        Route::get('serviceItems','Admin\System\SystemController@serviceItems');
+
+
+        Route::get('serviceSetting','Admin\System\SystemController@serviceSetting');
+        Route::post('createServiceCategory','Admin\System\SystemController@createServiceCategory');
+        Route::post('delServiceCategory','Admin\System\SystemController@delServiceCategory');
     });
 
     //--------订单处理
@@ -184,6 +198,9 @@ Route::group(['prefix' => '/admin/', 'middleware' => 'App\Http\Middleware\AdminA
 Route::get('/admin/Login','Admin\homeController@login');
 
 Route::post('/admin/Sign','Admin\homeController@toSign');
+
+Route::get('/admin/Register','Admin\homeController@Register');
+Route::post('/admin/toRegister','Admin\homeController@toRegister');
 
 Route::post('/upload/image','Common\CommonController@uploadImage');
 

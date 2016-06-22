@@ -74,6 +74,28 @@ class HomeController extends Controller
         return view('Admin.Error.NotPermission');
     }
 
+    public function Register()
+    {
+        return view('Admin.Sign.Register');
+    }
+
+    public function toRegister(Request $request)
+    {
+        $resultjson = new MessageResult();
+        
+        $adminSuccess = $this->adminUser->toRegister($request->input());
+
+        if ($adminSuccess) {
+            $resultjson->status = 1;
+            $resultjson->Msg = "验证成功！";
+        }else{
+            $resultjson->status = 0;
+            $resultjson->Msg = "验证失败！";
+        }
+
+        return response($resultjson->toJson());
+    }
+
     /**
      * Show the form for creating a new resource.
      *

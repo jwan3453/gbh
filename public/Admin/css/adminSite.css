@@ -2370,3 +2370,38 @@ a{
 }
 
 /*******************end********************/
+
+/***********************系统设置**********/
+
+.display-none{
+	display: none;
+}
+
+.drop-item-icon{
+	width: 90px;
+	float: right;
+	cursor: pointer;
+}
+
+.drop-item-icon span{
+	margin-right: 15px;
+}
+
+.height-20{
+	height: 20px;
+}
+
+.width-80{
+	width: 80px;
+}
+
+.text-align-center{
+	text-align: center;
+}
+
+.empty-data{
+	font-size: 14px;
+	color: #a0a0a0;
+}
+
+/****************end******************/
