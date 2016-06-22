@@ -76,6 +76,8 @@
 </body>
 
     <script type="text/javascript">
+
+    host = window.location.host;
     
     function ToSubmit() {
         console.log($('#loginForm').serialize());
@@ -92,7 +94,7 @@
 
                 if (data.status == 1) {
                     $("#msg").html(data.Msg);
-                    location.href = "http://localhost/admin/AdminCenter";
+                    location.href = "http://"+host+"/admin/AdminCenter";
                 }else{
                     $("#msg").html(data.Msg);
                 }
