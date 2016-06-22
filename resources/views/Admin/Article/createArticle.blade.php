@@ -19,7 +19,7 @@
 
             @include('Admin.Article.editorForm')
 
-        </form>A
+        </form>
 
 
 
