@@ -27,6 +27,7 @@ class CreateArticleTable extends Migration
             $table->string('meta_description');
             $table->boolean('is_draft');
             $table->integer('view_count');
+            $table->integer('praise');
             $table->timestamp('published_at')->index();
             $table->timestamps();
 
