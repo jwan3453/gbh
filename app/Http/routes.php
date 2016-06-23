@@ -177,8 +177,10 @@ Route::group(['prefix' => '/admin/', 'middleware' => 'App\Http\Middleware\AdminA
 
         //--------酒店服务项目------
         Route::get('serviceItems','Admin\System\SystemController@serviceItems');
+        Route::post('createServiceItem','Admin\System\SystemController@createServiceItem');
+        Route::post('delitem','Admin\System\SystemController@delitem');
 
-
+        //--------酒店服务分类-------
         Route::get('serviceSetting','Admin\System\SystemController@serviceSetting');
         Route::post('createServiceCategory','Admin\System\SystemController@createServiceCategory');
         Route::post('delServiceCategory','Admin\System\SystemController@delServiceCategory');

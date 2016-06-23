@@ -41,8 +41,10 @@
 
 
         <div class="foot-box">
+
             <span class="up">全球精品酒店 版权所有 2016-2028 保留所有权利</span>
             <span class="down">Copyright 2016-2028 Opulun.com All right reserved</span>
+            <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1259646848'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1259646848%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
         </div>
 
 </body>
