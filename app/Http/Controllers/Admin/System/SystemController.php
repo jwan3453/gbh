@@ -9,6 +9,8 @@ use App\Http\Controllers\Controller;
 
 use App\Service\Admin\SystemService;
 
+use Session;
+
 use App\Tool\MessageResult;
 
 /**
@@ -23,6 +25,7 @@ class SystemController extends Controller
 	}
 
 
+	//--------------轮播图管理----------
 	public function slideConfigure()
 	{
 		$slideList = $this->system->getSlideList();
@@ -70,6 +73,8 @@ class SystemController extends Controller
         return response($jsonResult->toJson());
 	}
 
+
+	//----------------银行卡、信用卡管理----------------
 	public function creditCardManage()
 	{
 		$InternalList = $this->system->getCreditCardList(1);
@@ -112,6 +117,7 @@ class SystemController extends Controller
 	}
 
 
+	//-----------------服务分裂管理----------------
 	public function serviceSetting()
 	{
 		$serviceCategorylist = $this->system->getServiceCategoryList();
@@ -153,15 +159,49 @@ class SystemController extends Controller
 	}
 
 
-
-
-
-
+	//-----------------酒店服务管理---------------
 	public function serviceItems()
 	{
 		$serviceItemsList = $this->system->getServiceItemsList();
 		return view('Admin.System.serviceItemsPage')->with('serviceItemsList',$serviceItemsList);
 	}
+
+	public function createServiceItem(Request $request)
+    {
+        $jsonResult = new MessageResult();
+
+		$createServiceItem = $this->system->createOrUpdateServiceItem($request->input());
+
+		if ($createServiceItem) {
+            $jsonResult->statusCode = 1;
+            $jsonResult->statusMsg = "成功";
+            $jsonResult->extra_name = $request->input("itemName");
+            $jsonResult->service_type = $request->input("serviceType");
+            $jsonResult->admin = Session::get('adminusername');
+        }else{
+            $jsonResult->statusCode = 0;
+            $jsonResult->statusMsg = "失败";
+        }
+
+        return response($jsonResult->toJson());
+    }
+
+    public function delitem(Request $request)
+    {
+    	$jsonResult = new MessageResult();
+
+        $delitem = $this->system->delitem($request->input('serviceId'));
+
+        if ($delitem) {
+            $jsonResult->statusCode = 1;
+            $jsonResult->statusMsg = "成功";
+        }else{
+            $jsonResult->statusCode = 0;
+            $jsonResult->statusMsg = "失败";
+        }
+
+        return response($jsonResult->toJson());
+    }
 
 
 

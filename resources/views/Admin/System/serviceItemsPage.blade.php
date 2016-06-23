@@ -48,31 +48,42 @@
 			<div class="classification-colmun width-120">操作管理员</div>
 			<div class="classification-colmun width-200">操作</div>
 		</div>
-		@if($serviceItem->itemlist == 0)
-			<div class="classification-list-row text-align-center empty-data">暂无数据...</div>
-		@else
-			<div class="classification-list-row">
+		@if ( count($serviceItem->itemlist) == 0 )
+	        <div class="classification-list-row text-align-center empty-data">暂无数据...</div>
+	    @else
+	    	@foreach($serviceItem->itemlist as $item)
+	        <div class="classification-list-row">
 				<div class="classification-colmun width-50">
-					1
+					{{$item->id}}
 				</div>
 				<div class="classification-colmun width-200">
-					2
-				</div>
-				<div class="classification-colmun width-120">分类标识</div>
-				<div class="classification-colmun width-200">
-					3
-				</div>
-				<div class="classification-colmun width-200">
-					4
+					{{$item->extra_name}}
 				</div>
 				<div class="classification-colmun width-120">
-					5
+					{{$item->service_type}}
 				</div>
 				<div class="classification-colmun width-200">
-					
+					{{$item->created_at}}
+				</div>
+				<div class="classification-colmun width-200">
+					{{$item->updated_at}}
+				</div>
+				<div class="classification-colmun width-120">
+					{{$item->admin}}
+				</div>
+				<div class="classification-colmun width-200">
+					<img src="/Admin/icon/menu-edit.png" class="classification-edit" onclick="edititem({{$item->id}},'{{$item->extra_name}}','{{$item->service_type}}')" />
+					<img src="/Admin/icon/menu-delete.png" onclick="delitem({{$item->id}},'{{$item->service_name}}',this)" />
 				</div>
 			</div>
-		@endif
+			@endforeach
+
+	    @endif
+			
+			
+		
+				
+		
 	</div>
 </div>
 
@@ -128,16 +139,70 @@
 
 	function addServiceItems(type) {
 		$("#EditOrAdd").val('add');
+		$("#serviceType").val(type);
 		$('.edit-add-box').modal({
 			closable  : true,
 	    	onHide : function() {
-      			$("#serviceName").val("");
-      			$("#serviceNameEg").val("");
-      			$("#serviceType").val("");
+      			$("#itemName").val("");
       			$("#EditOrAdd").val("add");
       			$("#serviceId").val("0");
     		}
   		}).modal('show');
+	}
+
+	function submitForm() {
+		$.ajax({
+			type: 'POST',
+            url: '/admin/system/createServiceItem',
+            data: $("#edit-add-form").serialize(),
+            dataType: 'json',
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+            },
+            success: function(data){
+            	console.log(data);
+            	alert(data.statusMsg);
+            	location.reload();
+            }
+		})
+	}
+
+	function edititem(id,name,type) {
+		$("#EditOrAdd").val('edit');
+		$("#serviceType").val(type);
+		$("#itemName").val(name);
+		$("#serviceId").val(id);
+		$('.edit-add-box').modal({
+			closable  : true,
+	    	onHide : function() {
+      			$("#itemName").val("");
+      			$("#EditOrAdd").val("add");
+      			$("#serviceId").val("0");
+    		}
+  		}).modal('show');
+	}
+
+	function delitem(id,name,_this) {
+		if (confirm("确定删除  "+name+"  ? ")) {
+			$.ajax({
+				type: 'POST',
+	            url: '/admin/system/delitem',
+	            data: {serviceId : id},
+	            dataType: 'json',
+	            headers: {
+	                'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+	            },
+	            success : function(data){
+	            	if (data.statusCode == 0) {
+	            		alert('删除失败');
+	            	}else{
+	            		$(_this).parent().parent().remove();
+	            		alert("删除成功");
+	            	}
+	            }
+			})
+			
+		}
 	}
 	
 </script>

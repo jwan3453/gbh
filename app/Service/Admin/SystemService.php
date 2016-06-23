@@ -187,12 +187,46 @@ class SystemService
    {
       $list = ServiceCategory::orderBy('service_type','ASC')->get();
       foreach ($list as $item) {
-         $itemlist = ExtraService::where('service_type',$item->service_type)->get();
-         if ($itemlist == '') {
-            $itemlist = "0";
+         $item->itemlist = ExtraService::where('service_type',$item->service_type)->get();
+
+         foreach ($item->itemlist as $smallItem) {
+            $smallItem->admin = AdminUser::where('id',$smallItem->admin_id)->select('username')->first()->username;
          }
+         
       }
+
       return $list;
+   }
+
+   public function createOrUpdateServiceItem($dataArr)
+   {
+      $adminId = Session::get('adminid');
+
+      $itemName = $dataArr['itemName'];
+      $serviceType = $dataArr['serviceType'];
+
+      $EditOrAdd = $dataArr['EditOrAdd'];
+      $serviceId = $dataArr['serviceId'];
+
+      if ($EditOrAdd == 'edit') {
+         $isUpdateOrAdd = ExtraService::where('id',$serviceId)->update(['extra_name'=>$itemName,'service_type'=>$serviceType,'admin_id'=>$adminId]);
+      }else if ($EditOrAdd == 'add') {
+         $isUpdateOrAdd = ExtraService::insert([
+            'extra_name'=>$itemName,'service_type'=>$serviceType,'admin_id'=>$adminId
+         ]);
+      }
+
+      if ($isUpdateOrAdd) {
+         return true;
+      }
+      else{
+         return false;
+      }
+   }
+
+   public function delitem($serviceId)
+   {
+      return ExtraService::where('id' , $serviceId)->delete();
    }
 
 }
