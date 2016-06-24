@@ -1598,34 +1598,7 @@ a{
 	margin-right: 6px;
 }
 
-.surrounding-environment{
-	width: 100%;
-	height: 70px;
-	line-height: 40px;
-	margin-top: 30px;
-}
 
-.surrounding-environment span{
-	font-size: 14px;
-	margin-left: 10px;
-	color: #787878;
-	float: left;
-}
-
-.scenic-spot{
-	width: 116px;
-	height: 36px;
-	margin-left: 10px;
-	border-radius: 2px;
-	border: 1px solid #a0a0a0;
-	float: left;
-}
-
-.surrounding-environment .manual-locate-btn{
-	float: left;
-	margin-left: 20px;
-	margin-top: -1px;
-}
 
 .hotel-policy-box{
 	width: 1140px;
@@ -1641,6 +1614,40 @@ a{
 	color: #505050;
 	border-bottom: 1px dashed #a0a0a0;
 	margin-bottom: 20px;
+	text-align: left;
+}
+
+.surrounding-environment{
+	width: 100%;
+	min-height: 70px;
+	margin-top: 30px;
+	overflow: hidden;
+}
+
+.surrounding-environment span{
+	font-size: 16px;
+	color: #505050;
+	margin-left: 10px;
+	display: block;
+	float: left;
+}
+
+.add-surrounding-btn{
+	width: 120px;
+	height: 40px;
+	line-height: 40px;
+	border: 1px solid #639ae3;
+	float: left;
+	margin-left: 20px;
+	text-align: center;
+	font-size: 14px;
+	color: #639ae3;
+	cursor: pointer;
+}
+
+.add-surrounding-btn img{
+	vertical-align: middle;
+	margin-right: 10px;
 }
 
 .hotel-policy-row{
@@ -1658,9 +1665,11 @@ a{
 	float: left;
 }
 
-.hotel-policy-input{
-	width: 120px;
-	height: 40px;
+.hotel-policy-box .hotel-policy-row .hotel-policy-input{
+	width: 120px !important;
+	height: 13px !important;
+	min-height: 0 !important;
+	min-width: 0 !important;
 	line-height: 40px;
 	margin-left: 10px;
 	border-radius: 2px;
@@ -1702,6 +1711,33 @@ a{
 	max-width: 600px;
 	/*margin-left: 10px;*/
 }
+
+
+.select-box{
+	width: 120px;
+	min-height: 200px;
+	overflow-y:scroll;
+	z-index: 1000001;
+	background-color: #000000;
+	position: absolute;
+	filter:alpha(opacity=80); /*IE滤镜，透明度50%*/
+	-moz-opacity:0.8; /*Firefox私有，透明度50%*/
+	opacity:0.8;/*其他，透明度50%*/
+}
+
+.select-item{
+	font-size: 14px;
+	color: #f8f8f8;
+	display: block;
+	height: 30px;
+	width: 100%;
+	text-align: center;
+	line-height: 30px;
+	cursor: pointer;
+}
+
+
+
 /*************end******************/
 
 
@@ -2232,6 +2268,11 @@ a{
 	font-size: 14px;
 }
 
+.item-block .pandding{
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
 .click-item-block{
 	border: 1px solid #639ae3;
 	background-color: #639ae3;
@@ -2239,6 +2280,21 @@ a{
 
 .click-item-block span{
 	color: #f8f8f8;
+}
+
+.unclick-item-block{
+	border: 1px solid #C0C0C0;
+}
+
+.unclick-item-block span{
+	color: #C0C0C0;
+}
+
+.remove-contact-row{
+	float: right;
+	margin-top: -52px;
+	margin-right: 40px;
+	cursor: pointer;
 }
 
 .radio-item-block{
@@ -2260,7 +2316,7 @@ a{
 	padding-right: 3px;
 	position: absolute;
 	top: -20px;
-	left: -240px;
+	left: 10px;
 	font-size: 14px;
 	height: 20px;
 }

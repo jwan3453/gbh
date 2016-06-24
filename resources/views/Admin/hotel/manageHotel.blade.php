@@ -6,7 +6,7 @@
 
     <div>
     <div class="hotel-search-bar">
-        <div class="add-hotel-btn f-left">
+        <div class="add-hotel-btn f-left" onclick="location.href='/admin/manageHotel/create'">
            <i class="icon plus "></i> 添加酒店
         </div>
         <input type="text"  placeholder="请输入你想搜索的酒店"/>
