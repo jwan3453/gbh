@@ -25,13 +25,13 @@
 		</div>
 
 		<div class="item-box">
-			@for ($i = 0; $i < 30; $i++)
+			@foreach ($ExtraServiceList[1] as $ectraService)
 			<div class="item-block" id="serviceItems" onclick="serviceItems(this)">
-				<!-- <input type="hidden" name="serviceItems"> -->
-				<span>接机服务</span>
+				<input type="checkbox" class="display-none" value="{{$ectraService->id}}" name="serviceItems[]">
+				<span class="pandding">{{$ectraService->extra_name}}</span>
 			</div>
 
-			@endfor
+			@endforeach
 		</div>
 	</div>
 
@@ -41,13 +41,13 @@
 		</div>
 
 		<div class="item-box">
-			@for ($i = 0; $i < 3; $i++)
+			@foreach ($ExtraServiceList[2] as $ectraService)
 			<div class="item-block" id="serviceItems" onclick="serviceItems(this)">
-				<!-- <input type="hidden" name="serviceItems"> -->
-				<span>可携带宠物</span>
+				<input type="checkbox" class="display-none" value="{{$ectraService->id}}" name="serviceItems[]">
+				<span class="pandding">{{$ectraService->extra_name}}</span>
 			</div>
 
-			@endfor
+			@endforeach
 		</div>
 
 	</div>
@@ -58,13 +58,13 @@
 		</div>
 
 		<div class="item-box">
-			@for ($i = 0; $i < 30; $i++)
+			@foreach ($ExtraServiceList[3] as $ectraService)
 			<div class="item-block" id="serviceItems" onclick="serviceItems(this)">
-				<!-- <input type="hidden" name="serviceItems"> -->
-				<span>通用设施</span>
+				<input type="checkbox" class="display-none" value="{{$ectraService->id}}" name="serviceItems[]">
+				<span class="pandding">{{$ectraService->extra_name}}</span>
 			</div>
 
-			@endfor
+			@endforeach
 		</div>
 
 	</div>
@@ -75,13 +75,13 @@
 		</div>
 
 		<div class="item-box">
-			@for ($i = 0; $i < 30; $i++)
+			@foreach ($ExtraServiceList[4] as $ectraService)
 			<div class="item-block" id="serviceItems" onclick="serviceItems(this)">
-				<!-- <input type="hidden" name="serviceItems"> -->
-				<span>活动设施</span>
+				<input type="checkbox" class="display-none" value="{{$ectraService->id}}" name="serviceItems[]">
+				<span class="pandding">{{$ectraService->extra_name}}</span>
 			</div>
 
-			@endfor
+			@endforeach
 		</div>
 
 	</div>
@@ -92,9 +92,9 @@
 		</div>
 
 		<div class="item-box">
-			@for ($i = 0; $i < 30; $i++)
+			@foreach ($ExtraServiceList[5] as $ectraService)
 			<div class="radio-item-block">
-				<span class="radio-item-title">便利设施</span>
+				<span class="radio-item-title">{{$ectraService->extra_name}}</span>
 
 				<input type="radio" class="radio-item-input" > 
 					<span class="radio-item-span">全部</span>
@@ -107,7 +107,7 @@
 
 			</div>
 
-			@endfor
+			@endforeach
 		</div>
 
 	</div>
@@ -118,9 +118,9 @@
 		</div>
 
 		<div class="item-box">
-			@for ($i = 0; $i < 30; $i++)
+			@foreach ($ExtraServiceList[6] as $ectraService)
 			<div class="radio-item-block">
-				<span class="radio-item-title">媒体/科技</span>
+				<span class="radio-item-title">{{$ectraService->extra_name}}</span>
 
 				<input type="radio" class="radio-item-input" > 
 					<span class="radio-item-span">全部</span>
@@ -133,7 +133,7 @@
 
 			</div>
 
-			@endfor
+			@endforeach
 		</div>
 
 	</div>
@@ -143,9 +143,9 @@
 			<span>客房设施-食品和饮品</span>
 		</div>
 		<div class="item-box">
-			@for ($i = 0; $i < 30; $i++)
+			@foreach ($ExtraServiceList[7] as $ectraService)
 			<div class="radio-item-block">
-				<span class="radio-item-title">食品和饮品</span>
+				<span class="radio-item-title">{{$ectraService->extra_name}}</span>
 
 				<input type="radio" class="radio-item-input" > 
 					<span class="radio-item-span">全部</span>
@@ -156,7 +156,7 @@
 				<input type="radio" class="radio-item-input" > 
 					<span class="radio-item-span">无</span>
 			</div>
-			@endfor
+			@endforeach
 		</div>
 	</div>
 
@@ -165,9 +165,9 @@
 			<span>客房设施-浴室</span>
 		</div>
 		<div class="item-box">
-			@for ($i = 0; $i < 30; $i++)
+			@foreach ($ExtraServiceList[8] as $ectraService)
 			<div class="radio-item-block">
-				<span class="radio-item-title">浴室</span>
+				<span class="radio-item-title">{{$ectraService->extra_name}}</span>
 
 				<input type="radio" class="radio-item-input" > 
 					<span class="radio-item-span">全部</span>
@@ -178,7 +178,7 @@
 				<input type="radio" class="radio-item-input" > 
 					<span class="radio-item-span">无</span>
 			</div>
-			@endfor
+			@endforeach
 		</div>
 	</div>
 
@@ -187,9 +187,9 @@
 			<span>客房设施-室外/景观</span>
 		</div>
 		<div class="item-box">
-			@for ($i = 0; $i < 30; $i++)
+			@foreach ($ExtraServiceList[9] as $ectraService)
 			<div class="radio-item-block">
-				<span class="radio-item-title">室外/景观</span>
+				<span class="radio-item-title">{{$ectraService->extra_name}}</span>
 
 				<input type="radio" class="radio-item-input" > 
 					<span class="radio-item-span">全部</span>
@@ -200,7 +200,7 @@
 				<input type="radio" class="radio-item-input" > 
 					<span class="radio-item-span">无</span>
 			</div>
-			@endfor
+			@endforeach
 		</div>
 	</div>
 
@@ -209,9 +209,9 @@
 			<span>客房设施-服务及其他</span>
 		</div>
 		<div class="item-box">
-			@for ($i = 0; $i < 30; $i++)
+			@foreach ($ExtraServiceList[10] as $ectraService)
 			<div class="radio-item-block">
-				<span class="radio-item-title">服务及其他</span>
+				<span class="radio-item-title">{{$ectraService->extra_name}}</span>
 
 				<input type="radio" class="radio-item-input" > 
 					<span class="radio-item-span">全部</span>
@@ -222,7 +222,7 @@
 				<input type="radio" class="radio-item-input" > 
 					<span class="radio-item-span">无</span>
 			</div>
-			@endfor
+			@endforeach
 		</div>
 	</div>
 
@@ -241,8 +241,17 @@
 
 	function serviceItems(_this) {
 		$(_this).addClass("click-item-block");
+		$(_this).children("input").attr("checked",'true');
+
+		$(_this).attr('onclick','unserviceItems(this)');
 	}
-	
+
+	function unserviceItems(_this) {
+		$(_this).removeClass("click-item-block");
+		$(_this).children("input").removeAttr("checked");
+
+		$(_this).attr('onclick','serviceItems(this)');
+	}
 </script>
 
 @stop

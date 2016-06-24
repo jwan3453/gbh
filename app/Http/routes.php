@@ -128,6 +128,10 @@ Route::group(['prefix' => '/admin/', 'middleware' => 'App\Http\Middleware\AdminA
 
         Route::get('create/contactAndPayment','Admin\Hotel\HotelController@contactAndPayment');
 
+        Route::post('insertPolicy','Admin\Hotel\HotelController@insertPolicy');
+
+        Route::post('insertContactPayment','Admin\Hotel\HotelController@insertContactPayment');
+
     });
 
     //----------文章管理

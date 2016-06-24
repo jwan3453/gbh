@@ -62,24 +62,66 @@ class HotelController extends Controller
     public function storeHotel(Request $request)
     {
         //
-        $this->hotelService->createHotel($request);
+        $isCreate =  $this->hotelService->createHotel($request);
+
+        if ($isCreate) {
+            $province = $this->commonService->getAdressInfo('province',$request->input('provinceCode'));
+            $city = $this->commonService->getAdressInfo('city',$request->input('cityCode'));
+            $district = $this->commonService->getAdressInfo('district',$request->input('districtCode'));
+            $detail = $request->input('hotelAddress');
+
+            $addressInfo = $province.$city.$district.$detail;
+
+            return view('Admin.Hotel.geoLocation')->with('address',$addressInfo)->with('hotelId',$isCreate);
+        }
+        else{
+            dd("错误");
+        }
 
     }
 
     public function geolocation()
     {
         $address = "福建省厦门市思明区凡悦咖啡厅";
-        return view('Admin.Hotel.geoLocation')->with('address',$address);
+        return view('Admin.Hotel.geoLocation')->with('address',$address)->with('hotelId',1);
+    }
+
+    public function insertPolicy(Request $request)
+    {
+        $isCreate = $this->hotelService->insertPolicy($request->input());
+
+        if ($isCreate) {
+
+            return view('Admin.Hotel.geoLocation')->with('hotelId',$isCreate);
+        }
+        else{
+            dd("错误");
+        }
     }
 
     public function facility()
     {
-        return view('Admin.Hotel.facility');
+        $ExtraServiceList = $this->hotelService->getExtraService();
+        return view('Admin.Hotel.facility')->with('ExtraServiceList',$ExtraServiceList);
     }
 
     public function contactAndPayment()
     {
-        return view('Admin.Hotel.contactAndPayment');
+        $InternalList = $this->hotelService->getCreditList(1);
+        $AbroadList = $this->hotelService->getCreditList(2);
+        return view('Admin.Hotel.contactAndPayment')->with('InternalList',$InternalList)->with('AbroadList',$AbroadList)->with('hotelId',1);
+    }
+
+    public function insertContactPayment(Request $request)
+    {
+        $isCreate = $this->hotelService->insertContactPayment($request->input());
+        if ($isCreate) {
+
+            return view('Admin.Hotel.facility')->with('hotelId',$isCreate);
+        }
+        else{
+            dd("错误");
+        }
     }
 
     /**
