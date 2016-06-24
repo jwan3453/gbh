@@ -17,10 +17,10 @@ class CreateRoomTypeTable extends Migration
         Schema::create('room_type', function (Blueprint $table) {
             $table->increments('id');
             $table->float('rack_rate');//门市价
-            $table->integer('check_number');//可住人数
-            $table->integer('check_children');//可携带儿童人数
+            $table->integer('numb_of_people');//可住人数
+            $table->integer('numb_of_children');//可携带儿童人数
             $table->integer('room_num');//房间数量
-            $table->float('size');//房间面积
+            $table->float('acreage');//房间面积
             $table->integer('floor');//楼层
             $table->integer('has_window');//是否有窗户
             $table->integer('cable_broadband');// 是否有 有线宽带

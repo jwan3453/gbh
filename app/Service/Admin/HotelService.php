@@ -151,6 +151,12 @@ class HotelService {
         return $extraServiceList;
     }
 
+    public function createNewRoom(Request $request)
+    {
+        
+
+    }
+
 
 }
 

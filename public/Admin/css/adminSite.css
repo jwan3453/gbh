@@ -228,6 +228,11 @@ a{
 .auto-margin{
 	margin:0 auto;
 }
+.admin-content{
+	width:1120px;
+	background-color: #f8f8f8;
+	padding:20px 10px;
+}
 /*****************公用***end*********************/
 
 
@@ -1340,10 +1345,74 @@ a{
 	margin-bottom: 20px;
 
 }
+.detail-form .header{
+
+	width:100%;
+	font-size:18px;
+	font-weight: 600;
+}
+
+.small-input-box {
+	position: relative;
+	display: inline-block;
+	width:130px;
+
+	margin:0 0 0 20px;
+}
+.small-input-box .unit{
+
+	height:30px;
+	font-size: 16px;
+	position: absolute;
+	display: inline-block;
+	line-height: 33px;
+	right:6px;
+	background: #f8f8f8;
+	text-align: center;
+	top:1px;
+
+}
+.small-input-box label{
+	font-size:14px;
+	display: inline-block;
+	width:40px;
+}
+.small-input-box input{
+
+	height:33px;
+	width:80px;
+	font-size:12px;
+	background-color: #f8f8f8;
+	border:1px solid #505050;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.small-input-box span{
+	font-size:12px;
+	display: inline-block;
+	color: #cfcfcf;
+}
+
+
 .short-input-box {
+	position: relative;
 	float:left;
-	margin:15px 30px 10px 0 ;
-	width:400px;
+	margin:10px 30px 10px 0 ;
+	width:350px;
+	font-size:14px;
+}
+.short-input-box .unit{
+
+	height:36px;
+	font-size: 16px;
+	position: absolute;
+	display: inline-block;
+	line-height: 40px;
+	right:125px;
+	background: #f8f8f8;
+	text-align: center;
+	top:1px;
 }
 .short-input-box label{
 	font-size:14px;
@@ -1364,22 +1433,28 @@ a{
 	color: #cfcfcf;
 }
 
+
+
+
 .long-input-box {
 	float:left;
 	margin:15px 30px 10px 0 ;
 	width:800px;
+	font-size:14px;
 }
 .long-input-box label{
 	font-size:14px;
 	display: inline-block;
 	width:70px;
+	vertical-align: top;
+	margin-top:10px;
 }
 .long-input-box input{
 	height:36px;
 	width:360px;
-	font-size:12px;
 	background-color: #f8f8f8;
 	border:1px solid #505050;
+
 
 }
 .long-input-box textarea{
@@ -1395,6 +1470,26 @@ a{
 	color: #cfcfcf;
 	vertical-align: middle;
 }
+
+.long-input-box .radio-selection{
+	display: inline-block;
+
+}
+
+.long-input-box .radio-group{
+	display: block;
+	margin:10px 0 ;
+}
+
+.long-input-box input[type=radio]{
+	width:15px;
+	height:15px;
+	display: inline-block;
+
+}
+
+
+
 
 .next-step-btn{
 	width:200px;
@@ -1917,6 +2012,7 @@ a{
 	cursor: pointer;
 }
 .upload-article-image img{
+
 	width:150px;
 	height:150px;
 	display: none;
@@ -1928,7 +2024,7 @@ a{
 
 }
 .upload-article-image-show img{
-
+	margin-left:50px;
 	width:147px;
 	height:147px;
 	border:none;
@@ -2461,3 +2557,114 @@ a{
 }
 
 /****************end******************/
+
+
+
+/**********酒店信息汇总***************/
+
+.info-menu{
+	height:55px;
+	width:500px;
+
+}
+
+
+.info-menu span{
+	display: inline-block;
+	width: 150px ;
+	text-align: center;
+	font-size:14px;
+	height:40px;
+	line-height: 40px;
+	float: left;
+	border:1px solid #505050;
+	color:#505050;
+	margin-right:10px;
+}
+.info-menu span:hover{
+	cursor: pointer;
+	background: #9bbebe;
+	color:#f8f8f8;
+	border:1px solid #9bbebe;
+	transition:background-color 0.6s ease;
+}
+
+.info-content{
+
+	margin:10px 0;
+
+}
+.info-content form{
+	background: #f8f8f8;
+	border-radius: 5px;
+}
+.room-detail-from{
+	display: none;
+}
+
+.bed-type{
+
+	margin:10px 30px 10px 0 ;
+	width:800px;
+
+}
+.bed-type label{
+	font-size: 14px;
+	vertical-align: middle;
+	display: inline-block;
+}
+
+.bed-type .header-label{
+	margin:10px 0;
+	display: inline-block;
+	width:70px;
+	vertical-align: top;
+	margin-top:15px;
+}
+
+.bed-type-list{
+	display: inline-block;
+	vertical-align: middle;
+	overflow: hidden;
+
+
+}
+.bed-item{
+	margin:5px 0;
+	display: block;
+
+}
+.bed-item input[type=checkbox]{
+	height:20px;
+	width:20px;
+	display: inline-block;
+
+	vertical-align: middle;
+}
+
+.bed-item .bedCate{
+	margin-left:10px;
+	height:10px!important;
+	min-height:0!important;
+	min-width:60px!important;
+	border-radius: 0!important;
+	vertical-align: middle!important;
+	display: inline-block;
+}
+.bed-item .bedCate select{
+	z-index: 1001;
+}
+
+.bed-item .add-new-bed{
+	cursor: pointer;
+	color:#cfcfcf;
+}
+
+.bed-item .delete-new-bed{
+	margin-left:10px;
+	display: inline-block;
+	cursor: pointer;
+	color:#cfcfcf;
+}
+
+/***********************************/

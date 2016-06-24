@@ -115,7 +115,11 @@ Route::group(['prefix' => '/admin/', 'middleware' => 'App\Http\Middleware\AdminA
 
     //---------酒店管理
     Route::get('manageHotel','Admin\Hotel\HotelController@index');
+
     Route::group(['prefix' => 'manageHotel/'], function() {
+
+        Route::get('hotelInfo/{hotelId}','Admin\Hotel\HotelController@HotelInfo');
+
         Route::get('create/geolocation','Admin\Hotel\HotelController@geolocation');
 
         Route::post('create','Admin\Hotel\HotelController@storeHotel');
@@ -127,10 +131,12 @@ Route::group(['prefix' => '/admin/', 'middleware' => 'App\Http\Middleware\AdminA
         Route::get('create/facility','Admin\Hotel\HotelController@facility');
 
         Route::get('create/contactAndPayment','Admin\Hotel\HotelController@contactAndPayment');
-
+        
         Route::post('insertPolicy','Admin\Hotel\HotelController@insertPolicy');
 
         Route::post('insertContactPayment','Admin\Hotel\HotelController@insertContactPayment');
+
+        Route::post('/createNewRoom','Admin\Hotel\HotelController@createNewRoom');
 
     });
 

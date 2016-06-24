@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin\Hotel;
 
+use App\Models\BedType;
+use App\Tool\MessageResult;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -48,7 +50,6 @@ class HotelController extends Controller
 
 
         $geoData = $this->commonService->getGeoDetail();
-
         return view('Admin.Hotel.createHotel')->with('geoData',$geoData);
         //
     }
@@ -167,5 +168,27 @@ class HotelController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    //酒店信息回复
+    public function hotelInfo($hotelId){
+
+
+        $bedTypes = BedType::all();
+        return view('Admin.Hotel.hotelInfo')->with('bedTypes', $bedTypes)->with('hotelId',$hotelId);
+    }
+
+    //创建新房型
+    public function createNewRoom(Request $request)
+    {
+            dd($request->all());
+
+
+        $this->hotelService->createNewRoom($request);
+        $jsonResult = new MessageResult();
+        $jsonResult->statusCode = 1;
+        $jsonResult->statusMsg='创建成功';
+
+        return response($jsonResult->toJson());
     }
 }

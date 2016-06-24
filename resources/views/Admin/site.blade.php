@@ -14,6 +14,10 @@
     <link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/icon.css') }}>
     <link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/table.css') }}>
     <script src={{ asset('semantic/transition.js') }}></script>
+
+    <link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/dropdown.css') }}>
+    <script src={{ asset('semantic/dropdown.js') }}></script>
+
     @yield('resources')
 
 </head>
