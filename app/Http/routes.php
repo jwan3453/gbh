@@ -136,7 +136,11 @@ Route::group(['prefix' => '/admin/', 'middleware' => 'App\Http\Middleware\AdminA
 
         Route::post('insertContactPayment','Admin\Hotel\HotelController@insertContactPayment');
 
+        Route::post('insertFacility','Admin\Hotel\HotelController@insertFacility');
+
         Route::post('/createNewRoom','Admin\Hotel\HotelController@createNewRoom');
+
+        Route::get('createHotelError/{errorid}','Admin\Hotel\HotelController@createHotelError');
 
     });
 

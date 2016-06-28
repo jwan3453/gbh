@@ -1290,7 +1290,7 @@ a{
 	height:80px;
 	background: #f8f8f8;
 
-	width:960px;
+	width:980px;
 	padding:15px 80px;
 }
 .h-c-steps .step{
@@ -1327,7 +1327,7 @@ a{
 
 .hotel-info{
 	margin-top:10px;
-	width:960px;
+	width:1140px;
 	background-color: #f8f8f8;
 	overflow: hidden;
 }
@@ -2668,3 +2668,29 @@ a{
 }
 
 /***********************************/
+
+/************新增酒店错误************/
+
+.height-280{
+	height: 280px;
+	line-height: 100px;
+}
+
+.error-tip-box{
+	width: 380px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.error-tip-box label{
+	font-size: 24px;
+	color: #639ae3;
+	display: block;
+}
+
+.error-tip-box a{
+	font-size: 20px;
+	color: #a0a0a0;
+}
+
+/************end************/

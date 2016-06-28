@@ -63,8 +63,8 @@ class HotelController extends Controller
     public function storeHotel(Request $request)
     {
         //
-        $isCreate =  $this->hotelService->createHotel($request);
-
+        // $isCreate =  $this->hotelService->createHotel($request);
+        $isCreate = false;
         if ($isCreate) {
             $province = $this->commonService->getAdressInfo('province',$request->input('provinceCode'));
             $city = $this->commonService->getAdressInfo('city',$request->input('cityCode'));
@@ -103,7 +103,7 @@ class HotelController extends Controller
     public function facility()
     {
         $ExtraServiceList = $this->hotelService->getExtraService();
-        return view('Admin.Hotel.facility')->with('ExtraServiceList',$ExtraServiceList);
+        return view('Admin.Hotel.facility')->with('ExtraServiceList',$ExtraServiceList)->with('hotelId',1);
     }
 
     public function contactAndPayment()
@@ -123,6 +123,16 @@ class HotelController extends Controller
         else{
             dd("错误");
         }
+    }
+
+    public function insertFacility(Request $request)
+    {
+        $isCreate = $this->hotelService->insertFacility($request->input());
+    }
+
+    public function createHotelError($errorId)
+    {
+        return view('Admin.Hotel.createHotelError')->with('errorId',$errorId);
     }
 
     /**

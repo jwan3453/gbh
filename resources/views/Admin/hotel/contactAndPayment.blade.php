@@ -8,12 +8,12 @@
 <div class="h-c-steps">
 	<div class="step s-active ">1</div>
 	<div class="s-line s-l-active "></div>
-	<div class="s-line  s-l-active"></div>
+	<div class="s-line s-l-active"></div>
 	<div class="step s-active">2</div>
-	<div class="s-line  s-l-active"></div>
-	<div class="s-line  s-l-active"></div>
+	<div class="s-line s-l-active"></div>
+	<div class="s-line s-l-active"></div>
 	<div class="step s-active">3</div>
-	<div class="s-line "></div>
+	<div class="s-line s-l-active"></div>
 	<div class="s-line "></div>
 	<div class="step ">4</div>
 </div>
@@ -204,7 +204,22 @@
 
 	$('#nsBtn').click(function(){
 
-        $('#hotelBasicInfo').submit();
+		var isSubmit = false;
+        $("form").find(":text").each(function(i){
+            if ( $(this).val() ) {
+                isSubmit = true;
+            }
+            if ( !$(this).val() ) {
+                alert($(this).prev().html() + "   不能为空");
+                isSubmit = false;
+                return false;
+            }
+
+        })
+        if (isSubmit) {
+            $('#hotelBasicInfo').submit();
+        }
+        // $('#hotelBasicInfo').submit();
 
     })
 

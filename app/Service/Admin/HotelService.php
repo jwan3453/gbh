@@ -147,8 +147,47 @@ class HotelService {
 
         $extraServiceList = $extraServiceList->groupBy('service_type');
 
-        // dd($extraServiceList[1]);
         return $extraServiceList;
+    }
+
+    public function insertFacility($insertData)
+    {
+        $hotelId = $insertData['hotelId'];
+
+        $isSuccess = false;
+
+        $a = '';
+        $serviceItems = $insertData['serviceItems'];
+        for ($i=0; $i < count($serviceItems); $i++) { 
+
+            $a .= $serviceItems[$i];
+            if ($i != count($serviceItems) - 1) {
+                $a .= ",";
+            }
+        }
+
+        unset($insertData['serviceItems']);
+        unset($insertData['_token']);
+        unset($insertData['hotelId']);
+
+        $b = '';
+        $radioCount = count($insertData);
+        $s = 0;
+        foreach ($insertData as $key => $radioData) {
+            $b .= $radioData;
+            if ($s != $radioCount - 1) {
+                $b .= ",";
+            }
+            $s++;
+        }
+
+        $insertFacility = HotelExtra::where('hotel_id',$hotelId)->update(["facilities_checkbox"=>$a,"facilities_radio"=>$b]);
+
+        if ($insertFacility) {
+            $isSuccess = $hotelId;
+        }
+
+        return $isSuccess;
     }
 
     public function createNewRoom(Request $request)

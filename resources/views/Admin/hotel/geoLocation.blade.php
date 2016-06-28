@@ -22,11 +22,11 @@
     <div class="s-line  s-l-active"></div>
     <div class="step s-active">2</div>
     <div class="s-line  s-l-active"></div>
-    <div class="s-line  s-l-active"></div>
-    <div class="step s-active">3</div>
-    <div class="s-line "></div>
-    <div class="s-line "></div>
-    <div class="step ">4</div>
+    <div class="s-line"></div>
+    <div class="step">3</div>
+    <div class="s-line"></div>
+    <div class="s-line"></div>
+    <div class="step">4</div>
 </div>
 <form id="hotelBasicInfo" action='{{url("/admin/manageHotel/insertPolicy")}}' method="Post">
     <input type="hidden" value="{{csrf_token()}}" name="_token"/>
