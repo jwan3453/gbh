@@ -21,6 +21,7 @@ class CreateBedTable extends Migration
             $table->string('type_name',50);
             $table->float('length');
             $table->float('width');
+            $table->integer('num_of_beds');
             $table->timestamps();
         });
     }

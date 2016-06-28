@@ -1,10 +1,13 @@
 <?php
 namespace App\Service\Admin;
 
+use App\Models\BedType;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 
 use App\Models\Hotel;
+Use App\Models\Bed;
+use App\Models\Room;
 use App\Models\Address;
 use App\Models\hotelPolicy;
 use App\Models\CreditCard;
@@ -158,7 +161,7 @@ class HotelService {
 
         $a = '';
         $serviceItems = $insertData['serviceItems'];
-        for ($i=0; $i < count($serviceItems); $i++) { 
+        for ($i = 0; $i < count($serviceItems); $i++) {
 
             $a .= $serviceItems[$i];
             if ($i != count($serviceItems) - 1) {
@@ -181,7 +184,7 @@ class HotelService {
             $s++;
         }
 
-        $insertFacility = HotelExtra::where('hotel_id',$hotelId)->update(["facilities_checkbox"=>$a,"facilities_radio"=>$b]);
+        $insertFacility = HotelExtra::where('hotel_id', $hotelId)->update(["facilities_checkbox" => $a, "facilities_radio" => $b]);
 
         if ($insertFacility) {
             $isSuccess = $hotelId;
@@ -190,13 +193,87 @@ class HotelService {
         return $isSuccess;
     }
 
+    public function getAllBedType(){
+        return BedType::all();
+    }
+
+    public function getRoomList($hotelId){
+        return Room::where('hotel_id',$hotelId)->get();
+    }
+
     public function createNewRoom(Request $request)
     {
-        
+        //创建新房间
+        $newRoom = new Room();
+        $newRoom->hotel_id = $request->input('hotelId');
+        $newRoom->room_name = $request->input('roomName');
+        $newRoom->rack_rate = $request->input('rackRate');
+        $newRoom->num_of_people = $request->input('numOfPeople');
+        $newRoom->num_of_children = $request->input('numOfChildren');
+        $newRoom->num_of_rooms = $request->input('numOfRooms');
+        $newRoom->acreage = $request->input('acreage');
+        $newRoom->floor = $request->input('floor');
+//        $new
+        if($newRoom->save())
+        {
+            if($request->input('doubleBed')!= null && $request->input('doubleBed') == 'on')
+            {
+                $newBed = new Bed();
+                $newBed->hotel_id = $newRoom->hotel_id;
+                $newBed->room_id = $newRoom->id;
+                $newBed->type_name = $request->input('doubleBedType');
+                $newBed->length = 2.0;//默认床的长度
+                $newBed->width = $request->input('widthOfDoubleBed');
+                $newBed->num_of_beds = $request->input('numOfDoubleBed');
+                $newBed->save();
+            }
+
+             if($request->input('singleBed')!= null && $request->input('singleBed') == 'on')
+            {
+                $newBed = new Bed();
+                $newBed->hotel_id = $newRoom->hotel_id;
+                $newBed->room_id = $newRoom->id;
+                $newBed->type_name = $request->input('singleBedType');
+                $newBed->length = 2.0;//默认床的长度
+                $newBed->width = $request->input('widthOfSingleBed');
+                $newBed->num_of_beds = $request->input('numOfSingleBed');
+                $newBed->save();
+
+            }
+             if($request->input('largeBed')!= null && $request->input('largeBed') == 'on')
+            {
+                $newBed = new Bed();
+                $newBed->hotel_id = $newRoom->hotel_id;
+                $newBed->room_id = $newRoom->id;
+                $newBed->type_name = $request->input('largeBedType');
+                $newBed->length = 2.0;//默认床的长度
+                $newBed->width = $request->input('widthOfLargeBed');
+                $newBed->num_of_beds = $request->input('numOfLargeBed');
+                $newBed->save();
+            }
+             if($request->input('multiBed')!= null && $request->input('multiBed') == 'on')
+            {
+
+                $MultiBedCount =  count($request->input('widthOfMultiBed'));
+                for( $i=0; $i<$MultiBedCount; $i++)
+                {
+                    $newBed = new Bed();
+                    $newBed->hotel_id = $newRoom->hotel_id;
+                    $newBed->room_id = $newRoom->id;
+                    $newBed->type_name = $request->input('multiBedType')[$i];
+                    $newBed->length = 2.0;//默认床的长度
+                    $newBed->width = $request->input('widthOfMultiBed')[$i];
+                    $newBed->num_of_beds = $request->input('numOfMultiBed')[$i];
+                    $newBed->save();
+                }
+            }
+        }
 
     }
 
 
 }
+
+
 
 

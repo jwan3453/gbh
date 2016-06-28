@@ -959,10 +959,15 @@ a{
 
 }
 
-.hotel-table .s-td{
+.s-td{
 	width:30px;
 }
-.hotel-table .l-td{
+
+.m-td{
+	width:160px;
+}
+
+.l-td{
 	width:250px;
 }
 .hotel-table input[type=checkbox]{
@@ -2571,7 +2576,7 @@ a{
 
 .info-menu span{
 	display: inline-block;
-	width: 150px ;
+	width: 120px ;
 	text-align: center;
 	font-size:14px;
 	height:40px;
@@ -2580,6 +2585,7 @@ a{
 	border:1px solid #505050;
 	color:#505050;
 	margin-right:10px;
+	border-radius: 5px;
 }
 .info-menu span:hover{
 	cursor: pointer;

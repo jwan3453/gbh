@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRoomTypeTable extends Migration
+class CreateRoomTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,12 +14,15 @@ class CreateRoomTypeTable extends Migration
      */
     public function up()
     {
-        Schema::create('room_type', function (Blueprint $table) {
+        Schema::create('room', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('hotelId');
+            $table->string('room_name',50);
+            $table->string('room_name_english',50);
             $table->float('rack_rate');//门市价
-            $table->integer('numb_of_people');//可住人数
-            $table->integer('numb_of_children');//可携带儿童人数
-            $table->integer('room_num');//房间数量
+            $table->integer('num_of_people');//可住人数
+            $table->integer('num_of_children');//可携带儿童人数
+            $table->integer('num_of_rooms');//房间数量
             $table->float('acreage');//房间面积
             $table->integer('floor');//楼层
             $table->integer('has_window');//是否有窗户
@@ -35,6 +38,7 @@ class CreateRoomTypeTable extends Migration
             $table->integer('extra_bed_costs')->default(0);//加床费用
             $table->integer('somkeless');//是否无烟处理
             $table->string('room_desc');//房型描述
+            $table->string('attribute',500);//json
 
             $table->timestamps();
         });

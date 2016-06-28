@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin\Hotel;
 
-use App\Models\BedType;
+
 use App\Tool\MessageResult;
 use Illuminate\Http\Request;
 
@@ -184,14 +184,23 @@ class HotelController extends Controller
     public function hotelInfo($hotelId){
 
 
-        $bedTypes = BedType::all();
-        return view('Admin.Hotel.hotelInfo')->with('bedTypes', $bedTypes)->with('hotelId',$hotelId);
+
+        return view('Admin.Hotel.hotelInfo');
+    }
+
+
+
+    //管理房间
+    public function manageRoom($hotelId){
+        $roomList = $this->hotelService->getRoomList($hotelId);
+        $bedTypes = $this->hotelService->getAllBedType();
+        return view('Admin.Hotel.manageRoom')->with('bedTypes', $bedTypes)->with('roomList',$roomList)->with('hotelId',$hotelId);
     }
 
     //创建新房型
     public function createNewRoom(Request $request)
     {
-            dd($request->all());
+
 
 
         $this->hotelService->createNewRoom($request);
@@ -201,4 +210,7 @@ class HotelController extends Controller
 
         return response($jsonResult->toJson());
     }
+
+
+
 }
