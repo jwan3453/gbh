@@ -126,11 +126,11 @@ Route::group(['prefix' => '/admin/', 'middleware' => 'App\Http\Middleware\AdminA
 
         Route::get('create','Admin\Hotel\HotelController@createHotel');
 
-        Route::get('create/geolocation','Admin\Hotel\HotelController@geolocation');
+        Route::get('create/geolocation/{hotelId}','Admin\Hotel\HotelController@geolocation');
 
-        Route::get('create/facility','Admin\Hotel\HotelController@facility');
+        Route::get('create/facility/{hotelId}','Admin\Hotel\HotelController@facility');
 
-        Route::get('create/contactAndPayment','Admin\Hotel\HotelController@contactAndPayment');
+        Route::get('create/contactAndPayment/{hotelId}','Admin\Hotel\HotelController@contactAndPayment');
 
         //管理房间
         Route::get('hotelInfo/{hotelId}/manageRoom','Admin\Hotel\HotelController@manageRoom');
@@ -143,7 +143,12 @@ Route::group(['prefix' => '/admin/', 'middleware' => 'App\Http\Middleware\AdminA
 
         Route::post('/createNewRoom','Admin\Hotel\HotelController@createNewRoom');
 
-        Route::get('createHotelError/{errorid}','Admin\Hotel\HotelController@createHotelError');
+        Route::get('createHotelError/{errorid}/{hotelId}','Admin\Hotel\HotelController@createHotelError');
+
+        Route::post('selectUpOrDown','Admin\Hotel\HotelController@selectUpOrDown');
+        Route::post('itemUpOrDown','Admin\Hotel\HotelController@itemUpOrDown');
+
+        Route::get('editHotel','Admin\Hotel\HotelController@createHotel');
 
     });
 

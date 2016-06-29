@@ -34,7 +34,7 @@
             <input type="hidden" value="{{csrf_token()}}" name="_token"/>
             <div class="short-input-box ">
                 <label>酒店名称</label>
-                <input type="text" id="hotelName" name="hotelName">
+                <input type="text" id="hotelName" name="hotelName" value="{{$hotelInfo->hotel_name}}">
                 <span>请输入酒店的英文名</span>
             </div>
 

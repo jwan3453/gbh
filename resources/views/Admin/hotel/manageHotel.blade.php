@@ -15,16 +15,16 @@
 
     <div class="hotel-list-header">
         <div class="select-all f-left">
-            <label><input type="checkbox"/>全选</label>
+            <label><input type="checkbox" onclick="checkAll(this)" />全选</label>
         </div>
 
-        <div class="header-option f-left">
+        <div class="header-option f-left" onclick="selectUpOrDown('up')">
 
             <img src = '/Admin/img/上架.png'/>
             <span>批量上架</span>
         </div>
 
-        <div class="header-option f-left">
+        <div class="header-option f-left" onclick="selectUpOrDown('down')">
 
             <img src = '/Admin/img/下架.png'/>
             <span>批量下架</span>
@@ -40,146 +40,116 @@
 
 
         <tbody>
+
+            @foreach($manageHotelList as $hotelitem)
             <tr>
-                <td class="s-td"><input type="checkbox"></td>
+                <td class="s-td"><input type="checkbox" value="{{$hotelitem->id}}"></td>
                 <td class="m-td"> <img class="hotel-img" src = '../GbhMobile/img/tu2.png'></td>
-                <td class="m-td">厦门市美都酒店</td>
-                <td><i class="icon marker large"></i><span>厦门市思明区官邸大厦</span></td>
+                <td class="m-td">{{$hotelitem->hotel_name}}</td>
+                <td><i class="icon marker large"></i><span>{{$hotelitem->addressInfo}}</span></td>
                 <td class="l-td">
 
                     <div class="header-option f-left">
-
-                        <img src = '/Admin/img/上架.png'/>
-                        <span>修改</span>
+                        <a href="/admin/manageHotel/editHotel">
+                            <img src = '/Admin/img/编辑.png'/>
+                            <span class="edit">编辑</span>
+                        </a>
                     </div>
+                    @if($hotelitem->status == 0)
+                        <div class="header-option f-left" onclick="itemUpOrDown('up',{{$hotelitem->id}})">
+                            <img src = '/Admin/img/上架.png'/>
+                            <span>上架</span>
+                        </div>
+                    @elseif($hotelitem->status == 1)
+                        <div class="header-option f-left" onclick="itemUpOrDown('down',{{$hotelitem->id}})">
 
-                    <div class="header-option f-left">
-
-                        <img src = '/Admin/img/下架.png'/>
-                        <span>批量下架</span>
-                    </div>
-
-                    <div class="header-option f-left">
-
-                        <img src = '/Admin/img/垃圾桶.png'/>
-                        <span>批量删除</span>
-                    </div>
-
-                    <div class="header-option f-left">
-
-                        <img src = '/Admin/img/垃圾桶.png'/>
-                        <span>批量删除</span>
-                    </div>
-
-                </td>
-            </tr>
-            <tr>
-                <td class="s-td"><input type="checkbox"></td>
-                <td class="m-td"> <img class="hotel-img" src = '../GbhMobile/img/tu2.png'></td>
-                <td class="m-td">厦门市美都酒店</td>
-                <td><i class="icon marker large"></i><span>厦门市思明区官邸大厦</span></td>
-                <td class="l-td">
-
-                    <div class="header-option f-left">
-
-                        <img src = '/Admin/img/上架.png'/>
-                        <span>修改</span>
-                    </div>
-
-                    <div class="header-option f-left">
-
-                        <img src = '/Admin/img/下架.png'/>
-                        <span>批量下架</span>
-                    </div>
+                            <img src = '/Admin/img/下架.png'/>
+                            <span>下架</span>
+                        </div>
+                    @endif
 
                     <div class="header-option f-left">
 
                         <img src = '/Admin/img/垃圾桶.png'/>
-                        <span>批量删除</span>
-                    </div>
-
-                    <div class="header-option f-left">
-
-                        <img src = '/Admin/img/垃圾桶.png'/>
-                        <span>批量删除</span>
+                        <span>删除</span>
                     </div>
 
                 </td>
             </tr>
 
-            <tr>
-                <td class="s-td"><input type="checkbox"></td>
-                <td class="m-td"> <img class="hotel-img" src = '../GbhMobile/img/tu2.png'></td>
-                <td class="m-td">厦门市美都酒店</td>
-                <td><i class="icon marker large"></i><span>厦门市思明区官邸大厦</span></td>
-                <td class="l-td">
-
-                    <div class="header-option f-left">
-
-                        <img src = '/Admin/img/上架.png'/>
-                        <span>修改</span>
-                    </div>
-
-                    <div class="header-option f-left">
-
-                        <img src = '/Admin/img/下架.png'/>
-                        <span>批量下架</span>
-                    </div>
-
-                    <div class="header-option f-left">
-
-                        <img src = '/Admin/img/垃圾桶.png'/>
-                        <span>批量删除</span>
-                    </div>
-
-                    <div class="header-option f-left">
-
-                        <img src = '/Admin/img/垃圾桶.png'/>
-                        <span>批量删除</span>
-                    </div>
-
-                </td>
-            </tr>
-
-            <tr>
-                <td class="s-td"><input type="checkbox"></td>
-                <td class="m-td"> <img class="hotel-img" src = '../GbhMobile/img/tu2.png'></td>
-                <td class="m-td">厦门市美都酒店</td>
-                <td><i class="icon marker large"></i><span>厦门市思明区官邸大厦</span></td>
-                <td class="l-td">
-
-                    <div class="header-option f-left">
-
-                        <img src = '/Admin/img/上架.png'/>
-                        <span>修改</span>
-                    </div>
-
-                    <div class="header-option f-left">
-
-                        <img src = '/Admin/img/下架.png'/>
-                        <span>批量下架</span>
-                    </div>
-
-                    <div class="header-option f-left">
-
-                        <img src = '/Admin/img/垃圾桶.png'/>
-                        <span>批量删除</span>
-                    </div>
-
-                    <div class="header-option f-left">
-
-                        <img src = '/Admin/img/垃圾桶.png'/>
-                        <span>批量删除</span>
-                    </div>
-
-                </td>
-            </tr>
-
-
-
+            @endforeach
 
         </tbody>
     </table>
 
     </div>
+@stop
+
+@section('script')
+
+<script type="text/javascript">
+    
+    function checkAll(_this) {
+        if ($(_this).is(':checked')) {
+            $("#orderTable").find(":checkbox").each(function(i){
+                $(this).prop("checked",true);
+            })
+        }else{
+            $("#orderTable").find(":checkbox").each(function(i){
+                $(this).attr("checked",false);
+            })
+        }
+        
+    }
+
+    function selectUpOrDown(type) {
+        var selectArr = new Array();
+        $("#orderTable").find(":checkbox").each(function(i){
+            if($(this).is(':checked'))
+            {
+                selectArr.push($(this).val());
+            }
+        })
+
+        $.ajax({
+            type: 'POST',
+            url: '/admin/manageHotel/selectUpOrDown',
+            data: {selectArr : selectArr , type : type},
+            dataType: 'json',
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+            },
+            success:function(data){
+                if (data.statusCode == 1) {
+                    alert(data.statusMsg);
+                    location.reload();
+                }else{
+                    alert(data.statusMsg);
+                }
+            }
+        })
+    }
+
+    function itemUpOrDown(type,id) {
+        $.ajax({
+            type: 'POST',
+            url: '/admin/manageHotel/itemUpOrDown',
+            data: {hotelId : id , type : type},
+            dataType: 'json',
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+            },
+            success:function(data){
+                if (data.statusCode == 1) {
+                    alert(data.statusMsg);
+                    location.reload();
+                }else{
+                    alert(data.statusMsg);
+                }
+            }
+        })
+    }
+
+</script>
+
 @stop

@@ -37,7 +37,19 @@ class HotelController extends Controller
         //     return redirect(url('admin/Error/NotPermission'));
         // }
 
-        return view('Admin.Hotel.manageHotel');
+        $manageHotelList = $this->hotelService->getHotelList();
+        foreach ($manageHotelList as $hotelList) {
+            $province = $this->commonService->getAdressInfo('province',$hotelList->address->province_code);
+            $city = $this->commonService->getAdressInfo('city',$hotelList->address->city_code);
+            $district = $this->commonService->getAdressInfo('district',$hotelList->address->district_code);
+            $detail = $hotelList->address->detail;
+
+            $hotelList->addressInfo = $province.$city.$district.$detail;
+
+
+        }
+
+        return view('Admin.Hotel.manageHotel')->with('manageHotelList',$manageHotelList);
     }
 
     /**
@@ -50,7 +62,8 @@ class HotelController extends Controller
 
 
         $geoData = $this->commonService->getGeoDetail();
-        return view('Admin.Hotel.createHotel')->with('geoData',$geoData);
+        // $hotelInfo = new collect([]);
+        return view('Admin.Hotel.createHotel')->with('geoData',$geoData)->with('hotelInfo',$hotelInfo);
         //
     }
 
@@ -63,8 +76,8 @@ class HotelController extends Controller
     public function storeHotel(Request $request)
     {
         //
-        // $isCreate =  $this->hotelService->createHotel($request);
-        $isCreate = false;
+        $isCreate =  $this->hotelService->createHotel($request);
+        
         if ($isCreate) {
             $province = $this->commonService->getAdressInfo('province',$request->input('provinceCode'));
             $city = $this->commonService->getAdressInfo('city',$request->input('cityCode'));
@@ -76,63 +89,112 @@ class HotelController extends Controller
             return view('Admin.Hotel.geoLocation')->with('address',$addressInfo)->with('hotelId',$isCreate);
         }
         else{
-            dd("错误");
+            return redirect(url('admin/manageHotel/createHotelError/1/0'));
         }
 
     }
 
-    public function geolocation()
+    public function geolocation($hotelId)
     {
         $address = "福建省厦门市思明区凡悦咖啡厅";
-        return view('Admin.Hotel.geoLocation')->with('address',$address)->with('hotelId',1);
+        return view('Admin.Hotel.geoLocation')->with('address',$address)->with('hotelId',$hotelId);
     }
 
     public function insertPolicy(Request $request)
     {
         $isCreate = $this->hotelService->insertPolicy($request->input());
+        
+        $hotelId = $request->input('hotelId');
 
         if ($isCreate) {
+            $InternalList = $this->hotelService->getCreditList(1);
+            $AbroadList = $this->hotelService->getCreditList(2);
 
-            return view('Admin.Hotel.geoLocation')->with('hotelId',$isCreate);
+            return view('Admin.Hotel.contactAndPayment')->with('InternalList',$InternalList)->with('AbroadList',$AbroadList)->with('hotelId',$isCreate);
         }
         else{
-            dd("错误");
+            return redirect(url('admin/manageHotel/createHotelError/2/'.$hotelId));
         }
     }
 
-    public function facility()
+    public function facility($hotelId)
     {
         $ExtraServiceList = $this->hotelService->getExtraService();
-        return view('Admin.Hotel.facility')->with('ExtraServiceList',$ExtraServiceList)->with('hotelId',1);
+        return view('Admin.Hotel.facility')->with('ExtraServiceList',$ExtraServiceList)->with('hotelId',$hotelId);
     }
 
-    public function contactAndPayment()
+    public function contactAndPayment($hotelId)
     {
         $InternalList = $this->hotelService->getCreditList(1);
         $AbroadList = $this->hotelService->getCreditList(2);
-        return view('Admin.Hotel.contactAndPayment')->with('InternalList',$InternalList)->with('AbroadList',$AbroadList)->with('hotelId',1);
+        return view('Admin.Hotel.contactAndPayment')->with('InternalList',$InternalList)->with('AbroadList',$AbroadList)->with('hotelId',$hotelId);
     }
 
     public function insertContactPayment(Request $request)
     {
         $isCreate = $this->hotelService->insertContactPayment($request->input());
+   
+        $hotelId = $request->input('hotelId');
         if ($isCreate) {
-
-            return view('Admin.Hotel.facility')->with('hotelId',$isCreate);
+            $ExtraServiceList = $this->hotelService->getExtraService();
+            return view('Admin.Hotel.facility')->with('ExtraServiceList',$ExtraServiceList)->with('hotelId',$isCreate);
         }
         else{
-            dd("错误");
+            return redirect(url('admin/manageHotel/createHotelError/3/'.$hotelId));
         }
     }
 
     public function insertFacility(Request $request)
     {
         $isCreate = $this->hotelService->insertFacility($request->input());
+    
+        $hotelId = $request->input('hotelId');
+
+        if ($isCreate) {
+            return redirect(url('admin/manageHotel/createHotelError/5/0'));
+        }
+        else{
+            return redirect(url('admin/manageHotel/createHotelError/4/'.$hotelId));
+        }
     }
 
-    public function createHotelError($errorId)
+    public function createHotelError($errorId,$hotelId)
     {
-        return view('Admin.Hotel.createHotelError')->with('errorId',$errorId);
+        return view('Admin.Hotel.createHotelError')->with('errorId',$errorId)->with('hotelId',$hotelId);
+    }
+
+    public function selectUpOrDown(Request $request)
+    {
+        $jsonResult = new MessageResult();
+
+        $isUp = $this->hotelService->selectUpOrDown($request->input());
+
+        if ($isUp) {
+            $jsonResult->statusCode = 1;
+            $jsonResult->statusMsg = "成功";
+        }else{
+            $jsonResult->statusCode = 0;
+            $jsonResult->statusMsg = "失败";
+        }
+
+        return response($jsonResult->toJson());
+    }
+
+    public function itemUpOrDown(Request $request)
+    {
+        $jsonResult = new MessageResult();
+
+        $isUp = $this->hotelService->itemUpOrDown($request->input());
+
+        if ($isUp) {
+            $jsonResult->statusCode = 1;
+            $jsonResult->statusMsg = "成功";
+        }else{
+            $jsonResult->statusCode = 0;
+            $jsonResult->statusMsg = "失败";
+        }
+
+        return response($jsonResult->toJson());
     }
 
     /**
