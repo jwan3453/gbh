@@ -77,7 +77,7 @@ class HotelController extends Controller
     {
         //
         $isCreate =  $this->hotelService->createHotel($request);
-        
+
         if ($isCreate) {
             $province = $this->commonService->getAdressInfo('province',$request->input('provinceCode'));
             $city = $this->commonService->getAdressInfo('city',$request->input('cityCode'));
@@ -103,7 +103,7 @@ class HotelController extends Controller
     public function insertPolicy(Request $request)
     {
         $isCreate = $this->hotelService->insertPolicy($request->input());
-        
+
         $hotelId = $request->input('hotelId');
 
         if ($isCreate) {
@@ -133,7 +133,7 @@ class HotelController extends Controller
     public function insertContactPayment(Request $request)
     {
         $isCreate = $this->hotelService->insertContactPayment($request->input());
-   
+
         $hotelId = $request->input('hotelId');
         if ($isCreate) {
             $ExtraServiceList = $this->hotelService->getExtraService();
@@ -147,7 +147,7 @@ class HotelController extends Controller
     public function insertFacility(Request $request)
     {
         $isCreate = $this->hotelService->insertFacility($request->input());
-    
+
         $hotelId = $request->input('hotelId');
 
         if ($isCreate) {
