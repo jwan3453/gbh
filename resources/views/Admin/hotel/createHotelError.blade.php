@@ -53,9 +53,17 @@
 
 
 		@if($errorId == 5)
-			<a href="">完成</a>
+			<a href="/admin/manageHotel">完成</a>
 		@else
-			<a href="">返回重新填写</a>
+			@if($errorId == 1)
+				<a href="/admin/manageHotel/create">返回重新填写</a>
+			@elseif($errorId == 2)
+				<a href="/admin/manageHotel/create/geolocation/{{$hotelId}}">返回重新填写</a>
+			@elseif($errorId == 3)
+				<a href="/admin/manageHotel/create/contactAndPayment/{{$hotelId}}">返回重新填写</a>
+			@elseif($errorId == 4)
+				<a href="/admin/manageHotel/create/facility/{{$hotelId}}">返回重新填写</a>
+			@endif
 		@endif
 	</div>
 </div>
@@ -65,18 +73,19 @@
 <script type="text/javascript">
 
 $(function(){
-	console.log(randomChar(10));
+	console.log(randomChar(32));
 })
 
 
-function  randomChar(l)  {
-	var  x="0123456789qwertyuioplkjhgfdsazxcvbnm";
+function  randomChar(c)  {
+	var  x="0123456789qwertyuioplkjhgfdsazxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM";
 	var  tmp="";
 	var timestamp = new Date().getTime();
-	for(var  i=0;i<  l;i++)  {
+	for(var  i=0;i<  c;i++)  {
 		tmp  +=  x.charAt(Math.ceil(Math.random()*100000000)%x.length);
 	}
-	return  timestamp+tmp;
+	// return  timestamp+tmp;
+	return tmp;
 }
 
 	

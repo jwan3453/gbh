@@ -19,6 +19,15 @@ use App\Models\ExtraService;
 
 class HotelService {
 
+    public function getHotelList()
+    {
+        $list = Hotel::select('id','hotel_name','address_id','status')->get();
+        foreach ($list as $hotelitem) {
+            $hotelitem->address = Address::select('province_code','city_code','district_code','detail')->where('id',$hotelitem->address_id)->first();
+        }
+        return $list;
+    }
+
     public function createHotel(Request $request)
     {
         $isSuccess = false;
@@ -269,6 +278,36 @@ class HotelService {
             }
         }
 
+    }
+
+    public function selectUpOrDown($request)
+    {
+        $selectArr = $request['selectArr'];
+        $type = $request['type'] == 'up' ? 1 : 0;
+        $isUpdate = true;
+        foreach ($selectArr as $item) {
+            $update = Hotel::where('id',$item)->update(['status'=>$type]);
+            if (!$update) {
+                $isUpdate = false;
+            }
+        }
+
+        return $isUpdate;
+    }
+
+    public function itemUpOrDown($request)
+    {
+        $type = $request['type'] == 'up' ? 1 : 0;
+        $hotelId = $request['hotelId'];
+        $isUpdate = false;
+
+        $update = Hotel::where('id',$hotelId)->update(['status'=>$type]);
+
+        if ($update) {
+            $isUpdate = true;
+        }
+
+        return $isUpdate;
     }
 
 
