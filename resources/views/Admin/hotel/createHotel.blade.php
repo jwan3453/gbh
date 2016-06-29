@@ -5,44 +5,36 @@
 @section('content')
 
     {{--@foreach($geoData['province'] as $province)--}}
-        {{--<div>{{$province->parent_id}}</div>--}}
+    {{--
+<div>{{$province->parent_id}}</div>
+--}}
     {{--@endforeach--}}
     <div id="geoData" style="display: none">{{$geoData}}</div>
     <div>
         <div class="h-c-steps">
-            <div class="step s-active ">
-                1
-            </div>
+            <div class="step s-active ">1</div>
 
             <div class="s-line s-l-active "></div>
-            <div class="s-line  s-l-active"></div>
-            <div class="step s-active">
-                2
-            </div>
-            <div class="s-line  s-l-active"></div>
-            <div class="s-line  s-l-active"></div>
-            <div class="step s-active">
-               3
-            </div>
-            <div class="s-line "></div>
-            <div class="s-line "></div>
-            <div class="step ">
-                4
-            </div>
+            <div class="s-line"></div>
+            <div class="step">2</div>
+            <div class="s-line"></div>
+            <div class="s-line"></div>
+            <div class="step">3</div>
+            <div class="s-line"></div>
+            <div class="s-line"></div>
+            <div class="step ">4</div>
 
         </div>
 
         <div class="hotel-info  hotel-basic-info">
-            <div class="header">
-                酒店基本信息
-             </div>
+            <div class="header">酒店基本信息</div>
 
             <form class="detail-form" id="hotelBasicInfo" action='{{url("/admin/manageHotel/create")}}' method="Post">
 
                 <input type="hidden" value="{{csrf_token()}}" name="_token"/>
                 <div class="short-input-box ">
                     <label>酒店名称</label>
-                    <input type="text" id="hotelName" name="hotelName">
+                    <input type="text" id="hotelName" name="hotelName" value="{{$hotelInfo->hotel_name}}">
                     <span>请输入酒店的英文名</span>
                 </div>
 
@@ -62,17 +54,17 @@
                 </div>
                 <div class="short-input-box ">
                     <label>邮编</label>
-                    <input type="text" name="hotelPostcode">
+                    <input type="text" name="hotelPostcode" onchange="number(this)">
                     <span>请输入酒店所在地区的邮编</span>
                 </div>
                 <div class="short-input-box ">
                     <label>传真</label>
-                    <input type="text" name="hotelFax">
+                    <input type="text" name="hotelFax" onchange="faxphone(this)">
                     <span>请输入酒店的传真</span>
                 </div>
                 <div class="short-input-box ">
                     <label>固话</label>
-                    <input type="text" name="hotelPhone">
+                    <input type="text" name="hotelPhone" onchange="faxphone(this)">
                     <span>请输入酒店固定电话</span>
                 </div>
                 <div class="long-input-box ">
@@ -82,7 +74,7 @@
                 </div>
                 <div class="short-input-box ">
                     <label>客房数</label>
-                    <input type="text" name="hotelTotalRooms">
+                    <input type="text" name="hotelTotalRooms" onchange="number(this)">
                     <span>请输入酒店的客房总数</span>
                 </div>
                 <div class="long-input-box ">
@@ -107,13 +99,10 @@
             <div type="submit" class = "next-step-btn auto-margin" id="nsBtn">下一步</div>
         </div>
 
-
-
     </div>
 @stop
 
 @section('script')
-
     <script>
 
         $.fn.gbhCityChooser = function(e)
@@ -202,7 +191,7 @@
                                                     '<i class ="icon marker"></i>' +
                                                     '<span class="d" id="'+ districtList[i].code +'">'+districtList[i].district_name+'</span>'+
                                                     '<span class="c" id="'+ cityList[j].code +'">'+cityList[j].city_name+'</span>'+
-                                                       '<span  class="p" id="'+ provinceList[k].code +'">'+provinceList[k].province_name +'</span></div>';
+                                                    '<span  class="p" id="'+ provinceList[k].code +'">'+provinceList[k].province_name +'</span></div>';
                                             $searchContainer.show();
                                             $searchContainer.append(html);
                                         }
@@ -213,7 +202,7 @@
 
 
 
-                       }
+                        }
                     }
 
 
@@ -409,8 +398,8 @@
 
 
                 $('#province').val($.trim($(this).find('.p').text())+' - '
-                                    +$.trim($(this).find('.c').text()) + ' - '
-                                    +$.trim($(this).find('.d').text()) );
+                        +$.trim($(this).find('.c').text()) + ' - '
+                        +$.trim($(this).find('.d').text()) );
                 $('#provinceCode').val($.trim($(this).find('.p').attr('id')));
 
 
@@ -470,17 +459,59 @@
         $(document).ready(function(){
 
             $('#province').gbhCityChooser();
-         //   $('#city').gbhCityChooser();
+            //   $('#city').gbhCityChooser();
 
             $('#nsBtn').click(function(){
+                var isSubmit = false;
+                $("form").find(":text").each(function(i){
+                    if ( $(this).val() ) {
+                        isSubmit = true;
+                    }
+                    if ( !$(this).val() ) {
+                        alert($(this).prev().html() + "   不能为空");
+                        isSubmit = false;
+                        return false;
+                    }
 
-                $('#hotelBasicInfo').submit();
+                })
+
+                if (isSubmit) {
+                    $('#hotelBasicInfo').submit();
+                }
 
             })
 
         })
 
+        function number(_this) {
+            console.log($(_this).val());
+            var val = $(_this).val();
+            var re = /^[0-9]*[1-9][0-9]*$/ ;
+
+            if (re.test(val)) {
+                return true;
+            }else{
+                $(_this).val("");
+                alert("只能为数字");
+                return false;
+            }
+        }
 
 
-   </script>
+        function faxphone(_this) {
+            var re = /^(\d{0,10}-)?\d{0,10}$/;
+            var val = $(_this).val();
+
+            if (re.test(val)) {
+                return true;
+            }else{
+                $(_this).val("");
+                alert("格式为 XXXX-XXXXXXXXXXX");
+                return false;
+            }
+        }
+
+
+
+    </script>
 @stop

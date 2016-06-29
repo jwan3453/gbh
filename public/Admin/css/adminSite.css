@@ -233,6 +233,9 @@ a{
 	background-color: #f8f8f8;
 	padding:20px 10px;
 }
+.disabled-input{
+	border:1px solid #cfcfcf!important;
+}
 /*****************公用***end*********************/
 
 
@@ -1425,6 +1428,7 @@ a{
 	width:70px;
 }
 .short-input-box input{
+	text-align: center;
 	height:36px;
 	width:150px;
 	font-size:12px;
@@ -2606,6 +2610,7 @@ a{
 }
 .room-detail-from{
 	display: none;
+
 }
 
 .bed-type{
@@ -2650,9 +2655,8 @@ a{
 
 .bed-item .bedCate{
 	margin-left:10px;
-	height:10px!important;
-	min-height:0!important;
-	min-width:60px!important;
+	height:37px;
+	width:120px;
 	border-radius: 0!important;
 	vertical-align: middle!important;
 	display: inline-block;
@@ -2671,6 +2675,9 @@ a{
 	display: inline-block;
 	cursor: pointer;
 	color:#cfcfcf;
+}
+.room-table{
+	font-size:14px!important;
 }
 
 /***********************************/

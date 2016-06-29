@@ -135,6 +135,9 @@ Route::group(['prefix' => '/admin/', 'middleware' => 'App\Http\Middleware\AdminA
         //管理房间
         Route::get('hotelInfo/{hotelId}/manageRoom','Admin\Hotel\HotelController@manageRoom');
 
+        //编辑房间
+        Route::get('hotelInfo/{hotelId}/editRoom/{roomId}','Admin\Hotel\HotelController@editRoom');
+
         Route::post('insertPolicy','Admin\Hotel\HotelController@insertPolicy');
 
         Route::post('insertContactPayment','Admin\Hotel\HotelController@insertContactPayment');

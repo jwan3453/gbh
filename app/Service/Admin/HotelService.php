@@ -213,6 +213,7 @@ class HotelService {
     public function createNewRoom(Request $request)
     {
         //创建新房间
+
         $newRoom = new Room();
         $newRoom->hotel_id = $request->input('hotelId');
         $newRoom->room_name = $request->input('roomName');
@@ -228,9 +229,10 @@ class HotelService {
             if($request->input('doubleBed')!= null && $request->input('doubleBed') == 'on')
             {
                 $newBed = new Bed();
-                $newBed->hotel_id = $newRoom->hotel_id;
+                $newBed->hotel_id = $request->input('hotelId');
                 $newBed->room_id = $newRoom->id;
-                $newBed->type_name = $request->input('doubleBedType');
+                $newBed->room_bed_category = 'doubleBed';
+                $newBed->bed_type_id= $request->input('doubleBedType');
                 $newBed->length = 2.0;//默认床的长度
                 $newBed->width = $request->input('widthOfDoubleBed');
                 $newBed->num_of_beds = $request->input('numOfDoubleBed');
@@ -240,9 +242,10 @@ class HotelService {
              if($request->input('singleBed')!= null && $request->input('singleBed') == 'on')
             {
                 $newBed = new Bed();
-                $newBed->hotel_id = $newRoom->hotel_id;
+                $newBed->hotel_id = $request->input('hotelId');
                 $newBed->room_id = $newRoom->id;
-                $newBed->type_name = $request->input('singleBedType');
+                $newBed->room_bed_category = 'singleBed';
+                $newBed->bed_type_id = $request->input('singleBedType');
                 $newBed->length = 2.0;//默认床的长度
                 $newBed->width = $request->input('widthOfSingleBed');
                 $newBed->num_of_beds = $request->input('numOfSingleBed');
@@ -252,9 +255,10 @@ class HotelService {
              if($request->input('largeBed')!= null && $request->input('largeBed') == 'on')
             {
                 $newBed = new Bed();
-                $newBed->hotel_id = $newRoom->hotel_id;
+                $newBed->hotel_id = $request->input('hotelId');
                 $newBed->room_id = $newRoom->id;
-                $newBed->type_name = $request->input('largeBedType');
+                $newBed->room_bed_category = 'largeBed';
+                $newBed->bed_type_id = $request->input('largeBedType');
                 $newBed->length = 2.0;//默认床的长度
                 $newBed->width = $request->input('widthOfLargeBed');
                 $newBed->num_of_beds = $request->input('numOfLargeBed');
@@ -267,9 +271,10 @@ class HotelService {
                 for( $i=0; $i<$MultiBedCount; $i++)
                 {
                     $newBed = new Bed();
-                    $newBed->hotel_id = $newRoom->hotel_id;
+                    $newBed->hotel_id = $request->input('hotelId');
                     $newBed->room_id = $newRoom->id;
-                    $newBed->type_name = $request->input('multiBedType')[$i];
+                    $newBed->room_bed_category = 'multiBed';
+                    $newBed->bed_type_id = $request->input('multiBedType')[$i];
                     $newBed->length = 2.0;//默认床的长度
                     $newBed->width = $request->input('widthOfMultiBed')[$i];
                     $newBed->num_of_beds = $request->input('numOfMultiBed')[$i];
@@ -277,6 +282,17 @@ class HotelService {
                 }
             }
         }
+
+    }
+
+    public function editRoom($hotelId, $roomId){
+        $room =  Room::where('id',$roomId)->firstOrFail();
+        $room->doubleBed = Bed::where(['room_id'=>$roomId, 'room_bed_category'=>'doubleBed'])->first();
+        $room->singleBed = Bed::where(['room_id'=>$roomId, 'room_bed_category'=>'singleBed'])->first();
+        $room->largeBed = Bed::where(['room_id'=>$roomId, 'room_bed_category'=>'largeBed'])->first();
+        $room->multiBed = Bed::where(['room_id'=>$roomId, 'room_bed_category'=>'multiBed'])->get();
+
+        return $room;
 
     }
 

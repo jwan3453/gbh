@@ -13,53 +13,7 @@
 @section('infoContent')
     <div class="info-content">
 
-        <table class="ui primary striped selectable room-table " id="roomTalbe">
-
-
-            <tbody>
-
-                @foreach($roomList as $room)
-                    <tr>
-                        <td class="s-td"><input type="checkbox"></td>
-                        <td class="m-td">{{$room->room_name}}</td>
-                        <td class="m-td">门市价:{{$room->rack_rate}}</td>
-                        <td class="m-td">入住人数:{{$room->num_of_people}}</td>
-                        <td class="m-td">平方数:{{$room->acreage}} 平方米</td>
-
-                        <td class="l-td">
-
-                            <div class="header-option f-left">
-
-                                <img src = '/Admin/img/上架.png'/>
-                                <span>修改</span>
-                            </div>
-
-                            <div class="header-option f-left">
-
-                                <img src = '/Admin/img/下架.png'/>
-                                <span>批量下架</span>
-                            </div>
-
-                            <div class="header-option f-left">
-
-                                <img src = '/Admin/img/垃圾桶.png'/>
-                                <span>批量删除</span>
-                            </div>
-
-                            <div class="header-option f-left">
-
-                                <img src = '/Admin/img/垃圾桶.png'/>
-                                <span>批量删除</span>
-                            </div>
-
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
-
-
-
+        <div class="regular-btn blue-btn  " id="newRoomBtn"><i class="icon plus "></i>添加新房型</div>
         <form class="detail-form room-detail-from" id="newRoomForm" action='{{url("/admin/manageHotel/createNewRoomType")}}' method="Post">
 
             <div class="header">添加新房型</div>
@@ -109,109 +63,106 @@
             <div class="bed-type" >
                 <label class="header-label">床型</label>
                 <div class="bed-type-list" id="bedTypeList" >
-                    <div class="bed-item">
+                    <div class="bed-item b-i">
                         <input type="checkbox"   class="select-bed-type" name="doubleBed"  id="doubleBed" />
                         <label>双床</label>
 
-                        <select class=" ui dropdown bedCate">
+                        <select class="  bedCate" name="doubleBedType">
                             @foreach($bedTypes as $bedType)
                                 <option value="{{$bedType->id}}">{{$bedType->name}}</option>
                             @endforeach
                         </select>
 
-                        <input type="hidden" class="bedTypeName" name="doubleBedType">
 
                         <div class="small-input-box ">
                             <label>数量:</label>
-                            <input type="text" name="numOfDoubleBed" id="numOfDoubleBed" >
+                            <input type="text" name="numOfDoubleBed" id="numOfDoubleBed"  class="disabled-input" disabled='disabled'>
                             <span class="unit">张</span>
                         </div>
 
                         <div class="small-input-box ">
                             <label>床宽:</label>
-                            <input type="text" name="widthOfDoubleBed" id="widthOfDoubleBed">
+                            <input type="text" name="widthOfDoubleBed" id="widthOfDoubleBed" class="disabled-input" disabled='disabled'>
                             <span class="unit">米</span>
                         </div>
 
                     </div>
-                    <div class="bed-item" >
+                    <div class="bed-item b-i" >
                         <input type="checkbox" class="select-bed-type" name="singleBed" id="singleBed"/>
                         <label>单床</label>
 
-                        <select class=" ui dropdown bedCate">
+                        <select class="  bedCate" name="singleBedType">
                             @foreach($bedTypes as $bedType)
                                 <option value="{{$bedType->id}}">{{$bedType->name}}</option>
                             @endforeach
                         </select>
 
-                        <input type="hidden" class="bedTypeName" name="singleBedType">
 
                         <div class="small-input-box ">
                             <label>数量:</label>
-                            <input type="text"  name="numOfSingleBed" id="numOfSingleBed" >
+                            <input type="text"  name="numOfSingleBed" id="numOfSingleBed" class="disabled-input" disabled='disabled'>
                             <span class="unit">张</span>
                         </div>
 
                         <div class="small-input-box ">
                             <label>床宽:</label>
-                            <input type="text" name="widthOfSingleBed" id="widthOfSingleBed" >
+                            <input type="text" name="widthOfSingleBed" id="widthOfSingleBed" class="disabled-input" disabled='disabled'>
                             <span class="unit">米</span>
                         </div>
 
                     </div>
-                    <div class="bed-item">
+                    <div class="bed-item b-i">
                         <input type="checkbox" class="select-bed-type" name="largeBed" id="largeBed"/>
                         <label>大床</label>
 
-                        <select class=" ui dropdown bedCate">
+                        <select class="  bedCate" name="largeBedType">
                             @foreach($bedTypes as $bedType)
                                 <option value="{{$bedType->id}}">{{$bedType->name}}</option>
                             @endforeach
                         </select>
 
-                        <input type="hidden" class="bedTypeName" name="largeBedType">
-
                         <div class="small-input-box ">
                             <label>数量:</label>
-                            <input type="text" name="numOfLargeBed" id="numOfLargeBed">
+                            <input type="text" name="numOfLargeBed" id="numOfLargeBed" class="disabled-input" disabled='disabled'>
                             <span class="unit">张</span>
                         </div>
 
                         <div class="small-input-box ">
                             <label>床宽:</label>
-                            <input type="text" name="widthOfLargeBed" id="widthOfLargeBed">
+                            <input type="text" name="widthOfLargeBed" id="widthOfLargeBed" class="disabled-input" disabled='disabled'>
                             <span class="unit">米</span>
                         </div>
                     </div>
 
-                    <div class="bed-item">
-                        <input type="checkbox" class="select-bed-type" name="multiBed" id="multiBed"/>
-                        <label>多床</label>
+                    <div id="multiBed" class="b-i">
 
 
-                        <select class=" ui dropdown bedCate">
+                        <div class="bed-item ">
+                            <input type="checkbox" class="select-bed-type" name="multiBed" id="multiBed"  />
+                            <label>多床</label>
 
-                            @foreach($bedTypes as $bedType)
-                                <option value="{{$bedType->id}}">{{$bedType->name}}</option>
-                            @endforeach
+                            <select class="  bedCate" name="multiBedType[]">
+                                @foreach($bedTypes as $bedType)
+                                    <option value="{{$bedType->id}}">{{$bedType->name}}</option>
+                                @endforeach
+                            </select>
 
-                        </select>
 
-                        <input type="hidden" class="bedTypeName" name="multiBedType[]">
 
-                        <div class="small-input-box ">
-                            <label>数量:</label>
-                            <input type="text" name="numOfMultiBed[]" >
-                            <span class="unit">张</span>
+                            <div class="small-input-box ">
+                                <label>数量:</label>
+                                <input type="text" name="numOfMultiBed[]"  class="disabled-input" disabled='disabled' >
+                                <span class="unit">张</span>
+                            </div>
+
+                            <div class="small-input-box ">
+                                <label>床宽:</label>
+                                <input type="text" name="widthOfMultiBed[]" class="disabled-input" disabled='disabled' >
+                                <span class="unit">米</span>
+                            </div>
+
+                            <span class="add-new-bed" id="addNewBed">添加</span>
                         </div>
-
-                        <div class="small-input-box ">
-                            <label>床宽:</label>
-                            <input type="text" name="widthOfMultiBed[]">
-                            <span class="unit">米</span>
-                        </div>
-
-                        <span class="add-new-bed" id="addNewBed">添加</span>
                     </div>
                 </div>
             </div>
@@ -278,7 +229,45 @@
             </div>
             <div class="auto-margin regular-btn red-btn" id="saveRoom">保存房型</div>
         </form>
-        <div class="regular-btn blue-btn  " id="newRoomBtn"><i class="icon plus "></i>添加新房型</div>
+        <table class="ui primary striped selectable table room-table " id="roomTalbe">
+
+
+            <tbody>
+
+                @foreach($roomList as $room)
+                    <tr>
+
+                        <td class="m-td">{{$room->room_name}}</td>
+                        <td class="m-td">门市价:{{$room->rack_rate}}</td>
+                        <td class="m-td">入住人数:{{$room->num_of_people}}</td>
+                        <td class="m-td">平方数:{{$room->acreage}} 平方米</td>
+
+                        <td class="l-td">
+
+
+
+                            <div class="header-option f-left">
+
+                                <img src = '/Admin/img/垃圾桶.png'/>
+                                <span>删除</span>
+                            </div>
+
+                            <div class="header-option f-left">
+
+                                <img src = '/Admin/img/编辑.png'/>
+                                <a href="{{url('admin/manageHotel/hotelInfo/'.$hotelId.'/editRoom/'.$room->id)}}"><span>编辑</span></a>
+                            </div>
+
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+
+
+
+
+
     </div>
 @stop
 
@@ -290,48 +279,48 @@
                 $('#newRoomForm').transition('scale');
             })
 
-            $(' .ui.dropdown').dropdown({
-                onChange: function(value, text, $selectedItem) {
-                    $(this).parent().siblings('.bedTypeName').val(text);
-                }
-            })
+            var multiBedCount=0;
 
             //选择多床型，动态添加
             $('#addNewBed').click(function(){
-                var html = '<div class="bed-item">' + '\n'+
+                if(multiBedCount < 2 && $(this).siblings('input[type=checkbox]').is(':checked'))
+                {
 
-                        '<div style="width:60px; display:inline-block"></div>' + '\n'+
+                    multiBedCount++;
+                    var html = '<div class="bed-item">' + '\n'+
 
-                        '<select class=" ui dropdown bedCate">'+'\n'+
+                            '<div style="width:60px; display:inline-block"></div>' + '\n'+
 
-                        @foreach($bedTypes as $bedType)
-                            '<option value="{{$bedType->id}}">{{$bedType->name}}</option>'+'\n'+
-                        @endforeach
-                     '</select>'+'\n'+
+                            '<select class="  bedCate" name="multiBedType[]">'+'\n'+
+                            '<option value="">选择床型</option>'+'\n'+
+                            @foreach($bedTypes as $bedType)
+                                '<option value="{{$bedType->id}}">{{$bedType->name}}</option>'+'\n'+
+                            @endforeach
+                         '</select>'+'\n'+
 
-                        '<input type="hidden" class="bedTypeName" name="multiBedType[]">'+ '\n'+
+                            '<div class="small-input-box ">'+'\n'+
+                            '<label>数量:</label>'+'\n'+
+                            '<input type="text" name="numOfMultiBed[]" class="disabled-input" >'+'\n'+
+                            '<span class="unit">张</span>'+'\n'+
+                            '</div>'+'\n'+
 
-                        '<div class="small-input-box ">'+'\n'+
-                        '<label>数量:</label>'+'\n'+
-                        '<input type="text" name="numOfMultiBed[]">'+'\n'+
-                        '<span class="unit">张</span>'+'\n'+
-                        '</div>'+'\n'+
+                            '<div class="small-input-box ">'+'\n'+
+                            '<label>床宽:</label>'+'\n'+
+                            '<input type="text"  name="widthOfMultiBed[]" class="disabled-input" >'+'\n'+
+                            '<span class="unit">米</span>'+'\n'+
+                            '</div>'+'\n'+
+                            '<span class="delete-new-bed" >删除</span>'+'\n'+
+                            '</div>';
+                    $('#multiBed').append(html);
+                }
 
-                        '<div class="small-input-box ">'+'\n'+
-                        '<label>床宽:</label>'+'\n'+
-                        '<input type="text"  name="widthOfMultiBed[]">'+'\n'+
-                        '<span class="unit">米</span>'+'\n'+
-                        '</div>'+'\n'+
+            })
 
-                        '<span class="add-new-bed" id="addNewBed">添加</span>'+'\n'+
-                        '<span class="delete-new-bed" >删除</span>'+'\n'+
-                        '</div>';
-                $('#bedTypeList').append(html);
-                $(' .ui.dropdown').dropdown({
-                    onChange: function(value, text, $selectedItem) {
-                        $(this).parent().siblings('.bedTypeName').val(text);
-                    }
-                })
+            $('.delete-new-bed').on('click',function(){
+
+                $(this).parent().remove();
+                if(multiBedCount!== 0 )
+                    multiBedCount--;
             })
 
             //选择床型 checkbox
@@ -339,10 +328,11 @@
 
                 if(!$(this).is(':checked'))
                 {
-                    $(this).siblings('.small-input-box').fadeOut();
+                    $(this).parents('.b-i').find('input[type=text]').addClass('disabled-input').attr('disabled',true);
                 }
                 else{
-                    $(this).siblings('.small-input-box').fadeIn();
+
+                    $(this).parents('.b-i').find('input[type=text]').removeClass('disabled-input').attr('disabled',false);
                 }
             })
 

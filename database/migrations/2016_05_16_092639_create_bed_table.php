@@ -18,7 +18,8 @@ class CreateBedTable extends Migration
             $table->increments('id');
             $table->integer('hotel_id');
             $table->integer('room_id');
-            $table->string('type_name',50);
+            $table->string('room_bed_category',50);
+            $table->integer('bed_type_id');
             $table->float('length');
             $table->float('width');
             $table->integer('num_of_beds');

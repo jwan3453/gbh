@@ -263,8 +263,6 @@ class HotelController extends Controller
     public function createNewRoom(Request $request)
     {
 
-
-
         $this->hotelService->createNewRoom($request);
         $jsonResult = new MessageResult();
         $jsonResult->statusCode = 1;
@@ -274,5 +272,12 @@ class HotelController extends Controller
     }
 
 
+    public function editRoom($hotelId, $roomId)
+    {
+
+        $room = $this->hotelService->editRoom($hotelId,$roomId);
+        $bedTypes = $this->hotelService->getAllBedType();
+        return view('Admin.Hotel.editRoom')->with('room',$room)->with('bedTypes', $bedTypes)->with('hotelId',$hotelId)->with('roomId',$roomId);
+    }
 
 }
