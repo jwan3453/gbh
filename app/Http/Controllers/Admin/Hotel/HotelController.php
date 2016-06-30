@@ -11,6 +11,7 @@ use App\Http\Controllers\Controller;
 
 use App\Service\Common\CommonService;
 use App\Service\Admin\HotelService;
+use App\Models\Hotel;
 
 class HotelController extends Controller
 {
@@ -38,7 +39,9 @@ class HotelController extends Controller
         // }
 
         $manageHotelList = $this->hotelService->getHotelList();
+        // dd($manageHotelList);
         foreach ($manageHotelList as $hotelList) {
+
             $province = $this->commonService->getAdressInfo('province',$hotelList->address->province_code);
             $city = $this->commonService->getAdressInfo('city',$hotelList->address->city_code);
             $district = $this->commonService->getAdressInfo('district',$hotelList->address->district_code);
@@ -59,11 +62,10 @@ class HotelController extends Controller
      */
     public function createHotel()
     {
-
-
         $geoData = $this->commonService->getGeoDetail();
-        // $hotelInfo = new collect([]);
-        return view('Admin.Hotel.createHotel')->with('geoData',$geoData)->with('hotelInfo',$hotelInfo);
+        $hotelInfo = new Hotel();
+        $createOrUpdate = "create";
+        return view('Admin.Hotel.createHotel')->with('geoData',$geoData)->with('hotelInfo',$hotelInfo)->with('createOrUpdate',$createOrUpdate);
         //
     }
 
@@ -78,6 +80,8 @@ class HotelController extends Controller
         //
         $isCreate =  $this->hotelService->createHotel($request);
 
+        $createOrUpdate = $request->input('createOrupdate');
+
         if ($isCreate) {
             $province = $this->commonService->getAdressInfo('province',$request->input('provinceCode'));
             $city = $this->commonService->getAdressInfo('city',$request->input('cityCode'));
@@ -86,7 +90,12 @@ class HotelController extends Controller
 
             $addressInfo = $province.$city.$district.$detail;
 
-            return view('Admin.Hotel.geoLocation')->with('address',$addressInfo)->with('hotelId',$isCreate);
+            if ($createOrUpdate == "update") {
+                return redirect(url('admin/manageHotel/editGeoLocation/'.$isCreate));
+            }else{
+                return view('Admin.Hotel.geoLocation')->with('address',$addressInfo)->with('hotelId',$isCreate);
+            }
+            
         }
         else{
             return redirect(url('admin/manageHotel/createHotelError/1/0'));
@@ -97,12 +106,15 @@ class HotelController extends Controller
     public function geolocation($hotelId)
     {
         $address = "福建省厦门市思明区凡悦咖啡厅";
-        return view('Admin.Hotel.geoLocation')->with('address',$address)->with('hotelId',$hotelId);
+        $hotelInfo = new Hotel();
+        return view('Admin.Hotel.geoLocation')->with('address',$address)->with('hotelId',$hotelId)->with('hotelInfo',$hotelInfo);
     }
 
     public function insertPolicy(Request $request)
     {
         $isCreate = $this->hotelService->insertPolicy($request->input());
+
+        $createOrupdate = $request->input('createOrupdate');;
 
         $hotelId = $request->input('hotelId');
 
@@ -110,6 +122,9 @@ class HotelController extends Controller
             $InternalList = $this->hotelService->getCreditList(1);
             $AbroadList = $this->hotelService->getCreditList(2);
 
+            if ($createOrupdate == "update") {
+                return redirect(url('admin/manageHotel/editPaymentAndContact/'.$isCreate));
+            }
             return view('Admin.Hotel.contactAndPayment')->with('InternalList',$InternalList)->with('AbroadList',$AbroadList)->with('hotelId',$isCreate);
         }
         else{
@@ -127,16 +142,23 @@ class HotelController extends Controller
     {
         $InternalList = $this->hotelService->getCreditList(1);
         $AbroadList = $this->hotelService->getCreditList(2);
-        return view('Admin.Hotel.contactAndPayment')->with('InternalList',$InternalList)->with('AbroadList',$AbroadList)->with('hotelId',$hotelId);
+        $hotelInfo = new Hotel();
+        return view('Admin.Hotel.contactAndPayment')->with('InternalList',$InternalList)->with('AbroadList',$AbroadList)->with('hotelInfo',$hotelInfo)->with('hotelId',$hotelId);
     }
 
     public function insertContactPayment(Request $request)
     {
         $isCreate = $this->hotelService->insertContactPayment($request->input());
 
+        $createOrupdate = $request->input('createOrupdate');;
+
         $hotelId = $request->input('hotelId');
         if ($isCreate) {
             $ExtraServiceList = $this->hotelService->getExtraService();
+
+            if ($createOrupdate == "update") {
+                return redirect(url('admin/manageHotel/editFacility/'.$isCreate));
+            }
             return view('Admin.Hotel.facility')->with('ExtraServiceList',$ExtraServiceList)->with('hotelId',$isCreate);
         }
         else{
@@ -195,6 +217,122 @@ class HotelController extends Controller
         }
 
         return response($jsonResult->toJson());
+    }
+
+    public function editHotel($hotelId)
+    {
+        $geoData = $this->commonService->getGeoDetail();
+        $hotelInfo = $this->hotelService->getStepOneInfo($hotelId);
+
+        $province = $this->commonService->getAdressInfo('province',$hotelInfo->address->province_code);
+        $city = $this->commonService->getAdressInfo('city',$hotelInfo->address->city_code);
+        $district = $this->commonService->getAdressInfo('district',$hotelInfo->address->district_code);
+
+        $hotelInfo->addressInfo = $province . "-" .$city . "-" . $district;
+        $hotelInfo->detail = $hotelInfo->address->detail;
+
+        $hotelInfo->hotelId = $hotelId;
+
+        $createOrUpdate = "update";
+
+        return view('Admin.Hotel.createHotel')->with('geoData',$geoData)->with('hotelInfo',$hotelInfo)->with('createOrUpdate',$createOrUpdate);
+    }
+
+    public function editGeoLocation($hotelId)
+    {
+        $addressInfo = $this->hotelService->getHotelAddress($hotelId);
+
+        $province = $this->commonService->getAdressInfo('province',$addressInfo->province_code);
+        $city = $this->commonService->getAdressInfo('city',$addressInfo->city_code);
+        $district = $this->commonService->getAdressInfo('district',$addressInfo->district_code);
+
+        $detail = $addressInfo->detail;
+
+        $address = $province . $city . $district .$detail;
+        $hotelInfo = $this->hotelService->getStepTwoInfo($hotelId);
+
+        $createOrUpdate = "update";
+
+        return view('Admin.Hotel.geoLocation')->with('address',$address)->with('hotelId',$hotelId)->with('hotelInfo',$hotelInfo)->with('createOrUpdate',$createOrUpdate);
+    }
+
+    public function editPaymentAndContact($hotelId)
+    {
+        $hotelInfo = $this->hotelService->getStepThreeInfo($hotelId);
+
+        $createOrUpdate = "update";
+
+        $itemArr = $hotelInfo->paymentArr;
+
+        $InternalList = $this->hotelService->getCreditList(1);
+        $AbroadList = $this->hotelService->getCreditList(2);
+
+        foreach ($InternalList as $internal) {
+
+            if (in_array($internal->id, $itemArr)) {
+                $internal->ispay = 1;
+            }else{  
+                $internal->ispay = 0;
+            }
+        }
+
+        foreach ($AbroadList as $abroad) {
+            if (in_array($abroad->id, $itemArr)) {
+                $abroad->ispay = 1;
+            }else{  
+                $abroad->ispay = 0;
+            }
+        }
+
+        return view('Admin.Hotel.contactAndPayment')->with('InternalList',$InternalList)->with('AbroadList',$AbroadList)->with('hotelId',$hotelId)->with('hotelInfo',$hotelInfo)->with('createOrUpdate',$createOrUpdate);
+    }
+
+    public function editFacility($hotelId)
+    {
+        $ExtraServiceList = $this->hotelService->getExtraService();
+        $StepFourInfo = $this->hotelService->getStepFourInfo($hotelId);
+
+        $createOrUpdate = "update";
+
+        $checkboxArr = explode(',', $StepFourInfo->facilities_checkbox);
+        $radioArr = explode(',', $StepFourInfo->facilities_radio);
+
+        for ($i=0; $i < count($radioArr); $i++) { 
+            $radioArr[$i] = explode('_', $radioArr[$i]);
+        }
+
+        $i = 0;
+        foreach ($ExtraServiceList as $ExtraService) {
+            if ($i < 4) {
+                foreach ($ExtraService as $service) {
+                    
+                    if (in_array($service->id, $checkboxArr)) {
+                        $service->ischeck = 1;
+                    }else{
+                        $service->ischeck = 0;
+                    }
+                }
+              
+            }else{
+
+                foreach ($ExtraService as $service) {
+                  
+                    foreach ($radioArr as $radioItem) {
+
+                        if ($service->id == $radioItem[0]) {
+                            $service->ischeck = $radioItem[1];
+                        }
+                        
+                    }
+                    
+                }
+            }
+
+            $i++;
+            
+        }
+
+        return view('Admin.Hotel.facility')->with('ExtraServiceList',$ExtraServiceList)->with('hotelId',$hotelId)->with('createOrUpdate',$createOrUpdate);
     }
 
     /**

@@ -151,7 +151,10 @@ Route::group(['prefix' => '/admin/', 'middleware' => 'App\Http\Middleware\AdminA
         Route::post('selectUpOrDown','Admin\Hotel\HotelController@selectUpOrDown');
         Route::post('itemUpOrDown','Admin\Hotel\HotelController@itemUpOrDown');
 
-        Route::get('editHotel','Admin\Hotel\HotelController@createHotel');
+        Route::get('editHotel/{hotelId}','Admin\Hotel\HotelController@editHotel');
+        Route::get('editGeoLocation/{hotelId}','Admin\Hotel\HotelController@editGeoLocation');
+        Route::get('editPaymentAndContact/{hotelId}','Admin\Hotel\HotelController@editPaymentAndContact');
+        Route::get('editFacility/{hotelId}','Admin\Hotel\HotelController@editFacility');
 
     });
 

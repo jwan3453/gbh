@@ -28,9 +28,9 @@
 
 			<div class="item-box">
 				@foreach ($ExtraServiceList[1] as $ectraService)
-				<div class="item-block" id="serviceItems" onclick="serviceItems(this)">
+				<div class="item-block @if($ectraService->ischeck == 1) click-item-block @endif " id="serviceItems" onclick="@if($ectraService->ischeck == 1) unserviceItems(this) @else serviceItems(this) @endif">
 					<input type="checkbox" class="display-none" value="{{$ectraService->
-					id}}" name="serviceItems[]">
+					id}}" name="serviceItems[]" @if($ectraService->ischeck == 1) checked="checked" @endif>
 					<span class="pandding">{{$ectraService->extra_name}}</span>
 				</div>
 				@endforeach
@@ -44,9 +44,9 @@
 
 			<div class="item-box">
 				@foreach ($ExtraServiceList[2] as $ectraService)
-				<div class="item-block " id="serviceItems" onclick="petItems(this)">
+				<div class="item-block @if($ectraService->ischeck == 1) click-item-block @endif" id="serviceItems" onclick="petItems(this)">
 					<input type="checkbox" class="display-none" value="{{$ectraService->
-					id}}" name="serviceItems[]">
+					id}}" name="serviceItems[]" @if($ectraService->ischeck == 1) checked="checked" @endif>
 					<span class="pandding">{{$ectraService->extra_name}}</span>
 				</div>
 				@endforeach
@@ -61,9 +61,9 @@
 
 			<div class="item-box">
 				@foreach ($ExtraServiceList[3] as $ectraService)
-				<div class="item-block" id="serviceItems" onclick="serviceItems(this)">
+				<div class="item-block @if($ectraService->ischeck == 1) click-item-block @endif" id="serviceItems" onclick="@if($ectraService->ischeck == 1) unserviceItems(this) @else serviceItems(this) @endif">
 					<input type="checkbox" class="display-none" value="{{$ectraService->
-					id}}" name="serviceItems[]">
+					id}}" name="serviceItems[]" @if($ectraService->ischeck == 1) checked="checked" @endif>
 					<span class="pandding">{{$ectraService->extra_name}}</span>
 				</div>
 				@endforeach
@@ -78,9 +78,9 @@
 
 			<div class="item-box">
 				@foreach ($ExtraServiceList[4] as $ectraService)
-				<div class="item-block" id="serviceItems" onclick="serviceItems(this)">
+				<div class="item-block @if($ectraService->ischeck == 1) click-item-block @endif" id="serviceItems" onclick="@if($ectraService->ischeck == 1) unserviceItems(this) @else serviceItems(this) @endif">
 					<input type="checkbox" class="display-none" value="{{$ectraService->
-					id}}" name="serviceItems[]">
+					id}}" name="serviceItems[]" @if($ectraService->ischeck == 1) checked="checked" @endif>
 					<span class="pandding">{{$ectraService->extra_name}}</span>
 				</div>
 				@endforeach
@@ -103,11 +103,11 @@
 					<span class="radio-item-span">全部</span>
 
 					<input type="radio" class="radio-item-input" name="{{$ectraService->
-					id}}"  value="{{$ectraService->id}}_2"  >
+					id}}"  value="{{$ectraService->id}}_2" @if($ectraService->ischeck == 2) checked="checked" @endif >
 					<span class="radio-item-span">部分</span>
 
 					<input type="radio" class="radio-item-input" name="{{$ectraService->
-					id}}"  value="{{$ectraService->id}}_3"  >
+					id}}"  value="{{$ectraService->id}}_3" @if($ectraService->ischeck == 3) checked="checked" @endif >
 					<span class="radio-item-span">无</span>
 
 				</div>
@@ -131,11 +131,11 @@
 					<span class="radio-item-span">全部</span>
 
 					<input type="radio" class="radio-item-input" name="{{$ectraService->
-					id}}"  value="{{$ectraService->id}}_2"  >
+					id}}"  value="{{$ectraService->id}}_2" @if($ectraService->ischeck == 2) checked="checked" @endif >
 					<span class="radio-item-span">部分</span>
 
 					<input type="radio" class="radio-item-input" name="{{$ectraService->
-					id}}"  value="{{$ectraService->id}}_3"  >
+					id}}"  value="{{$ectraService->id}}_3" @if($ectraService->ischeck == 3) checked="checked" @endif >
 					<span class="radio-item-span">无</span>
 
 				</div>
@@ -158,11 +158,11 @@
 					<span class="radio-item-span">全部</span>
 
 					<input type="radio" class="radio-item-input" name="{{$ectraService->
-					id}}"  value="{{$ectraService->id}}_2"  >
+					id}}"  value="{{$ectraService->id}}_2" @if($ectraService->ischeck == 2) checked="checked" @endif >
 					<span class="radio-item-span">部分</span>
 
 					<input type="radio" class="radio-item-input" name="{{$ectraService->
-					id}}"  value="{{$ectraService->id}}_3"  >
+					id}}"  value="{{$ectraService->id}}_3" @if($ectraService->ischeck == 3) checked="checked" @endif >
 					<span class="radio-item-span">无</span>
 				</div>
 				@endforeach
@@ -183,11 +183,11 @@
 					<span class="radio-item-span">全部</span>
 
 					<input type="radio" class="radio-item-input" name="{{$ectraService->
-					id}}"  value="{{$ectraService->id}}_2"  >
+					id}}"  value="{{$ectraService->id}}_2" @if($ectraService->ischeck == 2) checked="checked" @endif >
 					<span class="radio-item-span">部分</span>
 
 					<input type="radio" class="radio-item-input" name="{{$ectraService->
-					id}}"  value="{{$ectraService->id}}_3"  >
+					id}}"  value="{{$ectraService->id}}_3" @if($ectraService->ischeck == 3) checked="checked" @endif >
 					<span class="radio-item-span">无</span>
 				</div>
 				@endforeach
@@ -208,11 +208,11 @@
 					<span class="radio-item-span">全部</span>
 
 					<input type="radio" class="radio-item-input" name="{{$ectraService->
-					id}}"  value="{{$ectraService->id}}_2"  >
+					id}}"  value="{{$ectraService->id}}_2" @if($ectraService->ischeck == 2) checked="checked" @endif >
 					<span class="radio-item-span">部分</span>
 
 					<input type="radio" class="radio-item-input" name="{{$ectraService->
-					id}}"  value="{{$ectraService->id}}_3"  >
+					id}}"  value="{{$ectraService->id}}_3" @if($ectraService->ischeck == 3) checked="checked" @endif >
 					<span class="radio-item-span">无</span>
 				</div>
 				@endforeach
@@ -233,11 +233,11 @@
 					<span class="radio-item-span">全部</span>
 
 					<input type="radio" class="radio-item-input" name="{{$ectraService->
-					id}}"  value="{{$ectraService->id}}_2"  >
+					id}}"  value="{{$ectraService->id}}_2" @if($ectraService->ischeck == 2) checked="checked" @endif >
 					<span class="radio-item-span">部分</span>
 
 					<input type="radio" class="radio-item-input" name="{{$ectraService->
-					id}}"  value="{{$ectraService->id}}_3"  >
+					id}}"  value="{{$ectraService->id}}_3" @if($ectraService->ischeck == 3) checked="checked" @endif >
 					<span class="radio-item-span">无</span>
 				</div>
 				@endforeach
