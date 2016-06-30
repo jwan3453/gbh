@@ -50,7 +50,7 @@
                 <td class="l-td">
 
                     <div class="header-option f-left">
-                        <a href="/admin/manageHotel/editHotel">
+                        <a href="/admin/manageHotel/editHotel/{{$hotelitem->id}}">
                             <img src = '/Admin/img/编辑.png'/>
                             <span class="edit">编辑</span>
                         </a>

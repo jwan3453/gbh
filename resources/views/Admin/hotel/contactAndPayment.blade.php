@@ -32,6 +32,7 @@
 		<div class="item-box">
 
 			<div class="contact-box">
+				<input type="hidden" name="contactId[]">
 				<div class="contact-box-row">
 					<label>姓名：</label>
 					<input type="text" class="contact-input" name="contactName[]">

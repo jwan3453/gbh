@@ -31,6 +31,8 @@
 <form id="hotelBasicInfo" action='{{url("/admin/manageHotel/insertPolicy")}}' method="Post">
     <input type="hidden" value="{{csrf_token()}}" name="_token"/>
     <input type="hidden" value="{{$hotelId}}" name="hotelId" />
+    <input type="hidden" value="{{$hotelInfo->hotelPolicy->id}}" name="policyId" id="policyId" />
+    <input type="hidden" value="{{$createOrUpdate}}" id="createOrupdate" name="createOrupdate" />
     <div class="geoLocation-box">
 
         <div class="geoLocation-title">
@@ -62,13 +64,12 @@
 
         <div class="surrounding-environment">
             <span class="height-40">周边环境  :</span>
-            @for($i = 0 ; $i
-            < 5 ; $i++)
-            <span class="height-40">周边环境</span>
-            @endfor
+            @foreach($hotelInfo->itemArr as $item)
+            <span class="height-40">{{$item}}</span>
+            @endforeach
             <div class="add-surrounding-btn" onclick="addSurrounding()">
                 <img src="/Admin/icon/add.png">添加更多</div>
-            <input type="hidden" name="surrounding" id="surrounding" value="" />
+            <input type="hidden" name="surrounding" id="surrounding" value="{{$hotelInfo->surrounding_environment}}" />
         </div>
 
     </div>
@@ -106,31 +107,31 @@
         </div>
 
         <div class="hotel-policy-row height-80">
-            <div class="title-font-box heihht-40 margin-right-10">
+            <div class="title-font-box height-40 margin-right-10">
                 <span class="policy-title-font float-left">押金预付</span>
             </div>
-            <textarea class="hotel-policy-textarea margin-right-10" name="prepaidDeposit"></textarea>
-            <div class="title-font-box heihht-40">
+            <textarea class="hotel-policy-textarea margin-right-10" name="prepaidDeposit">{{$hotelInfo->hotelPolicy->prepaid_deposit}}</textarea>
+            <div class="title-font-box height-40">
                 <span class="policy-tips-font float-left">在此输入酒店押金入住信息</span>
             </div>
         </div>
 
         <div class="hotel-policy-row height-80">
-            <div class="title-font-box heihht-40 margin-right-10">
+            <div class="title-font-box height-40 margin-right-10">
                 <span class="policy-title-font float-left">膳食安排</span>
             </div>
-            <textarea class="hotel-policy-textarea margin-right-10" name="cateringArrangements"></textarea>
-            <div class="title-font-box heihht-40">
+            <textarea class="hotel-policy-textarea margin-right-10" name="cateringArrangements">{{$hotelInfo->hotelPolicy->catering_arrangements}}</textarea>
+            <div class="title-font-box height-40">
                 <span class="policy-tips-font float-left">在此输入酒店的餐食与时间，如早餐自助午餐AM10:00等</span>
             </div>
         </div>
 
         <div class="hotel-policy-row height-80">
-            <div class="title-font-box heihht-40 margin-right-10">
+            <div class="title-font-box height-40 margin-right-10">
                 <span class="policy-title-font float-left">其他政策</span>
             </div>
-            <textarea class="hotel-policy-textarea margin-right-10" name="otherPolicy"></textarea>
-            <div class="title-font-box heihht-40">
+            <textarea class="hotel-policy-textarea margin-right-10" name="otherPolicy">{{$hotelInfo->hotelPolicy->other_policy}}</textarea>
+            <div class="title-font-box height-40">
                 <span class="policy-tips-font float-left">酒店其他政策，包括加床，儿童床等</span>
             </div>
         </div>
@@ -221,7 +222,6 @@
             }
             $(".hotel-policy-input > select").append("<option>"+s+"</option>")
         }
-
 
     })
 
