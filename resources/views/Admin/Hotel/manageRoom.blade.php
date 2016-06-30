@@ -22,41 +22,41 @@
             <div style="overflow:hidden">
                 <div class="short-input-box ">
                     <label>房型名称</label>
-                    <input type="text" id="roomName" name="roomName">
+                    <input type="text" id="roomName" name="roomName" data-input="房型名称" class="require">
 
                 </div>
 
                 <div class="short-input-box ">
                     <label>门市价格</label>
-                    <input type="text" id="rackRate" name="rackRate">
+                    <input type="text" id="rackRate" name="rackRate" data-input="房型名称" class="require">
                 </div>
 
                 <div class="short-input-box ">
                     <label>入住人数</label>
-                    <input type="text" id="numOfPeople" name="numOfPeople">
+                    <input type="text" id="numOfPeople" name="numOfPeople" data-input="入住人数" class="require">
                     <span class="unit">位</span>
                 </div>
 
                 <div class="short-input-box ">
                     <label>儿童人数</label>
-                    <input type="text" id="numOfChildren" name="numOfChildren">
+                    <input type="text" id="numOfChildren" name="numOfChildren" data-input="儿童人数" class="require">
                     <span class="unit">位</span>
                 </div>
 
                 <div class="short-input-box ">
                     <label>房间数</label>
-                    <input type="text" id="numOfRooms" name="numOfRooms">
+                    <input type="text" id="numOfRooms" name="numOfRooms"  data-input="房间数" class="require">
                     <span class="unit">间</span>
                 </div>
 
                 <div class="short-input-box ">
                     <label>楼层</label>
-                    <input type="text" id="floor" name="floor">
+                    <input type="text" id="floor" name="floor" data-input="楼层" class="require">
                     <span class="unit">层</span>
                 </div>
                 <div class="short-input-box ">
                     <label>面积</label>
-                    <input type="text" id="acreage" name="acreage">
+                    <input type="text" id="acreage" name="acreage" data-input="面积" class="require">
                     <span class="unit">平方</span>
                 </div>
             </div>
@@ -76,13 +76,19 @@
 
                         <div class="small-input-box ">
                             <label>数量:</label>
-                            <input type="text" name="numOfDoubleBed" id="numOfDoubleBed"  class="disabled-input" disabled='disabled'>
+                            <input type="text" name="numOfDoubleBed" id="numOfDoubleBed"  data-input="双床数量" class="disabled-input" disabled='disabled'>
                             <span class="unit">张</span>
                         </div>
 
                         <div class="small-input-box ">
+                            <label>床长:</label>
+                            <input type="text" name="lengthOfDoubleBed" id="lengthOfDoubleBed" data-input="双床床长" class="disabled-input" disabled='disabled'>
+                            <span class="unit">米</span>
+                        </div>
+
+                        <div class="small-input-box ">
                             <label>床宽:</label>
-                            <input type="text" name="widthOfDoubleBed" id="widthOfDoubleBed" class="disabled-input" disabled='disabled'>
+                            <input type="text" name="widthOfDoubleBed" id="widthOfDoubleBed" data-input="双床床宽" class="disabled-input" disabled='disabled'>
                             <span class="unit">米</span>
                         </div>
 
@@ -100,13 +106,19 @@
 
                         <div class="small-input-box ">
                             <label>数量:</label>
-                            <input type="text"  name="numOfSingleBed" id="numOfSingleBed" class="disabled-input" disabled='disabled'>
+                            <input type="text"  name="numOfSingleBed" id="numOfSingleBed"  data-input="单床数量" class="disabled-input" disabled='disabled'>
                             <span class="unit">张</span>
                         </div>
 
                         <div class="small-input-box ">
+                            <label>床长:</label>
+                            <input type="text" name="lengthOfSingleBed" id="lengthOfSingleBed" data-input="单床床长" class="disabled-input" disabled='disabled'>
+                            <span class="unit">米</span>
+                        </div>
+
+                        <div class="small-input-box ">
                             <label>床宽:</label>
-                            <input type="text" name="widthOfSingleBed" id="widthOfSingleBed" class="disabled-input" disabled='disabled'>
+                            <input type="text" name="widthOfSingleBed" id="widthOfSingleBed" data-input="单床床宽" class="disabled-input" disabled='disabled'>
                             <span class="unit">米</span>
                         </div>
 
@@ -123,13 +135,19 @@
 
                         <div class="small-input-box ">
                             <label>数量:</label>
-                            <input type="text" name="numOfLargeBed" id="numOfLargeBed" class="disabled-input" disabled='disabled'>
+                            <input type="text" name="numOfLargeBed" id="numOfLargeBed" data-input="大床数量"  class="disabled-input" disabled='disabled'>
                             <span class="unit">张</span>
                         </div>
 
                         <div class="small-input-box ">
+                            <label>床长:</label>
+                            <input type="text" name="lengthOfLargeBed" id="lengthOfLargeBed" data-input="大床床长"  class="disabled-input" disabled='disabled'>
+                            <span class="unit">米</span>
+                        </div>
+
+                        <div class="small-input-box ">
                             <label>床宽:</label>
-                            <input type="text" name="widthOfLargeBed" id="widthOfLargeBed" class="disabled-input" disabled='disabled'>
+                            <input type="text" name="widthOfLargeBed" id="widthOfLargeBed" data-input="大床床宽"  class="disabled-input" disabled='disabled'>
                             <span class="unit">米</span>
                         </div>
                     </div>
@@ -151,13 +169,20 @@
 
                             <div class="small-input-box ">
                                 <label>数量:</label>
-                                <input type="text" name="numOfMultiBed[]"  class="disabled-input" disabled='disabled' >
+                                <input type="text" name="numOfMultiBed[]"  data-input="多床数量" class="disabled-input" disabled='disabled' >
                                 <span class="unit">张</span>
+                            </div>
+
+
+                            <div class="small-input-box ">
+                                <label>床长:</label>
+                                <input type="text" name="lengthOfMultiBed[]" data-input="多床床长" class="disabled-input" disabled='disabled' >
+                                <span class="unit">米</span>
                             </div>
 
                             <div class="small-input-box ">
                                 <label>床宽:</label>
-                                <input type="text" name="widthOfMultiBed[]" class="disabled-input" disabled='disabled' >
+                                <input type="text" name="widthOfMultiBed[]" data-input="多床床宽" class="disabled-input" disabled='disabled' >
                                 <span class="unit">米</span>
                             </div>
 
@@ -227,7 +252,7 @@
                     </div>
                 </div>
             </div>
-            <div class="auto-margin regular-btn red-btn" id="saveRoom">保存房型</div>
+            <div class="auto-margin regular-btn blue-btn" id="saveRoom">保存房型</div>
         </form>
         <table class="ui primary striped selectable table room-table " id="roomTalbe">
 
@@ -300,13 +325,20 @@
 
                             '<div class="small-input-box ">'+'\n'+
                             '<label>数量:</label>'+'\n'+
-                            '<input type="text" name="numOfMultiBed[]" class="disabled-input" >'+'\n'+
+                            '<input type="text" name="numOfMultiBed[]" data-input="多床数量"  >'+'\n'+
                             '<span class="unit">张</span>'+'\n'+
                             '</div>'+'\n'+
 
                             '<div class="small-input-box ">'+'\n'+
+                            '<label>床长:</label>'+'\n'+
+                            '<input type="text"  name="lengthOfMultiBed[]"  data-input="多床床长"  >'+'\n'+
+                            '<span class="unit">米</span>'+'\n'+
+                            '</div>'+'\n'+
+
+
+                            '<div class="small-input-box ">'+'\n'+
                             '<label>床宽:</label>'+'\n'+
-                            '<input type="text"  name="widthOfMultiBed[]" class="disabled-input" >'+'\n'+
+                            '<input type="text"  name="widthOfMultiBed[]"  data-input="多床床宽"  >'+'\n'+
                             '<span class="unit">米</span>'+'\n'+
                             '</div>'+'\n'+
                             '<span class="delete-new-bed" >删除</span>'+'\n'+
@@ -328,29 +360,38 @@
 
                 if(!$(this).is(':checked'))
                 {
-                    $(this).parents('.b-i').find('input[type=text]').addClass('disabled-input').attr('disabled',true);
+                    $(this).parents('.b-i').find('input[type=text]').addClass('disabled-input ').removeClass('require').attr('disabled',true);
                 }
                 else{
 
-                    $(this).parents('.b-i').find('input[type=text]').removeClass('disabled-input').attr('disabled',false);
+                    $(this).parents('.b-i').find('input[type=text]').removeClass('disabled-input ').addClass('require').attr('disabled',false);
                 }
             })
 
             // ajax 上传新的房型
             $('#saveRoom').click(function(){
-                $.ajax({
-                    type: 'POST',
-                    url: '/admin/manageHotel/createNewRoom',
-                    data: $("#newRoomForm").serialize(),
-                    dataType: 'json',
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-                    },
-                    success: function(data){
-                        alert(data.statusMsg);
 
-                    }
-                })
+                var checkForm = true;
+
+                checkForm = alertBox(checkForm);
+
+                if(checkForm)
+                {
+                    $.ajax({
+                        type: 'POST',
+                        url: '/admin/manageHotel/createNewRoom',
+                        data: $("#newRoomForm").serialize(),
+                        dataType: 'json',
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                        },
+                        success: function(data){
+                            alert(data.statusMsg);
+
+                        }
+                    })
+                }
+
             })
 
         })

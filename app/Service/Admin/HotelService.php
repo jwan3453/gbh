@@ -313,61 +313,7 @@ class HotelService {
 //        $new
         if($newRoom->save())
         {
-            if($request->input('doubleBed')!= null && $request->input('doubleBed') == 'on')
-            {
-                $newBed = new Bed();
-                $newBed->hotel_id = $request->input('hotelId');
-                $newBed->room_id = $newRoom->id;
-                $newBed->room_bed_category = 'doubleBed';
-                $newBed->bed_type_id= $request->input('doubleBedType');
-                $newBed->length = 2.0;//默认床的长度
-                $newBed->width = $request->input('widthOfDoubleBed');
-                $newBed->num_of_beds = $request->input('numOfDoubleBed');
-                $newBed->save();
-            }
-
-             if($request->input('singleBed')!= null && $request->input('singleBed') == 'on')
-            {
-                $newBed = new Bed();
-                $newBed->hotel_id = $request->input('hotelId');
-                $newBed->room_id = $newRoom->id;
-                $newBed->room_bed_category = 'singleBed';
-                $newBed->bed_type_id = $request->input('singleBedType');
-                $newBed->length = 2.0;//默认床的长度
-                $newBed->width = $request->input('widthOfSingleBed');
-                $newBed->num_of_beds = $request->input('numOfSingleBed');
-                $newBed->save();
-
-            }
-             if($request->input('largeBed')!= null && $request->input('largeBed') == 'on')
-            {
-                $newBed = new Bed();
-                $newBed->hotel_id = $request->input('hotelId');
-                $newBed->room_id = $newRoom->id;
-                $newBed->room_bed_category = 'largeBed';
-                $newBed->bed_type_id = $request->input('largeBedType');
-                $newBed->length = 2.0;//默认床的长度
-                $newBed->width = $request->input('widthOfLargeBed');
-                $newBed->num_of_beds = $request->input('numOfLargeBed');
-                $newBed->save();
-            }
-             if($request->input('multiBed')!= null && $request->input('multiBed') == 'on')
-            {
-
-                $MultiBedCount =  count($request->input('widthOfMultiBed'));
-                for( $i=0; $i<$MultiBedCount; $i++)
-                {
-                    $newBed = new Bed();
-                    $newBed->hotel_id = $request->input('hotelId');
-                    $newBed->room_id = $newRoom->id;
-                    $newBed->room_bed_category = 'multiBed';
-                    $newBed->bed_type_id = $request->input('multiBedType')[$i];
-                    $newBed->length = 2.0;//默认床的长度
-                    $newBed->width = $request->input('widthOfMultiBed')[$i];
-                    $newBed->num_of_beds = $request->input('numOfMultiBed')[$i];
-                    $newBed->save();
-                }
-            }
+            $this->createNewBeds($request,$newRoom->id);
         }
 
     }
@@ -382,6 +328,90 @@ class HotelService {
         return $room;
 
     }
+
+
+    public function updateRoom(Request $request)
+    {
+        $room = Room::where('id',$request->input('roomId'))->firstOrFail();
+        $room->room_name = $request->input('roomName');
+        $room->rack_rate = $request->input('rackRate');
+        $room->num_of_people = $request->input('numOfPeople');
+        $room->num_of_children = $request->input('numOfChildren');
+        $room->num_of_rooms = $request->input('numOfRooms');
+        $room->acreage = $request->input('acreage');
+        $room->floor = $request->input('floor');
+
+        if($room->save())
+        {
+            //先删除之前的保存的床
+            Bed::where('room_id',$request->input('roomId'))->delete();
+            $this->createNewBeds($request,$request->input('roomId'));
+
+        }
+        return $room;
+    }
+
+    public function createNewBeds(Request $request,$roomId)
+    {
+
+        if($request->input('doubleBed')!= null && $request->input('doubleBed') == 'on')
+        {
+            $newBed = new Bed();
+            $newBed->hotel_id = $request->input('hotelId');
+            $newBed->room_id = $roomId;
+            $newBed->room_bed_category = 'doubleBed';
+            $newBed->bed_type_id= $request->input('doubleBedType');
+            $newBed->length = $request->input('lengthOfDoubleBed');
+            $newBed->width = $request->input('widthOfDoubleBed');
+            $newBed->num_of_beds = $request->input('numOfDoubleBed');
+            $newBed->save();
+        }
+
+        if($request->input('singleBed')!= null && $request->input('singleBed') == 'on')
+        {
+            $newBed = new Bed();
+            $newBed->hotel_id = $request->input('hotelId');
+            $newBed->room_id = $roomId;
+            $newBed->room_bed_category = 'singleBed';
+            $newBed->bed_type_id = $request->input('singleBedType');
+            $newBed->length = $request->input('lengthOfSingleBed');
+            $newBed->width = $request->input('widthOfSingleBed');
+            $newBed->num_of_beds = $request->input('numOfSingleBed');
+            $newBed->save();
+
+        }
+        if($request->input('largeBed')!= null && $request->input('largeBed') == 'on')
+        {
+            $newBed = new Bed();
+            $newBed->hotel_id = $request->input('hotelId');
+            $newBed->room_id = $roomId;
+            $newBed->room_bed_category = 'largeBed';
+            $newBed->bed_type_id = $request->input('largeBedType');
+            $newBed->length = $request->input('lengthOfLargeBed');
+            $newBed->width = $request->input('widthOfLargeBed');
+            $newBed->num_of_beds = $request->input('numOfLargeBed');
+            $newBed->save();
+        }
+        if($request->input('multiBed')!= null && $request->input('multiBed') == 'on')
+        {
+
+            $MultiBedCount =  count($request->input('widthOfMultiBed'));
+            for( $i=0; $i<$MultiBedCount; $i++)
+            {
+                $newBed = new Bed();
+                $newBed->hotel_id = $request->input('hotelId');
+                $newBed->room_id =$roomId;
+                $newBed->room_bed_category = 'multiBed';
+                $newBed->bed_type_id = $request->input('multiBedType')[$i];
+                $newBed->length = $request->input('lengthOfMultiBed')[$i];
+                $newBed->width = $request->input('widthOfMultiBed')[$i];
+                $newBed->num_of_beds = $request->input('numOfMultiBed')[$i];
+                $newBed->save();
+            }
+        }
+    }
+
+
 
     public function selectUpOrDown($request)
     {
@@ -475,6 +505,8 @@ class HotelService {
     {
         return HotelExtra::where('hotel_id',$hotelId)->select('facilities_checkbox','facilities_radio')->first();
     }
+
+
 
 
 }

@@ -78,6 +78,8 @@
 </div>
 
 
+    <div class="alert-box" id="alertBox"></div>
+
 
 </body>
 
@@ -210,6 +212,26 @@
     }
 
     function imgdragstart(){return false;}
+
+    function alertBox(check)
+    {
+
+        $('.require').each(function(){
+            if($(this).val() == '')
+            {
+                var content = $(this).attr('data-input')+'不能为空';
+                $('#alertBox').text(content).fadeIn();
+                //$(this).removeClass('wrong-input');
+                setTimeout(function () {
+                    $('#alertBox').text(content).fadeOut();
+                    //$(this).removeClass('wrong-input');
+                }, 2000);
+                check=false;
+                return false;
+            }
+        })
+        return check;
+    }
 </script>
 
 </html>

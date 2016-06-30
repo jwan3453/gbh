@@ -418,4 +418,9 @@ class HotelController extends Controller
         return view('Admin.Hotel.editRoom')->with('room',$room)->with('bedTypes', $bedTypes)->with('hotelId',$hotelId)->with('roomId',$roomId);
     }
 
+    public function updateRoom(Request $request)
+    {
+        $room = $this->hotelService->updateRoom($request);
+        return redirect('/admin/manageHotel/hotelInfo/'.$request->input('hotelId').'/manageRoom');
+    }
 }

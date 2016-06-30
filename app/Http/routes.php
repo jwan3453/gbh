@@ -138,13 +138,17 @@ Route::group(['prefix' => '/admin/', 'middleware' => 'App\Http\Middleware\AdminA
         //编辑房间
         Route::get('hotelInfo/{hotelId}/editRoom/{roomId}','Admin\Hotel\HotelController@editRoom');
 
+        //创建房间
+        Route::post('/createNewRoom','Admin\Hotel\HotelController@createNewRoom');
+
+        //跟新房间
+        Route::post('/updateRoom','Admin\Hotel\HotelController@updateRoom');
+
         Route::post('insertPolicy','Admin\Hotel\HotelController@insertPolicy');
 
         Route::post('insertContactPayment','Admin\Hotel\HotelController@insertContactPayment');
 
         Route::post('insertFacility','Admin\Hotel\HotelController@insertFacility');
-
-        Route::post('/createNewRoom','Admin\Hotel\HotelController@createNewRoom');
 
         Route::get('createHotelError/{errorid}/{hotelId}','Admin\Hotel\HotelController@createHotelError');
 

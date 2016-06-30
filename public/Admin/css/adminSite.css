@@ -4,6 +4,7 @@
 body{
 	margin :0;
 	background-color: #d1dadf;
+	position: relative;
 	font-family: "Microsoft YaHei" !important;
 }
 .menu-box{
@@ -235,6 +236,25 @@ a{
 }
 .disabled-input{
 	border:1px solid #cfcfcf!important;
+}
+
+.alert-box{
+	position: fixed;
+	top:50px;
+	left:calc(50% - 80px);
+	color:white;
+	width:160px;
+	height:40px;
+	background-color:#ff5f76;
+	border-radius: 5px;
+	font-size:14px;
+	line-height: 40px;
+	text-align: center;
+	display: none;
+}
+
+.wrong-input{
+	border:1px solid #ff5f76!important;
 }
 /*****************公用***end*********************/
 
@@ -2670,7 +2690,7 @@ a{
 }
 
 .bed-item .delete-new-bed{
-	margin-left:10px;
+
 	display: inline-block;
 	cursor: pointer;
 	color:#cfcfcf;

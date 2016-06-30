@@ -23,41 +23,41 @@
         <div style="overflow:hidden">
             <div class="short-input-box ">
                 <label>房型名称</label>
-                <input type="text" id="roomName" name="roomName" value="{{$room->room_name}}">
+                <input type="text" id="roomName" name="roomName" value="{{$room->room_name}}" data-input="房型名称" class="require">
 
             </div>
 
             <div class="short-input-box ">
                 <label>门市价格</label>
-                <input type="text" id="rackRate" name="rackRate" value="{{$room->rack_rate}}">
+                <input type="text" id="rackRate" name="rackRate" value="{{$room->rack_rate}}" data-input="房型名称" class="require">
             </div>
 
             <div class="short-input-box ">
                 <label>入住人数</label>
-                <input type="text" id="numOfPeople" name="numOfPeople" value="{{$room->num_of_people}}">
+                <input type="text" id="numOfPeople" name="numOfPeople" value="{{$room->num_of_people}}" data-input="入住人数" class="require">
                 <span class="unit">位</span>
             </div>
 
             <div class="short-input-box ">
                 <label>儿童人数</label>
-                <input type="text" id="numOfChildren" name="numOfChildren" value="{{$room->num_of_children}}">
+                <input type="text" id="numOfChildren" name="numOfChildren" value="{{$room->num_of_children}}" data-input="儿童人数" class="require">
                 <span class="unit">位</span>
             </div>
 
             <div class="short-input-box ">
                 <label>房间数</label>
-                <input type="text" id="numOfRooms" name="numOfRooms" value="{{$room->num_of_rooms}}">
+                <input type="text" id="numOfRooms" name="numOfRooms" value="{{$room->num_of_rooms}}" data-input="房间数" class="require">
                 <span class="unit">间</span>
             </div>
 
             <div class="short-input-box ">
                 <label>楼层</label>
-                <input type="text" id="floor" name="floor" value="{{$room->floor}}">
+                <input type="text" id="floor" name="floor" value="{{$room->floor}}" data-input="楼层" class="require">
                 <span class="unit">层</span>
             </div>
             <div class="short-input-box ">
                 <label>面积</label>
-                <input type="text" id="acreage" name="acreage" value="{{$room->acreage}}">
+                <input type="text" id="acreage" name="acreage" value="{{$room->acreage}}" data-input="面积" class="require">
                 <span class="unit">平方</span>
             </div>
         </div>
@@ -86,13 +86,20 @@
 
                         <div class="small-input-box ">
                             <label>数量:</label>
-                            <input type="text"  name="numOfDoubleBed" id="numOfDoubleBed" class="disabled-input" disabled='disabled' value="{{$room->doubleBed==null?'': $room->doubleBed->num_of_beds}}" >
+                            <input type="text"  name="numOfDoubleBed" id="numOfDoubleBed"  data-input="双床数量" {{$room->doubleBed==null? 'class=disabled-input disabled=disabled': 'class=require'}} value="{{$room->doubleBed==null?'': $room->doubleBed->num_of_beds}}" >
                             <span class="unit">张</span>
                         </div>
 
                         <div class="small-input-box ">
+                            <label>床长:</label>
+                            <input type="text" name="lengthOfDoubleBed" id="lengthOfDoubleBed" data-input="双床床长" {{$room->doubleBed==null? 'class=disabled-input disabled=disabled': 'class=require'}} value="{{$room->doubleBed==null?'': $room->doubleBed->length}}">
+                            <span class="unit">米</span>
+                        </div>
+
+
+                        <div class="small-input-box ">
                             <label>床宽:</label>
-                            <input type="text" name="widthOfDoubleBed" id="widthOfDoubleBed" class="disabled-input"  disabled='disabled' value="{{$room->doubleBed==null?'': $room->doubleBed->width}}">
+                            <input type="text" name="widthOfDoubleBed" id="widthOfDoubleBed" data-input="双床床宽" {{$room->doubleBed==null? 'class=disabled-input disabled=disabled': 'class=require'}} value="{{$room->doubleBed==null?'': $room->doubleBed->width}}">
                             <span class="unit">米</span>
                         </div>
 
@@ -116,13 +123,19 @@
 
                         <div class="small-input-box ">
                             <label>数量:</label>
-                            <input type="text"  name="numOfSingleBed" id="numOfSingleBed"  class="disabled-input" disabled='disabled' value="{{$room->singleBed==null?'': $room->singleBed->num_of_beds}}">
+                            <input type="text"  name="numOfSingleBed" id="numOfSingleBed"  data-input="单床数量" {{$room->singleBed==null? 'class=disabled-input disabled=disabled': 'class=require'}}  value="{{$room->singleBed==null?'': $room->singleBed->num_of_beds}}">
                             <span class="unit">张</span>
                         </div>
 
                         <div class="small-input-box ">
+                            <label>床长:</label>
+                            <input type="text" name="lengthOfSingleBed" id="lengthOfSingleBed" data-input="单床床长" {{$room->singleBed==null? 'class=disabled-input disabled=disabled': 'class=require'}}  value="{{$room->singleBed==null?'': $room->singleBed->length}}" >
+                            <span class="unit">米</span>
+                        </div>
+
+                        <div class="small-input-box ">
                             <label>床宽:</label>
-                            <input type="text" name="widthOfSingleBed" id="widthOfSingleBed" class="disabled-input" disabled='disabled' value="{{$room->singleBed==null?'': $room->singleBed->width}}" >
+                            <input type="text" name="widthOfSingleBed" id="widthOfSingleBed" data-input="单床床宽" {{$room->singleBed==null? 'class=disabled-input disabled=disabled': 'class=require'}}  value="{{$room->singleBed==null?'': $room->singleBed->width}}" >
                             <span class="unit">米</span>
                         </div>
 
@@ -144,13 +157,20 @@
 
                         <div class="small-input-box ">
                             <label>数量:</label>
-                            <input type="text" name="numOfLargeBed" id="numOfLargeBed" class="disabled-input" disabled='disabled' value="{{$room->largeBed==null?'': $room->largeBed->num_of_beds}}">
+                            <input type="text" name="numOfLargeBed" id="numOfLargeBed"  data-input="大床数量" {{$room->largeBed==null? 'class=disabled-input disabled=disabled': 'class=require'}}  value="{{$room->largeBed==null?'': $room->largeBed->num_of_beds}}">
                             <span class="unit">张</span>
                         </div>
 
                         <div class="small-input-box ">
+                            <label>床长:</label>
+                            <input type="text" name="lengthOfLargeBed" id="lengthOfLargeBed"  data-input="大床床长"  {{$room->largeBed==null? 'class=disabled-input disabled=disabled': 'class=require'}}  value="{{$room->largeBed==null?'': $room->largeBed->length}}">
+                            <span class="unit">米</span>
+                        </div>
+
+
+                        <div class="small-input-box ">
                             <label>床宽:</label>
-                            <input type="text" name="widthOfLargeBed" id="widthOfLargeBed" class="disabled-input" disabled='disabled' value="{{$room->largeBed==null?'': $room->largeBed->width}}">
+                            <input type="text" name="widthOfLargeBed" id="widthOfLargeBed"  data-input="大床床宽"  {{$room->largeBed==null? 'class=disabled-input disabled=disabled': 'class=require'}}  value="{{$room->largeBed==null?'': $room->largeBed->width}}">
                             <span class="unit">米</span>
                         </div>
                     </div>
@@ -178,13 +198,19 @@
 
                             <div class="small-input-box ">
                                 <label>数量:</label>
-                                <input type="text" name="numOfMultiBed[]"  class="disabled-input" disabled='disabled' value=" {{count($room->multiBed)==0?'': $room->multiBed[0]->num_of_beds}}">
+                                <input type="text" name="numOfMultiBed[]"  data-input="多床数量" {{count($room->multiBed)==0? 'class=disabled-input disabled=disabled': 'class=require'}}  value=" {{count($room->multiBed)==0?'': $room->multiBed[0]->num_of_beds}}">
                                 <span class="unit">张</span>
                             </div>
 
                             <div class="small-input-box ">
+                                <label>床长:</label>
+                                <input type="text" name="lengthOfMultiBed[]" data-input="多床床长" {{count($room->multiBed)==0? 'class=disabled-input disabled=disabled': 'class=require'}} value="{{count($room->multiBed)==0?'': $room->multiBed[0]->length}}">
+                                <span class="unit">米</span>
+                            </div>
+
+                            <div class="small-input-box ">
                                 <label>床宽:</label>
-                                <input type="text" name="widthOfMultiBed[]" class="disabled-input" disabled='disabled' value="{{count($room->multiBed)==0?'': $room->multiBed[0]->width}}">
+                                <input type="text" name="widthOfMultiBed[]" data-input="多床床宽" {{count($room->multiBed)==0? 'class=disabled-input disabled=disabled': 'class=require'}} value="{{count($room->multiBed)==0?'': $room->multiBed[0]->width}}">
                                 <span class="unit">米</span>
                             </div>
 
@@ -212,13 +238,19 @@
 
                                 <div class="small-input-box " id="tet">
                                     <label>数量:</label>
-                                    <input type="text" name="numOfMultiBed[]"  class="disabled-input" disabled='disabled' value=" {{$room->multiBed==null?'': $room->multiBed[$i]->num_of_beds}}">
+                                    <input type="text" name="numOfMultiBed[]"  data-input="多床数量"  {{count($room->multiBed)==0? 'class=disabled-input disabled=disabled': 'class=require'}} value=" {{$room->multiBed==null?'': $room->multiBed[$i]->num_of_beds}}">
                                     <span class="unit">张</span>
                                 </div>
 
                                 <div class="small-input-box ">
+                                    <label>床长:</label>
+                                    <input type="text" name="lengthOfMultiBed[]"  data-input="多床床长" {{count($room->multiBed)==0? 'class=disabled-input disabled=disabled': 'class=require'}} value="{{$room->multiBed==null?'': $room->multiBed[$i]->length}}">
+                                    <span class="unit">米</span>
+                                </div>
+
+                                <div class="small-input-box ">
                                     <label>床宽:</label>
-                                    <input type="text" name="widthOfMultiBed[]" class="disabled-input" disabled='disabled' value="{{$room->multiBed==null?'': $room->multiBed[$i]->width}}">
+                                    <input type="text" name="widthOfMultiBed[]" data-input="多床床宽" {{count($room->multiBed)==0? 'class=disabled-input disabled=disabled': 'class=require'}} value="{{$room->multiBed==null?'': $room->multiBed[$i]->width}}">
                                     <span class="unit">米</span>
                                 </div>
 
@@ -301,7 +333,7 @@
                 </div>
             </div>
         </div>
-        <div class="auto-margin regular-btn red-btn" id="saveRoom">保存修改</div>
+        <div class="auto-margin regular-btn blue-btn" id="saveRoom">保存修改</div>
     </form>
 @stop
 
@@ -334,15 +366,23 @@
 
                             '<div class="small-input-box ">'+'\n'+
                             '<label>数量:</label>'+'\n'+
-                            '<input type="text" name="numOfMultiBed[]" class="disabled-input" >'+'\n'+
+                            '<input type="text" name="numOfMultiBed[]"  data-input="多床数量" >'+'\n'+
                             '<span class="unit">张</span>'+'\n'+
+                            '</div>'+'\n'+
+
+
+                            '<div class="small-input-box ">'+'\n'+
+                            '<label>床长:</label>'+'\n'+
+                            '<input type="text"  name="lengthOfMultiBed[]"  data-input="多床床长">'+'\n'+
+                            '<span class="unit">米</span>'+'\n'+
                             '</div>'+'\n'+
 
                             '<div class="small-input-box ">'+'\n'+
                             '<label>床宽:</label>'+'\n'+
-                            '<input type="text"  name="widthOfMultiBed[]" class="disabled-input" >'+'\n'+
+                            '<input type="text"  name="widthOfMultiBed[]"  data-input="多床床宽">'+'\n'+
                             '<span class="unit">米</span>'+'\n'+
                             '</div>'+'\n'+
+
                             '<span class="delete-new-bed" >删除</span>'+'\n'+
                             '</div>';
                     $('#multiBed').append(html);
@@ -363,19 +403,24 @@
 
                 if(!$(this).is(':checked'))
                 {
-                    $(this).parents('.b-i').find('input[type=text]').addClass('disabled-input').attr('disabled',true);
+                    $(this).parents('.b-i').find('input[type=text]').addClass('disabled-input ').removeClass('require').attr('disabled',true);
                 }
                 else{
 
-                    $(this).parents('.b-i').find('input[type=text]').removeClass('disabled-input').attr('disabled',false);
+                    $(this).parents('.b-i').find('input[type=text]').removeClass('disabled-input ').addClass('require').attr('disabled',false);
                 }
             })
 
 
             $('#saveRoom').click(function(){
 
-                $('#updateRoomForm').submit();
+                var checkForm = true;
 
+                checkForm = alertBox(checkForm);
+
+                if(checkForm) {
+                    $('#updateRoomForm').submit();
+                }
             })
 
         })
