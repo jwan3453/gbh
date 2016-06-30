@@ -32,15 +32,26 @@ class HotelService {
     {
         $isSuccess = false;
 
+        $createOrupdate = $request->input('createOrupdate');
+
         //储存酒店地址
-        $newAddress = new Address();
+        if ($createOrupdate == "update") {
+            $newAddress = Address::find($request->input('addressId'));
+        }else{
+            $newAddress = new Address();
+        }
         $newAddress->province_code = $request->input('provinceCode');
         $newAddress->city_code = $request->input('cityCode');
         $newAddress->district_code = $request->input('districtCode');
         $newAddress->detail = $request->input('hotelAddress');
         if($newAddress->save())
         {
-            $newHotel = new Hotel();
+            if ($createOrupdate == "update") {
+                $newHotel = Hotel::find($request->input('hotelId'));
+            }else{
+                $newHotel = new Hotel();
+            }
+            
             $newHotel->hotel_name = $request->input('hotelName');
             $newHotel->switchboard =$request->input('hotelPhone');//-------总机
             $newHotel->business_center_fax  = $request->input('hotelFax');//--------商务传真
@@ -68,7 +79,17 @@ class HotelService {
         $checkTime = $request['checkTimeFrom'] . " - " . $request['checkTimeTo'];
         $checkoutTime = $request['checkoutTimeFrom'] . " - " . $request['checkoutTimeTo'];
 
-        $hotelPolicy = new hotelPolicy();
+        // dd($request['createOrupdate']);
+
+        $createOrupdate = $request['createOrupdate'];
+        $policyId = $request['policyId'];
+
+        if ($createOrupdate == "update") {
+            $hotelPolicy = hotelPolicy::find($policyId);
+        }else{
+            $hotelPolicy = new hotelPolicy();
+        }
+        
         $hotelPolicy->check_time = $checkTime;
         $hotelPolicy->checkout_time = $checkoutTime;
         $hotelPolicy->prepaid_deposit = $request['prepaidDeposit'];
@@ -104,50 +125,114 @@ class HotelService {
         $isSuccess = false;
 
         $count = $request['contactCount'];
-        $insertData = array();
-        $json = '[';
-        for ($i=0; $i < $count; $i++) { 
+        
+        if ($request['createOrupdate'] == "update") {
 
-            $insertData[$i]['hotel_id'] = $request['hotelId'];
-            $insertData[$i]['name'] = $request['contactName'][$i];
-            $insertData[$i]['tel'] = $request['contactTel'][$i];
-            $insertData[$i]['phone'] = $request['contactPhone'][$i];
-            $insertData[$i]['duties'] = $request['contactDuties'][$i];
-            $insertData[$i]['fax'] = $request['contactFax'][$i];
-            $insertData[$i]['email'] = $request['contactEmail'][$i];
+            $hotelId = $request['hotelId'];
+            $contactIdArr = $request['contactId'];
 
-            $json .= '{';
-            $json .= '"name" : "'.$request['contactName'][$i].'",';
-            $json .= '"tel" : "'.$request['contactTel'][$i].'",';
-            $json .= '"phone" : "'.$request['contactPhone'][$i].'",';
-            $json .= '"duties" : "'.$request['contactDuties'][$i].'",';
-            $json .= '"fax" : "'.$request['contactFax'][$i].'",';
-            $json .= '"email" : "'.$request['contactEmail'][$i].'"';
-            $json .= '}';
+            $contactIdlist = HotelContact::where('hotel_id',$hotelId)->select('id')->get();
 
-            if ($i != $count - 1) {
-                $json .= ",";
+            $updateDate = array();
+            foreach ($contactIdlist as $contactid) {
+                $id = $contactid->id;
+
+                //----数据库中的联系人ID若有在提交的ID数组中，则修改
+                if (in_array($contactid->id, $contactIdArr)) {
+                    $updateDate['hotel_id'] = $request['hotelId'];
+                    $updateDate['name'] = $request['contactName'][$id];
+                    $updateDate['tel'] = $request['contactTel'][$id];
+                    $updateDate['phone'] = $request['contactPhone'][$id];
+                    $updateDate['duties'] = $request['contactDuties'][$id];
+                    $updateDate['fax'] = $request['contactFax'][$id];
+                    $updateDate['email'] = $request['contactEmail'][$id];
+
+                    HotelContact::where('id',$id)->update($updateDate);
+                }else{
+                    //------否则删除----
+                    HotelContact::where('id',$id)->delete();
+                }
+
+                //------将处理过的数据从数组中移除
+                unset($request['contactName'][$id]);
+                unset($request['contactTel'][$id]);
+                unset($request['contactPhone'][$id]);
+                unset($request['contactDuties'][$id]);
+                unset($request['contactFax'][$id]);
+                unset($request['contactEmail'][$id]);
+
+                $count = $count - 1;
+            }
+            //---------是否还有剩余的数据，如果有则插入新的联系人
+            if ($count > 0) {
+                //------剩余的联系人数组重新排序----
+                shuffle($request['contactName']);
+                shuffle($request['contactTel']);
+                shuffle($request['contactPhone']);
+                shuffle($request['contactDuties']);
+                shuffle($request['contactFax']);
+                shuffle($request['contactEmail']);
+
+                //-----构成插入数据数组----
+                $newInsertData = array();
+                for ($i=0; $i < $count; $i++) { 
+                    $newInsertData[$i]['hotel_id'] = $request['hotelId'];
+                    $newInsertData[$i]['name'] = $request['contactName'][$i];
+                    $newInsertData[$i]['tel'] = $request['contactTel'][$i];
+                    $newInsertData[$i]['phone'] = $request['contactPhone'][$i];
+                    $newInsertData[$i]['duties'] = $request['contactDuties'][$i];
+                    $newInsertData[$i]['fax'] = $request['contactFax'][$i];
+                    $newInsertData[$i]['email'] = $request['contactEmail'][$i];
+                }
+
+                HotelContact::insert($newInsertData);
             }
 
-        }
-
-        $json .= ']';
-
-        $isInsert = HotelContact::insert($insertData);
-
-        $paymentItem = '';
-        $paymentCount = count($request['serviceItems']);
-        for ($i=0; $i < $paymentCount; $i++) { 
-            $paymentItem .= $request['serviceItems'][$i];
-            if ($i != $paymentCount - 1) {
-                $paymentItem .= ",";
+            $updatePaymentItem = '';
+            $paymentCount = count($request['serviceItems']);
+            for ($i=0; $i < $paymentCount; $i++) { 
+                $updatePaymentItem .= $request['serviceItems'][$i];
+                if ($i != $paymentCount - 1) {
+                    $updatePaymentItem .= ",";
+                }
             }
-        }
 
-        $insertExtra = HotelExtra::insert(["hotel_id"=>$request['hotelId'],"contacts_json"=>$json,"payment_json"=>$paymentItem]);
-
-        if ($isInsert && $insertExtra) {
+            HotelExtra::where('hotel_id',$hotelId)->update(["payment_json"=>$updatePaymentItem]);
+            
             $isSuccess = $request['hotelId'];
+
+        }else{
+
+            $insertData = array();
+
+            for ($i=0; $i < $count; $i++) { 
+
+                $insertData[$i]['hotel_id'] = $request['hotelId'];
+                $insertData[$i]['name'] = $request['contactName'][$i];
+                $insertData[$i]['tel'] = $request['contactTel'][$i];
+                $insertData[$i]['phone'] = $request['contactPhone'][$i];
+                $insertData[$i]['duties'] = $request['contactDuties'][$i];
+                $insertData[$i]['fax'] = $request['contactFax'][$i];
+                $insertData[$i]['email'] = $request['contactEmail'][$i];
+               
+            }
+
+            $isInsert = HotelContact::insert($insertData);
+
+            $paymentItem = '';
+            $paymentCount = count($request['serviceItems']);
+            for ($i=0; $i < $paymentCount; $i++) { 
+                $paymentItem .= $request['serviceItems'][$i];
+                if ($i != $paymentCount - 1) {
+                    $paymentItem .= ",";
+                }
+            }
+
+            $insertExtra = HotelExtra::insert(["hotel_id"=>$request['hotelId'],"payment_json"=>$paymentItem]);
+
+            if ($isInsert && $insertExtra) {
+                $isSuccess = $request['hotelId'];
+            }
         }
 
         return $isSuccess;
@@ -165,6 +250,7 @@ class HotelService {
     public function insertFacility($insertData)
     {
         $hotelId = $insertData['hotelId'];
+        // $createOrupdate = $insertData['createOrupdate'];
 
         $isSuccess = false;
 
@@ -181,6 +267,7 @@ class HotelService {
         unset($insertData['serviceItems']);
         unset($insertData['_token']);
         unset($insertData['hotelId']);
+        unset($insertData['createOrupdate']);
 
         $b = '';
         $radioCount = count($insertData);
@@ -324,6 +411,69 @@ class HotelService {
         }
 
         return $isUpdate;
+    }
+
+    public function getStepOneInfo($hotelId)
+    {
+        $hotelInfo = Hotel::where('id',$hotelId)->select('hotel_name','address_id','postcode','switchboard','business_center_fax','website','total_rooms','hotel_features','description')->first();
+
+        $hotelInfo->address = Address::where('id',$hotelInfo->address_id)->select('province_code','city_code','district_code','detail')->first();
+
+        return $hotelInfo;
+
+    }
+
+    public function getHotelAddress($hotelId = 0)
+    {
+        $addressId = Hotel::where('id',$hotelId)->select('address_id')->first()->address_id;
+
+        return Address::where('id',$addressId)->select('province_code','city_code','district_code','detail')->first();
+    }
+
+    public function getStepTwoInfo($hotelId)
+    {
+        $surrounding_environment = Hotel::where('id',$hotelId)->select('surrounding_environment')->first()->surrounding_environment;
+
+        $itemArr = explode('|', $surrounding_environment);
+
+        $hotelPolicy = hotelPolicy::where('hotel_id',$hotelId)->select('id','check_time','checkout_time','prepaid_deposit','catering_arrangements','other_policy')->first();
+
+        $check_time = explode(' - ', $hotelPolicy->check_time);
+
+        $hotelPolicy->checkTimeFrom = $check_time[0];
+        $hotelPolicy->checkTimeTo = $check_time[1];
+
+        $checkout_time = explode(' - ', $hotelPolicy->checkout_time);
+
+        $hotelPolicy->checkoutTimeFrom = $checkout_time[0];
+        $hotelPolicy->checkoutTimeTo = $checkout_time[1];
+
+        $StepTwoInfo = new Hotel();
+        $StepTwoInfo->itemArr = $itemArr;
+        $StepTwoInfo->hotelPolicy = $hotelPolicy;
+        $StepTwoInfo->surrounding_environment = $surrounding_environment;
+
+        return $StepTwoInfo;
+    }
+
+    public function getStepThreeInfo($hotelId)
+    {
+        $contactList = HotelContact::where('hotel_id',$hotelId)->get();
+        $payment = HotelExtra::where('hotel_id',$hotelId)->select('payment_json')->first()->payment_json;
+
+        $paymentArr = explode(',', $payment);
+
+        $StepThreeInfo = new Hotel();
+        $StepThreeInfo->paymentArr = $paymentArr;
+        $StepThreeInfo->contactList = $contactList;
+
+        return $StepThreeInfo;
+
+    }
+
+    public function getStepFourInfo($hotelId)
+    {
+        return HotelExtra::where('hotel_id',$hotelId)->select('facilities_checkbox','facilities_radio')->first();
     }
 
 

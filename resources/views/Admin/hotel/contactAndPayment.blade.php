@@ -24,38 +24,71 @@
 <form id="hotelBasicInfo" action='{{url("/admin/manageHotel/insertContactPayment")}}' method="Post">
 <input type="hidden" value="{{csrf_token()}}" name="_token"/>
 <input type="hidden" value="{{$hotelId}}" name="hotelId" />
+<input type="hidden" value="{{$createOrUpdate}}" id="createOrupdate" name="createOrupdate" />
 	<div class="facility-items-box">
 		<div class="facility-item-title">
 			<span>联系方式</span>
 		</div>
 
 		<div class="item-box">
+			@if(count($hotelInfo->contactList) > 0)
+				@foreach($hotelInfo->contactList as $contact)
+					<div class="contact-box">
+						<input type="hidden" name="contactId[{{$contact->id}}]" value="{{$contact->id}}">
+						<div class="contact-box-row">
+							<label>姓名：</label>
+							<input type="text" class="contact-input" name="contactName[{{$contact->id}}]" value="{{$contact->name}}">
 
-			<div class="contact-box">
-				<input type="hidden" name="contactId[]">
-				<div class="contact-box-row">
-					<label>姓名：</label>
-					<input type="text" class="contact-input" name="contactName[]">
+							<label>电话：</label>
+							<input type="text" class="contact-input" name="contactTel[{{$contact->id}}]" value="{{$contact->tel}}">
 
-					<label>电话：</label>
-					<input type="text" class="contact-input" name="contactTel[]">
+							<label>手机：</label>
+							<input type="text" class="contact-input" name="contactPhone[{{$contact->id}}]" value="{{$contact->phone}}">
+						</div>
+						<div class="contact-box-row">
+							<label>职务：</label>
+							<input type="text" class="contact-input" name="contactDuties[{{$contact->id}}]" value="{{$contact->duties}}">
 
-					<label>手机：</label>
-					<input type="text" class="contact-input" name="contactPhone[]">
+							<label>传真：</label>
+							<input type="text" class="contact-input" name="contactFax[{{$contact->id}}]" value="{{$contact->fax}}">
+
+							<span>Email   ：</span>
+							<input type="text" class="contact-input" name="contactEmail[{{$contact->id}}]" value="{{$contact->email}}">
+						</div>
+						<div class="remove-contact-row" onclick="removeContactRow(this)">
+							<img src="/Admin/icon/menu-retract.png">
+						</div>
+					</div>
+				@endforeach
+			@else
+				<div class="contact-box">
+					<input type="hidden" name="contactId[]">				
+					<div class="contact-box-row">
+						<label>姓名：</label>
+						<input type="text" class="contact-input" name="contactName[]">				
+
+						<label>电话：</label>
+						<input type="text" class="contact-input" name="contactTel[]">				
+
+						<label>手机：</label>
+						<input type="text" class="contact-input" name="contactPhone[]">
+					</div>
+					<div class="contact-box-row">
+						<label>职务：</label>
+						<input type="text" class="contact-input" name="contactDuties[]">				
+
+						<label>传真：</label>
+						<input type="text" class="contact-input" name="contactFax[]">				
+
+						<span>Email   ：</span>
+						<input type="text" class="contact-input" name="contactEmail[]">
+					</div>
+
+					
+
 				</div>
-				<div class="contact-box-row">
-					<label>职务：</label>
-					<input type="text" class="contact-input" name="contactDuties[]">
-
-					<label>传真：</label>
-					<input type="text" class="contact-input" name="contactFax[]">
-
-					<span>Email   ：</span>
-					<input type="text" class="contact-input" name="contactEmail[]">
-				</div>
-				
-			</div>
-			<input type="hidden" value="1" name="contactCount" id="contactCount" />
+			@endif
+			<input type="hidden" value="@if(count($hotelInfo->contactList) > 0) {{count($hotelInfo->contactList)}} @else 1 @endif" name="contactCount" id="contactCount" />
 
 			<div class="item-block width-200 border-blue" onclick="addContact(this)">
 				<img src="/Admin/icon/add.png" class="margin-right-20">
@@ -94,8 +127,8 @@
 			</div>
 
 			@foreach ($InternalList as $internalCredit)
-			<div class="item-block pandding-20" id="serviceItems" onclick="creditItems(this)">
-				<input type="checkbox" class="display-none" value="{{$internalCredit->id}}" name="serviceItems[]">
+			<div class="item-block pandding-20 @if($internalCredit->ispay == 1) click-item-block @endif" id="serviceItems" onclick="@if($internalCredit->ispay == 1) unCreditItems(this) @else creditItems(this) @endif">
+				<input type="checkbox" class="display-none" value="{{$internalCredit->id}}" name="serviceItems[]" @if($internalCredit->ispay == 1) checked="checked" @endif>
 				<span>{{$internalCredit->credit_name}}</span>
 			</div>
 
@@ -111,8 +144,8 @@
 		<div class="item-box">
 
 			@foreach ($AbroadList as $abroadCredit)
-			<div class="item-block pandding-20" id="serviceItems" onclick="creditItems(this)">
-				<input type="checkbox" class="display-none" value="{{$abroadCredit->id}}" name="serviceItems[]">
+			<div class="item-block pandding-20 @if($abroadCredit->ispay == 1) click-item-block @endif" id="serviceItems" onclick="@if($abroadCredit->ispay == 1) unCreditItems(this) @else creditItems(this) @endif">
+				<input type="checkbox" class="display-none" value="{{$abroadCredit->id}}" name="serviceItems[]" @if($internalCredit->ispay == 1) checked="checked" @endif>
 				<span>{{$abroadCredit->credit_name}}</span>
 			</div>
 
