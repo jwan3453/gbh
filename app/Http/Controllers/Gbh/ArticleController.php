@@ -22,6 +22,14 @@ class ArticleController extends Controller
     {
 
         $article= $this->article->showArticle($articleId);
+        if(!empty($article->wechat_url))
+        {
+            $article->wechat_content = file_get_contents($article->wechat_url);
+            $article->wechat_content= str_replace('http://mmbiz.qpic.cn/','http://read.html5.qq.com/image?imageUrl=http://mmbiz.qpic.cn/', $article->wechat_content);
+
+
+         //   dd($article->wechat_content);
+        }
         if($article == null)
         {
             return view('Gbh.pageNotFound');

@@ -29,15 +29,33 @@
             </div>
         </div>
 
+        <div id="hotlinking">
+
+            <script type="text/javascript">showImg('http://mmbiz.qpic.cn/mmbiz/ibbmVK4uC7iacR4KGWnyJHvQxl276DK6eGlZQ10E7BeY7Fw0ZlnPLXOSF8W4qIiaCsNspcEiaicD0McR79qmicfPGntg/0');</script>
+
+        </div>
+
         <div class=" article-page">
 
-            <h1>{{ $article->title }}</h1>
-            <h5>{{ $article->published_at }}</h5>
-            <hr>
-            <div >
-                {!!  $article->content_raw !!}
-            </div>
 
+            @if(empty($article->wechat_url))
+                <h1>{{ $article->title }}</h1>
+                <h5>{{ $article->published_at }}</h5>
+                <hr>
+                <div >
+                    {!!  $article->content_raw !!}
+                </div>
+            @else
+
+                <div>{!! $article->wechat_content !!}</div>
+                {{--<img style="background-image:url('http://mmbiz.qpic.cn/mmbiz/lAoypx8LichjjqgVa8HuHbwKhBSskP2LylMHLm7FAazGvyQf4pAox0p3E1OMqpePjkXCUS0oRlJSEDIVjH3CpCQ/0?wx_fmt=png')">--}}
+                {{--<iframe  id="articleFrame"  name="articleFrame" scrolling="no" seamless="seamless"  class="article-frame" src="{{$article->wechat_url}}">--}}
+
+                    {{--<script type="text/javascript">--}}
+                        {{--alert('ca');--}}
+                    {{--</script>--}}
+                {{--</iframe>--}}
+            @endif
         </div>
 
         <div class="article-foot">
@@ -138,10 +156,7 @@
                             }
 
                         }
-                    }) 
-
-
-                    
+                    })
                 }
                 else{
                     return false;
@@ -156,6 +171,19 @@
                     })
             ;
             @endif
+
+
+//            $('#articleFrame').load(function(){
+//                alert('test');
+//                var d=$('#articleFrame').contents().find("img").html();
+//
+//            })
+             $('img').each(function(){
+                 if($(this).attr('data-src')!=='')
+                 {
+                     $(this).attr('src',$(this).attr('data-src')).attr('data-src','');
+                 }
+             })
 
         })
 

@@ -150,7 +150,7 @@
         {
 
             var post= true;
-            if(!ue.hasContents())
+            if(!ue.hasContents() && $('#wechatUrl').val()!='')
             {
 
                 $('html, body').animate({scrollTop:0}, 'slow');
