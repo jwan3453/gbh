@@ -30,7 +30,7 @@ class CommonController extends Controller
 
         $status = 0;
         $file = $request->file('uploadImage');
-        $destinationPath = 'uploads/image/admin/articleCover/';//.Auth::user()->username.'/articleCover/';
+        $destinationPath = '/uploads/image/admin/articleCover/';//.Auth::user()->username.'/articleCover/';
 
         $filename = $file->getClientOriginalName();
         $filename_utf=iconv("UTF-8","gb2312", $filename);
