@@ -974,23 +974,34 @@ a{
 	font-size: 20px;
 	color: #6b6b6b;
 	/*border-bottom: 1px dashed #a0a0a0;*/
-	font-family: "Microsoft XiYuan" ! important;
+
 }
 
 .map-box{
 	width: 80%;
 	margin: 0 auto;
-	height: 300px;
-	border: 1px solid #a0a0a0;
+	border: 0!important;
 	margin-top: -10px;
 	border-radius: 5px;
+	height:350px;
 }
 
 .detail-box{
-	width: 80%;
-	margin: 0 auto;
-	margin-top: 30px;
-	height: 200px;
+	width:80%;
+	margin: 50px auto;
+
+}
+
+.detail-address{
+
+	width:100%;
+	text-align: center;
+}
+
+.detail-address .address{
+
+	font-size:18px;
+	font-weight:600;
 }
 
 .detail-address label{
@@ -999,8 +1010,8 @@ a{
 }
 
 .detail-address span{
-	font-size: 14px;
-	color: #6b6b6b;
+	font-size: 18px;
+	color: #181818;
 }
 
 .detail-row{
@@ -1055,6 +1066,7 @@ a{
 .find-us-font{
 	font-size: 18px;
 	color: #c5c5c5;
+	font-weight: 600;
 }
 
 /************end**********************/
@@ -1857,12 +1869,35 @@ a{
 		width: 100%;
 		border:0;
 		border-radius: 0;
+
 	}
 
 	.detail-box{
-		width: 90%;
+		width: 100%;
+		margin:30px auto;
 	}
 
+	.detail-address{
+
+		width:100%;
+		text-align: center;
+	}
+
+	.detail-address .address{
+
+		font-size:16px;
+		font-weight:600;
+	}
+
+	.detail-address label{
+		font-size: 16px;
+		color: #181818;
+	}
+
+	.detail-address span{
+		font-size: 16px;
+		color: #181818;
+	}
 	.foot-box{
 
 	}

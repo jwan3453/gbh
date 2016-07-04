@@ -79,7 +79,7 @@
                                     经验1-2年/本科
                                 </span>
 
-                                <div class="submit-resume">投递</div>
+                               <a href="http://www.lagou.com/jobs/1799185.html" target="_Blank"> <div class="submit-resume">投递</div></a>
                             </div>
                         </div>
                         <div class="recruit-detail">
@@ -133,7 +133,7 @@
                                 <span class="brief">
                                     经验1-2年/本科
                                 </span>
-                                <div class="submit-resume">投递</div>
+                                <a href="http://www.lagou.com/jobs/1799185.html" target="_Blank"> <div class="submit-resume">投递</div></a>
                             </div>
                         </div>
                         <div class="recruit-detail">
@@ -188,7 +188,7 @@
                                     经验1-2年/本科
                                 </span>
 
-                                <div class="submit-resume">投递</div>
+                                <a href="http://www.lagou.com/jobs/1799185.html" target="_Blank"> <div class="submit-resume">投递</div></a>
                             </div>
                         </div>
                         <div class="recruit-detail">

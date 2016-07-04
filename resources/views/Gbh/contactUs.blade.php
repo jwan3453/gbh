@@ -89,28 +89,32 @@
 
             <div class="map-box" id="map"></div>
 
-            <div class="detail-box">
+            <div class="detail-box ">
                 <div class="detail-address">
+
+                    <div class="detail-row address">
+                        厦门是思明区七星西路福达里9号101  凡悦
+                    </div>
+
+
+
                     <div class="detail-row">
-                        <label><img src="/Gbh/icon/address.png" />详细地址 : </label>
-                        <span>七星西路福达里小区凡悦咖啡厅</span>
+                        <label>联系邮箱 : </label>
+                        <span>business@gbhchina.com</span>
                     </div>
 
                     <div class="detail-row">
-                        <label><img src="/Gbh/icon/mail.png" />联系邮箱 : </label>
-                        <span>gjackie2085@gmail.com</span>
+                        <label>酒店预定 : </label>
+                        <span>booking@gbhchina.com</span>
                     </div>
 
-                    <div class="detail-row">
-                        <label><img src="/Gbh/icon/call.png" />联系电话 : </label>
-                        <span>400-100-5678</span>
-                    </div>
+
 
                     <div class="detail-row">
-                        <label><img src="/Gbh/icon/contacts.png" />联  系  人   : </label>
-                        <span>Mr. Jackie</span>
+                        <label>商务合作 : </label>
+                        <span>000-000-000</span>
                     </div>
-                    
+
                 </div>
             </div>
 
