@@ -17,7 +17,7 @@
     <div style="background-color: #f8f8f8; padding:10px;" >
         <form action="{{url('/admin/manageArticle/edit/'.$article->id)}}" method="post" id="articleForm">
 
-            @include('admin.Article.editorForm')
+            @include('Admin.Article.editorForm')
 
         </form>
 

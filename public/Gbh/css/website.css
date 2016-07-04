@@ -1525,6 +1525,11 @@ a{
 		background: #f8f8f8;
 	}
 
+	.hotel-box img{
+		width:100%;
+		height:300px;
+	}
+
 	.hotel-box-mask {
 		width: 100%;
 	}

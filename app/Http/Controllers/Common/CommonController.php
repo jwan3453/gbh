@@ -45,7 +45,7 @@ class CommonController extends Controller
         return response()->json(array(
             'status' => $status,
             'imgFilePath'=> $destinationPath.$filename,
-            'img' => asset($destinationPath.$filename),
+            'img' => $destinationPath.$filename,
         ));
     }
 

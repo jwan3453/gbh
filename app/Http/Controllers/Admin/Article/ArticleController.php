@@ -142,11 +142,10 @@ class ArticleController extends Controller
 
 
         if($this->article->storeArticle($request))
-            return redirect('/AdminCenter');
+            return redirect('/article/manageArticle');
         else{
             //返回表单提交的页面 并带有错误提示
             return  redirect('/AdminCenter');
-
         }
         // return view('Admin.Article.createArticle');
     }
