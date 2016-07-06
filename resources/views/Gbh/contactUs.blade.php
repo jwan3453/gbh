@@ -143,5 +143,12 @@
              map.disableDragging();
                 
           })
+
+        $('.contactus-small-title').hover(function(){
+            $(this).find('.contactus-title-img').addClass('contactus-title-img-hover')},
+            function(){
+                $(this).find('.contactus-title-img').removeClass('contactus-title-img-hover')
+
+        })
     </script>
 @stop

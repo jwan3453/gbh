@@ -33,12 +33,12 @@ class CommonController extends Controller
         $destinationPath = 'uploads/image/admin/articleCover/';//.Auth::user()->username.'/articleCover/';
 
         $filename = $file->getClientOriginalName();
-        $filename_utf=iconv("UTF-8","gb2312", $filename);
+        //$filename_utf=iconv("UTF-8","UTF-8", $filename);
 
 
         if(!file_exists($destinationPath.$filename))
         {
-            $file->move($destinationPath, $filename_utf);
+            $file->move($destinationPath, $filename);
         }
 
 

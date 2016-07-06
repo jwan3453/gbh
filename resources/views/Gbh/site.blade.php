@@ -17,6 +17,7 @@
     <link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/icon.css') }}>
     <link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/loader.css') }}>
     <link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/container.css') }}>
+    <link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/popup.css') }}>
     <link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/sticky.css') }}>
     <link  rel="stylesheet" type="text/css"  href ={{ asset('Gbh/css/website.css') }}>
     @yield('resources')

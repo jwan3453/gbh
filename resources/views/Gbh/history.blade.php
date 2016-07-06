@@ -52,7 +52,7 @@
 
                 <div class="first-show">
                     <div class="auto-margin history-people">
-                        <img src = 'Gbh/img/头像.jpg' >
+                        <img src = 'Gbh/img/ming.png' >
                     </div>
                     <div class="vertical-line auto-margin">
                     </div>
@@ -98,7 +98,7 @@
                 <div class="vertical-line auto-margin">
                 </div>
                 <div class="auto-margin history-people">
-                    <img src = 'Gbh/img/头像3.jpg' >
+                    <img src = 'Gbh/img/jie.png' >
                 </div>
 
                 <div class="vertical-line auto-margin">

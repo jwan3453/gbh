@@ -54,7 +54,7 @@
 
                         <div class="about-square about-red-bg f-left" >
                             <div class="about-icon">
-                                <img src ='/Gbh/img/about-us-icon.png'>
+                                <img src ='/Gbh/icon/about-us-icon.png'>
                             </div>
                         </div>
                         <div class="about-left-triangle about-red-border-bg f-left">
@@ -78,7 +78,7 @@
 
                         <div class="about-square about-blue-bg f-right" >
                             <div class="about-icon">
-                                <img src ='/Gbh/img/about-us-icon.png'>
+                                <img src ='/Gbh/icon/our-plan-icon.png'>
                             </div>
                         </div>
                         <div class="about-right-triangle about-blue-border-bg f-right">
@@ -101,7 +101,7 @@
 
                         <div class="about-square about-yellow-bg f-left" >
                             <div class="about-icon">
-                                <img src ='/Gbh/img/about-us-icon.png'>
+                                <img src ='/Gbh/icon/our-goal-icon.png'>
                             </div>
                         </div>
                         <div class="about-left-triangle about-yellow-border-bg f-left">
