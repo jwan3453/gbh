@@ -69,7 +69,7 @@
                     <p>微信扫一扫，打开微信原文</p>
                 </div>
             @endif
-            <div class="heart " id="like" rel="like"></div> 
+            <div class="heart " id="like" rel="like"></div>
             <div class="likeCount" id="likeCount">{{ $article->praise }}</div>
             <input type="hidden" id="IPdata" value="0.0.0.0" />
             <input type="hidden" id="articleId" value="{{ $article->id }}" />
@@ -97,8 +97,8 @@
 
 
         $(document).ready(function(){
-            var url = 'http://chaxun.1616.net/s.php?type=ip&output=json&callback=?&_='+Math.random();  
-            
+            var url = 'http://chaxun.1616.net/s.php?type=ip&output=json&callback=?&_='+Math.random();
+
             $.getJSON(url, function(data){
                 $("#IPdata").val(data.Ip);
             });
@@ -116,7 +116,7 @@
                 }
             }, 1000);
 
-            
+
 
             $('.hotel-box').hover(function(){
                         $(this).find('img,.h-hotel-name,.h-hotel-brief,.h-article-title').addClass('blur');
@@ -130,14 +130,14 @@
 
 
             $('body').on("click",'.heart',function(){
-        
+
                 var articleId = $("#articleId").val();
                 var ip = $("#IPdata").val();
 
                 var C=parseInt($("#likeCount").html());
                 $(this).css("background-position","")
                 var D=$(this).attr("rel");
-                if(D === 'like') {    
+                if(D === 'like') {
                     $.ajax({
                         type: 'POST',
                         url: '/gbh/article/praise',
@@ -150,7 +150,7 @@
                             if (data.statusCode == 1) {
                                 $("#likeCount").html(C+1);
                                 sessionStorage.setItem("article_"+articleId, ip);
-                                $("#like").addClass("heartAnimation").attr("rel","unlike"); 
+                                $("#like").addClass("heartAnimation").attr("rel","unlike");
                             }else{
                                 alert('网络错误');
                             }
