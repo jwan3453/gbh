@@ -7,9 +7,8 @@
 
 @section('content')
 
+    <title>团队经历</title>
     <div >
-
-
         <div class="site-header">
             <div class="site-menu-nav">
                 <div>

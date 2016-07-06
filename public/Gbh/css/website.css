@@ -1560,6 +1560,11 @@ a{
 		background: #f8f8f8;
 	}
 
+	.hotel-box:nth-of-type(odd),.hotel-box:nth-of-type(2n+0) {
+		margin-left: 0;
+	}
+
+
 	.hotel-box img{
 		width:100%;
 		height:300px;

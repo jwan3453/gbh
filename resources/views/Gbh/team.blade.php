@@ -7,6 +7,7 @@
 
 @section('content')
 
+    <title>团队介绍</title>
     <div >
 
         <div class="site-header">

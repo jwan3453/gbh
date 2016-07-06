@@ -8,6 +8,8 @@
 
 @section('content')
 
+
+    <title>加入我们</title>
     <div >
 
         <div class="site-header">

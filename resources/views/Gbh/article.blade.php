@@ -6,7 +6,7 @@
 
 @section('content')
 
-
+    <title>联系我们</title>
     <div >
 
         <div class="site-header">

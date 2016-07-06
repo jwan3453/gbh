@@ -26,8 +26,8 @@ class CreateArticleTable extends Migration
             $table->string('wechat_url',500);
             $table->string('meta_description');
             $table->boolean('is_draft');
-            $table->integer('view_count');
-            $table->integer('praise');
+            $table->integer('view_count')->default(0);
+            $table->integer('praise')->default(0);
             $table->timestamp('published_at')->index();
             $table->timestamps();
 

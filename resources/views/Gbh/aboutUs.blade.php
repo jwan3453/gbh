@@ -6,8 +6,9 @@
 
 @section('content')
 
+    <title>关于我们</title>
 
-<div class="pusher">
+    <div class="pusher">
     <div class="site-header">
         <div class="site-menu-nav">
             <div>

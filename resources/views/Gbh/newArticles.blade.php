@@ -6,7 +6,9 @@
 
 
 @section('content')
-        <div >
+
+    <title>最新文章</title>
+    <div >
 
         <div class="site-header">
             <div class="site-menu-nav">
