@@ -313,12 +313,13 @@ a{
 	position:relative;
 	float:left;
 	/*border:1px solid #ddd;*/
-	margin-top:20px;
+	margin-top:40px;
 	background: #f8f8f8;
 	border-radius: 5px;
+
 }
-.hotel-box:nth-of-type(1),.hotel-box:nth-of-type(2){
-	margin-right:40px;
+.hotel-box:nth-of-type(odd),.hotel-box:nth-of-type(2n+0){
+	margin-left:30px;
 }
 
 .hotel-box img{
