@@ -6,7 +6,6 @@
 
 @section('content')
 
-    <title>联系我们</title>
     <div >
 
         <div class="site-header">
@@ -80,7 +79,8 @@
         </div>
 
         <!--高速版-->
-        <div id="SOHUCS" class="comment-box"></div>
+        <div  class="comment-box">
+        <div id="SOHUCS"></div>
         <script charset="utf-8" type="text/javascript" src="http://changyan.sohu.com/upload/changyan.js" ></script>
         <script type="text/javascript">
             window.changyan.api.config({
@@ -88,6 +88,7 @@
                 conf: 'prod_a32b64575fcb80032a6a060281e43884'
             });
         </script>
+        </div>
     </div>
 @stop
 

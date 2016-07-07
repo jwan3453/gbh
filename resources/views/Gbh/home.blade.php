@@ -231,7 +231,7 @@
 
     <script type="text/javascript">
 //        $('.slide-caption').transition('fly left');
-        $(window).load(function(){
+
             $('.owl-carousel').owlCarousel({
                 loop:true,
                 responsiveClass:true,
@@ -257,7 +257,7 @@
                     }
                 }
             })
-        })
+
 
 
         function switchArticles(section)
