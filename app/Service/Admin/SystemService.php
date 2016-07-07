@@ -71,6 +71,7 @@ class SystemService
    {
       $slideName = $dataArr['slideName'];
       $slideDesc = $dataArr['slideDesc'];
+      $slideLink = $dataArr['slideLink'];
       $imgUrl = $dataArr['imgUrl'];
       
       $EditOrAdd = $dataArr['EditOrAdd'];
@@ -78,10 +79,10 @@ class SystemService
       $slideId = $dataArr['slideId'];
 
       if ($EditOrAdd == 'edit') {
-         $isUpdateOrAdd = Slide::where('id',$slideId)->update(['slide_name'=>$slideName,'slide_desc'=>$slideDesc,'img_url'=>$imgUrl]);
+         $isUpdateOrAdd = Slide::where('id',$slideId)->update(['slide_name'=>$slideName,'slide_desc'=>$slideDesc,'slide_link'=>$slideLink,'img_url'=>$imgUrl]);
       }else if ($EditOrAdd == 'add') {
          $isUpdateOrAdd = Slide::insert([
-            'slide_name'=>$slideName,'slide_desc'=>$slideDesc,'img_url'=>$imgUrl
+            'slide_name'=>$slideName,'slide_desc'=>$slideDesc,'slide_link'=>$slideLink,'img_url'=>$imgUrl
          ]);
       }
 

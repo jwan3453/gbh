@@ -2529,12 +2529,18 @@ a{
 
 .list-slide-img{
 	margin-top: 10px;
-	width: 100%;
+	width: 150px;
 	height: 80px;
+	border-radius: 5px;
 }
 
 .line-height-100{
 	line-height: 100px;
+}
+
+.slide-table{
+	margin:10px;
+	font-size:14px!important;
 }
 
 /****************end*********************/

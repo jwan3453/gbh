@@ -227,7 +227,7 @@ a{
 
 	font-size:16px;
 	display: block;
-	background-color: rgb(0, 163, 192);
+	border:1px solid #6f6f6f;
 	border-radius: 2px;
 	height:40px;
 	line-height: 40px;
@@ -313,7 +313,8 @@ a{
 	position:relative;
 	float:left;
 	/*border:1px solid #ddd;*/
-	margin-top:40px;
+	margin-top:30px;
+	margin-bottom: 30px;
 	background: #f8f8f8;
 	border-radius: 5px;
 
@@ -1447,6 +1448,9 @@ a{
 	font-size: 16px;
 	color: #000000;
 }
+.comment-box{
+	width:800px;
+}
 
 /****************************/
 
@@ -1854,6 +1858,9 @@ a{
 		margin-left: 10px;
 	}
 
+	.comment-box{
+		width:100%;
+	}
 
 	.contactus-title{
 		margin-top: 20px;

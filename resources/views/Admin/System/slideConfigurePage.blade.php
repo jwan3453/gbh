@@ -24,44 +24,49 @@
 		</div>
 	</div>
 
-	<div class="classification-list-box">
+	<table class="ui primary striped selectable table  slide-table ">
 
-		<div class="classification-list-row">
-			<div class="classification-colmun width-50">ID</div>
-			<div class="classification-colmun width-120">名称</div>
-			<div class="classification-colmun width-120">描述</div>
-			<div class="classification-colmun width-200">添加时间</div>
-			<div class="classification-colmun width-200">修改时间</div>
-			<div class="classification-colmun width-200">图片</div>
-			<div class="classification-colmun width-200">操作</div>
-		</div>
-		@foreach ($slideList as $slide)
-			<div class="slide-list-row">
-				<div class="classification-colmun line-height-100 width-50">
-					{{$slide->id}}
-				</div>
-				<div class="classification-colmun line-height-100 width-120">
-					{{$slide->slide_name}}
-				</div>
-				<div class="classification-colmun line-height-100 width-120">
-					{{$slide->slide_desc}}
-				</div>
-				<div class="classification-colmun line-height-100 width-200">
-					{{$slide->created_at}}
-				</div>
-				<div class="classification-colmun line-height-100 width-200">
-					{{$slide->updated_at}}
-				</div>
-				<div class="classification-colmun width-200">
-					<img src="{{$slide->img_url}}" class="list-slide-img">
-				</div>
-				<div class="classification-colmun line-height-100 width-200">
-					<img src="/Admin/icon/menu-edit.png" class="classification-edit" onclick="editSlide({{$slide->id}},'{{$slide->slide_name}}','{{$slide->slide_desc}}','{{$slide->img_url}}')" />
-					<img src="/Admin/icon/menu-delete.png" onclick="delslide({{$slide->id}},'{{$slide->slide_name}}',this)" />
-				</div>
-			</div>
+
+		<tbody>
+			<thead><tr>
+
+				<th>图片</th>
+				<th>名称</th>
+				<th>描述</th>
+				<th>链接</th>
+				<th>操作</th>
+
+			</tr></thead>
+		@foreach($slideList as $slide )
+			<tr>
+
+				<td class="m-td"> <img class="list-slide-img" src = '{{$slide->img_url}}'></td>
+				<td class="m-td">{{$slide->slide_name}}</td>
+				<td class="m-td">{{$slide->slide_desc}}</td>
+				<td class="m-td">{{$slide->slide_link}}</td>
+				<td class="l-td">
+
+					<div class="header-option f-left" onclick="editSlide('{{$slide->id}}','{{$slide->slide_name}}','{{$slide->slide_desc}}','{{$slide->slide_link}}','{{$slide->img_url}}')">
+							<img src="/Admin/icon/menu-edit.png"  />
+							<span class="edit">编辑</span>
+					</div>
+
+					<div class="header-option f-left" onclick="delslide({{$slide->id}},'{{$slide->slide_name}}',this)">
+						<img src="/Admin/icon/menu-delete.png"  />
+						<span class="delete">删除</span>
+					</div>
+
+				</td>
+			</tr>
 		@endforeach
-	</div>
+
+
+
+
+
+
+		</tbody>
+	</table>
 
 </div>
 
@@ -81,7 +86,14 @@
 
 			<div class="content-colmun field">
 				<label>描述</label>
-				<input type="text" name="slideDesc" id="slideDesc" class="content-input overall-length"></div>
+				<input type="text" name="slideDesc" id="slideDesc" class="content-input overall-length">
+			</div>
+
+			<div class="content-colmun field">
+				<label>链接</label>
+				<input type="text" name="slideLink" id="slideLink" class="content-input overall-length">
+			</div>
+
 
 			<div class="content-upload-colmun">
 				<label>上传图片</label>
@@ -114,6 +126,7 @@
 	    	onHide : function() {
       			$("#slideName").val("");
       			$("#slideDesc").val("");
+				$("#slideLink").val("");
       			$("#imgUrl").val("");
       			$("#EditOrAdd").val("add");
       			$("#classificationId").val("0");
@@ -159,9 +172,10 @@
 		})
 	}
 
-	function editSlide(id,name,desc,url) {
+	function editSlide(id,name,desc,link,url) {
 		$("#slideName").val(name);
 		$("#slideDesc").val(desc);
+		$("#slideLink").val(link);
       	$("#imgUrl").val(url);
       	$("#EditOrAdd").val("edit");
       	$("#slideId").val(id);
@@ -173,6 +187,7 @@
 	    	onHide : function() {
       			$("#slideName").val("");
       			$("#slideDesc").val("");
+				$('#slideLink').val("");
       			$("#imgUrl").val("");
       			$("#EditOrAdd").val("add");
       			$("#slideId").val("0");

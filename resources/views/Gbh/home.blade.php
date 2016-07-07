@@ -33,7 +33,7 @@
             </div>
             <div class="owl-carousel owl-theme home-slide">
                 @foreach($slideList as $slide)
-                    <div class="slide">
+                    <a target="_blank" href="{{$slide->slide_link}}"><div class="slide">
                         <div class="slide-caption">
                             <div class="slide-center-text">
                                 <div>
@@ -49,7 +49,7 @@
                             </div>
                         </div>
                         <img src = '{{$slide->img_url}}'>
-                    </div>
+                    </div></a>
                 @endforeach
                 
             </div>

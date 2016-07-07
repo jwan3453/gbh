@@ -14,7 +14,7 @@ class SlideService
 	
 	public function getSlideList()
 	{
-		return Slide::select('slide_name','slide_desc','img_url')->get();
+		return Slide::select('slide_name','slide_desc','slide_link','img_url')->get();
 	}
 }
 
