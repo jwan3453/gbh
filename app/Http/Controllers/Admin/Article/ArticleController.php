@@ -245,6 +245,40 @@ class ArticleController extends Controller
         return response($jsonResult->toJson());
     }
 
+    public function articleToTop(Request $request)
+    {
+        $jsonResult = new MessageResult();
+
+        $toTop = $this->article->articleToTop($request->input('articleId'));
+
+        if ($toTop) {
+            $jsonResult->statusCode = 1;
+            $jsonResult->statusMsg = "成功";
+        }else{
+            $jsonResult->statusCode = 0;
+            $jsonResult->statusMsg = "失败";
+        }
+
+        return response($jsonResult->toJson());
+    }
+
+    public function articleCancelTop(Request $request)
+    {
+        $jsonResult = new MessageResult();
+
+        $cancelTop = $this->article->articleCancelTop($request->input('articleId'));
+
+        if ($cancelTop) {
+            $jsonResult->statusCode = 1;
+            $jsonResult->statusMsg = "成功";
+        }else{
+            $jsonResult->statusCode = 0;
+            $jsonResult->statusMsg = "失败";
+        }
+
+        return response($jsonResult->toJson());
+    }
+
     /**
      * Remove the specified resource from storage.
      *

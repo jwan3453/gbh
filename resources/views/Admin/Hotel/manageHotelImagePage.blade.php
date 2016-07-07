@@ -57,6 +57,12 @@
 	    	@foreach($item->piclist as $picitem)
 	        	<div class="piclist-image-frame">
 	        		<i class="remove icon teal piclist-remove-image"> </i>
+	        		@if($picitem->status == 0)
+	        		<img src="/Admin/icon/cover-unselect.png" class="hotel-cover" onclick="cover({{$picitem->status}},this)">
+	        		@else
+	        		<img src="/Admin/icon/cover.png" class="hotel-image-cover">
+	        		<img src="/Admin/icon/cover-select.png" class="hotel-cover" onclick="cover({{$picitem->status}},this)">
+	        		@endif
 	        		<input type="hidden" name="imageId" id="imageId" value="{{$picitem->id}}" />
 	        		<img src="{{$picitem->link}}" class="hotel-img-small">
 	        		<div class="info">{{$picitem->key}}</div>
@@ -85,14 +91,14 @@
 		<img src="" class="delete-picture">
 	</div>
 
-	<div class="content-button-colmun">
+	<div class="content-button-colmun" id="delete-iamge">
 		<input type="hidden" id="hotelImageId" value="" />
 		<input type="hidden" id="hotelImagekey" value="" />
 		<div class="delete-yes-btu" id="toDelete" >
 			<span>确认删除</span>
 		</div>
 
-		<div class="delete-no-btu" onclick="submitMenu()">
+		<div class="delete-no-btu">
 			<span>取消删除</span>
 		</div>
 	</div>
@@ -102,7 +108,7 @@
 <div class="delete-hotel-img-result modal ui">
 	<div class="edit-add-title">
 		<div class="ui radio checkbox first-menu">
-			<label>删除返回</label>
+			<label>信息返回</label>
 		</div>
 	</div>
 
@@ -112,6 +118,33 @@
 
 	<div class="currency-btu margin-bottom-20" onclick="toRefresh()">
 		<span>确认</span>
+	</div>
+		
+</div>
+
+
+<div class="hotel-iamge-cover modal ui">
+	<div class="edit-add-title">
+		<div class="ui radio checkbox first-menu">
+			<label>封面设置</label>
+		</div>
+	</div>
+
+	<div class="edit-add-content cover-hotel-image">
+		确定设置 〖 <span id="sectionName"></span> 〗下的图片 <span id="pictureName" class="picture-name"></span> 为封面吗？
+		<img src="" class="delete-picture">
+	</div>
+
+	<div class="content-button-colmun" id="cover-image">
+		<input type="hidden" id="hotelImageId" value="" />
+		<input type="hidden" id="status" value="" />
+		<div class="delete-yes-btu" id="toCover" >
+			<span>确认设置</span>
+		</div>
+
+		<div class="delete-no-btu">
+			<span>取消设置</span>
+		</div>
 	</div>
 		
 </div>
@@ -259,21 +292,21 @@
 			var iamgeId = $(this).siblings("#imageId").val();
 			var sectionName = $(this).parent().parent().siblings(".classification-box-title").children().eq(0).html();
 			var pictureName = $(this).siblings(".info").html();
-			var pictureLink = $(this).siblings("img").attr("src");
-			
-			$(".content-button-colmun #hotelImageId").val(iamgeId);
-			$(".content-button-colmun #hotelImagekey").val(pictureName);
+			var pictureLink = $(this).siblings(".hotel-img-small").attr("src");
 
-			$(".edit-add-content #sectionName").html(sectionName);
-			$(".edit-add-content #pictureName").html(pictureName);
-			$(".edit-add-content .delete-picture").attr("src" , pictureLink);
+			$("#delete-iamge #hotelImageId").val(iamgeId);
+			$("#delete-iamge #hotelImagekey").val(pictureName);
+
+			$(".delete-hotel-image #sectionName").html(sectionName);
+			$(".delete-hotel-image #pictureName").html(pictureName);
+			$(".delete-hotel-image .delete-picture").attr("src" , pictureLink);
 			$('.delete-hotel-img').modal({
 				closable  : true,
 		    	
 	  		}).modal('show');
 		})
 
-		$(".content-button-colmun #toDelete").click(function(){
+		$("#delete-iamge #toDelete").click(function(){
 			var iamgeId = $(this).siblings("#hotelImageId").val();
 			var key = $(this).siblings("#hotelImagekey").val();
 			console.log(key);
@@ -295,11 +328,51 @@
 			})
 		})
 
+		$("#cover-image #toCover").click(function(){
+			var iamgeId = $(this).siblings("#hotelImageId").val();
+			var status = $(this).siblings("#status").val();
+			var hotelId = $("#hotelId").val();
+			$.ajax({
+				type: 'POST',
+                url: '/admin/manageHotel/coverHotelImage',
+                data: {iamgeId : iamgeId , status : status , hotelId : hotelId},
+                dataType: 'json',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                },
+                success:function(data){
+                	$(".delete-hotel-image-result").html(data.statusMsg);
+                	$(".delete-hotel-img-result").modal({
+						closable  : true,
+				    	
+			  		}).modal('show');
+		        }
+			})
+		})
+
 
 	})
 	
 	function toRefresh() {
 		location.reload();
+	}
+
+	function cover(status,_this) {
+		var iamgeId = $(_this).siblings("#imageId").val();
+		var sectionName = $(_this).parent().parent().siblings(".classification-box-title").children().eq(0).html();
+		var pictureName = $(_this).siblings(".info").html();
+		var pictureLink = $(_this).siblings(".hotel-img-small").attr("src");
+
+		$("#cover-image #hotelImageId").val(iamgeId);
+		$("#cover-image #status").val(status);
+
+		$(".cover-hotel-image #sectionName").html(sectionName);
+		$(".cover-hotel-image #pictureName").html(pictureName);
+		$(".cover-hotel-image .delete-picture").attr("src" , pictureLink);
+
+		$(".hotel-iamge-cover").modal({
+						closable  : true,
+			  		}).modal('show');
 	}
 
 	function transition(classId) {

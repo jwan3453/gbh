@@ -2830,6 +2830,13 @@ a{
 	color: #505050;
 }
 
+.cover-hotel-image{
+	height: 100px;
+	line-height: 40px;
+	padding-left: 20px;
+	color: #505050;
+}
+
 .delete-hotel-img{
 	width: 580px !important;
 	margin-left: -200px !important;
@@ -2837,6 +2844,12 @@ a{
 }
 
 .delete-hotel-img-result{
+	width: 580px !important;
+	margin-left: -200px !important;
+	box-shadow : 0 0 0 0 !important;
+}
+
+.hotel-iamge-cover{
 	width: 580px !important;
 	margin-left: -200px !important;
 	box-shadow : 0 0 0 0 !important;
@@ -2889,5 +2902,22 @@ a{
 
 .margin-bottom-20{
 	margin-bottom: 20px;
+}
+
+.hotel-cover{
+	float: right;
+	margin-top: 20px;
+	margin-right: -13px;
+	cursor: pointer;
+
+}
+
+.hotel-image-cover{
+	position: absolute;
+
+}
+
+.cover-hotel-image{
+
 }
 /***********end************/

@@ -512,7 +512,7 @@ class HotelService {
         $list = HotelSectionImage::select('id','section_name','section_type','section_name_eg')->get();
 
         foreach ($list as $item) {
-            $item->piclist = HotelImage::select('id','key','link')->where('hotel_id',$hotelId)->where('section_id',$item->id)->get();
+            $item->piclist = HotelImage::select('id','key','link','status')->where('hotel_id',$hotelId)->where('section_id',$item->id)->get();
         }
 
         return $list;

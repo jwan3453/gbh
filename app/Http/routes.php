@@ -167,6 +167,8 @@ Route::group(['prefix' => '/admin/', 'middleware' => 'App\Http\Middleware\AdminA
 
         Route::post('deleteHotelImage','Admin\Hotel\HotelController@deleteHotelImage');
 
+        Route::post('coverHotelImage','Admin\Hotel\HotelController@coverHotelImage');
+
     });
 
     //----------文章管理
@@ -199,6 +201,10 @@ Route::group(['prefix' => '/admin/', 'middleware' => 'App\Http\Middleware\AdminA
         Route::get('edit/{articleId}','Admin\Article\ArticleController@editArticle');
         
         Route::post('edit/{articleId}','Admin\Article\ArticleController@updateArticle');
+
+        Route::post('articleToTop','Admin\Article\ArticleController@articleToTop');
+
+        Route::post('articleCancelTop','Admin\Article\ArticleController@articleCancelTop');
     });
 
     //--------系统设置

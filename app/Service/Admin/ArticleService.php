@@ -192,6 +192,19 @@ class ArticleService {
 	{
 		return Article::where('id',$articleId)->delete();
 	}
+
+
+	public function articleToTop($articleId)
+	{
+		return Article::where('id',$articleId)->update(['sort'=>1]);
+	}
+
+	public function articleCancelTop($articleId)
+	{
+		return Article::where('id',$articleId)->update(['sort'=>0]);
+	}
+
+
 }
 
 

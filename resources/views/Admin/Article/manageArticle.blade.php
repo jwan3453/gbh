@@ -63,8 +63,19 @@
                     </div>
                 @endif
 
-                    <div class="header-option f-left">
+                @if($article->sort == 0)
+                    <div class="header-option f-left" onclick="toTop({{$article->id}})">
+                        <img src = '/Admin/img/top.png'/>
+                        <span class="off-line">置顶</span>
+                    </div>
+                @else
+                    <div class="header-option f-left" onclick="cancelTop({{$article->id}})">
+                        <img src = '/Admin/img/toped.png'/>
+                        <span class="off-line">取消</span>
+                    </div>
+                @endif
 
+                    <div class="header-option f-left">
                         <a href="/admin/manageArticle/edit/{{$article->id}}">
                             <img src = '/Admin/img/编辑.png'/>
                             <span class="edit">编辑</span>
@@ -161,6 +172,48 @@
                 }
             });
         }
+    }
+
+    function toTop(id) {
+        $.ajax({
+            type: 'POST',
+            url: '/admin/manageArticle/articleToTop',
+            data: {articleId : id},
+            dataType: 'json',
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+            },
+            success: function(data){
+                console.log(data);
+
+                alert(data.statusMsg);
+                location.reload();
+            },
+            error: function(xhr, type){
+                alert('Ajax error!')
+            }
+        });
+    }
+
+    function cancelTop(id) {
+        $.ajax({
+            type: 'POST',
+            url: '/admin/manageArticle/articleCancelTop',
+            data: {articleId : id},
+            dataType: 'json',
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+            },
+            success: function(data){
+                console.log(data);
+
+                alert(data.statusMsg);
+                location.reload();
+            },
+            error: function(xhr, type){
+                alert('Ajax error!')
+            }
+        });
     }
 
 </script>
