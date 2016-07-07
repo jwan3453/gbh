@@ -8,9 +8,21 @@
 
     <div class="admin-content">
         <div class="info-menu">
-            <span>信息维护</span>
-            <span>房型信息</span>
-            <a href="{{url('admin/manageHotel/hotelInfo/'.$hotelId.'manageRoom')}}"><span>问答管理</span></a>
+
+            <span id="informationMaintenance" class="hover-menu"> 
+                <a>信息维护</a> 
+                <a class="display-none">酒店基本信息</a>
+                <a class="display-none">交通地理</a>
+                <a class="display-none">酒店政策</a>
+                <a class="display-none">联系方式</a>
+                <a class="display-none">信用卡</a>
+                <a class="display-none">酒店设施</a>
+                <a class="display-none">酒店图片</a>
+                <a class="display-none">酒店活动管理</a>
+            </span>
+
+            <a href="{{url('admin/manageHotel/hotelInfo/'.$hotelId.'/manageRoom')}}"><span>房型信息</span></a>
+            <span>问答管理</span>
         </div>
         <hr/>
 
@@ -20,84 +32,20 @@
 
 @section('script')
     <script type="text/javascript">
-        $(document).ready(function(){
-            $('#newRoomBtn').click(function(){
-                $('#newRoomForm').transition('scale');
-            })
 
-            $(' .ui.dropdown').dropdown({
-                onChange: function(value, text, $selectedItem) {
-                    $(this).parent().siblings('.bedTypeName').val(text);
+        $("#informationMaintenance").mouseover(function(){
+            $(this).find("a").each(function(){
+                if ($(this).hasClass('display-none')) {
+                    $(this).removeClass('display-none');
                 }
             })
-
-            //选择多床型，动态添加
-            $('#addNewBed').click(function(){
-                var html = '<div class="bed-item">' + '\n'+
-
-                                '<div style="width:60px; display:inline-block"></div>' + '\n'+
-
-                                '<select class=" ui dropdown bedCate">'+'\n'+
-
-                                    @foreach($bedTypes as $bedType)
-                                        '<option value="{{$bedType->id}}">{{$bedType->name}}</option>'+'\n'+
-                                    @endforeach
-                                 '</select>'+'\n'+
-
-                                '<input type="hidden" class="bedTypeName" name="multiBedType[]">'+ '\n'+
-
-                                '<div class="small-input-box ">'+'\n'+
-                                    '<label>数量:</label>'+'\n'+
-                                    '<input type="text" name="numOfMultiBed[]">'+'\n'+
-                                    '<span class="unit">张</span>'+'\n'+
-                                '</div>'+'\n'+
-
-                                '<div class="small-input-box ">'+'\n'+
-                                    '<label>床宽:</label>'+'\n'+
-                                    '<input type="text"  name="widthOfMultiBed[]">'+'\n'+
-                                    '<span class="unit">米</span>'+'\n'+
-                                '</div>'+'\n'+
-
-                                '<span class="add-new-bed" id="addNewBed">添加</span>'+'\n'+
-                                '<span class="delete-new-bed" >删除</span>'+'\n'+
-                            '</div>';
-                $('#bedTypeList').append(html);
-                $(' .ui.dropdown').dropdown({
-                    onChange: function(value, text, $selectedItem) {
-                        $(this).parent().siblings('.bedTypeName').val(text);
-                    }
-                })
-            })
-
-            //选择床型 checkbox
-            $('.select-bed-type').change(function(){
-
-                if(!$(this).is(':checked'))
-                {
-                    $(this).siblings('.small-input-box').fadeOut();
-                }
-                else{
-                    $(this).siblings('.small-input-box').fadeIn();
-                }
-            })
-
-            // ajax 上传新的房型
-            $('#saveRoom').click(function(){
-                $.ajax({
-                    type: 'POST',
-                    url: '/admin/manageHotel/createNewRoom',
-                    data: $("#newRoomForm").serialize(),
-                    dataType: 'json',
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-                    },
-                    success: function(data){
-                        alert(data.statusMsg);
-
-                    }
-                })
-            })
-
         })
+
+        $("#informationMaintenance").mouseout(function(){
+            $(this).find("a:first-child").siblings().addClass('display-none');
+        })
+
     </script>
+
+    @yield('infoScript')
 @stop

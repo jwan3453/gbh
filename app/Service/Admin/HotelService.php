@@ -14,7 +14,8 @@ use App\Models\CreditCard;
 use App\Models\HotelExtra;
 use App\Models\HotelContact;
 use App\Models\ExtraService;
-
+use App\Models\HotelSectionImage;
+use App\Models\HotelImage;
 
 
 class HotelService {
@@ -504,6 +505,17 @@ class HotelService {
     public function getStepFourInfo($hotelId)
     {
         return HotelExtra::where('hotel_id',$hotelId)->select('facilities_checkbox','facilities_radio')->first();
+    }
+
+    public function gethotelImageManageCategory($hotelId)
+    {
+        $list = HotelSectionImage::select('id','section_name','section_type','section_name_eg')->get();
+
+        foreach ($list as $item) {
+            $item->piclist = HotelImage::select('id','key','link')->where('hotel_id',$hotelId)->where('section_id',$item->id)->get();
+        }
+
+        return $list;
     }
 
 

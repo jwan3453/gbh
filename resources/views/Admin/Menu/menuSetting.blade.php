@@ -79,14 +79,14 @@
 			<div class="content-colmun">
 				<div class="content-colmun-left">
 					<label>菜单状态</label>
-					<select class="ui dropdown select-box" name="menuStatus" id="menuStatus">
+					<select class="ui dropdown menu-setting-select-box" name="menuStatus" id="menuStatus">
 						<option value="1">开启</option>
 						<option value="0">关闭</option>
 					</select>
 				</div>
 				<div class="content-colmun-right" id="parentIdBox" style="display: none;">
 					<label>所属一级</label>
-					<select class="ui dropdown select-box" name="parentId" id="parentId">
+					<select class="ui dropdown menu-setting-select-box" name="parentId" id="parentId">
 						<option value="0">请选择</option>
 						@foreach($menuList as $menulist)
 						<option value="{{$menulist->id}}">{{$menulist->menu_name}}</option>

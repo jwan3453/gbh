@@ -764,7 +764,7 @@ a{
 	margin-top: 14px;
 }
 
-.select-box{
+.menu-setting-select-box{
 	width: 174px;
 	height: 28px !important;
 	border-radius: 4px;
@@ -791,7 +791,7 @@ a{
 	margin-left: 10px;
 }
 
-.content-colmun-right .select-box{
+.content-colmun-right .menu-setting-select-box{
 	width: 164px;
 }
 
@@ -2558,7 +2558,7 @@ a{
 }
 
 .drop-item-icon{
-	width: 90px;
+	width: 130px;
 	float: right;
 	cursor: pointer;
 }
@@ -2616,6 +2616,37 @@ a{
 	color:#f8f8f8;
 	border:1px solid #9bbebe;
 	transition:background-color 0.6s ease;
+}
+
+.info-menu span a:hover{
+	cursor: pointer;
+	color:#9bbebe;
+	border:1px solid #9bbebe;
+	transition:background-color 0.6s ease;
+}
+
+.info-menu .hover-menu{
+	height: 40px;
+	display: block;
+	background-color: #f8f8f8;
+}
+
+.hover-menu .display-none{
+	display: none;
+}
+
+.hover-menu a{
+	width: 120px;
+	display: block;
+	line-height: 40px;
+	border-radius: 5px;
+	background-color: #f8f8f8;
+	z-index:1003;
+	position: relative;
+}
+
+.hover-menu a:not(:first-child){
+	border:1px solid #505050;
 }
 
 .info-content{
@@ -2726,3 +2757,131 @@ a{
 }
 
 /************end************/
+
+/********酒店图片*******/
+
+.image-list-row{
+	overflow: hidden;
+	width: 1120px;
+	margin: 0 auto;
+	border-top: 1px dashed #a0a0a0;
+}
+
+.image-frame{
+	min-width: 115px;
+	height: 120px;
+	display: block;
+	float: left;
+	font-size: 12px;
+	text-align: center;
+	padding: 5px 5px;
+}
+
+.piclist-image-frame{
+	min-width: 115px;
+	height: 100px;
+	display: block;
+	float: left;
+	font-size: 12px;
+	text-align: center;
+	padding: 5px 5px;
+}
+
+.remove-image{
+	float: right;
+	cursor: pointer;
+}
+
+.hotel-img-small{
+	width: 100px;
+	height: 75px;
+}
+
+.piclist-remove-image{
+	float: right;
+	cursor: pointer;
+}
+
+.progress{
+	margin-top: -20px;
+}
+
+.state{
+	color: #00CCFF;
+}
+
+.delete-hotel-image{
+	height: 80px;
+	line-height: 40px;
+	padding-left: 20px;
+	color: #505050;
+}
+
+.delete-hotel-image-result{
+	height: 80px;
+	line-height: 40px;
+	padding-left: 20px;
+	color: #505050;
+}
+
+.delete-hotel-img{
+	width: 580px !important;
+	margin-left: -200px !important;
+	box-shadow : 0 0 0 0 !important;
+}
+
+.delete-hotel-img-result{
+	width: 580px !important;
+	margin-left: -200px !important;
+	box-shadow : 0 0 0 0 !important;
+}
+
+.delete-yes-btu{
+	width: 140px;
+	height: 30px;
+	line-height: 30px;
+	background-color: #9bbebe;
+	border-radius: 4px;
+	text-align: center;
+	cursor: pointer;
+	float: left;
+	margin-left: 20px;
+}
+.delete-yes-btu span{
+	color: #f8f8f8;
+	font-size: 14px;
+}
+
+.delete-no-btu{
+	width: 140px;
+	height: 30px;
+	line-height: 30px;
+	background-color: #ff5f76;
+	border-radius: 4px;
+	text-align: center;
+	cursor: pointer;
+	float: right;
+	margin-right: 20px;
+}
+.delete-no-btu span{
+	color: #f8f8f8;
+	font-size: 14px;
+}
+
+.picture-name{
+	display: block;
+}
+
+.delete-picture{
+	width: 100px;
+	height: 75px;
+	float: right;
+    margin-top: -80px;
+    margin-right: 10px;
+    border-radius: 3px;
+}
+
+.margin-bottom-20{
+	margin-bottom: 20px;
+}
+/***********end************/

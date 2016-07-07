@@ -297,7 +297,7 @@
 @stop
 
 
-@section('script')
+@section('infoScript')
     <script type="text/javascript">
         $(document).ready(function(){
             $('#newRoomBtn').click(function(){

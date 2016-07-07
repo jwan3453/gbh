@@ -203,7 +203,48 @@ class SystemController extends Controller
         return response($jsonResult->toJson());
     }
 
+    public function hotelImageManage()
+    {
+        $hotelImageManage = $this->system->hotelImageManage();
+        return view('Admin.System.hotelImageManage')->with('hotelImageManage',$hotelImageManage);
+    }
 
+    public function hotelImageOperation(Request $request)
+    {
+        $jsonResult = new MessageResult();
+
+        $hotelImageOperation = $this->system->hotelImageOperation($request->input());
+
+        if ($hotelImageOperation) {
+            $jsonResult->statusCode = 1;
+            $jsonResult->statusMsg = "成功";
+            $jsonResult->extra_name = $request->input("itemName");
+            $jsonResult->service_type = $request->input("serviceType");
+            $jsonResult->admin = Session::get('adminusername');
+        }else{
+            $jsonResult->statusCode = 0;
+            $jsonResult->statusMsg = "失败";
+        }
+
+        return response($jsonResult->toJson());
+    }
+
+    public function delhotelImage(Request $request)
+    {
+        $jsonResult = new MessageResult();
+
+        $delhotelImage = $this->system->delhotelImage($request->input('sectionId'));
+
+        if ($delhotelImage) {
+            $jsonResult->statusCode = 1;
+            $jsonResult->statusMsg = "成功";
+        }else{
+            $jsonResult->statusCode = 0;
+            $jsonResult->statusMsg = "失败";
+        }
+
+        return response($jsonResult->toJson());
+    }
 
 
 

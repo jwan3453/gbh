@@ -141,7 +141,7 @@ Route::group(['prefix' => '/admin/', 'middleware' => 'App\Http\Middleware\AdminA
         //创建房间
         Route::post('/createNewRoom','Admin\Hotel\HotelController@createNewRoom');
 
-        //跟新房间
+        //更新房间
         Route::post('/updateRoom','Admin\Hotel\HotelController@updateRoom');
 
         Route::post('insertPolicy','Admin\Hotel\HotelController@insertPolicy');
@@ -159,6 +159,13 @@ Route::group(['prefix' => '/admin/', 'middleware' => 'App\Http\Middleware\AdminA
         Route::get('editGeoLocation/{hotelId}','Admin\Hotel\HotelController@editGeoLocation');
         Route::get('editPaymentAndContact/{hotelId}','Admin\Hotel\HotelController@editPaymentAndContact');
         Route::get('editFacility/{hotelId}','Admin\Hotel\HotelController@editFacility');
+
+        //管理酒店图片
+        Route::get('hotelInfo/{hotelId}/manageHotelImage','Admin\Hotel\HotelController@manageHotelImage');
+
+        Route::post('uploadImage','Admin\Hotel\HotelController@uploadImage');
+
+        Route::post('deleteHotelImage','Admin\Hotel\HotelController@deleteHotelImage');
 
     });
 
@@ -216,6 +223,11 @@ Route::group(['prefix' => '/admin/', 'middleware' => 'App\Http\Middleware\AdminA
         Route::get('serviceSetting','Admin\System\SystemController@serviceSetting');
         Route::post('createServiceCategory','Admin\System\SystemController@createServiceCategory');
         Route::post('delServiceCategory','Admin\System\SystemController@delServiceCategory');
+
+        //--------酒店图片分类管理----
+        Route::get('hotelImageManage','Admin\System\SystemController@hotelImageManage');
+        Route::post('hotelImageOperation','Admin\System\SystemController@hotelImageOperation');
+        Route::post('delhotelImage','Admin\System\SystemController@delhotelImage');
     });
 
     //--------订单处理

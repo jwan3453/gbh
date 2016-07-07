@@ -11,6 +11,7 @@ use App\Http\Controllers\Controller;
 
 use App\Service\Common\CommonService;
 use App\Service\Admin\HotelService;
+use App\Service\Admin\ImageService;
 use App\Models\Hotel;
 
 class HotelController extends Controller
@@ -23,11 +24,13 @@ class HotelController extends Controller
 
     private $commonService;
     private $hotelService;
+    private $imageService;
 
-    public function __construct(CommonService $commonService, HotelService $hotelService){
+    public function __construct(CommonService $commonService, HotelService $hotelService , ImageService $imageService){
 
         $this->commonService = $commonService;
         $this->hotelService = $hotelService;
+        $this->imageService = $imageService;
     }
 
     public function index()
@@ -335,6 +338,16 @@ class HotelController extends Controller
         return view('Admin.Hotel.facility')->with('ExtraServiceList',$ExtraServiceList)->with('hotelId',$hotelId)->with('createOrUpdate',$createOrUpdate);
     }
 
+    public function uploadImage(Request $request)
+    {
+        return $this->imageService->uploadImage($request);
+    }
+
+    public function deleteHotelImage(Request $request)
+    {
+        return $this->imageService->deleteHotelImage($request->input());
+    }
+
     /**
      * Display the specified resource.
      *
@@ -422,5 +435,12 @@ class HotelController extends Controller
     {
         $room = $this->hotelService->updateRoom($request);
         return redirect('/admin/manageHotel/hotelInfo/'.$request->input('hotelId').'/manageRoom');
+    }
+
+    public function manageHotelImage($hotelId)
+    {
+        $list = $this->hotelService->gethotelImageManageCategory($hotelId);
+        
+        return view('Admin.Hotel.manageHotelImagePage')->with('list',$list)->with('hotelId',$hotelId);
     }
 }

@@ -8,6 +8,7 @@ use App\Models\CreditCard;
 use App\Models\AdminUser;
 use App\Models\ServiceCategory;
 use App\Models\ExtraService;
+use App\Models\HotelSectionImage;
 
 use Session;
 
@@ -227,6 +228,39 @@ class SystemService
    public function delitem($serviceId)
    {
       return ExtraService::where('id' , $serviceId)->delete();
+   }
+
+   public function hotelImageManage()
+   {
+      return HotelSectionImage::all();
+   }
+
+   public function hotelImageOperation($dataArr)
+   {
+      $adminId = Session::get('adminid');
+
+      $sectionName = $dataArr['sectionName'];
+      $sectionType = $dataArr['sectionType'];
+      $sectionNameEg = $dataArr['sectionNameEg'];
+
+      $EditOrAdd = $dataArr['EditOrAdd'];
+      $sectionId = $dataArr['sectionId'];
+
+      if ($EditOrAdd == 'edit') {
+         $isUpdateOrAdd = HotelSectionImage::where('id',$sectionId)->update(['section_name'=>$sectionName,'section_type'=>$sectionType,'section_name_eg'=>$sectionNameEg,'admin_id'=>$adminId]);
+      }else if ($EditOrAdd == 'add') {
+         $isUpdateOrAdd = HotelSectionImage::insert([
+            'section_name'=>$sectionName,'section_type'=>$sectionType,'section_name_eg'=>$sectionNameEg,'admin_id'=>$adminId
+         ]);
+      }
+
+
+      return $isUpdateOrAdd;
+   }
+
+   public function delhotelImage($sectionId)
+   {
+      return HotelSectionImage::where('id' , $sectionId)->delete();
    }
 
 }
