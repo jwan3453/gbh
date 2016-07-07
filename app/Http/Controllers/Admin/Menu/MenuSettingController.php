@@ -93,5 +93,4 @@ class MenuSettingController extends Controller
         return $menuList = $this->menuSetting->getOneMenu();
     }
 
-    
 }

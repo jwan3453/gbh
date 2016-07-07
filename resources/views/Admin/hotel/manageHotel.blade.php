@@ -69,9 +69,22 @@
                     @endif
 
                     <div class="header-option f-left">
-
                         <img src = '/Admin/img/垃圾桶.png'/>
                         <span>删除</span>
+                    </div>
+
+                    <div class="header-option f-left">
+                        <a href="{{url('admin/manageHotel/hotelInfo/'.$hotelitem->id.'/manageRoom')}}">
+                            <img src = '/Admin/img/维护.png'/>
+                            <span>信息维护</span>
+                        </a>
+                    </div>
+
+                    <div class="header-option f-left">
+                        <a href="{{url('admin/manageHotel/hotelInfo/'.$hotelitem->id.'/manageHotelImage')}}">
+                            <img src = '/Admin/icon/photos-manage.png'/>
+                            <span>图片管理</span>
+                        </a>
                     </div>
 
                 </td>

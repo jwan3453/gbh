@@ -145,7 +145,7 @@
 
 			@foreach ($AbroadList as $abroadCredit)
 			<div class="item-block pandding-20 @if($abroadCredit->ispay == 1) click-item-block @endif" id="serviceItems" onclick="@if($abroadCredit->ispay == 1) unCreditItems(this) @else creditItems(this) @endif">
-				<input type="checkbox" class="display-none" value="{{$abroadCredit->id}}" name="serviceItems[]" @if($internalCredit->ispay == 1) checked="checked" @endif>
+				<input type="checkbox" class="display-none" value="{{$abroadCredit->id}}" name="serviceItems[]" @if($abroadCredit->ispay == 1) checked="checked" @endif>
 				<span>{{$abroadCredit->credit_name}}</span>
 			</div>
 
