@@ -115,6 +115,45 @@ class ImageService
         return response($jsonResult->toJson());
     }
 
+    public function coverHotelImage($request)
+    {
+        $hotelId = $request['hotelId'];
+        $imageId = $request['iamgeId'];
+        $status = $request['status'];
+        $update = true;
+        $updateStatus = false;
+
+        $jsonResult = new MessageResult();
+
+        if ($status == 1) {
+            $jsonResult->statusCode = 1;
+            $jsonResult->statusMsg = '图片已是封面';
+        }else{
+            $isstatus = HotelImage::select('id')->where('hotel_id',$hotelId)->where('status',1)->first();
+
+            if ($isstatus != '') {
+                $update = HotelImage::where('hotel_id',$hotelId)->where('status',1)->update(['status'=>0]);
+
+                if (!$update) {
+                    $update = false;
+                }
+            }
+
+            if ($update) {
+                $updateStatus =  HotelImage::where('id',$imageId)->update(['status'=>1]);
+
+                $jsonResult->statusCode = 1;
+                $jsonResult->statusMsg = '设置成功!';
+            }else{
+                $jsonResult->statusCode = 2;
+                $jsonResult->statusMsg = '设置失败!';
+            }
+
+        }
+
+        return response($jsonResult->toJson());
+    }
+
 
 }
 

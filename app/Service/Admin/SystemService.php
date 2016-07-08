@@ -39,6 +39,8 @@ class SystemService
    			$jsonResult->statusCode = 0;
    			$jsonResult->statusMsg = "文件大小不得超过1M";
    		}
+     
+         $a = $this->resize_image($file['name'],$file['tmp_name'],400,400,time());
 
          if ($path == '') {
             $path = 'uploads/default';
@@ -263,6 +265,61 @@ class SystemService
    {
       return HotelSectionImage::where('id' , $sectionId)->delete();
    }
+
+
+   function resize_image($filename, $tmpname, $xmax, $ymax,$time)
+    {
+        
+        $ext = explode(".", $filename);
+        $ext = $ext[count($ext)-1];
+        if($ext == "jpg" || $ext == "jpeg")
+            $im = imagecreatefromjpeg($tmpname);
+        elseif($ext == "png")
+            $im = imagecreatefrompng($tmpname);
+        elseif($ext == "gif")
+            $im = imagecreatefromgif($tmpname);
+
+         
+        $x = imagesx($im);
+        $y = imagesy($im);
+        $size = filesize($tmpname);
+        $size = $size / 1024;
+        
+        //--图片大小在200k以内的不压缩，直接返回false
+        if ($size < 200) {
+            return false;
+        }
+
+        if($x >= $y) {
+            $newx = $xmax;
+            $newy = $newx * $y / $x;
+        }
+        else {
+            $newy = $ymax;
+            $newx = $x / $y * $newy;
+        }
+        $im2 = imagecreatetruecolor($newx, $newy);
+
+        imagecopyresized($im2, $im, 0, 0, 0, 0, floor($newx), floor($newy), $x, $y);
+        
+        $paths='uploads/default/';//上传小图路径
+
+        $os = strtoupper(substr(PHP_OS,0,3));
+
+        if ($os === 'WIN') {
+            $encode = mb_detect_encoding($filename, array("ASCII",'UTF-8',"GB2312","GBK",'BIG5'));
+            $filename = mb_convert_encoding($filename, 'GB2312', $encode);
+        }
+    
+        $file3 = $paths.$filename;
+
+        imagejpeg($im2,$file3,95);
+        
+        dd($os);
+        
+        return $file3;
+
+    }
 
 }
 

@@ -347,6 +347,11 @@ class HotelController extends Controller
     {
         return $this->imageService->deleteHotelImage($request->input());
     }
+    
+    public function coverHotelImage(Request $request)
+    {
+        return $this->imageService->coverHotelImage($request->input());
+    }
 
     /**
      * Display the specified resource.

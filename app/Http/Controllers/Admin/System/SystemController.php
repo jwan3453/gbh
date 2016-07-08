@@ -33,9 +33,9 @@ class SystemController extends Controller
 	}
 
 	public function uploadImg(Request $request)
-	{
+	{      
 		$file = $_FILES[$request->input('filename')];
-
+  
         return $this->system->uploadImg($file,'uploads/slide');
 	}
 
