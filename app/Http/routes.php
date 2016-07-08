@@ -72,6 +72,8 @@ Route::get('/contactUs','Gbh\HomeController@contactUs');
 
 Route::get('/team','Gbh\HomeController@team');
 
+Route::get('/booking', 'Gbh\HomeController@booking');
+
 Route::get('/article/{articleId}', 'Gbh\ArticleController@showArticle');
 
 Route::post('/getArticleByCate','Gbh\ArticleController@getArticleByCate');

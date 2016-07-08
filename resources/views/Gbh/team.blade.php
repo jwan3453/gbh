@@ -17,7 +17,7 @@
                     <a href="/newArticles">
                         <span>最新文章</span>
                     </a>
-                    <span>酒店预定</span>
+                    <a href="/booking"><span>酒店预定</span></a>
                     <a href="/aboutUs"><span>关于我们</span></a>
 
                 </div>

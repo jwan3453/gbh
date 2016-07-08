@@ -58,6 +58,11 @@ class HomeController extends Controller
         return view('Gbh.team');
     }
 
+    public function booking()
+    {
+        return view('Gbh.booking');
+    }
+
     public function login()
     {
         return view('Gbh.login');
