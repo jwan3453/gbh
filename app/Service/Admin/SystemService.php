@@ -40,7 +40,7 @@ class SystemService
    			$jsonResult->statusMsg = "文件大小不得超过1M";
    		}
      
-         $a = $this->resize_image($file['name'],$file['tmp_name'],400,400,time());
+         $a = $this->resize_image($file['name'],$file['tmp_name'],0,0,50,'');
 
          if ($path == '') {
             $path = 'uploads/default';
@@ -266,8 +266,8 @@ class SystemService
       return HotelSectionImage::where('id' , $sectionId)->delete();
    }
 
-
-   function resize_image($filename, $tmpname, $xmax, $ymax,$time)
+    //--                  图片名称   $file                   paths='uploads/default/'
+    function resize_image($filename, $tmpname, $xmax, $ymax, $quality=100, $paths='')
     {
         
         $ext = explode(".", $filename);
@@ -290,19 +290,29 @@ class SystemService
             return false;
         }
 
-        if($x >= $y) {
-            $newx = $xmax;
-            $newy = $newx * $y / $x;
+        //----对图片宽高不做缩放时----
+        if ($xmax == 0 || $ymax == 0) {
+            $newx = $x;
+            $newy = $y;
+        }else{
+            if($x >= $y) {
+                $newx = $xmax;
+                $newy = $newx * $y / $x;
+            }
+            else {
+                $newy = $ymax;
+                $newx = $x / $y * $newy;
+            }
         }
-        else {
-            $newy = $ymax;
-            $newx = $x / $y * $newy;
-        }
+
+        
         $im2 = imagecreatetruecolor($newx, $newy);
 
         imagecopyresized($im2, $im, 0, 0, 0, 0, floor($newx), floor($newy), $x, $y);
         
-        $paths='uploads/default/';//上传小图路径
+        if ($paths == '') {
+            $paths='uploads/default/';//上传小图路径
+        }
 
         $os = strtoupper(substr(PHP_OS,0,3));
 
@@ -313,7 +323,7 @@ class SystemService
     
         $file3 = $paths.$filename;
 
-        imagejpeg($im2,$file3,95);
+        imagejpeg($im2,$file3,$quality);
         
         dd($os);
         
