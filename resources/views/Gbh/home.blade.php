@@ -64,20 +64,20 @@
             <div class="home-hotel-warp  ui container">
 
 
-                    <div class="h-cate-nav">
-                        <div class="cate-nav-btn cate-nav-btn-selected hotel-btn">
-                            精品酒店
-                        </div>
-                        <div class="cate-nav-btn bnb-btn">
-                            精品名宿
-                        </div>
-                        <div class="cate-nav-btn video-btn">
-                            视频
-                        </div>
-                        <div class="cate-nav-btn magazine-btn">
-                            杂志
-                        </div>
-                    </div>
+                    {{--<div class="h-cate-nav">--}}
+                        {{--<div class="cate-nav-btn cate-nav-btn-selected hotel-btn">--}}
+                            {{--精品酒店--}}
+                        {{--</div>--}}
+                        {{--<div class="cate-nav-btn bnb-btn">--}}
+                            {{--精品名宿--}}
+                        {{--</div>--}}
+                        {{--<div class="cate-nav-btn video-btn">--}}
+                            {{--视频--}}
+                        {{--</div>--}}
+                        {{--<div class="cate-nav-btn magazine-btn">--}}
+                            {{--杂志--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
 
 
                     {{--<h3>热门推荐</h3>--}}
