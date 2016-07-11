@@ -28,6 +28,12 @@ class SystemController extends Controller
 	//--------------轮播图管理----------
 	public function slideConfigure()
 	{
+        $is = $this->isRolePermission("slide");
+
+        if (!$is) {
+            return redirect(url('admin/Error/NotPermission'));
+        }
+
 		$slideList = $this->system->getSlideList();
 		return view('Admin.System.slideConfigurePage')->with('slideList',$slideList);
 	}
@@ -77,6 +83,12 @@ class SystemController extends Controller
 	//----------------银行卡、信用卡管理----------------
 	public function creditCardManage()
 	{
+        $is = $this->isRolePermission("creditcard");
+
+        if (!$is) {
+            return redirect(url('admin/Error/NotPermission'));
+        }
+
 		$InternalList = $this->system->getCreditCardList(1);
 		$AbroadList = $this->system->getCreditCardList(2);
 		return view('Admin.System.creditCardManage')->with('InternalList',$InternalList)->with('AbroadList',$AbroadList);
@@ -117,9 +129,15 @@ class SystemController extends Controller
 	}
 
 
-	//-----------------服务分裂管理----------------
+	//-----------------服务分类管理----------------
 	public function serviceSetting()
 	{
+        $is = $this->isRolePermission("facility-settings");
+
+        if (!$is) {
+            return redirect(url('admin/Error/NotPermission'));
+        }
+
 		$serviceCategorylist = $this->system->getServiceCategoryList();
 		return view('Admin.System.serviceSetting')->with('serviceCategorylist',$serviceCategorylist);
 	}
@@ -162,6 +180,12 @@ class SystemController extends Controller
 	//-----------------酒店服务管理---------------
 	public function serviceItems()
 	{
+        $is = $this->isRolePermission("serviceitems");
+
+        if (!$is) {
+            return redirect(url('admin/Error/NotPermission'));
+        }
+        
 		$serviceItemsList = $this->system->getServiceItemsList();
 		return view('Admin.System.serviceItemsPage')->with('serviceItemsList',$serviceItemsList);
 	}

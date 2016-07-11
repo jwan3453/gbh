@@ -35,11 +35,11 @@ class HotelController extends Controller
 
     public function index()
     {
-        // $is = $this->isRolePermission("hotel-manage");
+        $is = $this->isRolePermission("hotel-manage");
 
-        // if (!$is) {
-        //     return redirect(url('admin/Error/NotPermission'));
-        // }
+        if (!$is) {
+            return redirect(url('admin/Error/NotPermission'));
+        }
 
         $manageHotelList = $this->hotelService->getHotelList();
         // dd($manageHotelList);

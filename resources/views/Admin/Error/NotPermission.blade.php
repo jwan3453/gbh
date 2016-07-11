@@ -31,7 +31,7 @@
             <!-- text area -->
             <!-- home page -->
             <div class="homepage rotate">
-                <a href="AdminCenter">Back to homepage</a>
+                <a href="/admin/AdminCenter">Back to homepage</a>
             </div>
             <!-- home page --> </div>
         <!-- social-icons -->
