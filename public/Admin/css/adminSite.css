@@ -70,6 +70,7 @@ body{
 	bottom: 0;
 	display: none;
 	z-index: 10000;
+	padding-top: 115px;
 	-moz-box-shadow:4px 0 4px rgba(0,0,0,0.3) inset;               /* For Firefox3.6+ */
 	-webkit-box-shadow:4px 0 4px rgba(0,0,0,0.3) inset;            /* For Chrome5+, Safari5+ */
 	box-shadow:4px 0 4px rgba(0,0,0,0.3) inset;                    /* For Latest Opera */

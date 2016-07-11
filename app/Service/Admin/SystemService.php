@@ -40,11 +40,11 @@ class SystemService
    			$jsonResult->statusMsg = "文件大小不得超过1M";
    		}
      
-         $a = $this->resize_image($file['name'],$file['tmp_name'],0,0,50,'');
+        // $a = $this->resize_image($file['name'],$file['tmp_name'],0,0,50,'');
 
-         if ($path == '') {
+        if ($path == '') {
             $path = 'uploads/default';
-         }
+        }
    		
 
    		$pic_path = $path. '/' .$file['name'];
@@ -266,8 +266,17 @@ class SystemService
       return HotelSectionImage::where('id' , $sectionId)->delete();
    }
 
-    //--                  图片名称   $file                   paths='uploads/default/'
-    function resize_image($filename, $tmpname, $xmax, $ymax, $quality=100, $paths='')
+
+
+    /*
+    * filename 图片原名称
+    * tmpname 图片缓存地址$_FILE['tmp_name']
+    * xmax  想要压缩的宽度 传0则不压缩宽度
+    * ymax  想要压缩的高度 传0则不压缩高度
+    * quality 图片清晰度 不设置则默认100%
+    * paths 图片压缩后存储路径，不设置则默认 uploads/default/
+    */
+    function resize_image($filename, $tmpname, $xmax=0, $ymax=0, $quality=100, $paths='')
     {
         
         $ext = explode(".", $filename);
@@ -278,7 +287,6 @@ class SystemService
             $im = imagecreatefrompng($tmpname);
         elseif($ext == "gif")
             $im = imagecreatefromgif($tmpname);
-
          
         $x = imagesx($im);
         $y = imagesy($im);
@@ -304,7 +312,6 @@ class SystemService
                 $newx = $x / $y * $newy;
             }
         }
-
         
         $im2 = imagecreatetruecolor($newx, $newy);
 
@@ -314,6 +321,7 @@ class SystemService
             $paths='uploads/default/';//上传小图路径
         }
 
+        //判断操作系统，win为GB2312编码，LINUX为UTF-8编码，此处用于中文编码转换
         $os = strtoupper(substr(PHP_OS,0,3));
 
         if ($os === 'WIN') {
@@ -324,8 +332,6 @@ class SystemService
         $file3 = $paths.$filename;
 
         imagejpeg($im2,$file3,$quality);
-        
-        dd($os);
         
         return $file3;
 

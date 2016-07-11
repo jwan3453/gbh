@@ -33,6 +33,12 @@ class ArticleController extends Controller
     public function index()
     {
 
+        $is = $this->isRolePermission("article");
+
+        if (!$is) {
+            return redirect(url('admin/Error/NotPermission'));
+        }
+
         $articles = $this->article->getArticles();
         return view('Admin.Article.manageArticle')->with('articles',$articles);
     }
