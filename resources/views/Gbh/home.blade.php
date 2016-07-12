@@ -49,7 +49,7 @@
                                 <span class="down ">{{$slide->slide_name}}</span>
                             </div>
                         </div>
-                        <img src = '{{$slide->img_url}}'>
+                        <img class="slide-image" src = '{{$slide->img_url}}'>
                     </div></a>
                 @endforeach
                 
@@ -85,7 +85,7 @@
                     <div class="hotel-warp" id="hotel_article_list" >
                         @foreach($articleList['精品酒店'] as $article)
 
-                            <div class="hotel-box ">
+                            <a class="anchor-white" href="{{url('/article/'.$article->id)}}"><div class="hotel-box ">
                                 <img src="{{$article->cover_image  }}">
 
                                 <div class="hotel-box-mask">
@@ -107,7 +107,7 @@
                                 {{--<div class="hotel-box-mark">--}}
 
                                 {{--</div>--}}
-                            </div>
+                            </div></a>
                     @endforeach
                     </div>
 
@@ -115,7 +115,7 @@
                 <div class="hotel-warp none-display" id="bnb_article_list" >
                     @foreach($articleList['精品名宿'] as $article)
 
-                        <div class="hotel-box ">
+                        <a class="anchor-white" href="{{url('/article/'.$article->id)}}"><div class="hotel-box ">
                             <img src="{{$article->cover_image  }}">
 
                             <div class="hotel-box-mask">
@@ -137,7 +137,7 @@
                             {{--<div class="hotel-box-mark">--}}
 
                             {{--</div>--}}
-                        </div>
+                        </div></a>
                     @endforeach
                 </div>
 
@@ -282,8 +282,10 @@
         }
         $(document).ready(function(){
 
-
-            $('.hotel-box').hover(function(){
+            //如果是手机的话不现实遮罩
+            if($(window).width()> 676 )
+            {
+                $('.hotel-box').hover(function(){
                         $(this).find('img,.h-hotel-name,.h-hotel-brief,.h-article-title').addClass('blur');
                         $(this).find('.hotel-box-mask').fadeIn(300);
                     },
@@ -292,7 +294,7 @@
                         $(this).find('.hotel-box-mask').fadeOut(100);
                     })
 
-
+            }
 
             $('.hotel-btn').click(function(){
                 $(this).addClass('cate-nav-btn-selected').siblings('.cate-nav-btn').removeClass('cate-nav-btn-selected');

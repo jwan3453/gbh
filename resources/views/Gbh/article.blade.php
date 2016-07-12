@@ -6,7 +6,7 @@
 
 @section('content')
 
-    <div >
+    <div id="article">
 
         <div class="site-header">
             <div class="site-menu-nav">
@@ -28,12 +28,6 @@
             </div>
         </div>
 
-        <div id="hotlinking">
-
-            <script type="text/javascript">showImg('http://mmbiz.qpic.cn/mmbiz/ibbmVK4uC7iacR4KGWnyJHvQxl276DK6eGlZQ10E7BeY7Fw0ZlnPLXOSF8W4qIiaCsNspcEiaicD0McR79qmicfPGntg/0');</script>
-
-        </div>
-
         <div class=" article-page">
 
 
@@ -46,7 +40,7 @@
                 </div>
             @else
 
-                <div>{!! $article->wechat_content !!}</div>
+                <div id="articleContent">{!! $article->wechat_content !!}</div>
                 {{--<img style="background-image:url('http://mmbiz.qpic.cn/mmbiz/lAoypx8LichjjqgVa8HuHbwKhBSskP2LylMHLm7FAazGvyQf4pAox0p3E1OMqpePjkXCUS0oRlJSEDIVjH3CpCQ/0?wx_fmt=png')">--}}
                 {{--<iframe  id="articleFrame"  name="articleFrame" scrolling="no" seamless="seamless"  class="article-frame" src="{{$article->wechat_url}}">--}}
 
@@ -55,6 +49,10 @@
                     {{--</script>--}}
                 {{--</iframe>--}}
             @endif
+        </div>
+
+        <div class="back-to-top">
+            <img src ='/Gbh/img/rocket.png'/>
         </div>
 
         <div class="article-foot">
@@ -163,6 +161,39 @@
                     return false;
                 }
             });
+
+            //控制回到顶部按钮
+            var tur = true;
+            $(window).scroll(function() {
+                if(tur)
+                {
+                    //控制滚动时间重复触发
+                    setTimeout(function(){
+
+                        if($(document).scrollTop() > 0 &&  $('.back-to-top').css('display')!=='block')
+                        {
+                            $('.back-to-top').transition('fly left');
+                        }
+
+                        else if($(document).scrollTop() === 0)
+                        {
+                            $('.back-to-top').transition('fly left');
+                        }
+                        tur=true;
+                    },500);
+                    tur = false;
+
+                }
+            });
+
+
+            $('.back-to-top').click(function(){
+                    if($(document).scrollTop() > 0)
+                    {
+                        $('html, body').animate({scrollTop:0}, 'slow');
+                    }
+
+            })
 
            //加载二维码
             @if( !empty($article->wechat_url))
