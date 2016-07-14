@@ -11,7 +11,10 @@ html,body{
 .auto-margin{
     margin:0 auto;
 }
-
+.padding-40{
+    height:40px;
+    width: 100%;
+}
 .page-header-bg{
     background-color:#505050;
     color:#f8f8f8;
@@ -34,9 +37,9 @@ html,body{
 
 .basic-info{
     display: none;
-    margin-right:20px;
-
+    margin-left:5px;
     float:left;
+
 
 }
 .name{
@@ -71,7 +74,7 @@ html,body{
     line-height: 80px;
     font-size: 18px;
     position: relative;
-    width:200px;
+    width:170px;
 }
 
 .title span{
@@ -83,7 +86,7 @@ html,body{
     width:50px;
     height:50px;
     top:15px;
-    right:30px;
+    right:5px;
     position: absolute;
 }
 
@@ -153,8 +156,7 @@ html,body{
 
 .skill-list{
     margin:30px 0 20px 30px ;
-
-    width:100%;
+    width:calc(100% - 30px);
 
     height:150px;
     display: inline-block;
@@ -293,7 +295,7 @@ html,body{
 
     position: absolute;
     left:calc(50% + 60px);
-    top: 10px;;
+    top: 15px;;
     line-height: 30px;
     visibility: hidden;
 
@@ -304,11 +306,11 @@ html,body{
 
     position: absolute;
     right:calc(50% + 60px);
-    top: 10px;;
+    top: 15px;;
     vertical-align:middle;
     line-height: 30px;
     visibility: hidden;
-    text-align: right;
+
 }
 
 .history-detail .logo-img{
@@ -317,6 +319,87 @@ html,body{
     border-radius: 100%;
     visibility: hidden;
 
+
+}
+
+@media only screen and (max-width: 767px) {
+    .skill-list{
+        margin:20px 0 20px 10px ;
+        width:calc(100% - 10px);
+        overflow: hidden;
+        display: inline-block;
+
+        height:auto;
+
+    }
+    .skill-list .header{
+        font-size: 20px;
+
+        margin-left:10px;
+        margin-bottom: 20px;
+    }
+    .skill-list .skill{
+
+        background-color:#f26060;
+        width: 100px;
+        height:100px;
+        line-height: 100px;
+        text-align: center;
+        border-radius: 100%;
+        display:inline-block;
+        color: #f8f8f8;
+        font-size:14px;
+
+        cursor: pointer;
+        margin:10px;
+    }
+
+    .education-list{
+        margin:  30px 0 20px 10px;
+    }
+
+
+    .university{
+        margin:20px 0 20px 0 ;
+    }
+
+
+    .university img{
+        margin-top: -4px;
+    }
+
+    .university .up{
+        margin-top:-2px;
+    }
+
+    .working-exp{
+        margin:30px 0 20px 10px ;
+    }
+
+    .history-detail .desc-left{
+        height:60px;
+        width:150px;
+
+        position: absolute;
+        left:calc(50% + 50px);
+        top: 10px;;
+        line-height: 15px;
+        visibility: hidden;
+        font-size:12px;
+    }
+    .history-detail .desc-right{
+        font-size:12px;
+        height:60px;
+        width:150px;
+
+        position: absolute;
+        right:calc(50% + 50px);
+        top: 10px;;
+        vertical-align:middle;
+        line-height: 15px;
+        visibility: hidden;
+
+    }
 
 }
 

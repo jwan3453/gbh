@@ -160,7 +160,7 @@
 
 
         </div>
-
+        <div class="padding-40"></div>
 </body>
 
 
@@ -261,7 +261,7 @@
 
                         if($(this).css('visibility') === 'hidden')
                             $(this).transition({
-                                animation : 'scale',
+                                animation : 'fly left',
                                 duration  : 800
                             });
                     }
@@ -273,7 +273,7 @@
 
                         if($(this).css('visibility') === 'hidden')
                             $(this).transition({
-                                animation : 'scale',
+                                animation : 'fly right',
                                 duration  : 800
                             });
                     }
