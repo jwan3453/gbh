@@ -380,22 +380,22 @@ html,body{
 
     .history-detail .desc-left{
         height:60px;
-        width:150px;
+        width:130px;
 
         position: absolute;
         left:calc(50% + 50px);
         top: 10px;;
         line-height: 15px;
         visibility: hidden;
-        font-size:12px;
+        font-size:11px;
     }
     .history-detail .desc-right{
-        font-size:12px;
+        font-size:11px;
         height:60px;
-        width:150px;
+        width:130px;
 
         position: absolute;
-        right:calc(50% + 50px);
+        right:calc(50% + 40px);
         top: 10px;;
         vertical-align:middle;
         line-height: 15px;
