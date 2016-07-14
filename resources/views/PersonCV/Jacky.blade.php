@@ -146,7 +146,6 @@
                     </div>
                 </div>
 
-
                 <div class="vertical-line auto-margin">
                 </div>
                 <div class=" history-detail ">

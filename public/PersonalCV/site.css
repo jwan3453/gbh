@@ -96,7 +96,7 @@ html,body{
 }
 .education-list .header{
     font-size: 20px;
-    width:100%;
+    width:calc(100% - 10px);
     padding-left:10px;
 }
 
@@ -164,7 +164,7 @@ html,body{
 }
 .skill-list .header{
     font-size: 20px;
-
+    width:calc(100% - 10px);
     margin-left:10px;
     margin-bottom: 20px;
 }
@@ -356,6 +356,7 @@ html,body{
 
     .education-list{
         margin:  30px 0 20px 10px;
+        width: calc(100% - 10px);
     }
 
 
@@ -374,6 +375,7 @@ html,body{
 
     .working-exp{
         margin:30px 0 20px 10px ;
+        width: calc(100% - 10px);
     }
 
     .history-detail .desc-left{
