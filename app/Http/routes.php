@@ -260,3 +260,8 @@ Route::post('/upload/image','Common\CommonController@uploadImage');
 
 
 /******************************end*******************************************/
+
+
+Route::get('/jacky',function(){
+    return view('PersonCV.Jacky');
+});

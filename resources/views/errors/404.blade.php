@@ -9,15 +9,21 @@
 
 @section('content')
 
-    <div class="pusher">
+    <title>404</title>
+    <div >
         <div class="site-header">
             <div class="site-menu-nav">
                 <div>
-                    <a href="/"><span>首页</span></a>
-                    <span>最新文章</span>
-                    <span>酒店预定</span>
-                    <a href="/aboutUs"><span>关于我们</span></a>
-
+                    <a  href="/">
+                        <span>首页</span>
+                    </a>
+                    <a href="/newArticles">
+                        <span>最新文章</span>
+                    </a>
+                    <a href="/booking"><span>酒店预定</span></a>
+                    <a href="/aboutUs">
+                        <span>关于我们</span>
+                    </a>
                 </div>
             </div>
             <div class="mobile-menu-nav">
@@ -25,15 +31,16 @@
             </div>
         </div>
 
+        <div class="ui container">
+            <div class="error-box">
 
-        <div class="error-box">
 
+                <img class="auto-margin" src = '/Gbh/img/doge.png'>
+                <span class="giant-font">404 Page Not Found</span>
+                <p class="giant-font">页面没找到，小二打酱油去了</p>
+                <a href="/"><div class="regular-btn red-btn auto-margin">带我回首页</div></a>
 
-            <img class="auto-margin" src = '/Gbh/img/doge.png'>
-            <span class="giant-font">404 Page Not Found</span>
-            <p class="giant-font">页面没找到，小二打酱油去了</p>
-            <a href="/"><div class="regular-btn red-btn auto-margin">带我回首页</div></a>
-
+            </div>
         </div>
     </div>
 @stop

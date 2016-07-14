@@ -29,7 +29,7 @@
 
         <div class="ui container">
             <div class="ucons">
-                <h3 >预定平台还未上线，我们程序猿正在紧张加班中.....</h3>
+                <h3 >预定平台还未上线，我们的程序猿正在紧张加班中.....</h3>
                 <img   src="/Gbh/img/underConstruct.gif">
             </div>
         </div>
