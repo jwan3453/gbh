@@ -8,7 +8,7 @@
 
 @section('content')
 
-
+    <title>全球精品酒店</title>
     <div>
         <div class="home-page">
 
@@ -28,8 +28,6 @@
                 <div class="mobile-menu-nav">
                     <i class="sidebar icon large"></i>
                 </div>
-
-
 
             </div>
             <div class="owl-carousel owl-theme home-slide">

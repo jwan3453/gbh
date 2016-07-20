@@ -28,23 +28,24 @@
 
         <div class="ui sidebar right   mobile-side-bar">
             <a class="" href="/">
-                <i class="icon home large"></i>首页
+               首页
             </a>
             <a class=""  href="/newArticles">
-                <i class="icon home large"></i>最新文章
+               最新文章
             </a>
             <a class="" href="/aboutUs">
-                <i  class="icon home large"></i>关于我们
+                关于我们
             </a>
-            <a class="">
-                <i class="icon home large"></i>酒店预定
+            <a href="/booking">
+                酒店预定
             </a>
         </div>
         <div class="page pusher" style="min-height:500px;">
             @yield('content')
         </div>
+        @yield('extra')
 
-
+        <div class="padding-80"></div>
         <div class="foot-box">
 
             <span class="up">全球精品酒店 版权所有 2016-2028 保留所有权利</span>
@@ -72,6 +73,29 @@
                     .sidebar('toggle')
             ;
         })
+
+        var tur = true;
+        $(window).scroll(function() {
+
+                //控制滚动时间重复触发
+                setTimeout(function(){
+
+                    if($(document).scrollTop() > 0 &&   !$('.site-header').hasClass('site-header-scroll'))
+                    {
+                        $('.site-header').addClass('site-header-scroll');
+                        $('.site-header').removeClass('site-header-scrollTop');
+                    }
+
+                    else if($(document).scrollTop() === 0)
+                    {
+                        $('.site-header').addClass('site-header-scrollTop');
+                        $('.site-header').removeClass('site-header-scroll');
+                    }
+                    tur=true;
+                },100);
+                tur = false;
+        });
+
     })
 
 

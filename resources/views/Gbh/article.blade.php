@@ -8,25 +8,7 @@
 
     <div id="article">
 
-        <div class="site-header">
-            <div class="site-menu-nav">
-                <div>
-                    <a  href="/">
-                        <span>首页</span>
-                    </a>
-                    <a href="/newArticles">
-                        <span>最新文章</span>
-                    </a>
-                    <a href="/booking"><span>酒店预定</span></a>
-                    <a href="/aboutUs">
-                        <span>关于我们</span>
-                    </a>
-                </div>
-            </div>
-            <div class="mobile-menu-nav">
-                <i class="sidebar icon large"></i>
-            </div>
-        </div>
+        @include('partial.homeNav')
 
         <div class=" article-page">
 
@@ -59,7 +41,7 @@
             <div class="article-foot-span">阅读量 (  <span class="view-count">{{ $article->view_count }}</span>  )</div>
             @if( !empty($article->wechat_url))
                 <div class="article-foot-span ">
-                    <img src ='/Gbh/img/wechat.png' class="footer-icon"   data-html='test'/>
+                    <img src ='/Gbh/img/wechat.png' class="footer-icon wechat-icon"   data-html='test'/>
                 </div>
                 <div class="qr-image">
                     {!!  \SimpleSoftwareIO\QrCode\Facades\QrCode::size(200)->generate($article->wechat_url) !!}
@@ -195,11 +177,17 @@
 
             })
 
+            $('.wechat-icon').hover(function(){
+                        $(this).attr('src','/Gbh/img/wechat_green.png');},
+                    function(){
+                        $(this).attr('src','/Gbh/img/wechat.png');
+                    })
+
            //加载二维码
             @if( !empty($article->wechat_url))
                 $('.footer-icon').attr('data-html',$('.qr-image').html())
                     .popup({
-                        position : 'top center'
+                        position : 'right center'
                     })
             ;
             @endif

@@ -40,11 +40,14 @@ a{
 	height:80px;
 	width: 100%;
 }
+
 .none-display{
 	display: none;
 }
 .pusher{
 	min-height: 100%!important;
+
+
 }
 
 .f-left{
@@ -59,6 +62,10 @@ a{
 .page{
 	min-height:100%;
 	margin:auto;
+	background-color: white;
+}
+.container{
+
 }
 .regular-btn{
 	line-height: 40px;
@@ -82,22 +89,72 @@ a{
 /******网站首页******/
 
 
-
+.logo{
+	width: 70px;
+	height: 70px;
+	background-image: url(/Gbh/img/gbh_logo.png);
+	background-size:cover;
+	float:left;
+	margin:5px 0 0 30px;
+}
 
 .home-page{
 /*background-color: rgba(16, 16, 16, 0.86);*/
 
 }
+
+
+
 .site-header{
 	top:0;
-
-	position: absolute;
-	height:50px;
+	position: fixed;
+	height:70px;
 	background-color: rgba(23, 10, 34, 0.8);
-	line-height: 50px;
+	line-height:70px;
 	z-index:1001;
 	width: 100%;
 }
+
+.site-header-scroll{
+	transition:  0.4s ease;
+	-webkit-transition:  0.4s ease;
+	height: 80px;
+	line-height:80px;
+	background-color: rgba(23, 10, 34,0.9);
+
+}
+.site-header-scroll {
+	font-size:18px;
+}
+
+.site-header-scroll .logo{
+
+	margin-top: 10px;
+	-webkit-transform:scale(1.2) translateX(20px) ;
+	-moz-transform: scale(1.2) translateX(20px) ;
+	-ms-transform: scale(1.2) translateX(20px) ;
+	-o-transform:scale(1.2) translateX(20px) ;
+	transform:  scale(1.2) translateX(20px) ;
+	-webkit-transition:  0.4s ease;
+}
+
+.site-header-scrollTop{
+	transition:  0.4s ease;
+	-webkit-transition:  0.4s ease;
+
+}
+.site-header-scrollTop .logo{
+	margin-top: 5px;
+	-webkit-transform:scale(0.96) translateX(0px) ;
+	-moz-transform: scale(0.96) translateX(0px) ;
+	-ms-transform: scale(0.96) translateX(0px) ;
+	-o-transform:scale(0.96) translateX(0px) ;
+	transform:  scale(0.96) translateX(0px) ;
+	-webkit-transition:  0.4s ease;
+}
+
+
+
 
 
 .site-menu-nav{
@@ -122,8 +179,8 @@ a{
 	color:#f8f8f8;
 	display: block;
 	margin-top:-5px!important;
-
 }
+
 
 .home-site-header{
 	top:0;
@@ -170,7 +227,7 @@ a{
 	position: relative;
 }
 .home-slide img{
-	max-height:500px!important;
+	width:100%;
 }
 .slide-caption{
 
@@ -329,12 +386,6 @@ a{
 	border-radius: 5px 5px 0 0;
 }
 .hotel-box-mark{
-
-	top:0;
-	left:0;
-	border-top: 80px solid rgba(255, 75, 72, 0.9);
-	border-right: 80px solid transparent;
-	position:absolute;
 
 }
 .hotel-box-mask{
@@ -543,7 +594,6 @@ a{
 .about-menu-nav{
 	height:50px;
 	width:100%;
-	margin:70px 0 0 0;
 
 	background-color:#f8f8f8;
 	border-radius: 5px;
@@ -714,7 +764,7 @@ a{
 
 .recruit-title-list-scroll{
 
-
+	margin-top:80px!important;
 }
 
 .recruit-title-list-scroll span{
@@ -992,24 +1042,32 @@ a{
 }
 
 .map-box{
-	width: 80%;
+	width: 100%;
 	margin: 0 auto;
 	border: 0!important;
 	margin-top: -10px;
 	border-radius: 5px;
-	height:350px;
+	height:450px;
 }
 
 .detail-box{
-	width:80%;
-	margin: 50px auto;
+	width:100%;
+	padding: 50px 0 50px 0 ;
+	background-color: #432e46;
+	border-top:1px solid #3a3a3a;
+	color:#f8f8f8;
+	position: fixed;
+	z-index:-1;
+	bottom: 80px;
+	display: block;
 
 }
 
 .detail-address{
-
-	width:100%;
+	float:right;
 	text-align: center;
+	margin-right:100px;
+	margin-top:15px;
 }
 
 .detail-address .address{
@@ -1020,22 +1078,83 @@ a{
 
 .detail-address label{
 	font-size: 18px;
-	color: #181818;
+
 }
 
 .detail-address span{
 	font-size: 18px;
-	color: #181818;
+
 }
 
 .detail-row{
 	width: 100%;
 	margin-top: 10px;
+
 }
 
 .detail-row img{
 	margin-right: 10px;
 	vertical-align: middle;
+}
+
+.contact-box{
+	float:left;
+	text-align: center;
+	margin-left:100px;
+}
+.messageForm-mask{
+
+	position: absolute;
+	width:470px;
+	height:250px;
+	border-radius: 5px;
+	background: rgba(0, 0, 0, 0.9);
+	display:none;
+	text-align:center;
+	font-size:18px;
+	font-weight:500;
+}
+.messageForm-mask i{
+	margin-top:20px;
+	display: none;
+
+}
+.messageForm-mask span{
+	width:100%;
+	text-align: center;
+	display: block;
+}
+
+.contact-box input{
+	width: 450px;
+	height: 40px;
+	border: 0;
+	background-color: #272727;
+	color: #FFFFFF;
+	font-size: 16px;
+	text-indent: 0.5em;
+	display: block;
+	margin:10px;
+}
+.contact-box textarea{
+	width: 445px;
+	height: 70px;
+	border: 0;
+	background-color: #272727;
+	color: #FFFFFF;
+	font-size: 16px;
+	text-indent: 0.5em;
+	display: block;
+	margin:10px;
+	resize: none;
+}
+
+.submit-Msg{
+	background-color:#ff5f76;
+	border-radius: 0!important;
+	width:450px;
+	margin-left:10px;
+
 }
 
 .contactus-title-img{
@@ -1096,17 +1215,18 @@ a{
 }
 
 .foot-box{
+	position: fixed;
 	width: 100%;
 	height: 90px;
 	margin: 0 auto;
 	text-align: center;
 
-	background-color: #505050;
+	background-color:rgba(23, 10, 34, 0.8);
 	border-top:1px solid #505050;
 	color:#f8f8f8;
 	display: block;
-
-
+	bottom: 0;
+	z-index:-100;
 }
 
 .foot-box span{
@@ -1195,7 +1315,7 @@ a{
 	position: relative;
 	top: 0;
 	bottom: 0;
-	background-size:cover; 
+	background-size:cover;
 }
 
 .login-input-box{
@@ -1454,8 +1574,18 @@ a{
 	height:35px;
 	cursor: pointer;
 }
-.article-foot .qr-image{
+ .qr-image{
 	display: none;
+}
+ .qr-image img{
+	 width:200px;
+	 height:200px;
+ }
+.qr-image span{
+	display: block;
+	width: 100%;
+	text-align: center;
+	border:1px solid red;
 }
 
 .article-foot .view-count{
@@ -1464,9 +1594,12 @@ a{
 }
 .comment-box{
 	max-width:800px!important;
-	margin:0 auto;
+	margin:20px auto;
 }
 
+.wechat-icon{
+	cursor: pointer;
+}
 /****************************/
 
 /***建设中的页面****/
@@ -1517,12 +1650,18 @@ a{
 /* Mobily Only */
 @media only screen and (max-width: 767px) {
 
+
+	.logo{
+		margin:5px 0 0 10px;
+	}
+
 	.mobile-side-bar {
 		width: 150px !important;
 		color: #ecf5fc;
 		background: #121d25;
 		padding: 30px 0 !important;
 		font-size: 16px;
+		text-align: center;
 
 	}
 
@@ -1633,7 +1772,7 @@ a{
 	}
 
 	.about-menu-nav {
-		margin-top: 50px;
+		margin-top: 45px;
 	}
 
 	.about-line-box {
@@ -1943,7 +2082,8 @@ a{
 
 	.detail-box{
 		width: 100%;
-		margin:30px auto;
+		padding:30px 0 30px 0;
+
 	}
 
 	.detail-address{
@@ -1960,12 +2100,12 @@ a{
 
 	.detail-address label{
 		font-size: 16px;
-		color: #181818;
+
 	}
 
 	.detail-address span{
 		font-size: 16px;
-		color: #181818;
+
 	}
 	.foot-box{
 
@@ -1976,7 +2116,7 @@ a{
 
 	}
 	.foot-box .up{
-		margin-top:10px;
+		margin-top:15px;
 		font-size:14px;
 	}
 	.foot-box .down{

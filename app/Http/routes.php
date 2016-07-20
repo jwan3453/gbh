@@ -17,6 +17,8 @@ Route::get('/', function () {
 
 /*******************************GbhMibile*********************************************/
 
+Route::get('mobile','GbhMobile\homeController@home');
+
 Route::get('auth/login','Auth\AuthController@loginPage');
 
 Route::get('auth/register','Auth\AuthController@registerPage');
@@ -85,6 +87,8 @@ Route::get('/gbh/register','Gbh\HomeController@register');
 Route::get('/gbh/PageNotFound','Gbh\HomeController@PageNotFound');
 
 Route::post('/gbh/article/praise','Gbh\ArticleController@praise');
+
+Route::post('/submitMessage','Gbh\HomeController@submitMessage');
 
 /*******************************end**************************************/
 

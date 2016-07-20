@@ -2,33 +2,16 @@
 
 @section('resources')
 <script type="text/javascript" src="http://api.map.baidu.com/api?v=1.3"></script>
+
 @stop
 
 
 
 @section('content')
+
+    <title>联系我们</title>
     <div >
-
-    <div class="site-header">
-        <div class="site-menu-nav">
-            <div>
-                <a  href="/">
-                    <span>首页</span>
-                </a>
-                <a href="/newArticles">
-                    <span>最新文章</span>
-                </a>
-                <a href="/booking"><span>酒店预定</span></a>
-                <a href="/aboutUs">
-                    <span>关于我们</span>
-                </a>
-            </div>
-        </div>
-        <div class="mobile-menu-nav">
-            <i class="sidebar icon large"></i>
-        </div>
-    </div>
-
+        @include('partial.homeNav')
     <div class="ui container">
 
         <div class="about-menu-nav">
@@ -85,70 +68,148 @@
                 <div class="find-us-line"></div>
                 <span class="find-us-font">联系我们</span>
             </div>
-
-
-            <div class="map-box" id="map"></div>
-
-            <div class="detail-box ">
-                <div class="detail-address">
-
-                    <div class="detail-row address">
-                        厦门是思明区七星西路福达里9号101  凡悦
-                    </div>
+        </div>
+    </div>
 
 
 
-                    <div class="detail-row">
-                        <label>联系邮箱 : </label>
-                        <span>business@gbhchina.com</span>
-                    </div>
-
-                    <div class="detail-row">
-                        <label>酒店预定 : </label>
-                        <span>booking@gbhchina.com</span>
-                    </div>
+        <div class="map-box" id="map"></div>
+    </div>
+@stop
 
 
+@section('extra')
 
-                    <div class="detail-row">
-                        <label>商务合作 : </label>
-                        <span>000-000-000</span>
-                    </div>
 
-                </div>
+    <div class="detail-box " >
+        <div class="detail-address" >
+
+            <div class="detail-row address">
+                厦门市思明区观音山运营中心12号楼6楼
+            </div>
+
+
+
+            <div class="detail-row">
+                <label>联系邮箱 : </label>
+                <span>business@gbhchina.com</span>
+            </div>
+
+            <div class="detail-row">
+                <label>酒店预定 : </label>
+                <span>booking@gbhchina.com</span>
+            </div>
+
+
+            <div class="detail-row">
+                <label>商务合作 : </label>
+                <span>000-000-000</span>
+            </div>
+
+            <div class="detail-row">
+                <img src ='/Gbh/img/wechat.png' class="footer-icon wechat-icon"   data-html=''  />
+            </div>
+            <div class="qr-image">
+                <img src = "/Gbh/img/wechat_qr.jpg" style="width:200px; height:200px;">
+                <span style="font-size:14px; display: block;width: 100%; text-align: center">微信扫一扫，关注我们的公众号</span>
             </div>
 
         </div>
 
-    </div>
+        <div class="contact-box">
+            <div class="messageForm-mask" id="messageMask">
+                <i class="checkmark icon massive green  "></i>
+                <span>发送成功</span>
+            </div>
+            <form action="{{url('/submitMessage')}}" method="post" id="messageFrom">
+                <input placeholder="名字/Name "  name="name"/>
+                <input placeholder="邮箱/Email" name="email"/>
+                <textarea  placeholder="留言/Message" name="message"></textarea>
+                <div class="regular-btn submit-Msg">提交留言</div>
+            </form>
+        </div>
 
-</div>
+    </div>
+    <div style="height:310px;width:100%;visibility: hidden"></div>
 @stop
 
 
 @section('script')
 <script type="text/javascript">
 
-        $(function(){
-            var map = new BMap.Map("map");
-            var point = new BMap.Point('118.102058', '24.494934');
-            map.centerAndZoom(point, 20);
 
-            var marker = new BMap.Marker(point);  // 创建标注
+        $(document).ready(function() {
 
-            map.addOverlay(marker);               // 将标注添加到地图中
-            marker.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
-            // map.enableScrollWheelZoom(false); //设置鼠标滚轮
-            // map.enableScrollWheelZoom(true);
-             map.disableDragging();
-                
-          })
 
-        $('.contactus-small-title').hover(function(){
-            $(this).find('.contactus-title-img').addClass('contactus-title-img-hover')},
-            function(){
-                $(this).find('.contactus-title-img').removeClass('contactus-title-img-hover')
+            $(function () {
+                var map = new BMap.Map("map");
+                var point = new BMap.Point('118.201383', '24.494217');
+                map.centerAndZoom(point, 20);
 
-        })
+                var marker = new BMap.Marker(point);  // 创建标注
+
+                map.addOverlay(marker);               // 将标注添加到地图中
+                marker.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
+                // map.enableScrollWheelZoom(false); //设置鼠标滚轮
+                // map.enableScrollWheelZoom(true);
+
+
+            })
+
+            $('.contactus-small-title').hover(function () {
+                        $(this).find('.contactus-title-img').addClass('contactus-title-img-hover')
+                    },
+                    function () {
+                        $(this).find('.contactus-title-img').removeClass('contactus-title-img-hover')
+
+                    })
+
+            $('.wechat-icon').hover(function () {
+                        $(this).attr('src', '/Gbh/img/wechat_green.png');
+                    },
+                    function () {
+                        $(this).attr('src', '/Gbh/img/wechat.png');
+                    })
+
+            $('.footer-icon').attr('data-html', $('.qr-image').html())
+                    .popup({
+                        position: 'right center'
+                    })
+
+
+            $('.submit-Msg').click(function(){
+
+
+
+                var options = {
+                    url: '/submitMessage',
+                    type: 'post',
+                    dataType: 'json',
+                    data: $("#messageFrom").serialize(),
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                    },
+                    success: function (data) {
+                        if(data.statusCode===1)
+                        {
+
+                            $('#messageMask').transition({
+                                animation:'scale',
+                                onComplete: function(){
+                                    $('.checkmark').transition('tada')
+                                }
+                            });
+
+                        }
+                    },
+                    error:function(data){
+
+                    }
+                };
+                $.ajax(options);
+
+
+            })
+        });
     </script>
 @stop

@@ -1,10 +1,12 @@
 <?php
 namespace App\Http\Controllers\Gbh;
+use App\Tool\MessageResult;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Service\Gbh\ArticleService;
 use App\Service\Gbh\SlideService;
+Use Illuminate\Support\Facades\Mail;
 
 class HomeController extends Controller
 {
@@ -78,6 +80,27 @@ class HomeController extends Controller
         return view('Gbh.pageNotFound');
     }
 
+    public function submitMessage(Request $request)
+    {
+        $name = $request->input('name');
+        $email = $request->input('email');
+        $homeMessage = $request->input('message');
+        $toEmail='jackywang@gbhchina.com';
+        //把消息发送到公司邮箱
+
+
+        $data = ['name'=>$name, 'email'=>$email, 'homeMessage'=>$homeMessage, 'toEmail'=>$toEmail];
+        Mail::send('emails.contactMessage', $data, function ($message) use ($data) {
+            $message->from('jackywang@gbhchina.com');
+            $message->to($data['toEmail'])->subject('来自gbhchina.com提交的信息');
+        });
+
+        $jsonResult = new MessageResult();
+        $jsonResult->statusCode = 1;
+        $jsonResult->statusMsg ='邮件发送成功';
+        return response($jsonResult->toJson());
+
+    }
 }
 
 ?>
