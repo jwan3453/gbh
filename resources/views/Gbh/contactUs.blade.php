@@ -23,6 +23,11 @@
             <a href="/contactUs"  class="dark-anchor"><span>联系我们</span></a>
         </div>
 
+        <div class = 'title-text'>
+            <div class="up">CONTACT US</div>
+            <div class="down auto-margin">联系我们</div>
+        </div>
+
         <div class="contactus-box">
             
             <div class="contactus-title">
@@ -64,10 +69,7 @@
                 </div>
             </div>
 
-            <div class="find-us">
-                <div class="find-us-line"></div>
-                <span class="find-us-font">联系我们</span>
-            </div>
+            <div class="padding-40"></div>
         </div>
     </div>
 

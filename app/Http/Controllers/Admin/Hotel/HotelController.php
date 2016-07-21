@@ -42,6 +42,7 @@ class HotelController extends Controller
         }
 
         $manageHotelList = $this->hotelService->getHotelList();
+
         // dd($manageHotelList);
         foreach ($manageHotelList as $hotelList) {
 

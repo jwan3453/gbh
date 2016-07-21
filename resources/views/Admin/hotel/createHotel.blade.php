@@ -32,21 +32,21 @@
         <form class="detail-form" id="hotelBasicInfo" action='{{url("/admin/manageHotel/create")}}' method="Post">
 
             <input type="hidden" value="{{csrf_token()}}" name="_token"/>
-            <input type="hidden" value="{{$hotelInfo->hotelId}}" id="hotelId" name="hotelId" />
+            <input type="hidden" value="{{$hotelInfo->id}}" id="hotelId" name="hotelId" />
             <input type="hidden" value="{{$createOrUpdate}}" id="createOrupdate" name="createOrupdate" />
             <div class="short-input-box ">
                 <label>酒店名称</label>
-                <input type="text" id="hotelName" name="hotelName" value="{{$hotelInfo->hotel_name}}">
+                <input type="text" id="hotelName" name="hotelName" value="{{$hotelInfo->name}}">
                 <span>请输入酒店的英文名</span>
             </div>
 
             <div class="long-input-box ">
                 <label>省份城市</label>
                 <input type="hidden" name="addressId" value="{{$hotelInfo->address_id}}" />
-                <input type="text" id="province"  autocomplete="off" value="{{$hotelInfo->addressInfo}}">
-                <input type="hidden" id="provinceCode" name="provinceCode" value="{{$hotelInfo->address->province_code}}">
-                <input type="hidden" id="cityCode" name="cityCode" value="{{$hotelInfo->address->city_code}}">
-                <input type="hidden" id="districtCode" name="districtCode" value="{{$hotelInfo->address->district_code}}">
+                <input type="text" id="province"  autocomplete="off" value="{{$hotelInfo->addressInfo== null?'':$hotelInfo->addressInfo}}">
+                <input type="hidden" id="provinceCode" name="provinceCode" value="{{$hotelInfo->address == null?'':$hotelInfo->address->province_code}}">
+                <input type="hidden" id="cityCode" name="cityCode" value="{{$hotelInfo->address ==null?'':$hotelInfo->address->city_code }}">
+                <input type="hidden" id="districtCode" name="districtCode" value="{{$hotelInfo->address==null?'':$hotelInfo->address->district_code}}">
                 <span>请输入酒店所在省份城市区域</span>
             </div>
 

@@ -23,20 +23,18 @@
 
             </div>
 
-            <div class="padding-80"></div>
 
+            <div class = 'title-text'>
+                <div class="up">HITORY</div>
+                <div class="down auto-margin">发展历程</div>
+            </div>
 
-
-
+            <div class="padding-40"></div>
             <div class="history-box">
 
 
                 <div class="first-show">
-                    <div class="auto-margin history-people">
-                        <img src = 'Gbh/img/ming.png' >
-                    </div>
-                    <div class="vertical-line auto-margin">
-                    </div>
+
                     <div class=" history-detail ">
                         <div class="year auto-margin">
                             2015/06
@@ -52,18 +50,13 @@
                 </div>
                 <div class=" history-detail ">
                     <div class="auto-margin logo-img">
-                        <img src = 'Gbh/img/logo.png' >
+                        <img src = '/Gbh/img/gbh_logo.png' >
                     </div>
-                    <div class="desc-right">
+                    <div class="desc-left">
                         于是在2015年 7月的一天, 《中国精品酒店联盟》诞生了
                     </div>
                 </div>
 
-                <div class="vertical-line auto-margin">
-                </div>
-                <div class="auto-margin history-people">
-                    <img src = 'Gbh/img/头像2.jpg' >
-                </div>
 
                 <div class="vertical-line auto-margin">
                 </div>
@@ -71,16 +64,11 @@
                     <div class="year auto-margin">
                         2015/09
                     </div>
-                    <div class="desc-left">
+                    <div class="desc-right">
                         来自厦大的青红加入联盟，担任品牌运营官
                     </div>
                 </div>
 
-                <div class="vertical-line auto-margin">
-                </div>
-                <div class="auto-margin history-people">
-                    <img src = 'Gbh/img/jie.png' >
-                </div>
 
                 <div class="vertical-line auto-margin">
                 </div>
@@ -89,7 +77,7 @@
                         2015/09
                     </div>
                     <div class="desc-left">
-                        来自悉尼大学的杰文加入联盟，担任技术负责人(这个网站是哥写的)
+                        来自悉尼大学的杰文加入联盟，担任技术负责人
                     </div>
                 </div>
 

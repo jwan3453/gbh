@@ -22,7 +22,7 @@ class HotelService {
 
     public function getHotelList()
     {
-        $list = Hotel::select('id','hotel_name','address_id','status')->get();
+        $list = Hotel::select('id','name','address_id','status')->get();
         foreach ($list as $hotelitem) {
             $hotelitem->address = Address::select('province_code','city_code','district_code','detail')->where('id',$hotelitem->address_id)->first();
         }

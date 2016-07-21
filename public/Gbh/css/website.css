@@ -32,6 +32,11 @@ a{
 .padding-30{
 	height:30px;
 }
+.padding-40{
+	height:40px;
+
+}
+.
 .padding-60{
 	height:60px;
 
@@ -461,7 +466,7 @@ a{
 .new-articles{
 
 	width:900px!important;
-	margin:70px auto 0 auto;
+	margin:20px auto 0 auto;
 	color:#505050;
 	font-size:14px;
 
@@ -626,6 +631,7 @@ a{
 }
 .about-content{
 	margin:20px 0 ;
+	border:5px solid transparent;
 }
 
 
@@ -651,11 +657,15 @@ a{
 }
 .about-text .detail{
 	height:50px;
-	line-height:16px;
-	font-size:14px;
+	line-height:18px;
+	font-size:16px;
 	width:500px;
 	margin:10px 0 0 0;
 
+}
+.about-text .detail span{
+	display: block;
+	margin:5px 0;
 }
 
 .about-line-box .bottom-line{
@@ -950,12 +960,19 @@ a{
 }
 
 .history-detail .logo-img{
-	height:60px;
-	width:60px;
+	height:80px;
+	width:80px;
 	border-radius: 100%;
 	visibility: hidden;
+	background-color: #d86c79;
+	border: 4px solid #64c5d8;
 
-
+}
+.history-detail .logo-img img{
+	position:absolute;
+	width:75px;
+	height:75px;
+	margin:10px 8px 0 5px;
 }
 	/******************************/
 
@@ -1008,7 +1025,7 @@ a{
 .contactus-title{
 	height: 90px;
 	line-height: 90px;
-	margin-top: 80px;
+	margin-top: 40px;
 	text-align: center;
 }
 
@@ -1287,20 +1304,97 @@ a{
 
 
 /************团队介绍***********/
+
+.title-text{
+	text-align: center;
+	margin-top:40px;
+}
+.title-text .up{
+	font-size:30px;
+	margin-bottom: 10px;
+}
+.title-text .down{
+	height:60px;
+	line-height:60px;
+	font-size:24px ;
+	width:100px;
+	border-top:2px dotted #505050;
+}
+
+
 .team-member{
-	margin:50px auto;
+	margin:20px  auto 50px auto;
 	width:80%;
 	overflow: hidden;
 
 }
-.team-member div{
+.team-member .position{
+
+	width:100%;
+	font-size: 16px;
+	color:#505050;
+	text-align: center;
+	font-weight: 600;
+}
+.team-member .member{
+	text-align: center;
+
 	width:calc(33.333% - 100px);
 	margin: 0 50px;
 	float:left;
 	cursor: pointer;
 }
 .team-member div img{
+
+	width:150px;
+}
+
+
+.team-member-dimmer {
 	width:100%;
+	margin-top:100px;
+
+	overflow: hidden;
+}
+
+.team-member-dimmer i{
+	position:absolute;
+	right:200px;
+	cursor: pointer;
+}
+
+.team-member-dimmer img{
+	width:300px;
+	position: absolute;
+	left:20%;
+	display: none;
+}
+
+.member-desc{
+	font-size:18px;
+	max-width: 200px;
+	line-height: 20px;
+	color:#f8f8f8;
+	position: absolute;
+	left:calc(20% + 340px );
+	top:250px;
+	display: none;
+
+}
+
+.full-image{
+
+	-webkit-transition:  0.4s ease;
+	transition:  0.4s ease;
+	-webkit-transform:scale(2)  ;
+	-moz-transform: scale(2) ;
+	-ms-transform: scale(2)  ;
+	-o-transform:scale(2)  ;
+	transform:  scale(2)  ;
+	position: absolute;
+	top:150px;
+	left:20px;
+
 }
 /******************************/
 
@@ -1605,11 +1699,12 @@ a{
 /***建设中的页面****/
 .ucons{
 	text-align: center;
-	padding-top: 100px;
+	padding-top: 70px;
 }
 
 .ucons h3{
 	color: #505050;
+	margin:0 20px;
 }
 
 .ucons img{
@@ -1629,9 +1724,9 @@ a{
 }
 .error-box img{
 
-	width:250px;
-	height:250px;
-	margin:10px;
+	width:200px;
+	height:200px;
+	margin:20px;
 
 }
 .error-box span{
@@ -1772,7 +1867,8 @@ a{
 	}
 
 	.about-menu-nav {
-		margin-top: 45px;
+
+
 	}
 
 	.about-line-box {
@@ -1782,12 +1878,9 @@ a{
 		margin: 0 auto;
 		padding: 10px 0;
 		height:auto;
-		min-height:0
-
-	}
-
-	.about-line-box {
+		min-height:0;
 		display: block;
+
 	}
 
 	.about-left-triangle {
@@ -1878,10 +1971,11 @@ a{
 		margin: 50px auto;
 		width: 100%;
 		height:100%;
+		text-align: center;
 
 	}
 
-	.team-member div{
+	.team-member .member{
 		width:calc(33.333% - 20px);
 		margin: 0 10px;
 		float:left;
@@ -1890,6 +1984,37 @@ a{
 	.team-member div img{
 		width:100%;
 	}
+
+	.team-member-dimmer {
+		width:100%;
+		margin-top:120px;
+
+	}
+
+	.team-member-dimmer i{
+
+		right:20px;
+
+	}
+
+	.team-member-dimmer img{
+		width:250px;
+
+		left:0;
+
+	}
+
+	.member-desc{
+
+		left:200px;
+		top:200px;
+
+
+	}
+
+
+
+
 	.article-page{
 		margin:70px 10px 20px 10px;
 
@@ -1947,10 +2072,6 @@ a{
 
 		font-weight: 600;
 	}
-
-
-
-
 
 
 	.hor-article-line
@@ -2081,13 +2202,14 @@ a{
 	}
 
 	.detail-box{
+
 		width: 100%;
 		padding:30px 0 30px 0;
-
+		text-align: center;
 	}
 
 	.detail-address{
-
+		float:none;
 		width:100%;
 		text-align: center;
 	}
@@ -2107,6 +2229,11 @@ a{
 		font-size: 16px;
 
 	}
+
+	.contact-box{
+		display:none;
+	}
+
 	.foot-box{
 
 	}

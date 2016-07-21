@@ -23,16 +23,17 @@
         </div>
 
 
-                <div class="about-bg">
-                    <img src ='Gbh/img/about_bg.jpg' >
-                </div>
+        <div class = 'title-text'>
+            <div class="up">ABOUT US</div>
+            <div class="down auto-margin">关于我们</div>
+        </div>
 
                 <div class="about-content ">
                     <div class="about-line-box what-we-do">
                         <div class="about-text f-right">
                             <div class="header">我们是谁</div>
                             <div class="detail">
-                                全球精品酒店（Global Boutique Hotel）成立于2015年11月，总部设于美丽的海滨城市厦门，并于上海设有办公室，是一个拥有25人小团队的精简公司。
+                                全球精品酒店（Global Boutique Hotel）成立于2015年11月，总部设于美丽的海滨城市厦门。我们是一群享受生活，追求工作即是度假的生活方式的年轻人
                             </div>
 
                         </div>
@@ -78,8 +79,7 @@
                         <div class="about-text f-right">
                             <div class="header">我们目标</div>
                             <div class="detail">
-                                帮助您和您的家人找到最棒的精品酒店.
-                                关注“全球精品酒店”官方微信：gbhchina，获得更多关于全球精品酒店信息和服务！
+                                挖掘全球优质精品酒店分享给用户！
                             </div>
 
                         </div>
@@ -129,7 +129,7 @@
 
                 $('.our-mission').transition({animation:'scale',
                     duration:2000});
-                $('html, body').animate({scrollTop:960}, 'slow');
+               // $('html, body').animate({scrollTop:960}, 'slow');
             }
 
         })
