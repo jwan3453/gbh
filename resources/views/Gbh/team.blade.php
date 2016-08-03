@@ -36,7 +36,7 @@
 
                 <div class="mem-left member"  >
                     <img src = 'Gbh/img/jie.png'  data-title="jacky 王" data-content="2016年1月加入联盟,毕业于悉尼大学，现在在联盟担任技术合伙人一职位" >
-                    <div class="position">shawn 普</div>
+                    <div class="position">Jacky 王</div>
                 </div>
 
                 <div class="mem-middle member">
