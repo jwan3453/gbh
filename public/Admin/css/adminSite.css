@@ -55,6 +55,8 @@ body{
 	position: absolute;
 	margin-top: 18px;
 	left: 20px;
+	height:24px;
+	width:24px;
 }
 
 .admin-menu-list li span{
@@ -91,6 +93,8 @@ body{
 	position: absolute;
 	margin-top: 18px;
 	left: 10px;
+    width:14px;
+    height:14px;
 }
 
 .second-level-menu-box li span {
@@ -242,9 +246,9 @@ a{
 .alert-box{
 	position: fixed;
 	top:50px;
-	left:calc(50% - 80px);
+	left:calc(50% - 100px);
 	color:white;
-	width:160px;
+	width:200px;
 	height:40px;
 	background-color:#ff5f76;
 	border-radius: 5px;
@@ -254,9 +258,22 @@ a{
 	display: none;
 }
 
+.success-toast{
+	background-color:#40c39a;
+}
+
 .wrong-input{
 	border:1px solid #ff5f76!important;
 }
+
+.light-bg{
+	padding:20px 10px;
+	background-color: #f8f8f8;
+	width:1120px;
+	border-radius: 2px;
+}
+
+
 /*****************公用***end*********************/
 
 
@@ -539,7 +556,7 @@ a{
 }
 
 .green{
-	border:3px solid #2cc309;
+	border:3px solid #40c39a;
 }
 
 .violet{
@@ -658,6 +675,10 @@ a{
 	line-height: 50px;
 	border-bottom: 1px solid #c8c8c8;
 	position: relative;
+}
+.one-level-menu-colmun .menu-icon{
+	width:24px;
+	height:24px;
 }
 
 .menu-icon{
@@ -2922,3 +2943,328 @@ a{
 
 }
 /***********end************/
+
+/*******酒店房价管理********/
+
+.room-price-search{
+
+}
+.room-price-search .room-type{
+	height:40px;
+	width:100px;
+	margin:0 15px 0 0;
+	display: inline-block;
+}
+.room-price-search .room-type	 option{
+	height:50px;
+}
+
+.room-price-search .paid-type{
+	height:40px;
+	width:100px;
+	margin:0 15px 0 0;
+	display: inline-block;
+}
+.room-price-search .paid-type	 option{
+	height:50px;
+}
+
+.room-price-search .year{
+	height:40px;
+	width:60px;
+
+	display: inline-block;
+}
+.room-price-search .year	 option{
+	height:50px;
+}
+
+.room-price-search .month{
+	height:40px;
+	width:60px;
+
+	display: inline-block;
+}
+.room-price-search .month	 option{
+	height:50px;
+}
+
+.date-dash{
+	display: inline-block;
+	margin: 0 10px 0 10px;
+}
+.room-price-search-btn{
+	vertical-align: middle;
+	display: inline-block;
+	margin: 0 0 0 30px;
+	width:100px!important;
+}
+
+.batch-edit-room-price{
+	vertical-align: middle;
+	display: inline-block;
+	margin: 0 0 0 20px;
+}
+
+.room-type-header{
+
+	color:#505050;
+	font-size:16px;
+	padding:10px 0 5px 10px;
+	border-bottom: 2px solid #808080;
+	font-weight: 600;
+}
+
+.room-price-calendar{
+	width:1000px;
+	margin-top:20px;
+	color: #6a6a6a;
+}
+
+.room-price-calendar i{
+	color: #939393;
+}
+
+.room-price-calendar table{
+	width:1000px;
+	border-collapse:collapse;
+
+}
+.room-price-calendar .t-header {
+
+	font-size:14px!important;
+
+}
+
+.room-price-calendar .td-header{
+	width:50px;
+	text-align: center;
+}
+
+.room-price-calendar  td{
+	border:1px solid #929292;
+	text-align: center;
+}
+
+.room-price-calendar .t-header .date-header{
+
+	height:50px;
+	padding:0!important;
+	position: relative
+}
+
+.room-price-calendar .t-header .date-header .up{
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 0;
+	height: 0;
+	border-top: 50px solid #54bbbe;
+	border-right: 50px solid transparent;
+}
+.room-price-calendar .t-header .date-header .date{
+	position: absolute;
+	display: block;
+	top:5px;
+	left:2px;
+	color:#f8f8f8;
+}
+.room-price-calendar .t-header .date-header .down{
+	margin:8px 0 0 25px;
+}
+
+
+.room-price-calendar .price-column{
+	width:94px;
+	height:60px;
+	position: relative;
+
+}
+
+.room-price-calendar .price-column .up{
+	position: absolute;
+	width:100%;
+	top:10px;
+	left:0;
+}
+
+.room-price-calendar .price-column .down{
+	position: absolute;
+	width:100%;
+	top:35px;
+	left:0;
+}
+
+/*.room-price-calendar .t-row td{*/
+	/*border:1px solid #afafaf;*/
+	/*height:70px;*/
+	/*padding:0!important;*/
+	/*position: relative;*/
+/*}*/
+/*.room-price-calendar .t-row td .up{*/
+	/*display: block;*/
+	/*font-size: 16px;*/
+	/*position: absolute;*/
+	/*left: 0;*/
+	/*right: 0;*/
+
+	/*width: 0;*/
+	/*height: 0;*/
+	/*border-top: 40px solid #54bbbe;*/
+	/*border-right: 40px solid transparent;*/
+/*}*/
+/*.room-price-calendar .t-row td .date{*/
+	/*position: absolute;*/
+	/*display: block;*/
+	/*top:10px;*/
+	/*left:2px;*/
+	/*color:#f8f8f8;*/
+/*}*/
+/*.room-price-calendar td .down{*/
+	/*display: block;*/
+	/*vertical-align:baseline;*/
+	/*margin:40px 10px 0 0 ;*/
+	/*font-size: 13px;*/
+	/*cursor: pointer;*/
+	/*font-weight: 600;*/
+	/*color: #696969;*/
+	/*text-align: right;*/
+
+
+/*}*/
+/*************************/
+
+/******批量修改房价********/
+
+
+.room-price-batch-edit{
+
+}
+
+.room-price-batch-edit .type,
+.room-price-batch-edit .date-range,
+.room-price-batch-edit .valid-week-day,
+.room-price-batch-edit .room-price{
+	margin:20px 0;
+}
+
+
+
+.room-price-batch-edit label{
+	font-size:14px;
+	width:80px;
+	display: inline-block;
+
+}
+.room-price-batch-edit .room-type{
+	height:37px;
+	width:138px;
+	margin: 2px 15px 0 0;
+	border:1px solid #8f8f8f;
+	display: inline-block;
+	line-height: 37px;
+	padding:0 0 0 10px;
+	vertical-align: middle;
+	font-size: 14px;
+	position:relative;
+	cursor: pointer;
+}
+.room-type i{
+	position:absolute;
+	right:0px;
+}
+.room-price-batch-edit .room-type	 option{
+	height:50px;
+}
+.dropdown-room-type{
+	display: none;
+	width:128px;
+	padding:10px;
+	border:1px solid #aaaaaa;
+	position: absolute;
+	left:95px;
+	background-color: white;
+	font-size: 16px;
+
+}
+
+.dropdown-room-type label{
+	display:block;
+	min-width: 100px;
+	padding:10px 0;
+}
+.dropdown-room-type input[type=checkbox]{
+	width:18px;
+	height:18px;
+	vertical-align: middle;
+}
+
+.room-price-batch-edit .paid-type{
+	height:40px;
+	width:150px;
+	margin:0 15px 0 0;
+	display: inline-block;
+}
+.room-price-batch-edit .paid-type	 option{
+	height:50px;
+}
+
+.room-price-batch-edit input[type=text]{
+	height:34px;
+	width:145px;
+	display: inline-block;
+	margin-right:15px;
+}
+
+.valid-week-day{
+
+	font-size:14px;
+}
+.valid-week-day input[type=checkbox]{
+	height:16px;
+	width:16px;
+	vertical-align: middle;
+}
+
+.room-price{
+	display: none;
+}
+
+.room-price label{
+	vertical-align: top;
+	margin-top: 7px;
+}
+
+.room-price .price-input{
+	display: inline-block;
+}
+
+.room-price .price-input .weekday{
+	margin-bottom: 10px;
+}
+.room-price .price-input .weekend{
+	display: none;
+}
+
+
+.room-price span{
+	font-size:14px;
+	display:inline-block;
+
+
+}
+.room-price input{
+	width:80px!important;
+	height:30px!important;
+}
+.room-price .label-text{
+	width:60px;
+	display: inline-block;
+}
+
+.room-price-request-list{
+	margin:20px 0!important;
+	font-size:12px!important;
+}
+/************************/

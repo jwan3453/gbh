@@ -16,10 +16,10 @@ class CreateRoomTable extends Migration
     {
         Schema::create('room', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('hotelId');
+            $table->integer('hotel_id');
             $table->string('room_name',50);
             $table->string('room_name_english',50);
-            $table->float('rack_rate');//门市价
+            $table->decimal('rack_rate',8,2);//门市价
             $table->integer('num_of_people');//可住人数
             $table->integer('num_of_children');//可携带儿童人数
             $table->integer('num_of_rooms');//房间数量

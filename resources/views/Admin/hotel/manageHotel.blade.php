@@ -45,7 +45,7 @@
             <tr>
                 <td class="s-td"><input type="checkbox" value="{{$hotelitem->id}}"></td>
                 <td class="m-td"> <img class="hotel-img" src = '../GbhMobile/img/tu2.png'></td>
-                <td class="m-td">{{$hotelitem->hotel_name}}</td>
+                <td class="m-td">{{$hotelitem->name}}</td>
                 <td><i class="icon marker large"></i><span>{{$hotelitem->addressInfo}}</span></td>
                 <td class="l-td">
 

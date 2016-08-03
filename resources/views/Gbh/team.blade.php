@@ -35,17 +35,18 @@
             <div class="team-member">
 
                 <div class="mem-left member"  >
-                    <img src = 'Gbh/img/shao_center.png'  data-title="jacky 王" data-content="2016年1月加入联盟,毕业于悉尼大学，现在在联盟担任技术合伙人一职位" >
+                    <img src = 'Gbh/img/jie.png'  data-title="jacky 王" data-content="2016年1月加入联盟,毕业于悉尼大学，现在在联盟担任技术合伙人一职位" >
                     <div class="position">shawn 普</div>
                 </div>
 
                 <div class="mem-middle member">
-                    <img src = 'Gbh/img/ming_center.png' data-content="这个就是小明，嗯">
+                    <img src = 'Gbh/img/ming.png' data-content="这个就是小明，嗯">
                     <div class="position">Ben 傅</div>
                 </div>
 
                 <div class="mem-right member" >
-
+                    <img src = 'Gbh/img/qing.png' data-content="这个就是小明，嗯">
+                    <div class="position">Winne 陈</div>
                 </div>
 
             </div>

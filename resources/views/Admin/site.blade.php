@@ -112,8 +112,8 @@
                 $('.admin-menu-list').children().eq(0).after(menuList);
                 //------验证本地存储中的菜单名----------
                 if (sessionStorage.getItem("clickMenuImgName") != null) {
-                    $(".admin-menu-list").find("li[name='"+sessionStorage.getItem("clickMenuImgName")+"']").children("img").attr('src','/Admin/icon/'+sessionStorage.getItem("clickMenuImgName")+'-select.png');
-                    $(".admin-menu-list").find("li[name='"+sessionStorage.getItem("clickMenuImgName")+"']").addClass("menu-selected");
+                   // $(".admin-menu-list").find("li[name='"+sessionStorage.getItem("clickMenuImgName")+"']").children("img").attr('src','/Admin/icon/'+sessionStorage.getItem("clickMenuImgName")+'-select.png');
+                   // $(".admin-menu-list").find("li[name='"+sessionStorage.getItem("clickMenuImgName")+"']").addClass("menu-selected");
                 }
             }
         })
@@ -132,7 +132,7 @@
         //----将当前选中的一级菜单文字颜色及图片切换为已选中的-------
         $(_this).addClass('menu-selected');
         newimgname = $(_this).children('img').attr('name');
-        $(_this).children('img').attr('src' , srcPath + newimgname + '-select.png');
+        //$(_this).children('img').attr('src' , srcPath + newimgname + '-select.png');
         //-----如果点击的是首页则直接跳转------
         if (newimgname === 'home') {
             // console.log($(_this).attr('href'));
@@ -231,6 +231,20 @@
             }
         })
         return check;
+    }
+
+    function toastAlert(Msg,status)
+    {
+
+        if(status === 1)
+        {
+            $('#alertBox').removeClass('success-toast').addClass('success-toast');
+        }
+        $('#alertBox').text(Msg).fadeIn();
+
+        setTimeout(function () {
+            $('#alertBox').fadeOut();
+        }, 2000);
     }
 </script>
 

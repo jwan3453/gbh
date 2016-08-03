@@ -126,10 +126,10 @@
 				</div>
 			</div>
 
-			@foreach ($InternalList as $internalCredit)
-			<div class="item-block pandding-20 @if($internalCredit->ispay == 1) click-item-block @endif" id="serviceItems" onclick="@if($internalCredit->ispay == 1) unCreditItems(this) @else creditItems(this) @endif">
-				<input type="checkbox" class="display-none" value="{{$internalCredit->id}}" name="serviceItems[]" @if($internalCredit->ispay == 1) checked="checked" @endif>
-				<span>{{$internalCredit->credit_name}}</span>
+			@foreach ($domesticCardList as $domesticCard)
+			<div class="item-block pandding-20 @if($domesticCard->ispay == 1) click-item-block @endif" id="serviceItems" onclick="@if($domesticCard->ispay == 1) unCreditItems(this) @else creditItems(this) @endif">
+				<input type="checkbox" class="display-none" value="{{$domesticCard->id}}" name="serviceItems[]" @if($domesticCard->ispay == 1) checked="checked" @endif>
+				<span>{{$domesticCard->credit_name}}</span>
 			</div>
 
 			@endforeach
@@ -143,10 +143,10 @@
 
 		<div class="item-box">
 
-			@foreach ($AbroadList as $abroadCredit)
-			<div class="item-block pandding-20 @if($abroadCredit->ispay == 1) click-item-block @endif" id="serviceItems" onclick="@if($abroadCredit->ispay == 1) unCreditItems(this) @else creditItems(this) @endif">
-				<input type="checkbox" class="display-none" value="{{$abroadCredit->id}}" name="serviceItems[]" @if($abroadCredit->ispay == 1) checked="checked" @endif>
-				<span>{{$abroadCredit->credit_name}}</span>
+			@foreach ($internationalCardList as $internationalCard)
+			<div class="item-block pandding-20 @if($internationalCard->ispay == 1) click-item-block @endif" id="serviceItems" onclick="@if($internationalCard->ispay == 1) unCreditItems(this) @else creditItems(this) @endif">
+				<input type="checkbox" class="display-none" value="{{$internationalCard->id}}" name="serviceItems[]" @if($internationalCard->ispay == 1) checked="checked" @endif>
+				<span>{{$internationalCard->credit_name}}</span>
 			</div>
 
 			@endforeach

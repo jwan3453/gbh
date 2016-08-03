@@ -24,7 +24,10 @@ class ArticleController extends Controller
         $article= $this->article->showArticle($articleId);
         if(!empty($article->wechat_url))
         {
+            //从微信连接获取文章html
             $article->wechat_content = file_get_contents($article->wechat_url);
+
+            //方向解析微信图片
             $article->wechat_content= str_replace('mmbiz.qpic.cn','o6kyd0ndv.qnssl.com', $article->wechat_content);
 
 

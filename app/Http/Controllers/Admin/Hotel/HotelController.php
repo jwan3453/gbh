@@ -14,6 +14,8 @@ use App\Service\Admin\HotelService;
 use App\Service\Admin\ImageService;
 use App\Models\Hotel;
 
+use App\Models\RoomPrice;
+
 class HotelController extends Controller
 {
     /**
@@ -79,13 +81,14 @@ class HotelController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+    //
     public function storeHotel(Request $request)
     {
         //
         $isCreate =  $this->hotelService->createHotel($request);
-
+        //判断是创建酒店 还是更新酒店
         $createOrUpdate = $request->input('createOrupdate');
-
         if ($isCreate) {
             $province = $this->commonService->getAdressInfo('province',$request->input('provinceCode'));
             $city = $this->commonService->getAdressInfo('city',$request->input('cityCode'));
@@ -97,7 +100,8 @@ class HotelController extends Controller
             if ($createOrUpdate == "update") {
                 return redirect(url('admin/manageHotel/editGeoLocation/'.$isCreate));
             }else{
-                return view('Admin.Hotel.geoLocation')->with('address',$addressInfo)->with('hotelId',$isCreate);
+                $hotelInfo = new Hotel();
+                return view('Admin.Hotel.geoLocation')->with('createOrUpdate',$createOrUpdate)->with('hotelInfo',$hotelInfo)->with('address',$addressInfo)->with('hotelId',$isCreate);
             }
             
         }
@@ -144,10 +148,11 @@ class HotelController extends Controller
 
     public function contactAndPayment($hotelId)
     {
-        $InternalList = $this->hotelService->getCreditList(1);
-        $AbroadList = $this->hotelService->getCreditList(2);
+        $domesticCardList = $this->hotelService->getCreditList(1);
+        $internationalCardList = $this->hotelService->getCreditList(2);
         $hotelInfo = new Hotel();
-        return view('Admin.Hotel.contactAndPayment')->with('InternalList',$InternalList)->with('AbroadList',$AbroadList)->with('hotelInfo',$hotelInfo)->with('hotelId',$hotelId);
+
+        return view('Admin.Hotel.contactAndPayment')->with('domesticCardList ',$domesticCardList )->with('internationalCardList',$internationalCardList)->with('hotelInfo',$hotelInfo)->with('hotelId',$hotelId);
     }
 
     public function insertContactPayment(Request $request)
@@ -223,6 +228,7 @@ class HotelController extends Controller
         return response($jsonResult->toJson());
     }
 
+    //编辑酒店基本信息
     public function editHotel($hotelId)
     {
         $geoData = $this->commonService->getGeoDetail();
@@ -235,17 +241,21 @@ class HotelController extends Controller
         $hotelInfo->addressInfo = $province . "-" .$city . "-" . $district;
         $hotelInfo->detail = $hotelInfo->address->detail;
 
-        $hotelInfo->hotelId = $hotelId;
+        $hotelInfo->id = $hotelId;
 
         $createOrUpdate = "update";
 
         return view('Admin.Hotel.createHotel')->with('geoData',$geoData)->with('hotelInfo',$hotelInfo)->with('createOrUpdate',$createOrUpdate);
     }
 
+
+    //创建编辑酒店地理信息
     public function editGeoLocation($hotelId)
     {
+        //获取地址信息, 省份代码
         $addressInfo = $this->hotelService->getHotelAddress($hotelId);
 
+        //获取省份城市名字
         $province = $this->commonService->getAdressInfo('province',$addressInfo->province_code);
         $city = $this->commonService->getAdressInfo('city',$addressInfo->city_code);
         $district = $this->commonService->getAdressInfo('district',$addressInfo->district_code);
@@ -254,6 +264,7 @@ class HotelController extends Controller
 
         $address = $province . $city . $district .$detail;
         $hotelInfo = $this->hotelService->getStepTwoInfo($hotelId);
+
 
         $createOrUpdate = "update";
 
@@ -268,27 +279,27 @@ class HotelController extends Controller
 
         $itemArr = $hotelInfo->paymentArr;
 
-        $InternalList = $this->hotelService->getCreditList(1);
-        $AbroadList = $this->hotelService->getCreditList(2);
+        $domesticCardList = $this->hotelService->getCreditList(1);
+        $internationalCardList = $this->hotelService->getCreditList(2);
 
-        foreach ($InternalList as $internal) {
+        foreach ($domesticCardList as $domesticCard) {
 
-            if (in_array($internal->id, $itemArr)) {
-                $internal->ispay = 1;
-            }else{  
-                $internal->ispay = 0;
+            if (in_array($domesticCard->id, $itemArr)) {
+                $domesticCard->ispay = 1;
+            }else{
+                $domesticCard->ispay = 0;
             }
         }
 
-        foreach ($AbroadList as $abroad) {
-            if (in_array($abroad->id, $itemArr)) {
-                $abroad->ispay = 1;
-            }else{  
-                $abroad->ispay = 0;
+        foreach ($internationalCardList as $internationalCard) {
+            if (in_array($internationalCard->id, $itemArr)) {
+                $internationalCard->ispay = 1;
+            }else{
+                $internationalCard->ispay = 0;
             }
         }
 
-        return view('Admin.Hotel.contactAndPayment')->with('InternalList',$InternalList)->with('AbroadList',$AbroadList)->with('hotelId',$hotelId)->with('hotelInfo',$hotelInfo)->with('createOrUpdate',$createOrUpdate);
+        return view('Admin.Hotel.contactAndPayment')->with('domesticCardList',$domesticCardList)->with('internationalCardList',$internationalCardList)->with('hotelId',$hotelId)->with('hotelInfo',$hotelInfo)->with('createOrUpdate',$createOrUpdate);
     }
 
     public function editFacility($hotelId)
@@ -402,8 +413,6 @@ class HotelController extends Controller
     //酒店信息回复
     public function hotelInfo($hotelId){
 
-
-
         return view('Admin.Hotel.hotelInfo');
     }
 
@@ -411,7 +420,7 @@ class HotelController extends Controller
 
     //管理房间
     public function manageRoom($hotelId){
-        $roomList = $this->hotelService->getRoomList($hotelId);
+        $roomList = $this->hotelService->getRoomTypeList($hotelId);
         $bedTypes = $this->hotelService->getAllBedType();
         return view('Admin.Hotel.manageRoom')->with('bedTypes', $bedTypes)->with('roomList',$roomList)->with('hotelId',$hotelId);
     }
@@ -449,4 +458,382 @@ class HotelController extends Controller
         
         return view('Admin.Hotel.manageHotelImagePage')->with('list',$list)->with('hotelId',$hotelId);
     }
+
+    //管理酒店房态，主要显示酒店列表
+    public function manageRoomStatus()
+    {
+
+        $manageHotelList = $this->hotelService->getHotelList();
+
+        // dd($manageHotelList);
+        foreach ($manageHotelList as $hotelList) {
+
+            $province = $this->commonService->getAdressInfo('province',$hotelList->address->province_code);
+            $city = $this->commonService->getAdressInfo('city',$hotelList->address->city_code);
+            $district = $this->commonService->getAdressInfo('district',$hotelList->address->district_code);
+            $detail = $hotelList->address->detail;
+            $hotelList->addressInfo = $province.$city.$district.$detail;
+
+        }
+
+        return view('Admin.RoomStatus.manageRoomStatus')->with('manageHotelList',$manageHotelList);
+    }
+
+    //编辑跟新酒店房态
+    public function editRoomStatus($hotelId){
+
+        $roomTypeList = $this->hotelService->getRoomTypeList($hotelId);
+        return view('Admin.RoomStatus.editRoomStatus')->with('manageHotelList',$roomTypeList);
+    }
+
+    //管理酒店房价，主要显示酒店列表
+    public function manageRoomPrice()
+    {
+
+        $manageHotelList = $this->hotelService->getHotelList();
+
+        // dd($manageHotelList);
+        foreach ($manageHotelList as $hotelList) {
+
+            $province = $this->commonService->getAdressInfo('province',$hotelList->address->province_code);
+            $city = $this->commonService->getAdressInfo('city',$hotelList->address->city_code);
+            $district = $this->commonService->getAdressInfo('district',$hotelList->address->district_code);
+            $detail = $hotelList->address->detail;
+            $hotelList->addressInfo = $province.$city.$district.$detail;
+
+        }
+
+        return view('Admin.RoomPrice.manageRoomPrice')->with('manageHotelList',$manageHotelList);
+    }
+
+    //编辑跟新酒店房态
+    public function editRoomPrice($hotelId){
+
+//
+//
+//        //测试插入数据
+//        for($i= 0 ; $i<31; $i++)
+//        {
+//            $test = new RoomPrice();
+//            $test->hotel_id = 1;
+//            $test->room_id = 34;
+//            $test->rate = 199;
+//            $test->prepaid_rate=189;
+//            $test->num_of_breakfast = 2;
+//            $test->date =  date("Y-m-d",mktime(0, 0 , 0,date("m"),$i+1,date("Y")));;
+//            $test->save();
+//        }
+//
+//
+        $weekDayList=[];
+
+        //往后10天的周
+        for($i= 0 ; $i<10; $i++){
+
+
+
+            $weekDay['weekDay'] = $this->getWeek(date("w",strtotime('+'.$i. 'day')));
+            $weekDay['date'] = date("m-d",strtotime('+'.$i. 'day'));
+
+            $weekDayList[] = $weekDay;
+
+        }
+        //dd($weekDayList);
+
+        //获取房型列表
+        $roomTypeList = $this->hotelService->getRoomTypeList($hotelId);
+
+        //获取当月房价列表(所有房型)
+        $roomPriceMonthList =  $this->hotelService->getRoomCurrentMonthPriceList($hotelId,$roomTypeList);
+
+
+        return view('Admin.RoomPrice.editRoomPrice')->with('roomTypeList',$roomTypeList)->with('roomPriceMonthList',$roomPriceMonthList)->with('weekDayList',$weekDayList)->with('hotelId',$hotelId);
+    }
+
+
+    public function getWeek($weekday)
+    {
+        $week=array(
+            "0"=>"周日",
+            "1"=>"周一",
+            "2"=>"周二",
+            "3"=>"周三",
+            "4"=>"周四",
+            "5"=>"周五",
+            "6"=>"周六"
+        );
+        return $week[$weekday];
+    }
+
+    //批量修改房价
+    public function roomPriceBatch($hotelId){
+
+        $roomTypeList = $this->hotelService->getRoomTypeList($hotelId);
+        $requestList= $this->hotelService->getRoomPriceBatchRequestList($hotelId);
+        return view('Admin.RoomPrice.roomPriceBatch')->with('hotelId',$hotelId)->with('roomTypeList',$roomTypeList)->with('requestList',$requestList);
+
+    }
+
+    //提交批量修改房价请求
+    public function roomPriceBatchRequestSubmit(Request $request)
+    {
+
+        $jsonResult = new MessageResult();
+        $result =  $this->hotelService->roomPriceBatchRequestSubmit($request);
+        if($request)
+        {
+            $jsonResult->statusCode =1;
+            $jsonResult->statusMsg ='申请提交成功';
+        }
+        else{
+            $jsonResult->statusCode =2;
+            $jsonResult->statusMsg ='申请提交失败';
+        }
+        return response($jsonResult->toJson());
+    }
+
+
+    public function roomPriceBatchProcess(Request $request)
+    {
+
+
+        $jsonResult = new MessageResult();
+
+        $hotelId = $request->input('hotelId');
+        //房型
+        $roomType = $request->input('roomType');
+        //付款方式
+        $payType = $request->input('payType');
+
+        //改价日期范围
+        $dateFrom = $request->input('dateRangeFrom');
+        $dateTo = $request->input('dateRangeTo');
+
+        //早餐份数
+        $breakfast = $request->input('breakfast');
+
+        //是否包括整个周
+        $weekAll =  $request->input('weekAll');
+
+        //有效天
+        $validWeekDay = [];
+
+
+        //是否区分周末
+        $weekendOn=  $request->input('weekendOn');
+
+        //平时价格和佣金
+        $weekdayRate  = $request->input('weekdayRate');
+        $weekdayComm  = $request->input('weekdayComm');
+
+        //周末价格和佣金
+        $weekendRate = 0;
+        $weekendComm = 0;
+
+        if($weekendOn != null)
+        {
+
+            //平时价格和佣金
+            $weekendRate  = $request->input('weekendRate');
+            $weekendComm  = $request->input('weekendComm');
+
+        }
+
+        if($weekAll == null)
+        {
+            if($request->input('mon'))
+            {
+                $validWeekDay[] = 1;
+            }
+            if($request->input('tue'))
+            {
+                $validWeekDay[] = 2;
+            }
+            if($request->input('wed'))
+            {
+                $validWeekDay[] = 3;
+            }
+            if($request->input('thr'))
+            {
+                $validWeekDay[] = 4;
+            }
+            if($request->input('fri'))
+            {
+                $validWeekDay[] = 5;
+            }
+            if($request->input('sat'))
+            {
+                $validWeekDay[] = 6;
+            }
+            if($request->input('sun'))
+            {
+                $validWeekDay[] = 0;
+            }
+        }
+
+
+        //时间差的天数
+        $daysRange=round((strtotime($dateTo)-strtotime( $dateFrom))/86400)+1;
+
+        //当天的价格是否更新
+        $update =false;
+        //是否是周末
+        $isWeekEnd = false;
+        //更新房型列表
+        $roomTypeList = [];
+
+        if($roomType ==0)
+        {
+            $roomTypeList =  $this->hotelService->getRoomTypeList($hotelId);
+        }
+        else{
+            $roomTypeList = $this->hotelService->getRoomTypeByRoomId($hotelId,$roomType);
+        }
+
+
+        foreach( $roomTypeList as $room) {
+
+            for($i=0; $i<$daysRange; $i++)
+            {
+
+                //每次循环日期 + 1
+                $date = date('Y-m-d',strtotime($dateFrom) + (86400 * $i));
+
+                $oldPrice = RoomPrice::where(['hotel_id'=>$hotelId,
+                    'room_id' =>$room->id,
+                    'date'=>$date])->first();
+
+
+                //根据选择的天数来更新价格
+                //整个周末都更新
+                if($weekAll != null)
+                {
+                    $update =true;
+                }
+                //用户没有选择 默认更新全部
+                else if($weekAll ==null && count($validWeekDay) == 0 ) {
+                    $validWeekDay = true;
+                }else{
+
+                    //只更新选择的平时天
+                    if(in_array(date('w',strtotime($date)),$validWeekDay))
+                    {
+                        $update =true;
+
+                    }
+                    else{
+                        $update =false;
+                    }
+                }
+                //判断是否为周末
+                if($update)
+                {
+
+                    if(in_array(date('w',strtotime($date)),array(5,6)))
+                    {
+                        $isWeekEnd = true;
+                    }
+                    else{
+                        $isWeekEnd = false;
+                    }
+
+                }
+
+
+                //价格记录不存在, 创建新的价格
+                if($oldPrice == null)
+                {
+
+                    if($update)
+                    {
+                        $newRoomPrice = new RoomPrice();
+                        $newRoomPrice->hotel_id = $hotelId;
+                        $newRoomPrice->room_id = $room->id;
+                        //跟新现付 还是 预付
+                        if($payType == 1)
+                        {
+                            //如果有区分平时跟周末
+
+                            if($weekendOn !=null &&  $isWeekEnd)
+                            {
+
+                                $newRoomPrice->rate  = $weekendRate;
+                                $newRoomPrice->commission = $weekendComm;
+                            }
+                            else{
+                                $newRoomPrice->rate  = $weekdayRate;
+                                $newRoomPrice->commission = $weekdayComm;
+                            }
+
+                            $newRoomPrice->num_of_breakfast = $breakfast;
+
+                        }
+                        else{
+                            if($weekendOn !=null &&  $isWeekEnd)
+                            {
+                                $newRoomPrice->prepaid_rate  = $weekendRate;
+                                $newRoomPrice->prepaid_commission = $weekendComm;
+                            }
+                            else{
+                                $newRoomPrice->prepaid_rate  = $weekdayRate;
+                                $newRoomPrice->prepaid_commission = $weekdayComm;
+                            }
+
+                            $newRoomPrice->prepaid_num_of_breakfast = $breakfast;
+                        }
+
+                        $newRoomPrice->date = $date;
+                        $newRoomPrice->save();
+                    }
+
+                }
+                //跟新价格记录
+                else{
+
+
+                    if($update) {
+
+                        if ($payType == 1) {
+
+                            //如果有区分平时跟周末
+                            if($weekendOn !=null &&  $isWeekEnd)
+                            {
+                                $oldPrice->rate  = $weekendRate;
+                                $oldPrice->commission = $weekendComm;
+                            }
+                            else{
+                                $oldPrice->rate  = $weekdayRate;
+                                $oldPrice->commission = $weekdayComm;
+                            }
+                            $oldPrice->num_of_breakfast = $breakfast;
+                        }
+                        else
+                        {
+                            if($weekendOn !=null &&  $isWeekEnd)
+                            {
+                                $oldPrice->prepaid_rate  = $weekendRate;
+                                $oldPrice->prepaid_commission = $weekendComm;
+                            }
+                            else{
+                                $oldPrice->prepaid_rate  = $weekdayRate;
+                                $oldPrice->prepaid_commission = $weekdayComm;
+                            }
+
+                            $oldPrice->prepaid_num_of_breakfast = $breakfast;
+                        }
+
+                        $oldPrice->save();
+                    }
+                }
+            }
+
+
+        }
+
+        $jsonResult->statusMsg = '更新完成';
+        $jsonResult->statusCode = 1;
+        return response($jsonResult->toJson());
+
+    }
+
 }

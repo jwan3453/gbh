@@ -138,17 +138,7 @@ Route::group(['prefix' => '/admin/', 'middleware' => 'App\Http\Middleware\AdminA
 
         Route::get('create/contactAndPayment/{hotelId}','Admin\Hotel\HotelController@contactAndPayment');
 
-        //管理房间
-        Route::get('hotelInfo/{hotelId}/manageRoom','Admin\Hotel\HotelController@manageRoom');
 
-        //编辑房间
-        Route::get('hotelInfo/{hotelId}/editRoom/{roomId}','Admin\Hotel\HotelController@editRoom');
-
-        //创建房间
-        Route::post('/createNewRoom','Admin\Hotel\HotelController@createNewRoom');
-
-        //更新房间
-        Route::post('/updateRoom','Admin\Hotel\HotelController@updateRoom');
 
         Route::post('insertPolicy','Admin\Hotel\HotelController@insertPolicy');
 
@@ -167,15 +157,66 @@ Route::group(['prefix' => '/admin/', 'middleware' => 'App\Http\Middleware\AdminA
         Route::get('editFacility/{hotelId}','Admin\Hotel\HotelController@editFacility');
 
         //管理酒店图片
-        Route::get('hotelInfo/{hotelId}/manageHotelImage','Admin\Hotel\HotelController@manageHotelImage');
+        {
+            Route::get('hotelInfo/{hotelId}/manageHotelImage','Admin\Hotel\HotelController@manageHotelImage');
 
-        Route::post('uploadImage','Admin\Hotel\HotelController@uploadImage');
+            Route::post('uploadImage','Admin\Hotel\HotelController@uploadImage');
 
-        Route::post('deleteHotelImage','Admin\Hotel\HotelController@deleteHotelImage');
+            Route::post('deleteHotelImage','Admin\Hotel\HotelController@deleteHotelImage');
 
-        Route::post('coverHotelImage','Admin\Hotel\HotelController@coverHotelImage');
+            Route::post('coverHotelImage','Admin\Hotel\HotelController@coverHotelImage');
+        }
+
+
+        //管理酒店房型
+        {
+            //管理房间
+            Route::get('hotelInfo/{hotelId}/manageRoom', 'Admin\Hotel\HotelController@manageRoom');
+
+            //编辑房间
+            Route::get('hotelInfo/{hotelId}/editRoom/{roomId}', 'Admin\Hotel\HotelController@editRoom');
+
+            //创建房间
+            Route::post('/createNewRoom', 'Admin\Hotel\HotelController@createNewRoom');
+
+            //更新房间
+            Route::post('/updateRoom', 'Admin\Hotel\HotelController@updateRoom');
+        }
 
     });
+
+
+
+
+    //管理房态
+    Route::group(['prefix' => 'manageRoomStatus/'], function() {
+
+        //酒店列表
+        Route::get('/', 'Admin\Hotel\HotelController@manageRoomStatus');
+
+        //编辑跟新酒店房态
+        Route::get('/edit/{hotelId}', 'Admin\Hotel\HotelController@editRoomStatus');
+    });
+
+    //管理房价
+    Route::group(['prefix' => 'manageRoomPrice/'], function() {
+
+        //酒店列表
+        Route::get('/', 'Admin\Hotel\HotelController@manageRoomPrice');
+
+        //编辑跟新酒店房态
+        Route::get('/edit/{hotelId}', 'Admin\Hotel\HotelController@editRoomPrice');
+
+        //批量修改房价
+        Route::get('/roomPriceBatch/{hotelId}', 'Admin\Hotel\HotelController@roomPriceBatch');
+
+        //提交批量修改的房价
+        Route::post('/roomPriceBatchRequestSubmit','Admin\Hotel\HotelController@roomPriceBatchRequestSubmit');
+    });
+
+
+
+
 
     //----------文章管理
     Route::get('manageArticle','Admin\Article\ArticleController@index');

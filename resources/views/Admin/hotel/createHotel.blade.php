@@ -62,12 +62,12 @@
             </div>
             <div class="short-input-box ">
                 <label>传真</label>
-                <input type="text" name="hotelFax" onchange="faxphone(this)" value="{{$hotelInfo->business_center_fax}}">
+                <input type="text" name="hotelFax" onchange="faxphone(this)" value="{{$hotelInfo->fax}}">
                 <span>请输入酒店的传真</span>
             </div>
             <div class="short-input-box ">
                 <label>固话</label>
-                <input type="text" name="hotelPhone" onchange="faxphone(this)" value="{{$hotelInfo->switchboard}}">
+                <input type="text" name="hotelPhone" onchange="faxphone(this)" value="{{$hotelInfo->phone}}">
                 <span>请输入酒店固定电话</span>
             </div>
             <div class="long-input-box ">
