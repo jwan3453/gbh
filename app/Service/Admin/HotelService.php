@@ -303,8 +303,15 @@ class HotelService {
         return BedType::all();
     }
 
-    public function getRoomTypeList($hotelId){
-        return Room::where('hotel_id',$hotelId)->select('id','room_name')->get();
+    //获取房型列表
+    public function getRoomTypeList($hotelId,$roomId = 0){
+
+        $query['hotel_id'] =$hotelId;
+        if($roomId != 0 )
+        {
+            $query['id'] =$roomId;
+        }
+        return Room::where($query )->select('id','room_name')->get();
     }
 
     public function getRoomTypeByRoomId($hotelId,$roomId){
@@ -313,18 +320,18 @@ class HotelService {
 
 
     //获取当时间10天内所有房型的价格
-    public function getRoomCurrentMonthPriceList($hotelId,$roomTypeList)
+    public function getRoomPriceList($hotelId,$roomTypeList,$date)
     {
 
         //页面一行显示几天的数据(10天)
         $selectCount  = 10;
         $priceList = [];
         //当月的开始 结束时间段
-        $startDate = date("Y-m-d H:i:s",mktime(0, 0 , 0,date("m"),date("d"),date("Y")));
-        $endDate = date("Y-m-d H:i:s",mktime(23,59,59,date("m"),date("d")+($selectCount-1),date("Y")));
+        $startDate = date("Y-m-d H:i:s",mktime(0, 0 , 0,date("m",strtotime($date)),date("d",strtotime($date)),date("Y",strtotime($date))));
+        $endDate = date("Y-m-d H:i:s",mktime(23,59,59,date("m",strtotime($date)),date("d",strtotime($date))+($selectCount-1),date("Y",strtotime($date))));
         foreach($roomTypeList as $roomType )
         {
-            $priceList[$roomType->room_name] = RoomPrice::where(['hotel_id'=>$hotelId,'room_id'=>$roomType->id])->whereBetween('date',array($startDate,$endDate))->select('room_id','rate','prepaid_rate','num_of_breakfast','prepaid_num_of_breakfast','date')->get();
+            $priceList[$roomType->room_name] = RoomPrice::where(['hotel_id'=>$hotelId,'room_id'=>$roomType->id])->whereBetween('date',array($startDate,$endDate))->select('room_id','rate','prepaid_rate','commission','prepaid_commission','num_of_breakfast','prepaid_num_of_breakfast','date')->get();
 
             $validPriceCount = count($priceList[$roomType->room_name]);
 
@@ -342,6 +349,7 @@ class HotelService {
             }
 
         }
+
         return $priceList;
     }
 
@@ -349,6 +357,37 @@ class HotelService {
     public function getRoomPriceBatchRequestList($hotelId)
     {
         return RoomPriceBatchRequest::where('hotel_id',$hotelId)->get();
+    }
+
+
+
+    //提交单次房价修改请求
+    public function roomPriceUpdateSubmit(Request $request)
+    {
+
+        $hotelId = $request->input('hotelId');
+        $roomId = $request->input('roomId');
+        $paidType= $request->input('paidType');
+        $date = $request->input('date');
+        $roomRate = $request->input('roomRate');
+        $roomComm = $request->input('roomComm');
+        $breakfast = $request->input('breakfast');
+
+         $roomPrice =  RoomPrice::where(['hotel_id'=>$hotelId,
+                                        'room_id'=>$roomId,
+                                        'date'=>$date])->first();
+        if($paidType==1)
+        {
+            $roomPrice->rate =$roomRate;
+            $roomPrice->commission = $roomComm;
+            $roomPrice->num_of_breakfast = $breakfast;
+        }
+        else{
+            $roomPrice->prepaid_rate =$roomRate;
+            $roomPrice->prepaid_commission = $roomComm;
+            $roomPrice->prepaid_num_of_breakfast = $breakfast;
+        }
+        return $roomPrice->save();
     }
 
     //记录批量修改申请
@@ -444,6 +483,240 @@ class HotelService {
 
         return true;
     }
+
+    public function confirmRoomPriceRequest(Request $request){
+        $requestId = $request->input('requestId');
+
+        $requestDetail = RoomPriceBatchRequest::find($requestId);
+
+
+        $hotelId = $requestDetail->hotel_id;
+        //房型
+        $roomType = $requestDetail->room_id;
+        //付款方式
+        $payType = $requestDetail->payType;
+
+        //改价日期范围
+        $dateFrom = $requestDetail->request_date_from;
+        $dateTo = $requestDetail->request_date_to;
+
+        //早餐份数
+        $breakfast = $requestDetail->breakfast;
+
+        //是否包括整个周
+        $weekAll =  $requestDetail->is_all_week;
+
+        //有效天
+        $validWeekDay = explode('|',$requestDetail->selected_week_day);
+
+
+        //是否区分周末
+        $weekendOn=  $requestDetail->is_weekend;
+
+        //平时价格和佣金
+        $weekdayRate  = $requestDetail->week_day_rate;
+        $weekdayComm  = $requestDetail->week_day_comm;
+
+        //周末价格和佣金
+        $weekendRate = $requestDetail->weekend_rate;
+        $weekendComm = $requestDetail->weekend_comm;
+
+//
+//        if($weekAll == 0)
+//        {
+//            if($request->input('mon'))
+//            {
+//                $validWeekDay[] = 1;
+//            }
+//            if($request->input('tue'))
+//            {
+//                $validWeekDay[] = 2;
+//            }
+//            if($request->input('wed'))
+//            {
+//                $validWeekDay[] = 3;
+//            }
+//            if($request->input('thr'))
+//            {
+//                $validWeekDay[] = 4;
+//            }
+//            if($request->input('fri'))
+//            {
+//                $validWeekDay[] = 5;
+//            }
+//            if($request->input('sat'))
+//            {
+//                $validWeekDay[] = 6;
+//            }
+//            if($request->input('sun'))
+//            {
+//                $validWeekDay[] = 0;
+//            }
+//        }
+
+
+        //时间差的天数
+        $daysRange=round((strtotime($dateTo)-strtotime( $dateFrom))/86400)+1;
+
+        //当天的价格是否更新
+        $update =false;
+        //是否是周末
+        $isWeekEnd = false;
+        //更新房型列表
+        $roomTypeList = [];
+
+
+        $roomTypeList = $this->getRoomTypeByRoomId($hotelId,$roomType);
+
+        foreach( $roomTypeList as $room) {
+
+            for($i=0; $i<$daysRange; $i++)
+            {
+
+                //每次循环日期 + 1
+                $date = date('Y-m-d',strtotime($dateFrom) + (86400 * $i));
+
+                $oldPrice = RoomPrice::where(['hotel_id'=>$hotelId,
+                    'room_id' =>$room->id,
+                    'date'=>$date])->first();
+
+
+                //根据选择的天数来更新价格
+                //整个周末都更新
+                if($weekAll != null)
+                {
+                    $update =true;
+                }
+                //用户没有选择 默认更新全部
+                else if($weekAll ==null && count($validWeekDay) == 0 ) {
+                    $validWeekDay = true;
+                }else{
+
+                    //只更新选择的平时天
+                    if(in_array(date('w',strtotime($date)),$validWeekDay))
+                    {
+                        $update =true;
+
+                    }
+                    else{
+                        $update =false;
+                    }
+                }
+                //判断是否为周末
+                if($update)
+                {
+
+                    if(in_array(date('w',strtotime($date)),array(5,6)))
+                    {
+                        $isWeekEnd = true;
+                    }
+                    else{
+                        $isWeekEnd = false;
+                    }
+
+                }
+
+
+                //价格记录不存在, 创建新的价格
+                if($oldPrice == null)
+                {
+                    $newRoomPrice = new RoomPrice();
+                    $newRoomPrice->hotel_id = $hotelId;
+                    $newRoomPrice->room_id = $room->id;
+                    if($update)
+                    {
+                        //跟新现付 还是 预付
+                        if($payType == 1)
+                        {
+                            //如果有区分平时跟周末
+
+                            if($weekendOn !=null &&  $isWeekEnd)
+                            {
+
+                                $newRoomPrice->rate  = $weekendRate;
+                                $newRoomPrice->commission = $weekendComm;
+                            }
+                            else{
+                                $newRoomPrice->rate  = $weekdayRate;
+                                $newRoomPrice->commission = $weekdayComm;
+                            }
+
+                            $newRoomPrice->num_of_breakfast = $breakfast;
+
+                        }
+                        else{
+                            if($weekendOn !=null &&  $isWeekEnd)
+                            {
+                                $newRoomPrice->prepaid_rate  = $weekendRate;
+                                $newRoomPrice->prepaid_commission = $weekendComm;
+                            }
+                            else{
+                                $newRoomPrice->prepaid_rate  = $weekdayRate;
+                                $newRoomPrice->prepaid_commission = $weekdayComm;
+                            }
+
+                            $newRoomPrice->prepaid_num_of_breakfast = $breakfast;
+                        }
+
+                        $newRoomPrice->date = $date;
+
+                    }
+                    //插入空数据
+                    else{
+                        $newRoomPrice->date = $date;
+                    }
+                    $newRoomPrice->save();
+
+                }
+                //跟新价格记录
+                else{
+
+
+                    if($update) {
+
+                        if ($payType == 1) {
+
+                            //如果有区分平时跟周末
+                            if($weekendOn !=null &&  $isWeekEnd)
+                            {
+                                $oldPrice->rate  = $weekendRate;
+                                $oldPrice->commission = $weekendComm;
+                            }
+                            else{
+                                $oldPrice->rate  = $weekdayRate;
+                                $oldPrice->commission = $weekdayComm;
+                            }
+                            $oldPrice->num_of_breakfast = $breakfast;
+                        }
+                        else
+                        {
+                            if($weekendOn !=null &&  $isWeekEnd)
+                            {
+                                $oldPrice->prepaid_rate  = $weekendRate;
+                                $oldPrice->prepaid_commission = $weekendComm;
+                            }
+                            else{
+                                $oldPrice->prepaid_rate  = $weekdayRate;
+                                $oldPrice->prepaid_commission = $weekdayComm;
+                            }
+
+                            $oldPrice->prepaid_num_of_breakfast = $breakfast;
+                        }
+
+                        $oldPrice->save();
+                    }
+                }
+            }
+
+
+        }
+        //标记状态为已处理
+        $requestDetail->status =1;
+        $requestDetail->approve_date = date('Y-m-d');
+        $requestDetail->save();
+        return true;
+    }
+
 
 
     public function createNewRoom(Request $request)

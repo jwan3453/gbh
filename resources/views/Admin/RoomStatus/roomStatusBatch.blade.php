@@ -17,12 +17,6 @@
             <input type="hidden"  name='hotelId' value = '{{$hotelId}}'>
             <div class="type">
                 <label>房型选择</label>
-                {{--<select class="room-type"  name="roomType">--}}
-                    {{--<option value="0">全部房型</option>--}}
-                    {{--@foreach($roomTypeList as $roomType)--}}
-                        {{--<option value="{{$roomType->id}}">{{$roomType->room_name}}</option>--}}
-                    {{--@endforeach--}}
-                {{--</select>--}}
 
                 <div class="room-type" id="roomTypeSelect">
                     <span>选择房型</span>
@@ -32,7 +26,7 @@
                 <div class="dropdown-room-type" id="roomTypeSelectionMenu">
                     @foreach($roomTypeList as $room)
 
-                            <label><input type="checkbox"  class="room-type-check" value="{{$room->id}}" name="{{$room->id.'_roomType'}}" />{{$room->room_name}}</label>
+                        <label><input type="checkbox"  class="room-type-check" value="{{$room->id}}" name="{{$room->id.'_roomType'}}" />{{$room->room_name}}</label>
                     @endforeach
                 </div>
 
@@ -89,37 +83,37 @@
 
             @foreach($roomTypeList as $room)
 
-            <div class="room-price" id="{{$room->id.'_price'}}">
-                <label >{{$room->room_name}}</label>
+                <div class="room-price" id="{{$room->id.'_price'}}">
+                    <label >{{$room->room_name}}</label>
 
-                <div class="price-input">
-                    <div class="weekday" >
+                    <div class="price-input">
+                        <div class="weekday" >
 
-                        <span class="label-text">平时:</span>
-                        <span>底价 </span>
-                        <input  type="text" class="num_only" name={{$room->id.'_weekdayRate'}} />
+                            <span class="label-text">平时:</span>
+                            <span>底价 </span>
+                            <input  type="text" class="num_only" name={{$room->id.'_weekdayRate'}} />
 
-                        <span>佣金</span>
-                        <input  type="text" class="num_only"  name={{$room->id.'_weekdayComm'}} />
-                    </div>
+                            <span>佣金</span>
+                            <input  type="text" class="num_only"  name={{$room->id.'_weekdayComm'}} />
+                        </div>
 
-                    <div class="weekend">
+                        <div class="weekend">
 
-                        <span class="label-text">周末:</span>
-                        <span>底价</span>
-                        <input  type="text" class="num_only"  name={{$room->id.'_weekendRate'}} />
+                            <span class="label-text">周末:</span>
+                            <span>底价</span>
+                            <input  type="text" class="num_only"  name={{$room->id.'_weekendRate'}} />
 
-                        <span>佣金 </span>
-                        <input  type="text" class="num_only"  name={{$room->id.'_weekendComm'}}  />
+                            <span>佣金 </span>
+                            <input  type="text" class="num_only"  name={{$room->id.'_weekendComm'}}  />
+                        </div>
                     </div>
                 </div>
-            </div>
             @endforeach
 
 
 
 
-          <div class="regular-btn red-btn " id="submit">提交申请单</div>
+            <div class="regular-btn red-btn " id="submit">提交申请单</div>
         </form>
 
         <div>
@@ -127,85 +121,85 @@
 
 
                 <thead>
-                    <tr>
-                        <th>房型</th>
-                        <th>付款方式</th>
-                        <th>变价时间</th>
-                        <th>早餐</th>
-                        <th>适用星期</th>
-                        <th>卖价</th>
-                        <th>佣金</th>
-                        <th>状态</th>
-                        <th>审核评论</th>
-                        <th>申请日期</th>
-                    </tr>
+                <tr>
+                    <th>房型</th>
+                    <th>付款方式</th>
+                    <th>变价时间</th>
+                    <th>早餐</th>
+                    <th>适用星期</th>
+                    <th>卖价</th>
+                    <th>佣金</th>
+                    <th>状态</th>
+                    <th>审核评论</th>
+                    <th>申请日期</th>
+                </tr>
                 </thead>
                 <tbody>
-                    @foreach($requestList as $request)
-                        <tr>
-                            <td>
-                                @foreach($roomTypeList as $room)
-                                    @if($request->room_id == $room->id)
-                                        {{$room->room_name}}
+                @foreach($requestList as $request)
+                    <tr>
+                        <td>
+                            @foreach($roomTypeList as $room)
+                                @if($request->room_id == $room->id)
+                                    {{$room->room_name}}
+                                @endif
+                            @endforeach
+                        </td>
+
+                        <td>
+                            @if($request->paid_type ==1)
+                                现付
+                            @elseif($request->paid_type ==2)
+                                预付
+
+                            @endif
+                        </td>
+                        <td>{{$request->request_date_from}} ~ {{$request->request_date_to}}</td>
+                        <td>{{$request->breakfast}}份</td>
+                        <td>
+                            @if($request->is_all_week == 1)
+                                整周
+                            @else
+                                @foreach(explode('|',$request->selected_week_day) as $weekday)
+                                    @if($weekday ==1)
+                                        一
                                     @endif
+                                    @if($weekday ==2)
+                                        二
+                                    @endif
+                                    @if($weekday ==3)
+                                        三
+                                    @endif
+                                    @if($weekday ==4)
+                                        四
+                                    @endif
+                                    @if($weekday ==5)
+                                        五
+                                    @endif
+                                    @if($weekday ==6)
+                                        六
+                                    @endif
+                                    @if($weekday ==7)
+                                        日
+                                    @endif
+
                                 @endforeach
-                            </td>
-
-                            <td>
-                                @if($request->paid_type ==1)
-                                    现付
-                                @elseif($request->paid_type ==2)
-                                    预付
-
-                                @endif
-                            </td>
-                            <td>{{$request->request_date_from}} ~ {{$request->request_date_to}}</td>
-                            <td>{{$request->breakfast}}份</td>
-                            <td>
-                                @if($request->is_all_week == 1)
-                                    整周
-                                @else
-                                    @foreach(explode('|',$request->selected_week_day) as $weekday)
-                                        @if($weekday ==1)
-                                            一
-                                        @endif
-                                        @if($weekday ==2)
-                                            二
-                                        @endif
-                                        @if($weekday ==3)
-                                            三
-                                        @endif
-                                        @if($weekday ==4)
-                                            四
-                                        @endif
-                                        @if($weekday ==5)
-                                            五
-                                        @endif
-                                        @if($weekday ==6)
-                                            六
-                                        @endif
-                                        @if($weekday ==7)
-                                            日
-                                        @endif
-
-                                    @endforeach
-                                @endif
-                            </td>
-                            <td>平时:{{$request->week_day_rate}},周末:{{$request->weekend_rate}}</td>
-                            <td>平时:{{$request->week_day_comm}},周末:{{$request->weekend_comm}}</td>
-                            <td>
-                                @if($request->status ==0)
-                                    审核中
-                                @elseif($request->status ==1)
-                                    通过
-                                @else
-                                    拒绝
-                                @endif
-                            </td>
-                            <td>{{$request->comment}}</td>
-                            <td>{{$request->request_date}}</td>
-                        </tr>
-                    @endforeach
+                            @endif
+                        </td>
+                        <td>平时:{{$request->week_day_rate}},周末:{{$request->weekend_rate}}</td>
+                        <td>平时:{{$request->week_day_comm}},周末:{{$request->weekend_comm}}</td>
+                        <td>
+                            @if($request->status ==0)
+                                审核中
+                            @elseif($request->status ==1)
+                                通过
+                            @else
+                                拒绝
+                            @endif
+                        </td>
+                        <td>{{$request->comment}}</td>
+                        <td>{{$request->request_date}}</td>
+                    </tr>
+                @endforeach
                 </tbody>
             </table>
         </div>

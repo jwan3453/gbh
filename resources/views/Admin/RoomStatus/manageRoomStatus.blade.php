@@ -52,7 +52,7 @@
                     <td class="l-td">
 
                         <div class="header-option f-left">
-                            <a href="/admin/manageRoomStatus/edit/{{$hotelitem->id}}">
+                            <a href="/admin/manageRoomStatus/show/{{$hotelitem->id}}">
                                 <img src = '/Admin/img/编辑.png'/>
                                 <span class="edit">管理房态</span>
                             </a>

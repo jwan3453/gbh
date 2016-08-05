@@ -459,6 +459,7 @@ class HotelController extends Controller
         return view('Admin.Hotel.manageHotelImagePage')->with('list',$list)->with('hotelId',$hotelId);
     }
 
+
     //管理酒店房态，主要显示酒店列表
     public function manageRoomStatus()
     {
@@ -480,11 +481,61 @@ class HotelController extends Controller
     }
 
     //编辑跟新酒店房态
-    public function editRoomStatus($hotelId){
+    public function showRoomStatus(Request $request, $hotelId = 0){
+
+        //post 搜索请求和get 请求都是这个方法
+
+        //获取post的search请求数据
+        $date = date('Y-m-d');
+        $roomType = '';
+        if($request->input('hotelId')!=null)
+        {
+            $hotelId = $request->input('hotelId');
+            $date = $request->input('searchDate');
+            $roomType = $request->input('selectedRoomType');
+
+        }
+
+
+        $weekDayList=[];
+
+        //往后10天的周
+        for($i= 0 ; $i<10; $i++){
+
+            //获得房价显示表头的日期 和 周几显示
+            if($request->input('hotelId')!=null)
+            {
+                $weekDay['weekDay'] = $this->getWeek(date('w',strtotime($date) + (86400 * $i)));
+                $weekDay['date'] = date('m-d',strtotime($date) + (86400 * $i));
+            }
+            else{
+                $weekDay['weekDay'] = $this->getWeek(date("w",strtotime('+'.$i. 'day')));
+                $weekDay['date'] = date("m-d",strtotime('+'.$i. 'day'));
+            }
+
+            $weekDayList[] = $weekDay;
+        }
+
 
         $roomTypeList = $this->hotelService->getRoomTypeList($hotelId);
-        return view('Admin.RoomStatus.editRoomStatus')->with('manageHotelList',$roomTypeList);
+        //获取房型列表
+        $roomTypeList = $this->hotelService->getRoomTypeList($hotelId,$roomType);
+        return view('Admin.RoomStatus.editRoomStatus')->with('roomTypeList',$roomTypeList)
+                                                      ->with('weekDayList',$weekDayList)
+                                                      ->with('hotelId',$hotelId)
+                                                      ->with('selectedDate',$date);
     }
+
+
+    //批量修改房态 show
+    public function roomStatusBatch($hotelId)
+    {
+
+        $roomTypeList = $this->hotelService->getRoomTypeList($hotelId);
+        $requestList= $this->hotelService->getRoomPriceBatchRequestList($hotelId);
+        return view('Admin.RoomPrice.roomPriceBatch')->with('hotelId',$hotelId)->with('roomTypeList',$roomTypeList)->with('requestList',$requestList);
+    }
+
 
     //管理酒店房价，主要显示酒店列表
     public function manageRoomPrice()
@@ -507,50 +558,56 @@ class HotelController extends Controller
     }
 
     //编辑跟新酒店房态
-    public function editRoomPrice($hotelId){
+    public function showRoomPrice(Request $request, $hotelId = 0){
 
-//
-//
-//        //测试插入数据
-//        for($i= 0 ; $i<31; $i++)
-//        {
-//            $test = new RoomPrice();
-//            $test->hotel_id = 1;
-//            $test->room_id = 34;
-//            $test->rate = 199;
-//            $test->prepaid_rate=189;
-//            $test->num_of_breakfast = 2;
-//            $test->date =  date("Y-m-d",mktime(0, 0 , 0,date("m"),$i+1,date("Y")));;
-//            $test->save();
-//        }
-//
-//
+
+
+        //post 搜索请求和get 请求都是这个方法
+        $date = date('Y-m-d');
+        //获取post的search请求数据
+        $roomType = '';
+        if($request->input('hotelId')!=null)
+        {
+            $hotelId = $request->input('hotelId');
+            $date = $request->input('searchDate');
+            $roomType = $request->input('selectedRoomType');
+
+        }
+
         $weekDayList=[];
 
         //往后10天的周
         for($i= 0 ; $i<10; $i++){
 
-
-
-            $weekDay['weekDay'] = $this->getWeek(date("w",strtotime('+'.$i. 'day')));
-            $weekDay['date'] = date("m-d",strtotime('+'.$i. 'day'));
+            //获得房价显示表头的日期 和 周几显示
+            if($request->input('hotelId')!=null)
+            {
+                $weekDay['weekDay'] = $this->getWeek(date('w',strtotime($date) + (86400 * $i)));
+                $weekDay['date'] = date('m-d',strtotime($date) + (86400 * $i));
+            }
+            else{
+                $weekDay['weekDay'] = $this->getWeek(date("w",strtotime('+'.$i. 'day')));
+                $weekDay['date'] = date("m-d",strtotime('+'.$i. 'day'));
+            }
 
             $weekDayList[] = $weekDay;
-
         }
-        //dd($weekDayList);
 
         //获取房型列表
-        $roomTypeList = $this->hotelService->getRoomTypeList($hotelId);
+        $roomTypeList = $this->hotelService->getRoomTypeList($hotelId,$roomType);
 
         //获取当月房价列表(所有房型)
-        $roomPriceMonthList =  $this->hotelService->getRoomCurrentMonthPriceList($hotelId,$roomTypeList);
+        $roomPriceMonthList =  $this->hotelService->getRoomPriceList($hotelId,$roomTypeList,$date);
 
 
-        return view('Admin.RoomPrice.editRoomPrice')->with('roomTypeList',$roomTypeList)->with('roomPriceMonthList',$roomPriceMonthList)->with('weekDayList',$weekDayList)->with('hotelId',$hotelId);
+        return view('Admin.RoomPrice.editRoomPrice')->with('roomTypeList',$roomTypeList)
+                                                    ->with('roomPriceMonthList',$roomPriceMonthList)
+                                                    ->with('weekDayList',$weekDayList)
+                                                    ->with('hotelId',$hotelId)
+                                                    ->with('selectedDate',$date);
     }
 
-
+    //获得日期是周几
     public function getWeek($weekday)
     {
         $week=array(
@@ -574,6 +631,25 @@ class HotelController extends Controller
 
     }
 
+    //提交单次房价修改请求
+    public function roomPriceUpdateSubmit(Request $request){
+
+
+        $jsonResult = new MessageResult();
+        $result =  $this->hotelService->roomPriceUpdateSubmit($request);
+        if($request)
+        {
+            $jsonResult->statusCode =1;
+            $jsonResult->statusMsg ='更新成功';
+        }
+        else{
+            $jsonResult->statusCode =2;
+            $jsonResult->statusMsg ='更新失败';
+        }
+        return response($jsonResult->toJson());
+    }
+
+
     //提交批量修改房价请求
     public function roomPriceBatchRequestSubmit(Request $request)
     {
@@ -593,243 +669,40 @@ class HotelController extends Controller
     }
 
 
-    public function roomPriceBatchProcess(Request $request)
+    //超级管理员 管理批量房价申请
+    public function manageRoomPriceRequest()
+    {
+        $manageHotelList = $this->hotelService->getHotelList();
+
+        // dd($manageHotelList);
+        foreach ($manageHotelList as $hotelList) {
+
+            $province = $this->commonService->getAdressInfo('province',$hotelList->address->province_code);
+            $city = $this->commonService->getAdressInfo('city',$hotelList->address->city_code);
+            $district = $this->commonService->getAdressInfo('district',$hotelList->address->district_code);
+            $detail = $hotelList->address->detail;
+            $hotelList->addressInfo = $province.$city.$district.$detail;
+
+        }
+        return view('Admin.RoomPrice.manageRoomPriceRequest')->with('manageHotelList',$manageHotelList);
+    }
+
+
+
+    public function processRoomPriceRequest($hotelId)
+    {
+        $roomTypeList = $this->hotelService->getRoomTypeList($hotelId);
+        $requestList= $this->hotelService->getRoomPriceBatchRequestList($hotelId);
+        return view('Admin.RoomPrice.processRoomPriceRequest')->with('hotelId',$hotelId)->with('roomTypeList',$roomTypeList)->with('requestList',$requestList);
+
+    }
+
+    public function confirmRoomPriceRequest(Request $request)
     {
 
 
         $jsonResult = new MessageResult();
-
-        $hotelId = $request->input('hotelId');
-        //房型
-        $roomType = $request->input('roomType');
-        //付款方式
-        $payType = $request->input('payType');
-
-        //改价日期范围
-        $dateFrom = $request->input('dateRangeFrom');
-        $dateTo = $request->input('dateRangeTo');
-
-        //早餐份数
-        $breakfast = $request->input('breakfast');
-
-        //是否包括整个周
-        $weekAll =  $request->input('weekAll');
-
-        //有效天
-        $validWeekDay = [];
-
-
-        //是否区分周末
-        $weekendOn=  $request->input('weekendOn');
-
-        //平时价格和佣金
-        $weekdayRate  = $request->input('weekdayRate');
-        $weekdayComm  = $request->input('weekdayComm');
-
-        //周末价格和佣金
-        $weekendRate = 0;
-        $weekendComm = 0;
-
-        if($weekendOn != null)
-        {
-
-            //平时价格和佣金
-            $weekendRate  = $request->input('weekendRate');
-            $weekendComm  = $request->input('weekendComm');
-
-        }
-
-        if($weekAll == null)
-        {
-            if($request->input('mon'))
-            {
-                $validWeekDay[] = 1;
-            }
-            if($request->input('tue'))
-            {
-                $validWeekDay[] = 2;
-            }
-            if($request->input('wed'))
-            {
-                $validWeekDay[] = 3;
-            }
-            if($request->input('thr'))
-            {
-                $validWeekDay[] = 4;
-            }
-            if($request->input('fri'))
-            {
-                $validWeekDay[] = 5;
-            }
-            if($request->input('sat'))
-            {
-                $validWeekDay[] = 6;
-            }
-            if($request->input('sun'))
-            {
-                $validWeekDay[] = 0;
-            }
-        }
-
-
-        //时间差的天数
-        $daysRange=round((strtotime($dateTo)-strtotime( $dateFrom))/86400)+1;
-
-        //当天的价格是否更新
-        $update =false;
-        //是否是周末
-        $isWeekEnd = false;
-        //更新房型列表
-        $roomTypeList = [];
-
-        if($roomType ==0)
-        {
-            $roomTypeList =  $this->hotelService->getRoomTypeList($hotelId);
-        }
-        else{
-            $roomTypeList = $this->hotelService->getRoomTypeByRoomId($hotelId,$roomType);
-        }
-
-
-        foreach( $roomTypeList as $room) {
-
-            for($i=0; $i<$daysRange; $i++)
-            {
-
-                //每次循环日期 + 1
-                $date = date('Y-m-d',strtotime($dateFrom) + (86400 * $i));
-
-                $oldPrice = RoomPrice::where(['hotel_id'=>$hotelId,
-                    'room_id' =>$room->id,
-                    'date'=>$date])->first();
-
-
-                //根据选择的天数来更新价格
-                //整个周末都更新
-                if($weekAll != null)
-                {
-                    $update =true;
-                }
-                //用户没有选择 默认更新全部
-                else if($weekAll ==null && count($validWeekDay) == 0 ) {
-                    $validWeekDay = true;
-                }else{
-
-                    //只更新选择的平时天
-                    if(in_array(date('w',strtotime($date)),$validWeekDay))
-                    {
-                        $update =true;
-
-                    }
-                    else{
-                        $update =false;
-                    }
-                }
-                //判断是否为周末
-                if($update)
-                {
-
-                    if(in_array(date('w',strtotime($date)),array(5,6)))
-                    {
-                        $isWeekEnd = true;
-                    }
-                    else{
-                        $isWeekEnd = false;
-                    }
-
-                }
-
-
-                //价格记录不存在, 创建新的价格
-                if($oldPrice == null)
-                {
-
-                    if($update)
-                    {
-                        $newRoomPrice = new RoomPrice();
-                        $newRoomPrice->hotel_id = $hotelId;
-                        $newRoomPrice->room_id = $room->id;
-                        //跟新现付 还是 预付
-                        if($payType == 1)
-                        {
-                            //如果有区分平时跟周末
-
-                            if($weekendOn !=null &&  $isWeekEnd)
-                            {
-
-                                $newRoomPrice->rate  = $weekendRate;
-                                $newRoomPrice->commission = $weekendComm;
-                            }
-                            else{
-                                $newRoomPrice->rate  = $weekdayRate;
-                                $newRoomPrice->commission = $weekdayComm;
-                            }
-
-                            $newRoomPrice->num_of_breakfast = $breakfast;
-
-                        }
-                        else{
-                            if($weekendOn !=null &&  $isWeekEnd)
-                            {
-                                $newRoomPrice->prepaid_rate  = $weekendRate;
-                                $newRoomPrice->prepaid_commission = $weekendComm;
-                            }
-                            else{
-                                $newRoomPrice->prepaid_rate  = $weekdayRate;
-                                $newRoomPrice->prepaid_commission = $weekdayComm;
-                            }
-
-                            $newRoomPrice->prepaid_num_of_breakfast = $breakfast;
-                        }
-
-                        $newRoomPrice->date = $date;
-                        $newRoomPrice->save();
-                    }
-
-                }
-                //跟新价格记录
-                else{
-
-
-                    if($update) {
-
-                        if ($payType == 1) {
-
-                            //如果有区分平时跟周末
-                            if($weekendOn !=null &&  $isWeekEnd)
-                            {
-                                $oldPrice->rate  = $weekendRate;
-                                $oldPrice->commission = $weekendComm;
-                            }
-                            else{
-                                $oldPrice->rate  = $weekdayRate;
-                                $oldPrice->commission = $weekdayComm;
-                            }
-                            $oldPrice->num_of_breakfast = $breakfast;
-                        }
-                        else
-                        {
-                            if($weekendOn !=null &&  $isWeekEnd)
-                            {
-                                $oldPrice->prepaid_rate  = $weekendRate;
-                                $oldPrice->prepaid_commission = $weekendComm;
-                            }
-                            else{
-                                $oldPrice->prepaid_rate  = $weekdayRate;
-                                $oldPrice->prepaid_commission = $weekdayComm;
-                            }
-
-                            $oldPrice->prepaid_num_of_breakfast = $breakfast;
-                        }
-
-                        $oldPrice->save();
-                    }
-                }
-            }
-
-
-        }
-
+        $result = $this->hotelService->confirmRoomPriceRequest($request);
         $jsonResult->statusMsg = '更新完成';
         $jsonResult->statusCode = 1;
         return response($jsonResult->toJson());

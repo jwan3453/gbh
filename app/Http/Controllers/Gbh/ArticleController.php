@@ -28,7 +28,7 @@ class ArticleController extends Controller
             $article->wechat_content = file_get_contents($article->wechat_url);
 
             //方向解析微信图片
-            $article->wechat_content= str_replace('mmbiz.qpic.cn','o6kyd0ndv.qnssl.com', $article->wechat_content);
+            $article->wechat_content= str_replace('http://mmbiz.qpic.cn','http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl=http://mmbiz.qpic.cn', $article->wechat_content);
 
 
          //   dd($article->wechat_content);

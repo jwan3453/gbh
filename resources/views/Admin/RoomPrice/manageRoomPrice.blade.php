@@ -50,10 +50,16 @@
                     <td class="l-td">
 
                         <div class="header-option f-left">
-                            <a href="/admin/manageRoomPrice/edit/{{$hotelitem->id}}">
+                            <a href="/admin/manageRoomPrice/show/{{$hotelitem->id}}">
                                 <img src = '/Admin/img/编辑.png'/>
-                                <span class="edit">管理房态</span>
+                                <span class="edit">管理房价</span>
                             </a>
+
+                            <a href="/admin/manageRoomPrice/processRoomPriceRequest/{{$hotelitem->id}}">
+                                <img src = '/Admin/img/编辑.png'/>
+                                <span class="edit">管理房价申请</span>
+                            </a>
+
                         </div>
                     </td>
                 </tr>

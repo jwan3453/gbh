@@ -245,7 +245,7 @@ a{
 
 .alert-box{
 	position: fixed;
-	top:50px;
+	top:20px;
 	left:calc(50% - 100px);
 	color:white;
 	width:200px;
@@ -271,6 +271,7 @@ a{
 	background-color: #f8f8f8;
 	width:1120px;
 	border-radius: 2px;
+	position: relative;
 }
 
 
@@ -2989,6 +2990,11 @@ a{
 	height:50px;
 }
 
+.room-price-search input{
+	height:34px;
+	width:100px
+}
+
 .date-dash{
 	display: inline-block;
 	margin: 0 10px 0 10px;
@@ -3095,6 +3101,48 @@ a{
 	top:35px;
 	left:0;
 }
+.price-column-hover{
+	border:2px solid #ff5f76!important;
+	cursor: pointer;
+}
+.update-price-popup{
+	position:absolute;
+
+	width:230px;
+	border:2px solid #8f8f8f;
+	display: none;
+	background-color: #ffffff;
+	padding:10px;
+}
+
+.update-price-popup div{
+	margin:10px 0;
+}
+
+.update-price-popup i{
+	color:#ff5f76;
+	position: absolute;
+	right: 2px;
+	top:5px;
+	cursor: pointer;
+}
+
+.update-price-popup label{
+	display: inline-block;
+	width:50px;
+	font-size: 14px;
+}
+.update-price-popup  input{
+	display: inline-block;
+	width:120px;
+	height:30px;
+
+}
+.update-price-popup  select{
+	height:36px;
+	width:124px;
+}
+
 
 /*.room-price-calendar .t-row td{*/
 	/*border:1px solid #afafaf;*/
@@ -3267,4 +3315,77 @@ a{
 	margin:20px 0!important;
 	font-size:12px!important;
 }
+
+.process-request{
+	cursor:pointer;
+}
+.process-request:hover{
+	color:#ff5f76;
+}
+.confirm-request{
+	padding-top:100px;
+	color:white;
+
+}
+.confirm-request .confirm-btns{
+	width:400px;
+	margin:40px auto;
+}
+.confirm-request .confirm-btns .regular-btn{
+	display:inline-block;
+	margin-left:30px;
+	position:relative;
+}
+.confirm-request .loader{
+	display: none!important;
+	top:5px!important;
+	left:5px!important;
+	position: absolute!important;
+}
 /************************/
+
+
+/*******酒店房态管理********/
+
+.room-status-search{
+
+}
+.room-status-search .room-type{
+	height:40px;
+	width:100px;
+	margin:0 15px 0 0;
+	display: inline-block;
+}
+.room-status-search .room-type	 option{
+	height:50px;
+}
+
+.room-status-search .paid-type{
+	height:40px;
+	width:100px;
+	margin:0 15px 0 0;
+	display: inline-block;
+}
+.room-status-search .paid-type	 option{
+	height:50px;
+}
+
+.room-status-search input{
+	height:34px;
+	width:100px
+}
+
+.room-status-search-btn{
+	vertical-align: middle;
+	display: inline-block;
+	margin: 0 0 0 30px;
+	width:100px!important;
+}
+
+.batch-edit-room-status{
+	vertical-align: middle;
+	display: inline-block;
+	margin: 0 0 0 20px;
+}
+
+/***************************/

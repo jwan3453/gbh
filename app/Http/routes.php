@@ -195,7 +195,28 @@ Route::group(['prefix' => '/admin/', 'middleware' => 'App\Http\Middleware\AdminA
         Route::get('/', 'Admin\Hotel\HotelController@manageRoomStatus');
 
         //编辑跟新酒店房态
-        Route::get('/edit/{hotelId}', 'Admin\Hotel\HotelController@editRoomStatus');
+        Route::get('/show/{hotelId}', 'Admin\Hotel\HotelController@showRoomStatus');
+
+
+
+        //搜索酒店房态
+        //Route::post('/searchRoomPrice', 'Admin\Hotel\HotelController@showRoomPrice');
+
+
+        //批量修改房价
+        Route::get('/roomStatusBatch/{hotelId}', 'Admin\Hotel\HotelController@roomStatusBatch');
+
+        //提交单次房价修改请求
+        //Route::post('/roomPriceUpdateSubmit','Admin\Hotel\HotelController@roomPriceUpdateSubmit');
+
+        //提交批量修改的房价
+        //Route::post('/roomPriceBatchRequestSubmit','Admin\Hotel\HotelController@roomPriceBatchRequestSubmit');
+
+        //处理批量修改房价申请单
+        //Route::get('/processRoomPriceRequest/{hotelId}','Admin\Hotel\HotelController@processRoomPriceRequest');
+
+        //确定房价申请单
+        //Route::post('/confirmRoomPriceRequest','Admin\Hotel\HotelController@confirmRoomPriceRequest');
     });
 
     //管理房价
@@ -204,14 +225,27 @@ Route::group(['prefix' => '/admin/', 'middleware' => 'App\Http\Middleware\AdminA
         //酒店列表
         Route::get('/', 'Admin\Hotel\HotelController@manageRoomPrice');
 
-        //编辑跟新酒店房态
-        Route::get('/edit/{hotelId}', 'Admin\Hotel\HotelController@editRoomPrice');
+        //查看酒店房态
+        Route::get('/show/{hotelId}', 'Admin\Hotel\HotelController@showRoomPrice');
+
+        //搜索酒店房态
+        Route::post('/searchRoomPrice', 'Admin\Hotel\HotelController@showRoomPrice');
+
 
         //批量修改房价
         Route::get('/roomPriceBatch/{hotelId}', 'Admin\Hotel\HotelController@roomPriceBatch');
 
+        //提交单次房价修改请求
+        Route::post('/roomPriceUpdateSubmit','Admin\Hotel\HotelController@roomPriceUpdateSubmit');
+
         //提交批量修改的房价
         Route::post('/roomPriceBatchRequestSubmit','Admin\Hotel\HotelController@roomPriceBatchRequestSubmit');
+
+        //处理批量修改房价申请单
+        Route::get('/processRoomPriceRequest/{hotelId}','Admin\Hotel\HotelController@processRoomPriceRequest');
+
+        //确定房价申请单
+        Route::post('/confirmRoomPriceRequest','Admin\Hotel\HotelController@confirmRoomPriceRequest');
     });
 
 
@@ -291,6 +325,16 @@ Route::group(['prefix' => '/admin/', 'middleware' => 'App\Http\Middleware\AdminA
 
     //-----无权限访问
     Route::get('Error/NotPermission','Admin\homeController@NotPermission');
+
+
+    //超级管理员
+    Route::group(['prefix' => 'administrator/'], function() {
+
+        //Route::get('manageRoomPriceRequest','Admin\Hotel\HotelController@manageRoomPriceRequest');
+
+    });
+
+
     
 });
 
