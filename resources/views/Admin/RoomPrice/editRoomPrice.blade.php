@@ -125,7 +125,7 @@
             <form id="updateRoomPriceFrom">
                 <input type="hidden" name="hotelId" value="{{$hotelId}}">
                 <input type="hidden" name="roomId" id="roomId" value="">
-                <input type="hidden" name="paidType" id="paidType" value="">
+                <input type="hidden" name="payType" id="paidType" value="">
                 <input type="hidden" name="date" id="date" value="">
                 <div>
                     <label>房价:</label> <input type="text" id="roomRate" name="roomRate"/>

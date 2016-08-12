@@ -175,7 +175,7 @@ body{
 	cursor: pointer;
 }
 .blue-btn{
-	background-color:#9bbebe;
+	background-color:#54bbbe;
 }
 .red-btn{
 	background-color:#ff5f76;
@@ -3085,7 +3085,7 @@ a{
 	width:94px;
 	height:60px;
 	position: relative;
-
+	font-size:13px;
 }
 
 .room-price-calendar .price-column .up{
@@ -3093,6 +3093,7 @@ a{
 	width:100%;
 	top:10px;
 	left:0;
+	color:#ff5f76;
 }
 
 .room-price-calendar .price-column .down{
@@ -3100,6 +3101,7 @@ a{
 	width:100%;
 	top:35px;
 	left:0;
+
 }
 .price-column-hover{
 	border:2px solid #ff5f76!important;
@@ -3194,6 +3196,7 @@ a{
 .room-price-batch-edit .date-range,
 .room-price-batch-edit .valid-week-day,
 .room-price-batch-edit .room-price{
+	position: relative;
 	margin:20px 0;
 }
 
@@ -3231,10 +3234,10 @@ a{
 	padding:10px;
 	border:1px solid #aaaaaa;
 	position: absolute;
-	left:95px;
+	left:85px;
 	background-color: white;
 	font-size: 16px;
-
+	z-index:100;
 }
 
 .dropdown-room-type label{
@@ -3389,3 +3392,121 @@ a{
 }
 
 /***************************/
+
+
+/******批量修改房态********/
+
+
+.room-status-batch-edit{
+
+}
+
+.room-status-batch-edit .type,
+.room-status-batch-edit .date-range,
+.room-status-batch-edit .room-status,
+.room-status-batch-edit .room-num{
+	margin:20px 0;
+	position: relative;
+}
+
+
+
+.room-status-batch-edit label{
+	font-size:14px;
+	width:80px;
+	display: inline-block;
+
+}
+.room-status-batch-edit .room-type{
+	height:37px;
+	width:138px;
+	margin: 2px 15px 0 0;
+	border:1px solid #8f8f8f;
+	display: inline-block;
+	line-height: 37px;
+	padding:0 0 0 10px;
+	vertical-align: middle;
+	font-size: 14px;
+	position:relative;
+	cursor: pointer;
+}
+.room-status-batch-edit .room-type i{
+	position:absolute;
+	right:0px;
+}
+.room-status-batch-edit .room-type	 option{
+	height:50px;
+}
+
+
+.room-status-batch-edit .paid-type{
+	height:40px;
+	width:150px;
+	margin:0 15px 0 0;
+	display: inline-block;
+}
+.room-status-batch-edit .paid-type	 option{
+	height:50px;
+}
+
+.room-status-batch-edit .paid-type{
+	height:40px;
+	width:150px;
+	margin:0 15px 0 0;
+	display: inline-block;
+}
+.room-status-batch-edit .paid-type	 option{
+	height:50px;
+}
+
+.room-status-batch-edit input[type=text]{
+	height:34px;
+	width:145px;
+	display: inline-block;
+	margin-right:15px;
+}
+.room-status-batch-edit .room-num span{
+	display: block;
+	position:absolute;
+	left:200px;
+	top:1px;
+
+	padding:8px;
+	background-color: white;
+}
+
+
+
+.room-status-request-list{
+	margin:20px 0!important;
+	font-size:12px!important;
+}
+
+.process-request{
+	cursor:pointer;
+}
+.process-request:hover{
+	color:#ff5f76;
+}
+.confirm-request{
+	padding-top:100px;
+	color:white;
+
+}
+.confirm-request .confirm-btns{
+	width:400px;
+	margin:40px auto;
+}
+.confirm-request .confirm-btns .regular-btn{
+	display:inline-block;
+	margin-left:30px;
+	position:relative;
+}
+
+.room-status-batch-loader{
+	position: absolute!important;
+	top:30%!important;
+	left:calc(50% - 21px)!important;
+	display: none!important;
+}
+/************************/

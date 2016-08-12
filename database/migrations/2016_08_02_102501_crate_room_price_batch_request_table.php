@@ -16,7 +16,7 @@ class CrateRoomPriceRequestBatchTable extends Migration
             $table->increments('id');
             $table->integer('hotel_id');
             $table->integer('room_id');
-            $table->integer('paid_type');
+            $table->integer('pay_type');
             $table->date('request_date_from');
             $table->date('request_date_to');
             $table->integer('breakfast');

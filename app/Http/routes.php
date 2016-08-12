@@ -90,6 +90,9 @@ Route::post('/gbh/article/praise','Gbh\ArticleController@praise');
 
 Route::post('/submitMessage','Gbh\HomeController@submitMessage');
 
+//解析微信图片
+Route::get('/resolveWeChatImg/{url?}','Gbh\HomeController@resolveWechatImage');
+
 /*******************************end**************************************/
 
 
@@ -210,7 +213,7 @@ Route::group(['prefix' => '/admin/', 'middleware' => 'App\Http\Middleware\AdminA
         //Route::post('/roomPriceUpdateSubmit','Admin\Hotel\HotelController@roomPriceUpdateSubmit');
 
         //提交批量修改的房价
-        //Route::post('/roomPriceBatchRequestSubmit','Admin\Hotel\HotelController@roomPriceBatchRequestSubmit');
+        Route::post('/roomStatusBatchRequestSubmit','Admin\Hotel\HotelController@roomStatusBatchRequestSubmit');
 
         //处理批量修改房价申请单
         //Route::get('/processRoomPriceRequest/{hotelId}','Admin\Hotel\HotelController@processRoomPriceRequest');

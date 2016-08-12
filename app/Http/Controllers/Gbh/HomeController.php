@@ -101,6 +101,13 @@ class HomeController extends Controller
         return response($jsonResult->toJson());
 
     }
+    public function resolveWechatImage(Request $request)
+    {
+
+        $img= file_get_contents( $request->input('url'));
+        return $img;
+    }
+
 }
 
 ?>

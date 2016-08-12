@@ -45,7 +45,7 @@
 
                 <div class="regular-btn blue-btn room-status-search-btn " id="searchBtn">查询</div>
             </form>
-            <a href="/admin/manageRoomPrice/roomStatusBatch/{{$hotelId}}"><div class="regular-btn red-btn batch-edit-room-status">批量修房态</div></a>
+            <a href="/admin/manageRoomStatus/roomStatusBatch/{{$hotelId}}"><div class="regular-btn red-btn batch-edit-room-status">批量修房态</div></a>
         </div>
 
 

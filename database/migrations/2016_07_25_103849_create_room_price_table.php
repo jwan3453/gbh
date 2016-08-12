@@ -22,8 +22,6 @@ class CreateRoomPriceTable extends Migration
             $table->decimal('prepaid_commission',10,2);
             $table->integer('num_of_breakfast');
             $table->integer('prepaid_num_of_breakfast');
-
-
             $table->datetime('date');
             $table->timestamps();
         });

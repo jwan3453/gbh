@@ -460,6 +460,8 @@ class HotelController extends Controller
     }
 
 
+    /******************************/
+
     //管理酒店房态，主要显示酒店列表
     public function manageRoomStatus()
     {
@@ -532,9 +534,32 @@ class HotelController extends Controller
     {
 
         $roomTypeList = $this->hotelService->getRoomTypeList($hotelId);
-        $requestList= $this->hotelService->getRoomPriceBatchRequestList($hotelId);
-        return view('Admin.RoomPrice.roomPriceBatch')->with('hotelId',$hotelId)->with('roomTypeList',$roomTypeList)->with('requestList',$requestList);
+        $requestList= $this->hotelService->getRoomStatusBatchLogList($hotelId);
+        return view('Admin.RoomStatus.roomStatusBatch')->with('hotelId',$hotelId)->with('roomTypeList',$roomTypeList)->with('requestList',$requestList);
     }
+
+    //提交批量修改房态请求
+
+    public function roomStatusBatchRequestSubmit(Request $request)
+    {
+
+
+        $jsonResult = new MessageResult();
+        $result =  $this->hotelService->roomStatusBatchRequestSubmit($request);
+        if($request)
+        {
+            $jsonResult->statusCode =1;
+            $jsonResult->statusMsg ='更新成功';
+        }
+        else{
+            $jsonResult->statusCode =2;
+            $jsonResult->statusMsg ='更新失败';
+        }
+        return response($jsonResult->toJson());
+
+    }
+
+    /***************************************/
 
 
     //管理酒店房价，主要显示酒店列表
@@ -557,7 +582,7 @@ class HotelController extends Controller
         return view('Admin.RoomPrice.manageRoomPrice')->with('manageHotelList',$manageHotelList);
     }
 
-    //编辑跟新酒店房态
+    //编辑跟新酒店房价
     public function showRoomPrice(Request $request, $hotelId = 0){
 
 

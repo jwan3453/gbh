@@ -2,6 +2,8 @@
 namespace App\Service\Admin;
 
 use App\Models\BedType;
+
+use App\Models\RoomStatusBatchLog;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 
@@ -18,6 +20,8 @@ use App\Models\HotelSectionImage;
 use App\Models\HotelImage;
 use App\Models\RoomPrice;
 use App\Models\RoomPriceBatchRequest;
+use App\Models\RoomStatus;
+use App\Models\RoomStatusChangeLog;
 
 class HotelService {
 
@@ -319,6 +323,23 @@ class HotelService {
     }
 
 
+    //获得房前时间10天内所有房型的房态
+    public function getRoomStatusList($hotelId,$roomTypeList,$date)
+    {
+
+    }
+
+    //获取批量修改房价申请列表
+    public function getRoomStatusChangeLogList($hotelId)
+    {
+        return RoomStatusChangeLog::where('hotel_id',$hotelId)->get();
+    }
+
+
+
+
+
+
     //获取当时间10天内所有房型的价格
     public function getRoomPriceList($hotelId,$roomTypeList,$date)
     {
@@ -353,6 +374,12 @@ class HotelService {
         return $priceList;
     }
 
+    //获取批量修改房态记录列表
+    public function getRoomStatusBatchLogList($hotelId)
+    {
+        return RoomStatusBatchLog::where('hotel_id',$hotelId)->get();
+    }
+
     //获取批量修改房价申请列表
     public function getRoomPriceBatchRequestList($hotelId)
     {
@@ -367,7 +394,7 @@ class HotelService {
 
         $hotelId = $request->input('hotelId');
         $roomId = $request->input('roomId');
-        $paidType= $request->input('paidType');
+        $payType= $request->input('payType');
         $date = $request->input('date');
         $roomRate = $request->input('roomRate');
         $roomComm = $request->input('roomComm');
@@ -376,7 +403,7 @@ class HotelService {
          $roomPrice =  RoomPrice::where(['hotel_id'=>$hotelId,
                                         'room_id'=>$roomId,
                                         'date'=>$date])->first();
-        if($paidType==1)
+        if($payType==1)
         {
             $roomPrice->rate =$roomRate;
             $roomPrice->commission = $roomComm;
@@ -389,6 +416,11 @@ class HotelService {
         }
         return $roomPrice->save();
     }
+
+
+
+
+
 
     //记录批量修改申请
     public function roomPriceBatchRequestSubmit(Request $request){
@@ -458,7 +490,7 @@ class HotelService {
             $newRoomPriceBatchRequest= New RoomPriceBatchRequest();
             $newRoomPriceBatchRequest->hotel_id = $hotelId;
             $newRoomPriceBatchRequest->room_id = $room;
-            $newRoomPriceBatchRequest->paid_type = $payType;
+            $newRoomPriceBatchRequest->pay_type = $payType;
             $newRoomPriceBatchRequest->request_date_from = $dateFrom;
             $newRoomPriceBatchRequest->request_date_to = $dateTo;
             $newRoomPriceBatchRequest->breakfast = $breakfast;
@@ -483,6 +515,133 @@ class HotelService {
 
         return true;
     }
+
+
+
+    //提交处理批量修改房态请求
+    public function roomStatusBatchRequestSubmit(Request $request)
+    {
+
+        $hotelId = $request->input('hotelId');
+
+        //选择的房型
+        $roomTypeList = explode(' ', trim($request->input('selectedRoomType')));
+
+        //付款方式
+        $payType = $request->input('payType');
+
+        //改房态日期范围
+        $dateFrom = $request->input('dateRangeFrom');
+        $dateTo = $request->input('dateRangeTo');
+
+        //获取房间状态
+        $roomStatus = $request->input('roomStatus');
+
+        //获取保留房数量
+        $numOfBlockedRoom= $request->input('numOfBlockedRoom');
+
+        //时间差的天数
+        $daysRange=round((strtotime($dateTo)-strtotime( $dateFrom))/86400)+1;
+
+        foreach($roomTypeList as $room) {
+
+            $newRoomStatusChangeLog = new RoomStatusBatchLog();
+            $newRoomStatusChangeLog->hotel_id = $hotelId;
+            $newRoomStatusChangeLog->room_id = $room;
+            $newRoomStatusChangeLog->pay_type = $payType;
+            $newRoomStatusChangeLog->date_from = $dateFrom;
+            $newRoomStatusChangeLog->date_to = $dateTo;
+            $newRoomStatusChangeLog->room_status = $roomStatus;
+            $newRoomStatusChangeLog->num_of_blocked_room = $numOfBlockedRoom;
+            $newRoomStatusChangeLog->is_guarantee = 1;
+            $newRoomStatusChangeLog->request_date = date('Y-m-d');
+
+            //log 存入数据库
+            if(!$newRoomStatusChangeLog->save())
+            {
+                //return false;
+            }
+
+
+            //循环处理房态更改请求 --房价的更改需要审批，但是房态不用 可直接修改
+            //每次循环日期 + 1
+            for($i=0; $i<$daysRange; $i++)
+            {
+                $date = date('Y-m-d', strtotime($dateFrom) + (86400 * $i));
+
+                $oldStatus = RoomStatus::where(['hotel_id' => $hotelId,
+                    'room_id' => $room,
+                    'date' => $date])->first();
+
+
+                //价格记录不存在, 创建新的价格
+                if($oldStatus == null)
+                {
+                    $newRoomStatus = new RoomStatus();
+                    $newRoomStatus->hotel_id = $hotelId;
+                    $newRoomStatus->room_id = $room;
+
+                        //跟新现付 还是 预付
+                        if($payType == 1)
+                        {
+
+                            $newRoomStatus->room_status = $roomStatus;
+                            $newRoomStatus->num_of_blocked_room = $numOfBlockedRoom;
+
+
+                        }
+                        else if($payType == 2){
+                            $newRoomStatus->prepaid_room_status = $roomStatus;
+                            $newRoomStatus->prepaid_num_of_blocked_room = $numOfBlockedRoom;
+                        }
+                        //现付预付都更新
+                        else{
+
+                            $newRoomStatus->room_status = $roomStatus;
+                            $newRoomStatus->num_of_blocked_room = $numOfBlockedRoom;
+                            $newRoomStatus->prepaid_room_status = $roomStatus;
+                            $newRoomStatus->prepaid_num_of_blocked_room = $numOfBlockedRoom;
+                        }
+
+                        //$newRoomStatus->is_guarantee = 1;//默认
+                        $newRoomStatus->date = $date;
+                        $newRoomStatus->save();
+                }
+                //跟新房态记录
+                else{
+
+                    //跟新现付 还是 预付
+                    if($payType == 1)
+                    {
+
+                        $oldStatus->room_status = $roomStatus;
+                        $oldStatus->num_of_blocked_room = $numOfBlockedRoom;
+
+
+                    }
+                    else if($payType == 2){
+                        $oldStatus->prepaid_room_status = $roomStatus;
+                        $oldStatus->prepaid_num_of_blocked_room = $numOfBlockedRoom;
+                    }
+                    //现付预付都更新
+                    else{
+
+                        $oldStatus->room_status = $roomStatus;
+                        $oldStatus->num_of_blocked_room = $numOfBlockedRoom;
+                        $oldStatus->prepaid_room_status = $roomStatus;
+                        $oldStatus->prepaid_num_of_blocked_room = $numOfBlockedRoom;
+                    }
+
+                    //$newRoomStatus->is_guarantee = 1;//默认
+                    $oldStatus->save();
+                }
+            }
+        }
+
+        return true;
+    }
+
+
 
     public function confirmRoomPriceRequest(Request $request){
         $requestId = $request->input('requestId');
@@ -558,7 +717,7 @@ class HotelService {
         //时间差的天数
         $daysRange=round((strtotime($dateTo)-strtotime( $dateFrom))/86400)+1;
 
-        //当天的价格是否更新
+        //判断价格是否更新
         $update =false;
         //是否是周末
         $isWeekEnd = false;
@@ -716,6 +875,7 @@ class HotelService {
         $requestDetail->save();
         return true;
     }
+
 
 
 
