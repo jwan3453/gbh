@@ -12,5 +12,14 @@ var elixir = require('laravel-elixir');
  */
 
 elixir(function(mix) {
-    mix.sass('app.scss');
+    mix.styles([
+        './public/semantic/container.css',
+        './public/semantic/sidebar.css',
+        './public/semantic/transition.css',
+        './public/semantic/icon.css',
+        './public/semantic/loader.css',
+        './public/semantic/popup.css',
+        './public/semantic/sticky.css',
+        './public/Gbh/css/website.css'
+    ], './public/Gbh/css/website.min.css');
 });

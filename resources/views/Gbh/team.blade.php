@@ -51,7 +51,34 @@
 
             </div>
 
+            <div class="team-member">
 
+                <div class="mem-left member"  >
+                    <img src = 'Gbh/img/long.png'  data-title="Tim 张" data-content="2016年1月加入联盟,毕业于悉尼大学，现在在联盟担任技术合伙人一职位" >
+                    <div class="position">Tim</div>
+                </div>
+
+                <div class="mem-middle member">
+                    <img src = 'Gbh/img/ting.png' data-content="Patty 王">
+                    <div class="position">Patty 王</div>
+                </div>
+
+                <div class="mem-right member" >
+                    <img src = 'Gbh/img/hong.png' data-content="Vincent 洪">
+                    <div class="position">Vincent 洪</div>
+                </div>
+
+            </div>
+
+            <div class="team-member">
+
+                <div class="mem-left member"  >
+                    <img src = 'Gbh/img/continue.png'  data-title="欢迎加入我们" data-content="2016年1月加入联盟,毕业于悉尼大学，现在在联盟担任技术合伙人一职位" >
+                    <div class="position">To be continue</div>
+                </div>
+
+
+            </div>
 
         </div>
 

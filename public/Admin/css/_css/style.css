@@ -1,22 +1,10 @@
-/*-----------------------------------------------------------------------------------
-	Theme Name: Coffee Break:404
-	Theme URI: http://themes.pulyavserdce.com
-/*-----------------------------------------------------------------------------------*/
+
 
 @charset "utf-8";
-/*--------------------------------------------------------
-	1.General
---------------------------------------------------------*/
 
-	/*----------------------------
-	i.-- font/imports
-	-----------------------------*/
 	
 	@font-face{font-family:'Jenna Sue';src:url('../_fonts/jennasue-webfont.eot');src:url('../_fonts/jennasue-webfont.eot?#iefix') format('embedded-opentype'),url('../_fonts/jennasue-webfont.woff') format('woff'),url('../_fonts/jennasue-webfont.ttf') format('truetype'),url('../_fonts/jennasue-webfont.svg#AsapRegular') format('svg');font-weight:normal;font-style:normal;}
 
-	/*----------------------------
-	ii.-- general
-	-----------------------------*/
 	
 	*{margin:0px;padding:0px;}
 	html, body, div, h1, h2, h3, ul, ol, li, dt, p, table, th, td ,img{margin:0;padding:0;border:none;}
@@ -42,10 +30,6 @@
 
 	
 	}
-	
-	/*
-	This is not legal version, preview only mode. If you're using this one, you're just fucking cheap. Seriously, It's about 5$, can't you afford it?
-*/
 
 	@media screen and (min-width:602px) and (max-width:801px) {
 	/* 800- resolution */

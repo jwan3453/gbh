@@ -54,7 +54,7 @@
                 {{--<span></span>--}}
                 {{--<i class="angle right icon f-right big next-month"></i>--}}
             {{--</div>--}}
-        <div class="room-price-calendar " >
+        <div class="room-table-calendar " >
                 <table>
                     <tr class="t-header">
                         <td class="td-header">
@@ -82,7 +82,7 @@
                                 先付
                             </td>
                             @foreach($roomPriceMonthList[$roomType->room_name ] as $roomPrice)
-                                <td class="price-column">
+                                <td class="detail-column">
                                     @if($roomPrice->emptyPrice == true)
                                         {{$roomPrice->rate}}
                                     @else
@@ -102,7 +102,7 @@
                                 预付
                             </td>
                             @foreach($roomPriceMonthList[$roomType->room_name ] as $roomPrice)
-                                <td class="price-column">
+                                <td class="detail-column">
                                     @if($roomPrice->emptyPrice == true)
                                         {{$roomPrice->prepaid_rate}}
                                     @else

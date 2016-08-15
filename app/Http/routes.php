@@ -203,7 +203,7 @@ Route::group(['prefix' => '/admin/', 'middleware' => 'App\Http\Middleware\AdminA
 
 
         //搜索酒店房态
-        //Route::post('/searchRoomPrice', 'Admin\Hotel\HotelController@showRoomPrice');
+        Route::post('/searchRoomStatus', 'Admin\Hotel\HotelController@showRoomStatus');
 
 
         //批量修改房价

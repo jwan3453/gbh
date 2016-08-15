@@ -519,11 +519,16 @@ class HotelController extends Controller
         }
 
 
-        $roomTypeList = $this->hotelService->getRoomTypeList($hotelId);
+
         //获取房型列表
         $roomTypeList = $this->hotelService->getRoomTypeList($hotelId,$roomType);
+
+        //获取当前时间房价列表(所有房型)
+        $roomStatusMonthList =  $this->hotelService->getRoomStatusList($hotelId,$roomTypeList,$date);
+
         return view('Admin.RoomStatus.editRoomStatus')->with('roomTypeList',$roomTypeList)
                                                       ->with('weekDayList',$weekDayList)
+                                                      ->with('roomStatusMonthList',$roomStatusMonthList)
                                                       ->with('hotelId',$hotelId)
                                                       ->with('selectedDate',$date);
     }

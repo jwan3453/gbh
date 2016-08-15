@@ -3021,45 +3021,47 @@ a{
 	font-weight: 600;
 }
 
-.room-price-calendar{
+
+
+.room-table-calendar{
 	width:1000px;
 	margin-top:20px;
 	color: #6a6a6a;
 }
 
-.room-price-calendar i{
+.room-table-calendar i{
 	color: #939393;
 }
 
-.room-price-calendar table{
+.room-table-calendar table{
 	width:1000px;
 	border-collapse:collapse;
 
 }
-.room-price-calendar .t-header {
+.room-table-calendar .t-header {
 
 	font-size:14px!important;
 
 }
 
-.room-price-calendar .td-header{
+.room-table-calendar .td-header{
 	width:50px;
 	text-align: center;
 }
 
-.room-price-calendar  td{
+.room-table-calendar  td{
 	border:1px solid #929292;
 	text-align: center;
 }
 
-.room-price-calendar .t-header .date-header{
+.room-table-calendar .t-header .date-header{
 
 	height:50px;
 	padding:0!important;
 	position: relative
 }
 
-.room-price-calendar .t-header .date-header .up{
+.room-table-calendar .t-header .date-header .up{
 	display: block;
 	position: absolute;
 	top: 0;
@@ -3069,26 +3071,26 @@ a{
 	border-top: 50px solid #54bbbe;
 	border-right: 50px solid transparent;
 }
-.room-price-calendar .t-header .date-header .date{
+.room-table-calendar .t-header .date-header .date{
 	position: absolute;
 	display: block;
 	top:5px;
 	left:2px;
 	color:#f8f8f8;
 }
-.room-price-calendar .t-header .date-header .down{
+.room-table-calendar .t-header .date-header .down{
 	margin:8px 0 0 25px;
 }
 
 
-.room-price-calendar .price-column{
+.room-table-calendar .detail-column{
 	width:94px;
 	height:60px;
 	position: relative;
 	font-size:13px;
 }
 
-.room-price-calendar .price-column .up{
+.room-table-calendar .detail-column .up{
 	position: absolute;
 	width:100%;
 	top:10px;
@@ -3096,13 +3098,14 @@ a{
 	color:#ff5f76;
 }
 
-.room-price-calendar .price-column .down{
+.room-table-calendar .detail-column .down{
 	position: absolute;
 	width:100%;
 	top:35px;
 	left:0;
 
 }
+
 .price-column-hover{
 	border:2px solid #ff5f76!important;
 	cursor: pointer;

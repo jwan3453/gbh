@@ -307,6 +307,9 @@ class HotelService {
         return BedType::all();
     }
 
+
+
+    //////////////////////////////////////////////////////////////////
     //获取房型列表
     public function getRoomTypeList($hotelId,$roomId = 0){
 
@@ -326,7 +329,34 @@ class HotelService {
     //获得房前时间10天内所有房型的房态
     public function getRoomStatusList($hotelId,$roomTypeList,$date)
     {
+        //页面一行显示几天的数据(10天)
+        $selectCount  = 10;
+        $statusList = [];
+        //当月的开始 结束时间段
+        $startDate = date("Y-m-d H:i:s",mktime(0, 0 , 0,date("m",strtotime($date)),date("d",strtotime($date)),date("Y",strtotime($date))));
+        $endDate = date("Y-m-d H:i:s",mktime(23,59,59,date("m",strtotime($date)),date("d",strtotime($date))+($selectCount-1),date("Y",strtotime($date))));
+        foreach($roomTypeList as $roomType )
+        {
+            $statusList[$roomType->room_name] = RoomStatus::where(['hotel_id'=>$hotelId,'room_id'=>$roomType->id])->whereBetween('date',array($startDate,$endDate))->select('room_id','room_status','num_of_blocked_room','num_of_sold_room','prepaid_room_status','prepaid_num_of_blocked_room','prepaid_num_of_sold_room','date')->get();
 
+            $validStatusCount = count($statusList[$roomType->room_name]);
+
+            //如果选出来的有效数据不到10,向数组中冲入空白数组
+
+            for($i = 0; $i< $selectCount -$validStatusCount; $i++ )
+            {
+                $emptyRoomStatus = new  RoomStatus();
+                $emptyRoomStatus->date = date("Y-m-d H:i:s",mktime(0, 0 , 0,date("m"),date("d")+$validStatusCount+$i,date("Y")));
+                $emptyRoomStatus->room_status = '暂无设置';
+                $emptyRoomStatus->prepaid_room_status = '暂无设置';
+                $emptyRoomStatus->emptyStatus = true;
+
+                $statusList[$roomType->room_name] [] =  $emptyRoomStatus;
+            }
+
+        }
+
+        return $statusList;
     }
 
     //获取批量修改房价申请列表
@@ -877,7 +907,7 @@ class HotelService {
     }
 
 
-
+//////////////////////////////////////////////////////////////////////
 
     public function createNewRoom(Request $request)
     {

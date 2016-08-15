@@ -1699,7 +1699,7 @@ a{
 /***建设中的页面****/
 .ucons{
 	text-align: center;
-	padding-top: 70px;
+	margin-top:130px;
 }
 
 .ucons h3{
@@ -1720,7 +1720,7 @@ a{
 	text-align: center;
 	padding:10px 20px 0 20px;
 	color: #505050;
-	margin-top:10px;
+	margin-top:30px;
 }
 .error-box img{
 

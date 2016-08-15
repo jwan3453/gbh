@@ -13,7 +13,7 @@
 
     <div class="light-bg">
         <div class="room-status-search">
-            <form style="display: inline-block" action="{{url('/admin/manageRoomPrice/searchRoomPrice')}}" method="post" id="searchForm">
+            <form style="display: inline-block" action="{{url('/admin/manageRoomStatus/searchRoomStatus')}}" method="post" id="searchForm">
 
                 <input type="hidden" name="hotelId" value="{{$hotelId}}">
                 <input type="hidden" name="_token" value="{{csrf_token()}}">
@@ -54,7 +54,7 @@
         {{--<span></span>--}}
         {{--<i class="angle right icon f-right big next-month"></i>--}}
         {{--</div>--}}
-        <div class="room-price-calendar " >
+        <div class="room-table-calendar " >
             <table>
                 <tr class="t-header">
                     <td class="td-header">
@@ -79,20 +79,47 @@
                 <table>
                     <tr>
                         <td class="td-header">
-                            先付
+                            现付
                         </td>
-
+                        @foreach($roomStatusMonthList[$roomType->room_name ] as $roomStatus)
+                            <td class="detail-column">
+                                @if($roomStatus->emptyStatus == true)
+                                    {{$roomStatus->room_status}}
+                                @else
+                                    <span class="up">保留房:<span class="r-p">{{$roomStatus->num_of_blocked_room}}</span></span>
+                                    <span class="down">已预订:<span class="n-of-sold-room">{{$roomStatus->num_of_sold_room}}</span></span>
+                                @endif
+                                <input type="hidden" class="r-c" value="{{$roomStatus->commission}}">
+                                <input type="hidden" class="r-id" value="{{$roomStatus->room_id}}">
+                                <input type="hidden" class="p-d" value="{{$roomStatus->date}}">
+                                <input type="hidden" class="p-t" value="1">
+                            </td>
+                        @endforeach
                     </tr>
 
                     <tr>
                         <td class="td-header">
                             预付
                         </td>
-
+                        @foreach($roomStatusMonthList[$roomType->room_name ] as $roomStatus)
+                            <td class="detail-column">
+                                @if($roomStatus->emptyStatus == true)
+                                    {{$roomStatus->prepaid_room_status}}
+                                @else
+                                    <span class="up">保留房:<span class="r-">{{$roomStatus->num_of_blocked_room}}</span></span>
+                                    <span class="down">已预订:<span class="n-of-sold-room">{{$roomStatus->num_of_sold_room}}</span></span>
+                                @endif
+                                <input type="hidden" class="r-c" value="{{$roomStatus->prepaid_commission}}">
+                                <input type="hidden" class="r-id" value="{{$roomStatus->room_id}}">
+                                <input type="hidden" class="p-d" value="{{$roomStatus->date}}">
+                                <input type="hidden" class="p-t" value="2">
+                            </td>
+                        @endforeach
                     </tr>
                 </table>
             @endforeach
         </div>
+
 
         <div class="update-price-popup" id="updatePricePopup">
             <i class="icon remove"> </i>
@@ -139,7 +166,7 @@
             })
 
 
-            $('.price-column').hover(function(){
+            $('.detail-column').hover(function(){
 
 
 //                var top= $(this).offset().top;
@@ -155,7 +182,7 @@
 
             //点击弹出变价框
             var currentPriceObj=null;
-            $('.price-column').click(function(){
+            $('.detail-column').click(function(){
 
                 currentPriceObj = $(this);
 
