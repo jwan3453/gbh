@@ -120,12 +120,12 @@
             @endforeach
             </div>
 
-        <div class="update-price-popup" id="updatePricePopup">
+        <div class="update-room-cell-popup" id="updatePricePopup">
             <i class="icon remove"> </i>
             <form id="updateRoomPriceFrom">
                 <input type="hidden" name="hotelId" value="{{$hotelId}}">
                 <input type="hidden" name="roomId" id="roomId" value="">
-                <input type="hidden" name="payType" id="paidType" value="">
+                <input type="hidden" name="payType" id="payType" value="">
                 <input type="hidden" name="date" id="date" value="">
                 <div>
                     <label>房价:</label> <input type="text" id="roomRate" name="roomRate"/>
@@ -165,28 +165,28 @@
             })
 
 
-            $('.price-column').hover(function(){
+            $('.detail-column').hover(function(){
 
 
 //                var top= $(this).offset().top;
 //                var left = $(this).offset().left;
 //                $('#updatePricePopup').css('top',top-30).css('left',left-170).show();
-                $(this).addClass('price-column-hover');
+                $(this).addClass('room-column-hover');
 
             },
             function(){
-                $(this).removeClass('price-column-hover');
+                $(this).removeClass('room-column-hover');
 
             })
 
             //点击弹出变价框
             var currentPriceObj=null;
-            $('.price-column').click(function(){
+            $('.detail-column').click(function(){
 
                 currentPriceObj = $(this);
 
                 $('#roomId').val($(this).find('.r-id').val());
-                $('#paidType').val($(this).find('.p-t').val());
+                $('#payType').val($(this).find('.p-t').val());
                 $('#date').val($(this).find('.p-d').val());
                 $('#roomRate').val($(this).find('.r-p').text());
                 $('#roomComm').val($(this).find('.r-c').val());

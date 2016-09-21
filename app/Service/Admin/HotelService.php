@@ -7,6 +7,7 @@ use App\Models\RoomStatusBatchLog;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 
+
 use App\Models\Hotel;
 Use App\Models\Bed;
 use App\Models\Room;
@@ -17,13 +18,32 @@ use App\Models\HotelExtra;
 use App\Models\HotelContact;
 use App\Models\ExtraService;
 use App\Models\HotelSectionImage;
-use App\Models\HotelImage;
 use App\Models\RoomPrice;
 use App\Models\RoomPriceBatchRequest;
 use App\Models\RoomStatus;
-use App\Models\RoomStatusChangeLog;
+use App\Models\HotelSurrounding;
+use App\Models\HotelSection;
+use App\Models\HotelImage;
+use App\Models\HotelFacility;
+use App\Models\HotelFacilityList;
+use App\Models\HotelFacilityCategory;
+
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+
+use Qiniu\Auth as QiniuAuth;
+use Qiniu\Storage\UploadManager;
+use Qiniu\Storage\BucketManager;
+use App\Tool\MessageResult;
+
+
 
 class HotelService {
+
+
+    private $accessKey = 'aavEmxVT7o3vsFMGKUZbJ1udnoAbucqXPmk3tdRX';
+    private $secretKey ='nDQPr1L7pcurdV8_7iLIICNjSME2EmCiokHXTGTX';
+    private $bucket = 'gbhchina';
+    private $auth;
 
     public function getHotelList()
     {
@@ -77,13 +97,15 @@ class HotelService {
         return $isSuccess;
     }
 
-    public function insertPolicy($request)
+    // 创建或更新酒店政策
+    public function insertPolicy(Request $request)
     {
 
-        $isInsert = false;
+//        $isInsert = false;
 
-        $checkTime = $request['checkTimeFrom'] . " | " . $request['checkTimeTo'];
-        $checkoutTime = $request['checkoutTimeFrom'] . " | " . $request['checkoutTimeTo'];
+        $hotelId = $request->input('hotelId');
+        $checkinTime = $request->input('checkinTimeFrom') . " | " . $request->input('checkinTimeTo');
+        $checkoutTime = $request->input('checkoutTimeFrom') . " | " . $request->input('checkoutTimeTo');
 
         // dd($request['createOrupdate']);
 
@@ -92,39 +114,45 @@ class HotelService {
         $policyId = $request['policyId'];
 
 
+//
+//
+//        if ($createOrupdate == "update") {
+//            $hotelPolicy = hotelPolicy::find($policyId);
+//            if($hotelPolicy == null)
+//            {
+//                $hotelPolicy = new hotelPolicy();
+//            }
+//        }else{
+//            $hotelPolicy = new hotelPolicy();
+//        }
 
-
-        if ($createOrupdate == "update") {
-            $hotelPolicy = hotelPolicy::find($policyId);
-            if($hotelPolicy == null)
-            {
-                $hotelPolicy = new hotelPolicy();
-            }
-        }else{
+        $hotelPolicy = hotelPolicy::where('hotel_id',$hotelId)->firstOrFail();
+        if($hotelPolicy == null)
+        {
             $hotelPolicy = new hotelPolicy();
         }
-        
-        $hotelPolicy->check_time = $checkTime;
+
+
+        $hotelPolicy->checkin_time = $checkinTime;
         $hotelPolicy->checkout_time = $checkoutTime;
-        $hotelPolicy->prepaid_deposit = $request['prepaidDeposit'];
-        $hotelPolicy->catering_arrangements = $request['cateringArrangements'];
-        $hotelPolicy->other_policy = $request['otherPolicy'];
-        $hotelPolicy->hotel_id = $request['hotelId'];
+        $hotelPolicy->prepaid_deposit = $request->input('prepaidDeposit');
+        $hotelPolicy->catering_arrangements = $request->input('cateringArrangements');
+        $hotelPolicy->other_policy = $request->input('otherPolicy');
 
-        if ($hotelPolicy->save()) {
-            $newHotel = Hotel::find($request['hotelId']);
-            $newHotel->surrounding_environment = $request['surrounding'];
-//            $newHotel->longitude = $request['longitude'];
-//            $newHotel->latitude = $request['latitude'];
-            $newHotel->policy_id = $hotelPolicy->id;
+//        if ($hotelPolicy->save()) {
+////            $newHotel = Hotel::find($request['hotelId']);
+////            $newHotel->surrounding_environment = $request['surrounding'];
+//////            $newHotel->longitude = $request['longitude'];
+//////            $newHotel->latitude = $request['latitude'];
+////            $newHotel->policy_id = $hotelPolicy->id;
+////
+////            if ($newHotel->save()) {
+////                $isInsert = $request['hotelId'];
+////            }
+//
+//        }
 
-            if ($newHotel->save()) {
-                $isInsert = $request['hotelId'];
-            }
-
-        }
-
-        return $isInsert;
+        return $hotelPolicy->save();
     }
 
     public function getCreditList($creditType)
@@ -359,14 +387,136 @@ class HotelService {
         return $statusList;
     }
 
-    //获取批量修改房价申请列表
-    public function getRoomStatusChangeLogList($hotelId)
+    //获取批量修改房态记录列表
+    public function getRoomStatusBatchLogList($hotelId)
     {
-        return RoomStatusChangeLog::where('hotel_id',$hotelId)->get();
+        return RoomStatusBatchLog::where('hotel_id',$hotelId)->get();
     }
 
 
 
+    //提交处理批量修改房态请求
+    public function roomStatusBatchRequestSubmit(Request $request)
+    {
+
+        $hotelId = $request->input('hotelId');
+
+        //选择的房型
+        $roomTypeList = explode(' ', trim($request->input('selectedRoomType')));
+
+        //付款方式
+        $payType = $request->input('payType');
+
+        //改房态日期范围
+        $dateFrom = $request->input('dateRangeFrom');
+        $dateTo = $request->input('dateRangeTo');
+
+        //获取房间状态
+        $roomStatus = $request->input('roomStatus');
+
+        //获取保留房数量
+        $numOfBlockedRoom= $request->input('numOfBlockedRoom');
+
+        //时间差的天数
+        $daysRange=round((strtotime($dateTo)-strtotime( $dateFrom))/86400)+1;
+
+        foreach($roomTypeList as $room) {
+
+            $newRoomStatusChangeLog = new RoomStatusBatchLog();
+            $newRoomStatusChangeLog->hotel_id = $hotelId;
+            $newRoomStatusChangeLog->room_id = $room;
+            $newRoomStatusChangeLog->pay_type = $payType;
+            $newRoomStatusChangeLog->date_from = $dateFrom;
+            $newRoomStatusChangeLog->date_to = $dateTo;
+            $newRoomStatusChangeLog->room_status = $roomStatus;
+            $newRoomStatusChangeLog->num_of_blocked_room = $numOfBlockedRoom;
+            $newRoomStatusChangeLog->is_guarantee = 1;
+            $newRoomStatusChangeLog->request_date = date('Y-m-d');
+
+            //log 存入数据库
+            if(!$newRoomStatusChangeLog->save())
+            {
+                //return false;
+            }
+
+
+            //循环处理房态更改请求 --房价的更改需要审批，但是房态不用 可直接修改
+            //每次循环日期 + 1
+            for($i=0; $i<$daysRange; $i++)
+            {
+                $date = date('Y-m-d', strtotime($dateFrom) + (86400 * $i));
+
+                $oldStatus = RoomStatus::where(['hotel_id' => $hotelId,
+                    'room_id' => $room,
+                    'date' => $date])->first();
+
+
+                //价格记录不存在, 创建新的价格
+                if($oldStatus == null)
+                {
+                    $newRoomStatus = new RoomStatus();
+                    $newRoomStatus->hotel_id = $hotelId;
+                    $newRoomStatus->room_id = $room;
+
+                    //跟新现付 还是 预付
+                    if($payType == 1)
+                    {
+
+                        $newRoomStatus->room_status = $roomStatus;
+                        $newRoomStatus->num_of_blocked_room = $numOfBlockedRoom;
+
+
+                    }
+                    else if($payType == 2){
+                        $newRoomStatus->prepaid_room_status = $roomStatus;
+                        $newRoomStatus->prepaid_num_of_blocked_room = $numOfBlockedRoom;
+                    }
+                    //现付预付都更新
+                    else{
+
+                        $newRoomStatus->room_status = $roomStatus;
+                        $newRoomStatus->num_of_blocked_room = $numOfBlockedRoom;
+                        $newRoomStatus->prepaid_room_status = $roomStatus;
+                        $newRoomStatus->prepaid_num_of_blocked_room = $numOfBlockedRoom;
+                    }
+
+                    //$newRoomStatus->is_guarantee = 1;//默认
+                    $newRoomStatus->date = $date;
+                    $newRoomStatus->save();
+                }
+                //跟新房态记录
+                else{
+
+                    //跟新现付 还是 预付
+                    if($payType == 1)
+                    {
+
+                        $oldStatus->room_status = $roomStatus;
+                        $oldStatus->num_of_blocked_room = $numOfBlockedRoom;
+
+
+                    }
+                    else if($payType == 2){
+                        $oldStatus->prepaid_room_status = $roomStatus;
+                        $oldStatus->prepaid_num_of_blocked_room = $numOfBlockedRoom;
+                    }
+                    //现付预付都更新
+                    else{
+
+                        $oldStatus->room_status = $roomStatus;
+                        $oldStatus->num_of_blocked_room = $numOfBlockedRoom;
+                        $oldStatus->prepaid_room_status = $roomStatus;
+                        $oldStatus->prepaid_num_of_blocked_room = $numOfBlockedRoom;
+                    }
+
+                    //$newRoomStatus->is_guarantee = 1;//默认
+                    $oldStatus->save();
+                }
+            }
+        }
+
+        return true;
+    }
 
 
 
@@ -404,16 +554,41 @@ class HotelService {
         return $priceList;
     }
 
-    //获取批量修改房态记录列表
-    public function getRoomStatusBatchLogList($hotelId)
-    {
-        return RoomStatusBatchLog::where('hotel_id',$hotelId)->get();
-    }
+
 
     //获取批量修改房价申请列表
     public function getRoomPriceBatchRequestList($hotelId)
     {
         return RoomPriceBatchRequest::where('hotel_id',$hotelId)->get();
+    }
+
+
+
+    //提交单次房态修改请求
+    public function roomStatusUpdateSubmit(Request $request)
+    {
+        $hotelId = $request->input('hotelId');
+        $roomId = $request->input('roomId');
+        $payType= $request->input('payType');
+        $date = $request->input('date');
+        $numOfBlockedRoom = $request->input('numOfBlockedRoom');
+        $roomStatus = $request->input('roomStatus');
+
+        $updateRoomStatus=  RoomStatus::where(['hotel_id'=>$hotelId,
+            'room_id'=>$roomId,
+            'date'=>$date])->first();
+        if($payType==1)
+        {
+            $updateRoomStatus->num_of_blocked_room =$numOfBlockedRoom;
+            $updateRoomStatus->room_status = $roomStatus;
+
+        }
+        else{
+            $updateRoomStatus->prepaid_num_of_blocked_room =$numOfBlockedRoom;
+            $updateRoomStatus->prepaid_room_status = $roomStatus;
+        }
+
+        return $updateRoomStatus->save();
     }
 
 
@@ -545,132 +720,6 @@ class HotelService {
 
         return true;
     }
-
-
-
-    //提交处理批量修改房态请求
-    public function roomStatusBatchRequestSubmit(Request $request)
-    {
-
-        $hotelId = $request->input('hotelId');
-
-        //选择的房型
-        $roomTypeList = explode(' ', trim($request->input('selectedRoomType')));
-
-        //付款方式
-        $payType = $request->input('payType');
-
-        //改房态日期范围
-        $dateFrom = $request->input('dateRangeFrom');
-        $dateTo = $request->input('dateRangeTo');
-
-        //获取房间状态
-        $roomStatus = $request->input('roomStatus');
-
-        //获取保留房数量
-        $numOfBlockedRoom= $request->input('numOfBlockedRoom');
-
-        //时间差的天数
-        $daysRange=round((strtotime($dateTo)-strtotime( $dateFrom))/86400)+1;
-
-        foreach($roomTypeList as $room) {
-
-            $newRoomStatusChangeLog = new RoomStatusBatchLog();
-            $newRoomStatusChangeLog->hotel_id = $hotelId;
-            $newRoomStatusChangeLog->room_id = $room;
-            $newRoomStatusChangeLog->pay_type = $payType;
-            $newRoomStatusChangeLog->date_from = $dateFrom;
-            $newRoomStatusChangeLog->date_to = $dateTo;
-            $newRoomStatusChangeLog->room_status = $roomStatus;
-            $newRoomStatusChangeLog->num_of_blocked_room = $numOfBlockedRoom;
-            $newRoomStatusChangeLog->is_guarantee = 1;
-            $newRoomStatusChangeLog->request_date = date('Y-m-d');
-
-            //log 存入数据库
-            if(!$newRoomStatusChangeLog->save())
-            {
-                //return false;
-            }
-
-
-            //循环处理房态更改请求 --房价的更改需要审批，但是房态不用 可直接修改
-            //每次循环日期 + 1
-            for($i=0; $i<$daysRange; $i++)
-            {
-                $date = date('Y-m-d', strtotime($dateFrom) + (86400 * $i));
-
-                $oldStatus = RoomStatus::where(['hotel_id' => $hotelId,
-                    'room_id' => $room,
-                    'date' => $date])->first();
-
-
-                //价格记录不存在, 创建新的价格
-                if($oldStatus == null)
-                {
-                    $newRoomStatus = new RoomStatus();
-                    $newRoomStatus->hotel_id = $hotelId;
-                    $newRoomStatus->room_id = $room;
-
-                        //跟新现付 还是 预付
-                        if($payType == 1)
-                        {
-
-                            $newRoomStatus->room_status = $roomStatus;
-                            $newRoomStatus->num_of_blocked_room = $numOfBlockedRoom;
-
-
-                        }
-                        else if($payType == 2){
-                            $newRoomStatus->prepaid_room_status = $roomStatus;
-                            $newRoomStatus->prepaid_num_of_blocked_room = $numOfBlockedRoom;
-                        }
-                        //现付预付都更新
-                        else{
-
-                            $newRoomStatus->room_status = $roomStatus;
-                            $newRoomStatus->num_of_blocked_room = $numOfBlockedRoom;
-                            $newRoomStatus->prepaid_room_status = $roomStatus;
-                            $newRoomStatus->prepaid_num_of_blocked_room = $numOfBlockedRoom;
-                        }
-
-                        //$newRoomStatus->is_guarantee = 1;//默认
-                        $newRoomStatus->date = $date;
-                        $newRoomStatus->save();
-                }
-                //跟新房态记录
-                else{
-
-                    //跟新现付 还是 预付
-                    if($payType == 1)
-                    {
-
-                        $oldStatus->room_status = $roomStatus;
-                        $oldStatus->num_of_blocked_room = $numOfBlockedRoom;
-
-
-                    }
-                    else if($payType == 2){
-                        $oldStatus->prepaid_room_status = $roomStatus;
-                        $oldStatus->prepaid_num_of_blocked_room = $numOfBlockedRoom;
-                    }
-                    //现付预付都更新
-                    else{
-
-                        $oldStatus->room_status = $roomStatus;
-                        $oldStatus->num_of_blocked_room = $numOfBlockedRoom;
-                        $oldStatus->prepaid_room_status = $roomStatus;
-                        $oldStatus->prepaid_num_of_blocked_room = $numOfBlockedRoom;
-                    }
-
-                    //$newRoomStatus->is_guarantee = 1;//默认
-                    $oldStatus->save();
-                }
-            }
-        }
-
-        return true;
-    }
-
 
 
     public function confirmRoomPriceRequest(Request $request){
@@ -1054,8 +1103,9 @@ class HotelService {
 
         return $isUpdate;
     }
-
-    public function getStepOneInfo($hotelId)
+///////////////
+    //获取酒店基本信息
+    public function getHotelBasicInfo($hotelId)
     {
         $hotelInfo = Hotel::where('id',$hotelId)->select('name','address_id','postcode','phone','fax','website','total_rooms','hotel_features','description')->first();
 
@@ -1064,14 +1114,25 @@ class HotelService {
         return $hotelInfo;
 
     }
-
+    //获取酒店地址
     public function getHotelAddress($hotelId = 0)
     {
-        $addressId = Hotel::where('id',$hotelId)->select('address_id')->first()->address_id;
+        $addressId ='';
+        $hotel= Hotel::where('id',$hotelId)->select('address_id')->first();
+
+        if($hotel != null)
+        {
+            $addressId =$hotel->address_id;
+        }
+        else{
+            abort(404);
+        }
+
 
         return Address::where('id',$addressId)->select('province_code','city_code','district_code','detail')->first();
     }
 
+    //todo 修改
     public function getStepTwoInfo($hotelId)
     {
         $surrounding_environment = Hotel::where('id',$hotelId)->select('surrounding_environment')->first()->surrounding_environment;
@@ -1098,12 +1159,280 @@ class HotelService {
         }
 
 
+
         $StepTwoInfo = new Hotel();
         $StepTwoInfo->itemArr = $itemArr;
         $StepTwoInfo->hotelPolicy = $hotelPolicy;
         $StepTwoInfo->surrounding_environment = $surrounding_environment;
 
         return $StepTwoInfo;
+    }
+    //获取酒店周边交通信息
+    public function getHotelSurrounding($hotelId)
+    {
+        $hotelSurrounding = HotelSurrounding::where('hotel_id',$hotelId)->get();
+        return $hotelSurrounding;
+    }
+
+    //添加或修改酒店周边环境
+    public function createOrUpdateSurrounding(Request $request)
+    {
+
+        $createOrUpdate  = $request->input('createOrUpdate');
+        if($createOrUpdate == 'create')
+        {
+            $surrounding = new HotelSurrounding();
+            $surrounding->hotel_id = $request->input('hotelId');
+            $surrounding->name = $request->input('name');
+            $surrounding->distance = $request->input('distance');
+            $surrounding->by_taxi = $request->input('byTaxi');
+            $surrounding->by_walk = $request->input('byWalk');
+            $surrounding->by_bus = $request->input('byBus');
+            $surrounding->by_Sub = $request->input('bySub');
+            $surrounding->save();
+            return $surrounding->id;
+        }
+        else{
+
+            $surrounding =  HotelSurrounding::find($request->input('surroundingId'));
+            $surrounding->name = $request->input('name');
+            $surrounding->distance = $request->input('distance');
+            $surrounding->by_taxi = $request->input('byTaxi');
+            $surrounding->by_walk = $request->input('byWalk');
+            $surrounding->by_bus = $request->input('byBus');
+            $surrounding->by_Sub = $request->input('bySub');
+            return $surrounding->save();
+
+        }
+
+    }
+
+
+    //删除周边环境项目
+    public function deleteSurroundingItem(Request $request){
+        return HotelSurrounding::where('id',$request->input('surroundingId'))->delete();
+    }
+
+
+    //获得酒店政策
+    public function getHotelPolicy($hotelId)
+    {
+
+        $hotelPolicy = hotelPolicy::where('hotel_id',$hotelId)->select('id','checkin_time','checkout_time','prepaid_deposit','catering_arrangements','other_policy')->first();
+
+
+        if($hotelPolicy != null)
+        {
+            $check_time = explode(' | ', $hotelPolicy->checkin_time);
+
+
+            $hotelPolicy->checkinTimeFrom = $check_time[0];
+            if(count($check_time) ==2)
+                $hotelPolicy->checkinTimeTo = $check_time[1];
+
+            $checkout_time = explode(' | ', $hotelPolicy->checkout_time);
+
+            $hotelPolicy->checkoutTimeFrom = $checkout_time[0];
+            if(count($checkout_time) ==2)
+                $hotelPolicy->checkoutTimeTo = $checkout_time[1];
+        }
+
+        return $hotelPolicy;
+
+    }
+
+
+    //获得酒店联系人列表
+    public function getHotelContactList($hotelId)
+    {
+        $contactList = HotelContact::where('hotel_id', $hotelId)->get();
+        return $contactList;
+    }
+
+    //创建或更新酒店联系人
+    public function createOrUpdateContact(Request $request)
+    {
+        $createOrUpdate  = $request->input('createOrUpdate');
+        if($createOrUpdate == 'create')
+        {
+            $surrounding = new HotelContact();
+            $surrounding->hotel_id = $request->input('hotelId');
+            $surrounding->name = $request->input('name');
+            $surrounding->telephone = $request->input('telephone');
+            $surrounding->mobile = $request->input('mobile');
+            $surrounding->position = $request->input('position');
+            $surrounding->fax = $request->input('fax');
+            $surrounding->email = $request->input('email');
+            $surrounding->save();
+            return $surrounding->id;
+        }
+        else{
+
+            $surrounding =  HotelContact::find($request->input('contactId'));
+            $surrounding->name = $request->input('name');
+            $surrounding->telephone = $request->input('telephone');
+            $surrounding->mobile = $request->input('mobile');
+            $surrounding->position = $request->input('position');
+            $surrounding->fax = $request->input('fax');
+            $surrounding->email = $request->input('email');
+            return $surrounding->save();
+
+        }
+    }
+
+
+    //删除酒店联系人
+    public function deleteHotelContact(Request $request){
+        return HotelContact::where('id',$request->input('contactId'))->delete();
+    }
+
+
+    //获取酒店设施列表
+    public function getHotelFacilities($hotelId)
+    {
+        $facilities = [];
+        $facilities['settings'] = HotelFacility::where('hotel_id', $hotelId)->select('facilities_checkbox')->first();
+
+        $facilities['category'] =  HotelFacilityCategory::all();
+        $facilitiesList = [];
+        foreach($facilities['category'] as $category)
+        {
+            $facilitiesList[$category->id] = HotelFacilityList::where('category',$category->id)->get();
+
+        }
+        $facilities['list'] = $facilitiesList;
+        return $facilities;
+
+
+    }
+
+    //新增或修改酒店设施
+    public function createOrUpdateHotelFacilities(Request $request)
+    {
+
+
+        $createOrUpdate = $request->input('createOrUpdate');
+        $hotelId = $request->input('hotelId');
+        $selectedFacilityArray =  $request->input('facilityItem');
+        $selectedFacilityList = '';
+        for($i = 0; $i<count($selectedFacilityArray); $i++)
+        {
+            $selectedFacilityList = $selectedFacilityList.$selectedFacilityArray[$i];
+            if($i != count($selectedFacilityArray) -1 )
+            {
+                $selectedFacilityList = $selectedFacilityList.',';
+            }
+        }
+
+
+
+        if ($createOrUpdate == "update") {
+            $hotelFacility = HotelFacility::where('hotel_id',$hotelId)->first();
+            $hotelFacility->facilities_checkbox = $selectedFacilityList;
+
+            return $hotelFacility->save();
+        }else{
+            $newHotelFacility = new HotelFacility();
+            $newHotelFacility -> hotel_id  = $hotelId;
+            $newHotelFacility -> facilities_checkbox = $selectedFacilityList;
+            return $newHotelFacility->save();
+        }
+
+    }
+
+
+    //获得酒店图片
+    public function getHotelImages($hotelId)
+    {
+
+        $hotelSectionAndImage = [];
+
+        $hotelSectionAndImage['sectionList'] = HotelSection::select('id','name','type')->get();
+
+        $hotelSectionAndImage['roomList'] = Room::where('hotel_Id',$hotelId)->select('id','room_name')->get();
+
+
+        $hotelSectionAndImage['image'] = HotelImage::select('id','image_key','is_cover','desc','link','status')->where('hotel_id',$hotelId)->where('section_id',1)->get();
+
+
+        return $hotelSectionAndImage;
+    }
+
+    //获取酒店区图片
+    public function getSectionImage(Request $request)
+    {
+        return HotelImage::select('id','is_cover','image_key','desc','link','status')->where('hotel_id',$request->input('hotelId'))->where('section_id',$request->input('sectionId'))->where('type',$request->input('type'))->get();
+    }
+
+
+    //设置酒店封面照片
+    public function setHotelImageCover(Request $request)
+    {
+
+        $hotelId = $request->input('hotelId');
+        $imageId = $request->input('imageId');
+        $coverCount = HotelImage::where(['hotel_id'=>$hotelId,'is_cover'=>1])->count();
+        if($coverCount <= 16)
+        {
+            if(HotelImage::where(['hotel_id'=>$hotelId,'id'=>$imageId])->update(['is_cover'=> 1]))
+            {
+                return 1;
+            }
+            else{
+                return 2;
+            }
+        }
+        else{
+            return 3;//已达到封面最大值
+        }
+    }
+
+    //取消酒店封面图片
+    public function cancelHotelCoverImage(Request $request)
+    {
+        $hotelId = $request->input('hotelId');
+        $imageId = $request->input('imageId');
+        return HotelImage::where(['hotel_id'=>$hotelId,'id'=>$imageId])->update(['is_cover'=> 0]);
+    }
+
+    //获取酒店封面图片
+    public function getHotelCoverImage(Request $request)
+    {
+        $hotelId = $request->input('hotelId');
+        $coverImageList = HotelImage::where(['hotel_id'=> $hotelId,
+                                      'is_cover'=>1])->get();
+
+
+        $sectionList = HotelSection::select('id','name','type')->get();
+
+        $roomList= Room::where('hotel_Id',$hotelId)->select('id','room_name')->get();
+
+        foreach($coverImageList as $image)
+        {
+            //图片属于酒店公共区域
+            if($image->type  ==1)
+            {
+                foreach($sectionList as  $section)
+                {
+                    if($section->id ==$image->section_id )
+                    {
+                        $image->section_name = $section->name;
+                    }
+                }
+            }
+            //图片属于房间
+            else if($image->type ==2)
+            {
+                foreach($roomList as  $room)
+                {
+                    if($room->id ==$image->section_id )
+                    {
+                        $image->section_name = $room->room_name;
+                    }
+                }
+            }
+        }
+        return $coverImageList;
     }
 
     public function getStepThreeInfo($hotelId)

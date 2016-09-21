@@ -1,4 +1,4 @@
-@extends('Admin.Hotel.hotelInfo')
+@extends('Admin.Hotel.maintainHotelInfo')
 
 
 @section('resources')

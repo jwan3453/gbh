@@ -17,8 +17,8 @@ class CreateHotelPolicyTable extends Migration
         Schema::create('hotel_policy', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('hotel_id');
-            $table->dateTime('check_time');//入住时间
-            $table->dateTime('checkout_time');//离店时间
+            $table->string('checkin_time',200);//入住时间
+            $table->string('checkout_time',200);//离店时间
             $table->string('prepaid',500);//酒店提示
             $table->string('catering_arrangements',100);//膳食安排
             $table->string('other_policy',500);//是否可携带宠物

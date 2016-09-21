@@ -86,12 +86,13 @@
                                 @if($roomStatus->emptyStatus == true)
                                     {{$roomStatus->room_status}}
                                 @else
-                                    <span class="up">保留房:<span class="r-p">{{$roomStatus->num_of_blocked_room}}</span></span>
+                                    <span class="up">保留房:<span class="n-of-blocked-room">{{$roomStatus->num_of_blocked_room}}</span></span>
                                     <span class="down">已预订:<span class="n-of-sold-room">{{$roomStatus->num_of_sold_room}}</span></span>
                                 @endif
-                                <input type="hidden" class="r-c" value="{{$roomStatus->commission}}">
+
                                 <input type="hidden" class="r-id" value="{{$roomStatus->room_id}}">
                                 <input type="hidden" class="p-d" value="{{$roomStatus->date}}">
+                                <input type="hidden" class="r-s" value="{{$roomStatus->room_status}}">
                                 <input type="hidden" class="p-t" value="1">
                             </td>
                         @endforeach
@@ -106,12 +107,12 @@
                                 @if($roomStatus->emptyStatus == true)
                                     {{$roomStatus->prepaid_room_status}}
                                 @else
-                                    <span class="up">保留房:<span class="r-">{{$roomStatus->num_of_blocked_room}}</span></span>
-                                    <span class="down">已预订:<span class="n-of-sold-room">{{$roomStatus->num_of_sold_room}}</span></span>
+                                    <span class="up">保留房:<span class="n-of-blocked-room">{{$roomStatus->prepaid_num_of_blocked_room}}</span></span>
+                                    <span class="down">已预订:<span class="n-of-sold-room">{{$roomStatus->prepaid_num_of_sold_room}}</span></span>
                                 @endif
-                                <input type="hidden" class="r-c" value="{{$roomStatus->prepaid_commission}}">
                                 <input type="hidden" class="r-id" value="{{$roomStatus->room_id}}">
                                 <input type="hidden" class="p-d" value="{{$roomStatus->date}}">
+                                <input type="hidden" class="r-s" value="{{$roomStatus->prepaid_room_status}}">
                                 <input type="hidden" class="p-t" value="2">
                             </td>
                         @endforeach
@@ -121,25 +122,22 @@
         </div>
 
 
-        <div class="update-price-popup" id="updatePricePopup">
+        <div class="update-room-cell-popup" id="updateStatusPopup">
             <i class="icon remove"> </i>
-            <form id="updateRoomPriceFrom">
+            <form id="updateRoomStatusFrom">
                 <input type="hidden" name="hotelId" value="{{$hotelId}}">
                 <input type="hidden" name="roomId" id="roomId" value="">
-                <input type="hidden" name="paidType" id="paidType" value="">
+                <input type="hidden" name="payType" id="payType" value="">
                 <input type="hidden" name="date" id="date" value="">
                 <div>
-                    <label>房价:</label> <input type="text" id="roomRate" name="roomRate"/>
+                    <label>保留房:</label> <input type="text" id="numOfBlockedRoom" name="numOfBlockedRoom"/>
                 </div>
                 <div>
-                    <label>佣金:</label> <input type="text" id="roomComm" name="roomComm"/>
-                </div>
-                <div>
-                    <label>早餐:</label>
-                    <select  name="breakfast" id="breakfast">
-                        <option value="0">0份</option>
-                        <option value="1">1份</option>
-                        <option value="2">2份</option>
+                    <label>房间状态:</label>
+                    <select  name="roomStatus" id="roomStatus">
+                        <option value="0">房间关闭</option>
+                        <option value="1">可预订</option>
+                        <option value="2">满房</option>
                     </select>
 
                 </div>
@@ -172,76 +170,70 @@
 //                var top= $(this).offset().top;
 //                var left = $(this).offset().left;
 //                $('#updatePricePopup').css('top',top-30).css('left',left-170).show();
-                        $(this).addClass('price-column-hover');
+                        $(this).addClass('room-column-hover');
 
                     },
                     function(){
-                        $(this).removeClass('price-column-hover');
+                        $(this).removeClass('room-column-hover');
 
                     })
 
-            //点击弹出变价框
-            var currentPriceObj=null;
+            //点击弹出房态框
+            var currentStatusObj=null;
             $('.detail-column').click(function(){
 
-                currentPriceObj = $(this);
+                currentStatusObj = $(this);
 
                 $('#roomId').val($(this).find('.r-id').val());
-                $('#paidType').val($(this).find('.p-t').val());
+                $('#payType').val($(this).find('.p-t').val());
                 $('#date').val($(this).find('.p-d').val());
-                $('#roomRate').val($(this).find('.r-p').text());
-                $('#roomComm').val($(this).find('.r-c').val());
-                $('#breakfast').val($(this).find('.n-of-bf').text());
+                $('#numOfBlockedRoom').val($(this).find('.n-of-blocked-room').text());
+                $('#roomStatus').val($(this).find('.r-s').val());
 
 
-                if($('#updatePricePopup').css('display') !== 'none')
+                if($('#updateStatusPopup').css('display') !== 'none')
                 {
-                    $('#updatePricePopup').hide();
+                    $('#updateStatusPopup').hide();
                 }
                 var top= $(this).offset().top;
                 var left = $(this).offset().left;
-                $('#updatePricePopup').css('top',top).css('left',left-200).fadeIn();
+                $('#updateStatusPopup').css('top',top).css('left',left-200).fadeIn();
             })
 
-            //关闭变价框
+            //关闭房态框
             $('.remove').click(function(){
-                $('#updatePricePopup').hide();
+                $('#updateStatusPopup').hide();
             })
 
-            //提交新的房价
+            //提交新的房态
             $('#submitPrice').click(function(){
-                if($('#roomRate').val()==='' || parseInt($('#roomRate').val())=== 0 )
+                if($('#numOfBlockedRoom').val()==='' || parseInt($('#numOfBlockedRoom').val())=== 0 )
                 {
-                    toastAlert('房价不能为空或零');
-                    return;
-                }
-                if($('#roomComm').val()==='' || parseInt($('#roomComm').val())=== 0 )
-                {
-                    toastAlert('佣金不能为空或零');
+                    toastAlert('房间数量不能为空或零');
                     return;
                 }
 
-                //提交价格
+                //提交房态
 
                 var options = {
-                    url: '/admin/manageRoomPrice/roomPriceUpdateSubmit',
+                    url: '/admin/manageRoomStatus/roomStatusUpdateSubmit',
                     type: 'post',
                     dataType: 'json',
-                    data: $("#updateRoomPriceFrom").serialize(),
+                    data: $("#updateRoomStatusFrom").serialize(),
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
                     },
                     success: function (data) {
                         if(data.statusCode===1)
                         {
-                            //动态更改更新后的房价
-                            currentPriceObj.find('.r-p').text($('#roomRate').val());
-                            currentPriceObj.find('.n-of-bf').text($('#breakfast').val());
-                            $('#updatePricePopup').hide();
+                            //动态更改更新后的房态
+                            currentStatusObj.find('.n-of-blocked-room').text($('#numOfBlockedRoom').val());
+                            currentStatusObj.find('.r-s').val($('#roomStatus').val());
+                            $('#updateStatusPopup').hide();
                             toastAlert('更新成功',1);
                         }
                         else{
-                            $('#updatePricePopup').hide();
+                            $('#updateStatusPopup').hide();
                             toastAlert('更新失败');
                         }
                     },

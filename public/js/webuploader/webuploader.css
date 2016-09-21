@@ -6,9 +6,7 @@
 	clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
     clip: rect(1px,1px,1px,1px);
 }
-
-/******原样式**********/
-/*.webuploader-pick {
+.webuploader-pick {
 
 	display: inline-block;
 	cursor: pointer;
@@ -19,23 +17,9 @@
 	text-align: center;
 	width: 120px;
 
-}*/
-
-.webuploader-pick{
-	width: 100px;
-	height: 28px;
-	line-height: 28px;
-	font-size: 12px;
-	text-align: center;
-	border: 1px solid #639ae3;
-	float: left;
-	margin-left: 20px;
-	margin-top: 5px;
-	border-radius: 2px;
-	cursor: pointer;
 }
 .webuploader-pick-hover {
-	/*background: #00a2d4;*/
+	background: #00a2d4;
 }
 
 .webuploader-pick-disable {

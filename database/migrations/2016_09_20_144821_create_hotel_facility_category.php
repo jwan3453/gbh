@@ -3,20 +3,20 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateExtraServiceTable extends Migration
+class CreateHotelFacilityCategory extends Migration
 {
     /**
      * Run the migrations.
-     *
-     *---附加服务----
      *
      * @return void
      */
     public function up()
     {
-        Schema::create('extra_service', function (Blueprint $table) {
+        Schema::create('hotel_facility_category', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('extra_name',100);
+            $table->string('service_name',100);
+            $table->string('service_name_eg',100);
+            $table->integer('service_type');
         });
     }
 
@@ -27,6 +27,6 @@ class CreateExtraServiceTable extends Migration
      */
     public function down()
     {
-        Schema::drop('extra_service');
+        Schema::drop('hotel_section');
     }
 }

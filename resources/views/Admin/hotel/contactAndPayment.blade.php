@@ -180,21 +180,21 @@
 	}
 
 	function addContact(_this) {
-		var a = '';
-		a += '<div class="contact-box">';
-		a += '		<div class="contact-box-row">';
-		a += '			<label>姓名：</label>';
-		a += '			<input type="text" class="contact-input" name="contactName[]">';
+		var html =
+		 	 '<div class="contact-box">'
+			 '		<div class="contact-box-row">'
+			 '			<label>姓名：</label>'
+		a += '			<input type="text" class="contact-input" name="contactName[]">'
 
-		a += '			<label>电话：</label>';
-		a += '			<input type="text" class="contact-input" name="contactTel[]">';
+		a += '			<label>电话：</label>'
+		a += '			<input type="text" class="contact-input" name="contactTel[]">'
 
-		a += '			<label>手机：</label>';
-		a += '			<input type="text" class="contact-input" name="contactPhone[]">';
+		a += '			<label>手机：</label>'
+		a += '			<input type="text" class="contact-input" name="contactPhone[]">'
 		a += '		</div>';
-		a += '		<div class="contact-box-row">';
-		a += '			<label>职务：</label>';
-		a += '			<input type="text" class="contact-input" name="contactDuties[]">';
+		a += '		<div class="contact-box-row">'
+		a += '			<label>职务：</label>'
+		a += '			<input type="text" class="contact-input" name="contactDuties[]">'
 
 		a += '			<label>传真：</label>';
 		a += '			<input type="text" class="contact-input" name="contactFax[]">';

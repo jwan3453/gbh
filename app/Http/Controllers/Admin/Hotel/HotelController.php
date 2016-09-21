@@ -85,6 +85,7 @@ class HotelController extends Controller
     //
     public function storeHotel(Request $request)
     {
+
         //
         $isCreate =  $this->hotelService->createHotel($request);
         //判断是创建酒店 还是更新酒店
@@ -98,7 +99,8 @@ class HotelController extends Controller
             $addressInfo = $province.$city.$district.$detail;
 
             if ($createOrUpdate == "update") {
-                return redirect(url('admin/manageHotel/editGeoLocation/'.$isCreate));
+                $hotelId = $request->input('hotelId');
+                return redirect(url('admin/manageHotel/hotelInfo/'.$hotelId.'/maintainHotelBasicInfo'));
             }else{
                 $hotelInfo = new Hotel();
                 return view('Admin.Hotel.geoLocation')->with('createOrUpdate',$createOrUpdate)->with('hotelInfo',$hotelInfo)->with('address',$addressInfo)->with('hotelId',$isCreate);
@@ -118,6 +120,7 @@ class HotelController extends Controller
         return view('Admin.Hotel.geoLocation')->with('address',$address)->with('hotelId',$hotelId)->with('hotelInfo',$hotelInfo);
     }
 
+    //todo  修改
     public function insertPolicy(Request $request)
     {
         $isCreate = $this->hotelService->insertPolicy($request->input());
@@ -228,11 +231,11 @@ class HotelController extends Controller
         return response($jsonResult->toJson());
     }
 
-    //编辑酒店基本信息
+    //编辑酒店基本信息 //删除
     public function editHotel($hotelId)
     {
         $geoData = $this->commonService->getGeoDetail();
-        $hotelInfo = $this->hotelService->getStepOneInfo($hotelId);
+        $hotelInfo = $this->hotelService->getHotelBasicInfo($hotelId);
 
         $province = $this->commonService->getAdressInfo('province',$hotelInfo->address->province_code);
         $city = $this->commonService->getAdressInfo('city',$hotelInfo->address->city_code);
@@ -249,7 +252,7 @@ class HotelController extends Controller
     }
 
 
-    //创建编辑酒店地理信息
+    //创建编辑酒店地理信息 //删除
     public function editGeoLocation($hotelId)
     {
         //获取地址信息, 省份代码
@@ -355,10 +358,7 @@ class HotelController extends Controller
         return $this->imageService->uploadImage($request);
     }
 
-    public function deleteHotelImage(Request $request)
-    {
-        return $this->imageService->deleteHotelImage($request->input());
-    }
+
     
     public function coverHotelImage(Request $request)
     {
@@ -418,6 +418,312 @@ class HotelController extends Controller
 
 
 
+    //////////////////////////////////////////////////////////////////////////////////////////////////////
+    //维护酒店基本信息
+    public function maintainHotelBasicInfo($hotelId)
+    {
+        $geoData = $this->commonService->getGeoDetail();
+        $hotelInfo = $this->hotelService->getHotelBasicInfo($hotelId);
+
+        $province = $this->commonService->getAdressInfo('province',$hotelInfo->address->province_code);
+        $city = $this->commonService->getAdressInfo('city',$hotelInfo->address->city_code);
+        $district = $this->commonService->getAdressInfo('district',$hotelInfo->address->district_code);
+
+        $hotelInfo->addressInfo = $province . "-" .$city . "-" . $district;
+        $hotelInfo->detail = $hotelInfo->address->detail;
+
+        $hotelInfo->id = $hotelId;
+
+        $createOrUpdate = "update";
+
+        return view('Admin.Hotel.maintainHotelBasicInfo')->with('geoData',$geoData)
+                                                    ->with('hotelInfo',$hotelInfo)
+                                                    ->with('createOrUpdate',$createOrUpdate)
+                                                    ->with('hotelId',$hotelId);
+    }
+
+    //维护酒店交通信息
+    public function maintainHotelGeoInfo($hotelId){
+
+        //获取地址信息, 省份代码
+        $addressInfo = $this->hotelService->getHotelAddress($hotelId);
+
+        //获取省份城市名字
+        $province = $this->commonService->getAdressInfo('province',$addressInfo->province_code);
+        $city = $this->commonService->getAdressInfo('city',$addressInfo->city_code);
+        $district = $this->commonService->getAdressInfo('district',$addressInfo->district_code);
+
+        $detail = $addressInfo->detail;
+
+        $address = $province . $city . $district .$detail;
+        $hotelSurrounding = $this->hotelService->getHotelSurrounding($hotelId);
+
+
+        $createOrUpdate = "update";
+
+        return view('Admin.Hotel.maintainHotelGeoInfo')->with('address',$address)->with('hotelId',$hotelId)->with('hotelSurrounding',$hotelSurrounding)->with('createOrUpdate',$createOrUpdate);
+
+    }
+
+
+    //维护酒店周边环境
+    public function createOrUpdateSurrounding(Request $request)
+    {
+        $jsonResult = new MessageResult();
+        $result =  $this->hotelService->createOrUpdateSurrounding($request);
+
+        if($result)
+        {
+            $jsonResult->statusCode =1;
+            $jsonResult->statusMsg ='更新成功';
+            $jsonResult->extra = $result;
+        }
+        else{
+            $jsonResult->statusCode =2;
+            $jsonResult->statusMsg ='更新失败';
+        }
+        return response($jsonResult->toJson());
+    }
+
+
+    //删除酒店周边环境项目
+    public function deleteSurroundingItem(Request $request)
+    {
+        $jsonResult = new MessageResult();
+        $result =  $this->hotelService->deleteSurroundingItem($request);
+
+        if($result)
+        {
+            $jsonResult->statusCode =1;
+            $jsonResult->statusMsg ='删除成功';
+        }
+        else{
+            $jsonResult->statusCode =2;
+            $jsonResult->statusMsg ='删除失败';
+        }
+        return response($jsonResult->toJson());
+    }
+
+    //维护酒店政策
+    public function maintainHotelPolicy($hotelId)
+    {
+        $hotelPolicy  = $this->hotelService->getHotelPolicy($hotelId);
+        $timespans = ['00:00','00:30','01:00','01:30','02:00','02:30',
+                     '03:00','03:30','04:00','04:30','05:00','05:30',
+                     '06:00','06:30','07:00','07:00','08:00','08:00',
+                     '09:00','09:30','10:00','10:30','11:00','11:30',
+                     '12:00','12:30'];
+        return view('Admin.Hotel.maintainHotelPolicy')->with('hotelId',$hotelId)
+                                                      ->with('hotelPolicy',$hotelPolicy)->with('timespans',$timespans);
+    }
+
+    //创建或更新酒店政策
+    public function createOrUpdatePolicy(Request $request)
+    {
+
+        $result = $this->hotelService->insertPolicy($request);
+        $createOrupdate = $request->input('createOrupdate');
+        $hotelId = $request->input('hotelId');
+
+        if ($result) {
+            return redirect(url('admin/manageHotel/hotelInfo/'.$hotelId.'/maintainHotelPolicy'));
+        }
+        else{
+            return redirect(url('admin/manageHotel/createHotelError/2/'.$hotelId));
+        }
+    }
+
+    //维护酒店联系人
+    public function maintainHotelContact($hotelId)
+    {
+        $contactList =  $this->hotelService->getHotelContactList($hotelId);
+        return view('Admin.Hotel.maintainHotelContact')->with('hotelId', $hotelId)->with('contactList',$contactList);
+    }
+
+
+
+    //创建或更新酒店联系人
+    public function createOrUpdateContact(Request $request)
+    {
+        $jsonResult = new MessageResult();
+        $result =  $this->hotelService->createOrUpdateContact($request);
+
+        if($result)
+        {
+            $jsonResult->statusCode =1;
+            $jsonResult->statusMsg ='更新成功';
+            $jsonResult->extra = $result;
+        }
+        else{
+            $jsonResult->statusCode =2;
+            $jsonResult->statusMsg ='更新失败';
+        }
+        return response($jsonResult->toJson());
+
+    }
+
+
+    //删除酒店联系人
+    public function deleteHotelContact(Request $request)
+    {
+        $jsonResult = new MessageResult();
+        $result =  $this->hotelService->deleteHotelContact($request);
+
+        if($result)
+        {
+            $jsonResult->statusCode =1;
+            $jsonResult->statusMsg ='删除成功';
+        }
+        else{
+            $jsonResult->statusCode =2;
+            $jsonResult->statusMsg ='删除失败';
+        }
+        return response($jsonResult->toJson());
+    }
+
+    //维护管理酒店设施
+    public function maintainHotelFacilities($hotelId)
+    {
+        $createOrUpdate = 'create';
+        $hotelFacilities = $this->hotelService->getHotelFacilities($hotelId);
+
+
+        if($hotelFacilities['settings'] != null)
+        {
+            $createOrUpdate = 'update';
+        }
+
+        return view('Admin.Hotel.maintainHotelFacilities')->with('hotelId',$hotelId)->with('hotelFacilities',$hotelFacilities)->with('createOrUpdate',$createOrUpdate);
+
+    }
+
+    //新增或修改酒店设施
+    public function createOrUpdateHotelFacilities(Request $request)
+    {
+        $result =  $this->hotelService->createOrUpdateHotelFacilities($request);
+        if($result)
+        {
+
+        }
+        else{
+            ///
+        }
+    }
+
+
+    //管理酒店图片
+    public function maintainHotelImage($hotelId)
+    {
+        $sectionListAndImage = $this->hotelService->getHotelImages($hotelId);
+        return view('Admin.Hotel.maintainHotelImage')->with('sectionListAndImage',$sectionListAndImage)->with('hotelId',$hotelId);
+    }
+
+    //上传酒店图片
+    public function uploadHotelImage(Request $request)
+    {
+        $jsonResult = new MessageResult();
+        $jsonResult = $this->imageService->uploadImage($request);
+        return response($jsonResult->toJson());
+    }
+
+    //删除酒店图片
+    public function deleteHotelImage(Request $request){
+        $jsonResult = new MessageResult();
+        $jsonResult = $this->imageService->deleteImage($request);
+
+        return response($jsonResult->toJson());
+    }
+
+    //获取酒店区域图片
+    public function getSectionImage(Request $request)
+    {
+        $jsonResult = new MessageResult();
+        //返回酒店区域图片列表
+        $result =  $this->hotelService->getSectionImage($request);
+
+
+        if(count($result) > 0)
+        {
+            $jsonResult->statusCode =1;
+            $jsonResult->statusMsg ='获取成功';
+            $jsonResult->extra = $result;
+        }
+        else{
+            $jsonResult->statusCode =2;
+            $jsonResult->statusMsg ='暂时没有图片';
+        }
+        return response($jsonResult->toJson());
+    }
+
+    //设置酒店封面图片
+    public function setHotelCoverImage(Request $request)
+    {
+        $jsonResult = new MessageResult();
+        $result =  $this->hotelService->setHotelImageCover($request);
+
+
+        if($result == 1)
+        {
+            $jsonResult->statusCode =1;
+            $jsonResult->statusMsg ='设置成功';
+
+        }
+        else if($result == 2){
+            $jsonResult->statusCode =2;
+            $jsonResult->statusMsg ='设置失败';
+        }
+        else{
+            $jsonResult->statusCode =3;
+            $jsonResult->statusMsg ='封面达到最大数';
+        }
+        return response($jsonResult->toJson());
+    }
+    //取消酒店封面图片
+    public function cancelHotelCoverImage(Request $request)
+    {
+        $jsonResult = new MessageResult();
+        $result =  $this->hotelService->cancelHotelCoverImage($request);
+
+
+        if($result)
+        {
+            $jsonResult->statusCode =1;
+            $jsonResult->statusMsg ='设置成功';
+
+        }
+        else {
+            $jsonResult->statusCode =2;
+            $jsonResult->statusMsg ='设置失败';
+        }
+        return response($jsonResult->toJson());
+    }
+
+
+    //获取酒店封面图片
+    public function getHotelCoverImage(Request $request)
+    {
+
+        $jsonResult = new MessageResult();
+        $result =  $this->hotelService->getHotelCoverImage($request);
+        if(count($result) > 0)
+        {
+            $jsonResult->statusCode =1;
+            $jsonResult->statusMsg ='获取成功';
+            $jsonResult->extra = $result;
+        }
+        else{
+            $jsonResult->statusCode =2;
+            $jsonResult->statusMsg ='暂时没有图片';
+        }
+
+        return response($jsonResult->toJson());
+    }
+
+
+    //////////////////////////////////////////////////////////////////////////////////////////
+
+
+
     //管理房间
     public function manageRoom($hotelId){
         $roomList = $this->hotelService->getRoomTypeList($hotelId);
@@ -452,12 +758,7 @@ class HotelController extends Controller
         return redirect('/admin/manageHotel/hotelInfo/'.$request->input('hotelId').'/manageRoom');
     }
 
-    public function manageHotelImage($hotelId)
-    {
-        $list = $this->hotelService->gethotelImageManageCategory($hotelId);
-        
-        return view('Admin.Hotel.manageHotelImagePage')->with('list',$list)->with('hotelId',$hotelId);
-    }
+
 
 
     /******************************/
@@ -551,7 +852,7 @@ class HotelController extends Controller
 
         $jsonResult = new MessageResult();
         $result =  $this->hotelService->roomStatusBatchRequestSubmit($request);
-        if($request)
+        if($result)
         {
             $jsonResult->statusCode =1;
             $jsonResult->statusMsg ='更新成功';
@@ -561,6 +862,36 @@ class HotelController extends Controller
             $jsonResult->statusMsg ='更新失败';
         }
         return response($jsonResult->toJson());
+
+    }
+
+    //提交单次房态修改请求
+    public function roomStatusUpdateSubmit(Request $request){
+
+
+        $jsonResult = new MessageResult();
+        $result =  $this->hotelService->roomStatusUpdateSubmit($request);
+
+        if($result)
+        {
+            $jsonResult->statusCode =1;
+            $jsonResult->statusMsg ='更新成功';
+        }
+        else{
+            $jsonResult->statusCode =2;
+            $jsonResult->statusMsg ='更新失败';
+        }
+        return response($jsonResult->toJson());
+    }
+
+
+
+    //查看批量更改房态改变记录
+    public function roomStatusBatchLog($hotelId)
+    {
+        $roomTypeList = $this->hotelService->getRoomTypeList($hotelId);
+        $logList= $this->hotelService->getRoomStatusBatchLogList($hotelId);
+        return view('Admin.RoomStatus.showRoomStatusBatchLog')->with('hotelId',$hotelId)->with('roomTypeList',$roomTypeList)->with('logList',$logList);
 
     }
 
@@ -667,7 +998,7 @@ class HotelController extends Controller
 
         $jsonResult = new MessageResult();
         $result =  $this->hotelService->roomPriceUpdateSubmit($request);
-        if($request)
+        if($result)
         {
             $jsonResult->statusCode =1;
             $jsonResult->statusMsg ='更新成功';
@@ -680,13 +1011,14 @@ class HotelController extends Controller
     }
 
 
+
     //提交批量修改房价请求
     public function roomPriceBatchRequestSubmit(Request $request)
     {
 
         $jsonResult = new MessageResult();
         $result =  $this->hotelService->roomPriceBatchRequestSubmit($request);
-        if($request)
+        if($result)
         {
             $jsonResult->statusCode =1;
             $jsonResult->statusMsg ='申请提交成功';
@@ -719,6 +1051,7 @@ class HotelController extends Controller
 
 
 
+    //查看批量更改房价改变记录
     public function processRoomPriceRequest($hotelId)
     {
         $roomTypeList = $this->hotelService->getRoomTypeList($hotelId);

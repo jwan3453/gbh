@@ -1,167 +1,20 @@
-
-/*************site*********************/
+/***************公用*******************/
 
 body{
-	margin :0;
-	background-color: #d1dadf;
 	position: relative;
-	font-family: "Microsoft YaHei" !important;
-}
-.menu-box{
-	width: 160px;
-	background-color: #2d3c4f;
-	/*padding-top: 20px;*/
-	position: fixed;
-	top: 0;
-	bottom: 0;
-	left: 0;
-	height: 100%;
-	z-index:1001;
 }
 
-.menu-logo{
-	/*padding-bottom: 20px;*/
-}
-
-.menu-logo img{
-	width: 80px;
-	display:block;
-	margin: 0 auto;
-	margin-top: 20px;
-	margin-bottom: 20px;
-}
-
-.admin-menu-list li, .admin-menu-list a{
-	height: 60px;
-	line-height: 60px;
-	font-size: 14px;
-	border-bottom: 1px solid #5c718c;
-	color: #86a0c2;
-	cursor:pointer;
-	list-style:none;
-	display:block;
-}
-
-.admin-menu-list .menu-selected{
-	background-color: #151f2d;
-	color: #a1c1eb;
-
-	-moz-box-shadow:5px 5px 8px rgba(0,0,0,0.4) inset;               /* For Firefox3.6+ */
-	-webkit-box-shadow:5px 5px 8px rgba(0,0,0,0.4) inset;            /* For Chrome5+, Safari5+ */
-	box-shadow:5px 5px 8px rgba(0,0,0,0.36) inset;                    /* For Latest Opera */
-}
-
-.admin-menu-list li img{
-	position: absolute;
-	margin-top: 18px;
-	left: 20px;
-	height:24px;
-	width:24px;
-}
-
-.admin-menu-list li span{
-	margin-left: 58px;
-}
-
-.second-level-menu-box{
-	width: 120px;
-	background-color: #2d3c4f;
-	position: fixed;
-	left: 160px;
-	top: 0;
-	bottom: 0;
-	display: none;
-	z-index: 10000;
-	padding-top: 115px;
-	-moz-box-shadow:4px 0 4px rgba(0,0,0,0.3) inset;               /* For Firefox3.6+ */
-	-webkit-box-shadow:4px 0 4px rgba(0,0,0,0.3) inset;            /* For Chrome5+, Safari5+ */
-	box-shadow:4px 0 4px rgba(0,0,0,0.3) inset;                    /* For Latest Opera */
-}
-
-.second-level-menu-box li{
-	height: 50px;
-	line-height: 50px;
-	font-size: 12px;
-	color: #86a0c2;
-	list-style: none;
-	border-bottom: 1px solid #5c718c;
-	cursor: pointer;
-}
-
-.second-level-menu-box li img {
-
-	position: absolute;
-	margin-top: 18px;
-	left: 10px;
-    width:14px;
-    height:14px;
-}
-
-.second-level-menu-box li span {
-	margin-left: 30px;
-}
-
-.breadcrumb{
-	margin-top: 20px;
-	height: 24px;
-	margin-bottom: 20px;
-	line-height: 24px;
-	margin-left: 200px;
-}
-
-.breadcrumb span{
-	font-size: 14px;
-	position: absolute;
-	left: 228px;
-	color: #787878;
-}
-
-.breadcrumb .breadcrumb-menu{
-	font-size: 14px;
-	position: absolute;
-	left: 256px;
-}
-
-.breadcrumb-right{
-	margin-left: 10px;
-	position: absolute;
-	margin-top: 6px;
-	margin-right: 10px;
-}
-
-.breadcrumb-menu-text{
-	font-size: 14px;
-	margin-left: 28px;
-}
-
-.center{
-	position: absolute;
-	left: 200px;
-	min-height: calc(100% - 60px);
-	/*width:calc(100% - 160px);*/
-}
-
-
-
-.admin-copy-right{
-	height:80px;
-	width:calc(100% + 40px);
-	background: #9bbebe;
-	position: absolute;
-	bottom: 0;
-	right:0;
+.small-btn{
+	line-height: 30px;
 	text-align: center;
-	line-height: 70px;
+	font-size:13px;
+	border: none;
+	height:30px;
+	color:white;
+	width:80px;
+	cursor: pointer;
 
 }
-.admin-copy-right span{
-	display: block;
-	height:25px;
-	font-size:14px;
-}
-/*************end*********************/
-
-/***************公用*******************/
 
 .regular-btn{
 	line-height: 40px;
@@ -171,7 +24,7 @@ body{
 	height:40px;
 	color:white;
 	width:150px;
-	border-radius: 5px;
+
 	cursor: pointer;
 }
 .blue-btn{
@@ -210,7 +63,7 @@ body{
 }
 
 .none-display{
-	display: none;
+	display: none!important;
 }
 
 .padding-15{
@@ -237,7 +90,7 @@ a{
 .admin-content{
 	width:1120px;
 	background-color: #f8f8f8;
-	padding:20px 10px;
+	padding:10px 10px;
 }
 .disabled-input{
 	border:1px solid #cfcfcf!important;
@@ -273,9 +126,24 @@ a{
 	border-radius: 2px;
 	position: relative;
 }
-
+.page-loader{
+	position: absolute;
+	text-align: center;
+	top:40%;
+	left:50%
+}
+.color-divider{
+	height:3px;
+	width:100%;
+	background-color: #639ae3;
+	margin: 5px 50px 10px 0;
+}
 
 /*****************公用***end*********************/
+
+
+
+
 
 
 /************首页************/
@@ -427,8 +295,8 @@ a{
 	float: left;
 	width: 90px;
 	display: block;
-	white-space:nowrap; 
-	overflow:hidden; 
+	white-space:nowrap;
+	overflow:hidden;
 	text-overflow:ellipsis;
 }
 
@@ -439,8 +307,8 @@ a{
 	padding-left: 10px;
 	display: block;
 	float: left;
-	white-space:nowrap; 
-	overflow:hidden; 
+	white-space:nowrap;
+	overflow:hidden;
 	text-overflow:ellipsis;
 }
 
@@ -460,16 +328,16 @@ a{
 	float: left;
 	width: 308px;
 	display: block;
-	white-space:nowrap; 
-	overflow:hidden; 
+	white-space:nowrap;
+	overflow:hidden;
 	text-overflow:ellipsis;
 }
 
 .interlocution-content-comment{
 	width: 22px;
 	font-size: 12px;
-	white-space:nowrap; 
-	overflow:hidden; 
+	white-space:nowrap;
+	overflow:hidden;
 	text-overflow:ellipsis;
 	float: right;
 	text-align: right;
@@ -542,18 +410,18 @@ a{
 
 .switch-circle{
 	width: 15px;
-    height: 15px;
-    background-color: white;
-    margin-top: 22px;
-    float: left;
-    -moz-border-radius: 9px;
-    -webkit-border-radius: 9px;
-    border-radius: 9px;
-    cursor: pointer;
+	height: 15px;
+	background-color: white;
+	margin-top: 22px;
+	float: left;
+	-moz-border-radius: 9px;
+	-webkit-border-radius: 9px;
+	border-radius: 9px;
+	cursor: pointer;
 }
 
 .red{
-	border:3px solid #fe1616;
+	/*border:3px solid #fe1616;*/
 }
 
 .green{
@@ -573,8 +441,8 @@ a{
 	color: #505050;
 	float: left;
 	display: block;
-	white-space:nowrap; 
-	overflow:hidden; 
+	white-space:nowrap;
+	overflow:hidden;
 	text-overflow:ellipsis;
 }
 
@@ -597,6 +465,7 @@ a{
 	color: #a0a0a0;
 }
 /***********end**************/
+
 
 
 /*********菜单设置*************/
@@ -770,7 +639,9 @@ a{
 .edit-add-title{
 	height: 52px;
 	line-height: 52px;
-	border-bottom: 1px dashed #cccccc;
+	text-align: center;
+	font-size: 18px;
+	/*border-bottom: 1px dashed #cccccc;*/
 }
 
 .first-menu{
@@ -786,17 +657,17 @@ a{
 	margin: 0 auto;
 	margin-top: 14px;
 }
+.edit-add-content label{
+	font-size: 14px;
+	margin-right: 10px;
+}
+
 
 .menu-setting-select-box{
 	width: 174px;
 	height: 28px !important;
 	border-radius: 4px;
 	font-size: 12px;
-}
-
-.edit-add-content label{
-	font-size: 14px;
-	margin-right: 10px;
 }
 
 .content-colmun{
@@ -871,12 +742,9 @@ a{
 	height: 30px;
 	line-height: 30px;
 	background-color: #639ae3;
-	border-radius: 4px;
 	margin: 0 auto;
 	text-align: center;
 	cursor: pointer;
-}
-.currency-btu span{
 	color: #f8f8f8;
 	font-size: 14px;
 }
@@ -899,6 +767,180 @@ a{
 }
 
 /************end*****************/
+
+
+
+
+
+/*************site*********************/
+
+body{
+	margin :0;
+	background-color: #d1dadf;
+	position: relative;
+	font-family: "Microsoft YaHei" !important;
+}
+.menu-box{
+	width: 160px;
+	background-color: #2d3c4f;
+	/*padding-top: 20px;*/
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	height: 100%;
+	z-index:1001;
+}
+
+.menu-logo{
+	/*padding-bottom: 20px;*/
+}
+
+.menu-logo img{
+	width: 80px;
+	display:block;
+	margin: 0 auto;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.admin-menu-list li, .admin-menu-list a{
+	height: 60px;
+	line-height: 60px;
+	font-size: 14px;
+	border-bottom: 1px solid #5c718c;
+	color: #86a0c2;
+	cursor:pointer;
+	list-style:none;
+	display:block;
+}
+
+.admin-menu-list .menu-selected{
+	background-color: #151f2d;
+	color: #a1c1eb;
+
+	-moz-box-shadow:5px 5px 8px rgba(0,0,0,0.4) inset;               /* For Firefox3.6+ */
+	-webkit-box-shadow:5px 5px 8px rgba(0,0,0,0.4) inset;            /* For Chrome5+, Safari5+ */
+	box-shadow:5px 5px 8px rgba(0,0,0,0.36) inset;                    /* For Latest Opera */
+}
+
+.admin-menu-list li img{
+	position: absolute;
+	margin-top: 18px;
+	left: 20px;
+	height:24px;
+	width:24px;
+}
+
+.admin-menu-list li span{
+	margin-left: 58px;
+}
+
+.second-level-menu-box{
+	width: 120px;
+	background-color: #2d3c4f;
+	position: fixed;
+	left: 160px;
+	top: 0;
+	bottom: 0;
+	display: none;
+	z-index: 10000;
+	padding-top: 115px;
+	-moz-box-shadow:4px 0 4px rgba(0,0,0,0.3) inset;               /* For Firefox3.6+ */
+	-webkit-box-shadow:4px 0 4px rgba(0,0,0,0.3) inset;            /* For Chrome5+, Safari5+ */
+	box-shadow:4px 0 4px rgba(0,0,0,0.3) inset;                    /* For Latest Opera */
+}
+
+.second-level-menu-box li{
+	height: 50px;
+	line-height: 50px;
+	font-size: 12px;
+	color: #86a0c2;
+	list-style: none;
+	border-bottom: 1px solid #5c718c;
+	cursor: pointer;
+}
+
+.second-level-menu-box li img {
+
+	position: absolute;
+	margin-top: 18px;
+	left: 10px;
+    width:14px;
+    height:14px;
+}
+
+.second-level-menu-box li span {
+	margin-left: 30px;
+}
+
+.breadcrumb{
+	margin-top: 20px;
+	height: 24px;
+	margin-bottom: 20px;
+	line-height: 24px;
+	margin-left: 200px;
+}
+
+.breadcrumb span{
+	font-size: 14px;
+	position: absolute;
+	left: 228px;
+	color: #787878;
+}
+
+.breadcrumb .breadcrumb-menu{
+	font-size: 14px;
+	position: absolute;
+	left: 256px;
+}
+
+.breadcrumb-right{
+	margin-left: 10px;
+	position: absolute;
+	margin-top: 6px;
+	margin-right: 10px;
+}
+
+.breadcrumb-menu-text{
+	font-size: 14px;
+	margin-left: 28px;
+}
+
+.center{
+	position: absolute;
+	left: 200px;
+	min-height: calc(100% - 60px);
+	/*width:calc(100% - 160px);*/
+}
+
+
+
+.admin-copy-right{
+	height:80px;
+	width:calc(100% + 40px);
+	background: #9bbebe;
+	position: absolute;
+	bottom: 0;
+	right:0;
+	text-align: center;
+	line-height: 70px;
+
+}
+.admin-copy-right span{
+	display: block;
+	height:25px;
+	font-size:14px;
+}
+/*************end*********************/
+
+
+
+
+
+
+
+
 
 
 
@@ -1335,6 +1377,8 @@ a{
 }
 /***********订单查询***end***********/
 
+
+
 /*********创建酒店页面*******/
 
 .h-c-steps{
@@ -1377,18 +1421,20 @@ a{
 }
 
 .hotel-info{
+
 	margin-top:10px;
-	width:1140px;
 	background-color: #f8f8f8;
 	overflow: hidden;
+
 }
 .hotel-info .header{
-	height:30px;
-	line-height: 30px;
+	text-align: center;
+	height:40px;
+	line-height:40px;
 	font-size:16px;
 
 	margin:0 10px;
-	border-bottom: 1px dashed #505050;
+
 }
 .detail-form{
 	padding:20px 10px;
@@ -1556,107 +1602,6 @@ a{
 /**************************/
 
 
-/*** jquery plugin*****/
-
-.c-caption-section{
-	height:30px;
-	font-size: 14px;
-	text-align: center;
-	line-height: 30px;
-
-}
-.c-caption-section .active{
-
-	color:#505050;
-	background-color:#f8f8f8 ;
-}
-.c-caption-section span{
-	background: #c2cbd4;;
-	float:left;
-	width:33.3333%;
-	color:#f8f8f8;
-	cursor: pointer;
-}
-.province-section{
-	font-size:12px;
-	padding:5px 2px 0 2px;
-
-}
-.province-section span {
-	margin:2px 0;
-	cursor:pointer;
-	display:inline-block;
-	padding:5px 5px;
-	border-radius: 2px;
-}
-.province-section span:hover {
-	background:  #fe875e;
-	color:white;
-}
-
-.province-section hr{
-	height:2px;
-	border:none;
-	border-top:3px double rgba(6, 148, 204, 0.98);
-	margin:3px 10px;
-}
-.city-section{
-	font-size:12px;
-	padding:5px 2px 0 2px;
-	display:none;
-}
-.city-section span{
-	margin:2px 0;
-	cursor:pointer;
-	display:inline-block;
-	padding:5px 5px;
-	border-radius: 2px;
-}
-.city-section span:hover{
-	background:  #fe875e;
-	color:white;
-}
-
-.district-section{
-	font-size:12px;
-	padding:5px 2px 0 2px;
-	display:none;
-}
-.district-section span{
-	margin:2px 0;
-	cursor:pointer;
-	display:inline-block;
-	padding:5px 5px;
-	border-radius: 2px;
-}
-.district-section span:hover{
-	background:  #fe875e;;
-	color:white;
-}
-
-.geo-search-line{
-	cursor: pointer;
-	font-size:12px;
-	padding:5px 5px 0 5px;
-}
-
-.geo-search-line:hover{
-	background-color: #00aced;
-	color:#f8f8f8;
-}
-.geo-search-line span{
-	display:inline-block;
-	margin:0 5px 0 0 ;
-	padding:2px;
-
-
-}
-
-.geo-selected {
-	background:#00aced;
-	color:#f8f8f8;
-}
-/**********************/
 
 
 
@@ -1680,7 +1625,7 @@ a{
 	margin: 0 auto;
 	font-size: 16px;
 	color: #505050;
-	border-bottom: 1px dashed #a0a0a0;
+
 }
 
 .map-information-row{
@@ -1745,6 +1690,79 @@ a{
 }
 
 
+.hotel-surrounding-table{
+	margin:10px 0;
+	font-size: 13px!important;
+}
+
+.delete-surrounding-item{
+	color:#d95a5d!important;
+	cursor: pointer;
+}
+.edit-surrounding-item{
+	cursor: pointer;
+}
+
+.add-surrounding-box{
+	width:310px;
+	margin:0 auto;
+
+}
+
+
+
+.add-surrounding-box label{
+	font-size: 14px;
+	margin-right: 10px;
+}
+
+.add-surrounding-input-box{
+	margin:10px 0;
+	position: relative;
+
+
+}
+
+.add-surrounding-input-box label{
+	width:60px;
+	display: inline-block;
+	text-align: right;
+	font-size: 14px;
+	margin-right: 10px;
+}
+.add-surrounding-input-box input{
+	height:25px;
+	width:170px;
+	font-size:12px;
+	background-color: #f8f8f8;
+	border:1px solid #505050;
+}
+.add-surrounding-input-box span{
+	position: absolute;
+	height:25px;
+	line-height: 25px;
+	width:40px;
+	top:2px;
+	left:205px;
+	font-size: 14px;
+	background-color: #f8f8f8;
+	text-align: center;
+}
+
+
+.confirm-surrounding-btn,.confirm-contact-btn{
+	width: 200px;
+	height: 30px;
+	line-height: 30px;
+	background-color: #639ae3;
+	margin:10px auto;
+	text-align: center;
+	cursor: pointer;
+	color: #f8f8f8;
+	font-size: 14px;
+	border-radius: 2px;
+}
+
 
 .hotel-policy-box{
 	width: 1140px;
@@ -1758,7 +1776,7 @@ a{
 	line-height: 50px;
 	font-size: 16px;
 	color: #505050;
-	border-bottom: 1px dashed #a0a0a0;
+
 	margin-bottom: 20px;
 	text-align: left;
 }
@@ -1771,7 +1789,7 @@ a{
 }
 
 .surrounding-environment span{
-	font-size: 16px;
+	font-size: 14px;
 	color: #505050;
 	margin-left: 10px;
 	display: block;
@@ -1811,9 +1829,9 @@ a{
 	float: left;
 }
 
-.hotel-policy-box .hotel-policy-row .hotel-policy-input{
+ .hotel-policy-input{
 	width: 120px !important;
-	height: 13px !important;
+	height: 40px !important;
 	min-height: 0 !important;
 	min-width: 0 !important;
 	line-height: 40px;
@@ -2385,7 +2403,7 @@ a{
 	margin: 0 auto;
 	height: 40px;
 	line-height: 40px;
-	border-bottom: 1px dashed #a0a0a0;
+	/*border-bottom: 1px dashed #a0a0a0;*/
 }
 
 .facility-item-title span{
@@ -2437,11 +2455,17 @@ a{
 	color: #C0C0C0;
 }
 
-.remove-contact-row{
-	float: right;
-	margin-top: -52px;
-	margin-right: 40px;
+.contact-operation-row{
+	font-size: 14px;
+	display: inline-block;
 	cursor: pointer;
+	vertical-align: middle;
+	margin-top:-50px;
+	margin-left:50px;
+}
+.contact-operation-row label{
+	cursor:pointer;
+	margin-right:10px;
 }
 
 .radio-item-block{
@@ -2481,27 +2505,37 @@ a{
 
 /***************end***************/
 
-/*************新增酒店第三步********/
+/*************酒店联系人 银行卡********/
+
+
 
 .contact-box{
 	width: 100%;
-	border-bottom: 1px dashed #a0a0a0;
 	padding-bottom: 20px;
 }
 
 .contact-box-row{
-	width: 100%;
+
 	height: 40px;
 	margin-top: 20px;
+	display: inline-block;
 
 }
 
 .contact-box-row label{
-	letter-spacing : 8px;
+	font-size: 14px;
+	width:50px;
+	display: inline-block;
 }
 
 .contact-box-row span{
 	margin-right: 10px;
+}
+
+.edit-contact-modal{
+	width: 550px !important;
+	margin-left: -200px !important;
+	padding:10px;
 }
 
 .contact-input{
@@ -2530,6 +2564,45 @@ a{
 }
 
 /*************end*******************/
+.facility-list-box{
+	padding:20px 10px 10px 10px;
+}
+
+.facility-category{
+
+	color:#639ae3;
+	font-weight: 600;
+	font-size: 16px;
+
+}
+
+.facility-list{
+	margin:10px;
+}
+.facility-list span{
+	margin:5px;
+	cursor: pointer;
+	display: inline-block;
+	height:35px;
+	line-height: 35px;
+	min-width:150px;
+	text-align: center;
+	border: 1px solid #505050;
+	font-size: 13px;
+	padding:0 5px;
+}
+
+.facility-selected{
+	background-color: #639ae3;
+	color:#f8f8f8;
+	border:1px solid #639ae3!important;
+}
+/**********酒店设施维护***************/
+
+/**********************************/
+
+
+
 
 /************轮播图*******************/
 
@@ -2620,63 +2693,92 @@ a{
 /**********酒店信息汇总***************/
 
 .info-menu{
-	height:55px;
 	width:500px;
-
+	background-color:#f8f8f8;
+	padding:10px 0 ;
 }
 
 
-.info-menu span{
+.info-menu a{
 	display: inline-block;
-	width: 120px ;
+	width: 100px ;
 	text-align: center;
 	font-size:14px;
-	height:40px;
-	line-height: 40px;
-	float: left;
-	border:1px solid #505050;
+	height:35px;
+	line-height: 35px;
 	color:#505050;
 	margin-right:10px;
-	border-radius: 5px;
+	border-bottom: 2px solid transparent ;
+	border-radius: 2px;
 }
-.info-menu span:hover{
+.info-menu a:hover{
 	cursor: pointer;
-	background: #9bbebe;
-	color:#f8f8f8;
-	border:1px solid #9bbebe;
+	border-bottom: 2px solid #639ae3 ;
 	transition:background-color 0.6s ease;
 }
 
-.info-menu span a:hover{
-	cursor: pointer;
-	color:#9bbebe;
-	border:1px solid #9bbebe;
-	transition:background-color 0.6s ease;
+.info-menu-selected{
+
+	color:#f8f8f8!important;
+	background: #639ae3;
 }
 
-.info-menu .hover-menu{
-	height: 40px;
-	display: block;
-	background-color: #f8f8f8;
-}
-
-.hover-menu .display-none{
+.info-maintain-menu{
 	display: none;
-}
+	width:98px;
+	list-style:none;
+	position:absolute;
+	background-color: #f8f8f8;
+	text-align: center;
+	z-index:1000;
+	padding:0 0 ;
+	font-size: 14px;
+	top:41px;
+	left:10px;
+	border-bottom-left-radius: 2px;
+	border-bottom-right-radius: 2px;
+	border:1px solid #639ae3;
 
-.hover-menu a{
-	width: 120px;
+}
+.info-maintain-menu li{
+
+}
+.info-maintain-menu li a{
+	width:100px;
+	height:40px;
 	display: block;
 	line-height: 40px;
-	border-radius: 5px;
-	background-color: #f8f8f8;
-	z-index:1003;
-	position: relative;
-}
 
-.hover-menu a:not(:first-child){
-	border:1px solid #505050;
 }
+.info-maintain-menu  li a:hover{
+	background-color: #639ae3;
+	color:#f8f8f8;
+	cursor: pointer;
+	transition:background-color 0.6s ease;
+}
+/*.info-menu .hover-menu{*/
+	/*height: 40px;*/
+	/*display: inline-block;*/
+	/*background-color: #f8f8f8;*/
+/*}*/
+
+/*.hover-menu .display-none{*/
+	/*display: none;*/
+/*}*/
+
+/*.hover-menu a{*/
+	/*width: 120px;*/
+	/*display: block;*/
+	/*line-height: 40px;*/
+	/*border-radius: 5px;*/
+	/*background-color: #f8f8f8;*/
+	/*z-index:1003;*/
+	/*position: relative;*/
+/*}*/
+
+/*.hover-menu a:not(:first-child){*/
+	/*border:1px solid #505050;*/
+/*}*/
 
 .info-content{
 
@@ -2788,6 +2890,207 @@ a{
 /************end************/
 
 /********酒店图片*******/
+
+
+.section-list{
+	width:95%;
+	font-size: 13px;
+	margin:10px 10px;
+
+
+	/*text-align: center;*/
+}
+
+
+
+.section-list span,.section-list .room-list,.section-list .cover-section{
+
+	margin-right:20px;
+	display: inline-block;
+	width:100px;
+	height:30px;
+
+	border-left:1px solid #505050;
+	border-right:1px solid #505050;
+	line-height: 30px;
+	text-align: center!important;
+
+
+}
+
+.section-list span:hover,.section-list .room-list:hover,.section-list .cover-section:hover{
+
+	color: #f8f8f8;
+	background: #639ae3;
+	border:1px solid #639ae3;
+	cursor:pointer;
+	transition:background-color 0.5s ease;
+}
+
+.section-list-selected{
+
+	color: #f8f8f8;
+	background: #639ae3;
+	border:1px solid #639ae3!important;
+}
+
+.section-list .menu{
+	border-radius: 0px!important;
+	background-color:#f8f8f8!important;
+	color:#505050!important;
+}
+
+.section-list .room-list-item {
+
+	line-height: 30px;
+	width:99px;
+	text-align: center;
+}
+
+.section-list .room-list-item:hover{
+	color: #f8f8f8;
+	background: #639ae3;
+	cursor:pointer;
+	transition:background-color 0.5s ease;
+}
+
+
+
+.hotel-image{
+	padding:0 20px;
+	overflow: hidden;
+}
+
+.image-list{
+	overflow: hidden;
+	margin-bottom: 20px;
+	border:1px solid transparent;
+}
+
+.hotel-image-upload{
+	clear:both;
+
+}
+.hotel-image-upload label{
+	display:block;
+	margin:10px 0;
+	font-size:16px;
+
+	clear:both;
+}
+.hotel-image-upload .header{
+	display: block;
+	width: 120px;
+	clear:both;
+	margin:20px 0 20px 0;
+	text-align: center;
+	position: relative;
+	height:25px;
+
+	background-color: #f8f8f8;
+}
+
+.hotel-image-upload .header span{
+	display: inline-block;
+	height:25px;
+	width:5px;
+	border-radius: 5px;
+	background-color: #ff5f76;
+	vertical-align: middle;
+	position: absolute;
+	color:white;
+	line-height: 20px;
+	text-align: center;
+	font-size: 14px!important;
+	top:0;
+	left:0;
+}
+.hotel-image-upload .header label {
+	width:150px;
+	font-size:13px;
+	background-color: #639ae3;
+	vertical-align: middle;
+	display: inline-block;
+	text-align: center;
+	color:white;
+	border-top-left-radius: 10px;
+	border-bottom-left-radius: 10px;
+}
+
+
+.file-item{
+	float:left;
+	margin:0 20px 20px 0;
+	position: relative;
+}
+
+
+
+.file-item img{
+
+}
+.file-item .remove{
+	position: absolute;
+	top:10px;
+	right:2px;
+	cursor: pointer;
+	z-index:1000;
+}
+.file-item .info{
+	position: absolute;
+	background: rgba(54, 54, 54, 0.51);
+	height:25px;
+	line-height:25px;
+	text-align: center;
+	width:200px;
+	overflow:hidden;
+	bottom: 0;
+	color: white;
+}
+
+.file-item .loader-box{
+	position: absolute;
+	top:60px;
+	width:100%;
+}
+
+.file-item .cover{
+	display: none!important;
+}
+
+.image-mask{
+	position:absolute;
+	top:0;
+	width:100%;
+	height:100%!important;
+	background: rgba(58, 58, 58, 0.51);
+	display:none;
+
+}
+.image-mask .offline{
+	float:left;
+	margin:140px 0 0 10px;
+}
+.image-mask .set-cover{
+	float:right;
+	margin:140px 10px 0 0;
+}
+.image-mask .cancel-cover{
+	float:right;
+	margin:140px 10px 0 0;
+}
+
+
+#filePicker{
+	border-radius: 5px!important;
+	background-color: #639ae3!important;
+}
+
+.hotel-cover-image{
+	padding:0 20px;
+	overflow: hidden;
+	display: none;
+}
 
 .image-list-row{
 	overflow: hidden;
@@ -3106,11 +3409,11 @@ a{
 
 }
 
-.price-column-hover{
+.room-column-hover{
 	border:2px solid #ff5f76!important;
 	cursor: pointer;
 }
-.update-price-popup{
+.update-room-cell-popup{
 	position:absolute;
 
 	width:230px;
@@ -3120,11 +3423,11 @@ a{
 	padding:10px;
 }
 
-.update-price-popup div{
+.update-room-cell-popup div{
 	margin:10px 0;
 }
 
-.update-price-popup i{
+.update-room-cell-popup i{
 	color:#ff5f76;
 	position: absolute;
 	right: 2px;
@@ -3132,18 +3435,18 @@ a{
 	cursor: pointer;
 }
 
-.update-price-popup label{
+.update-room-cell-popup label{
 	display: inline-block;
-	width:50px;
+	width:60px;
 	font-size: 14px;
 }
-.update-price-popup  input{
+.update-room-cell-popup  input{
 	display: inline-block;
 	width:120px;
 	height:30px;
 
 }
-.update-price-popup  select{
+.update-room-cell-popup  select{
 	height:36px;
 	width:124px;
 }
@@ -3513,3 +3816,106 @@ a{
 	display: none!important;
 }
 /************************/
+
+
+/*** jquery plugin*****/
+
+.c-caption-section{
+	height:30px;
+	font-size: 14px;
+	text-align: center;
+	line-height: 30px;
+
+}
+.c-caption-section .active{
+
+	color:#505050;
+	background-color:#f8f8f8 ;
+}
+.c-caption-section span{
+	background: #c2cbd4;;
+	float:left;
+	width:33.3333%;
+	color:#f8f8f8;
+	cursor: pointer;
+}
+.province-section{
+	font-size:12px;
+	padding:5px 2px 0 2px;
+
+}
+.province-section span {
+	margin:2px 0;
+	cursor:pointer;
+	display:inline-block;
+	padding:5px 5px;
+	border-radius: 2px;
+}
+.province-section span:hover {
+	background:  #fe875e;
+	color:white;
+}
+
+.province-section hr{
+	height:2px;
+	border:none;
+	border-top:3px double rgba(6, 148, 204, 0.98);
+	margin:3px 10px;
+}
+.city-section{
+	font-size:12px;
+	padding:5px 2px 0 2px;
+	display:none;
+}
+.city-section span{
+	margin:2px 0;
+	cursor:pointer;
+	display:inline-block;
+	padding:5px 5px;
+	border-radius: 2px;
+}
+.city-section span:hover{
+	background:  #fe875e;
+	color:white;
+}
+
+.district-section{
+	font-size:12px;
+	padding:5px 2px 0 2px;
+	display:none;
+}
+.district-section span{
+	margin:2px 0;
+	cursor:pointer;
+	display:inline-block;
+	padding:5px 5px;
+	border-radius: 2px;
+}
+.district-section span:hover{
+	background:  #fe875e;;
+	color:white;
+}
+
+.geo-search-line{
+	cursor: pointer;
+	font-size:12px;
+	padding:5px 5px 0 5px;
+}
+
+.geo-search-line:hover{
+	background-color: #00aced;
+	color:#f8f8f8;
+}
+.geo-search-line span{
+	display:inline-block;
+	margin:0 5px 0 0 ;
+	padding:2px;
+
+
+}
+
+.geo-selected {
+	background:#00aced;
+	color:#f8f8f8;
+}
+/**********************/

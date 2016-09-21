@@ -56,6 +56,12 @@
                                 <img src = '/Admin/img/编辑.png'/>
                                 <span class="edit">管理房态</span>
                             </a>
+
+                            <a href="/admin/manageRoomStatus/roomStatusBatchLog/{{$hotelitem->id}}">
+                                <img src = '/Admin/img/编辑.png'/>
+                                <span class="edit">查看房价修改记录</span>
+                            </a>
+
                         </div>
                     </td>
                 </tr>

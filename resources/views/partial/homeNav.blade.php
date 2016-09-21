@@ -1,7 +1,5 @@
 <div class="site-header  ">
 
-
-
     <div class="logo">
     </div>
 

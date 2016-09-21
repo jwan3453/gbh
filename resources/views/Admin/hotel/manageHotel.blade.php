@@ -74,7 +74,7 @@
                     </div>
 
                     <div class="header-option f-left">
-                        <a href="{{url('admin/manageHotel/hotelInfo/'.$hotelitem->id.'/manageRoom')}}">
+                        <a href="{{url('admin/manageHotel/hotelInfo/'.$hotelitem->id.'/maintainHotelBasicInfo')}}">
                             <img src = '/Admin/img/维护.png'/>
                             <span>信息维护</span>
                         </a>
