@@ -27,6 +27,8 @@ use App\Models\HotelImage;
 use App\Models\HotelFacility;
 use App\Models\HotelFacilityList;
 use App\Models\HotelFacilityCategory;
+use App\Models\Category;
+use App\Models\HotelCategoryPivot;
 
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -73,24 +75,38 @@ class HotelService {
         $newAddress->detail = $request->input('hotelAddress');
         if($newAddress->save())
         {
+
+
+
+
             if ($createOrupdate == "update") {
                 $newHotel = Hotel::find($request->input('hotelId'));
             }else{
                 $newHotel = new Hotel();
             }
             $newHotel->name = $request->input('hotelName');
+            $newHotel->name_en = $request->input('hotelNameEn');
+
             $newHotel->phone =$request->input('hotelPhone');//-------总机
             $newHotel->fax  = $request->input('hotelFax');//--------商务传真
             $newHotel->postcode  = $request->input('hotelPostcode');
             $newHotel->website =  $request->input('hotelWebsite');
             $newHotel->total_rooms = $request->input('hotelTotalRooms');
             $newHotel->hotel_features = $request->input('hotelFeature');
-            $newHotel->description = $request->input('hotelBrief');
+            $newHotel->hotel_features_en = $request->input('hotelFeatureEn');
+            $newHotel->description = $request->input('hotelDescription');
+            $newHotel->description_en = $request->input('hotelDescriptionEn');
             $newHotel->address_id = $newAddress->id;//------获取上一步新增地址所插入数据库的ID
 
             if ($newHotel->save()) {
                 $isSuccess = $newHotel->id;
             }
+
+            //处理酒店分类列表
+            $cateList = explode('|',$request->input('selectCateList'));
+            $cateList =array_filter($cateList);
+            $newHotel->categories()->sync($cateList);
+
 
         }
 
@@ -136,8 +152,11 @@ class HotelService {
         $hotelPolicy->checkin_time = $checkinTime;
         $hotelPolicy->checkout_time = $checkoutTime;
         $hotelPolicy->prepaid_deposit = $request->input('prepaidDeposit');
+        $hotelPolicy->prepaid_deposit_en = $request->input('prepaidDepositEn');
         $hotelPolicy->catering_arrangements = $request->input('cateringArrangements');
+        $hotelPolicy->catering_arrangements_en = $request->input('cateringArrangementsEn');
         $hotelPolicy->other_policy = $request->input('otherPolicy');
+        $hotelPolicy->other_policy_en = $request->input('otherPolicyEn');
 
 //        if ($hotelPolicy->save()) {
 ////            $newHotel = Hotel::find($request['hotelId']);
@@ -346,7 +365,7 @@ class HotelService {
         {
             $query['id'] =$roomId;
         }
-        return Room::where($query )->select('id','room_name')->get();
+        return Room::where($query )->select('id','room_name','rack_rate','num_of_people','acreage')->get();
     }
 
     public function getRoomTypeByRoomId($hotelId,$roomId){
@@ -965,17 +984,26 @@ class HotelService {
         $newRoom = new Room();
         $newRoom->hotel_id = $request->input('hotelId');
         $newRoom->room_name = $request->input('roomName');
+        $newRoom->room_name_en = $request->input('roomNameEn');
         $newRoom->rack_rate = $request->input('rackRate');
         $newRoom->num_of_people = $request->input('numOfPeople');
         $newRoom->num_of_children = $request->input('numOfChildren');
         $newRoom->num_of_rooms = $request->input('numOfRooms');
         $newRoom->acreage = $request->input('acreage');
         $newRoom->floor = $request->input('floor');
+
+        $newRoom->is_extra_bed = $request->input('extraBed');
+        $newRoom->wifi =  $request->input('wifi');
+        $newRoom->smoke= $request->input('smoke');
+
 //        $new
         if($newRoom->save())
         {
             $this->createNewBeds($request,$newRoom->id);
+            return true;
         }
+        else
+            return false;
 
     }
 
@@ -993,14 +1021,22 @@ class HotelService {
 
     public function updateRoom(Request $request)
     {
+
         $room = Room::where('id',$request->input('roomId'))->firstOrFail();
+
+
         $room->room_name = $request->input('roomName');
+        $room->room_name_en = $request->input('roomNameEn');
         $room->rack_rate = $request->input('rackRate');
         $room->num_of_people = $request->input('numOfPeople');
         $room->num_of_children = $request->input('numOfChildren');
         $room->num_of_rooms = $request->input('numOfRooms');
         $room->acreage = $request->input('acreage');
         $room->floor = $request->input('floor');
+
+        $room->is_extra_bed = $request->input('extraBed');
+        $room->wifi =  $request->input('wifi');
+        $room->smoke= $request->input('smoke');
 
         if($room->save())
         {
@@ -1012,8 +1048,19 @@ class HotelService {
         return $room;
     }
 
+
+    //删除
+    public function deleteRoom(Request $request)
+    {
+
+        //todo 删除房间图片
+        Bed::where('room_id',$request->input('roomId'))->delete();
+        return Room::where('id',$request->input('roomId'))->delete();
+    }
+
     public function createNewBeds(Request $request,$roomId)
     {
+
 
         if($request->input('doubleBed')!= null && $request->input('doubleBed') == 'on')
         {
@@ -1107,7 +1154,7 @@ class HotelService {
     //获取酒店基本信息
     public function getHotelBasicInfo($hotelId)
     {
-        $hotelInfo = Hotel::where('id',$hotelId)->select('name','address_id','postcode','phone','fax','website','total_rooms','hotel_features','description')->first();
+        $hotelInfo = Hotel::where('id',$hotelId)->select('name','name_en','address_id','postcode','phone','fax','website','total_rooms','hotel_features','hotel_features_en','description','description_en')->first();
 
         $hotelInfo->address = Address::where('id',$hotelInfo->address_id)->select('province_code','city_code','district_code','detail')->first();
 
@@ -1167,6 +1214,16 @@ class HotelService {
 
         return $StepTwoInfo;
     }
+
+
+    //获取已分配的酒店分类
+    public function getCategories($hotelId)
+    {
+        return Hotel::find($hotelId)->Categories;
+    }
+
+
+
     //获取酒店周边交通信息
     public function getHotelSurrounding($hotelId)
     {
@@ -1184,6 +1241,7 @@ class HotelService {
             $surrounding = new HotelSurrounding();
             $surrounding->hotel_id = $request->input('hotelId');
             $surrounding->name = $request->input('name');
+            $surrounding->name_en = $request->input('nameEn');
             $surrounding->distance = $request->input('distance');
             $surrounding->by_taxi = $request->input('byTaxi');
             $surrounding->by_walk = $request->input('byWalk');
@@ -1196,6 +1254,7 @@ class HotelService {
 
             $surrounding =  HotelSurrounding::find($request->input('surroundingId'));
             $surrounding->name = $request->input('name');
+            $surrounding->name_en = $request->input('nameEn');
             $surrounding->distance = $request->input('distance');
             $surrounding->by_taxi = $request->input('byTaxi');
             $surrounding->by_walk = $request->input('byWalk');
@@ -1218,7 +1277,7 @@ class HotelService {
     public function getHotelPolicy($hotelId)
     {
 
-        $hotelPolicy = hotelPolicy::where('hotel_id',$hotelId)->select('id','checkin_time','checkout_time','prepaid_deposit','catering_arrangements','other_policy')->first();
+        $hotelPolicy = hotelPolicy::where('hotel_id',$hotelId)->select('id','checkin_time','checkout_time','prepaid_deposit','prepaid_deposit_en','catering_arrangements','catering_arrangements_en','other_policy','other_policy_en')->first();
 
 
         if($hotelPolicy != null)
@@ -1400,7 +1459,7 @@ class HotelService {
     {
         $hotelId = $request->input('hotelId');
         $coverImageList = HotelImage::where(['hotel_id'=> $hotelId,
-                                      'is_cover'=>1])->get();
+                                      'is_cover'=>1])->orderBy('updated_at','DESC')->get();
 
 
         $sectionList = HotelSection::select('id','name','type')->get();
@@ -1433,6 +1492,18 @@ class HotelService {
             }
         }
         return $coverImageList;
+    }
+
+
+
+    //设置酒店封面照片
+    public function setHotelFirstImage(Request $request)
+    {
+
+        $hotelId = $request->input('hotelId');
+        $imageId = $request->input('imageId');
+
+        return HotelImage::where(['hotel_id'=>$hotelId,'id'=>$imageId])->update(['is_cover'=> 1]);
     }
 
     public function getStepThreeInfo($hotelId)

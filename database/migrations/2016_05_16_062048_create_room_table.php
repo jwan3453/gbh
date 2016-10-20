@@ -18,7 +18,7 @@ class CreateRoomTable extends Migration
             $table->increments('id');
             $table->integer('hotel_id');
             $table->string('room_name',50);
-            $table->string('room_name_english',50);
+            $table->string('room_name_en',100);
             $table->decimal('rack_rate',8,2);//门市价
             $table->integer('num_of_people');//可住人数
             $table->integer('num_of_children');//可携带儿童人数
@@ -36,7 +36,7 @@ class CreateRoomTable extends Migration
             $table->integer('bed_type');//床型
             $table->integer('is_extra_bed');//是否可以加床
             $table->integer('extra_bed_costs')->default(0);//加床费用
-            $table->integer('somkeless');//是否无烟处理
+            $table->integer('smoke');//是否无烟处理
             $table->string('room_desc');//房型描述
             $table->string('attribute',500);//json
 

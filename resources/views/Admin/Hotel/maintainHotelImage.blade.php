@@ -179,7 +179,9 @@
                     //默认区域为酒店封面区域
                     'sectionId':1,
                     //默认为酒店
-                    'sectionType':1
+                    'sectionType':1,
+                    //上传的图片类型， 酒店图片 目的地图片
+                    'imageType':1
                 },
             });
 
@@ -336,11 +338,22 @@
 
 
                                 var html = '';
-                                for (var i = 0; i < data.extra.length; i++) {
-
+                                var firstImage = '';
+                                for (var i = 0; i < data.extra.length; i++)
+                                {
+                                    if(i === 0)
+                                    {
+                                        firstImage = '';
+                                    }
+                                    else {
+                                        firstImage = 'first-image';
+                                    }
                                     html += '<div class="file-item thumbnail ui  image uploaded ">' +
-                                            '<div class="ui blue ribbon label " id="cover_' + data.extra[i].id + '">已设置</div>'+
+                                            '<div class="image-mask " id="cover_' + data.extra[i].id + '">' +
 
+                                                '<div class=" set-first-image small-btn red-btn">'+'设为首图'+'</div>' +
+                                            '</div>' +
+                                            '<div class="ui blue ribbon label  '+firstImage+'  "="cover_' + data.extra[i].id + '">已设置</div>'+
                                             '<img style="width:200px;height:200px" src=' + data.extra[i].link + ' >' +
                                             '<div class="info"> ' + data.extra[i].section_name + '</div>' +
                                             '<input type="hidden"  class="image-key" value="' + data.extra[i].image_key + '">' +
@@ -640,6 +653,40 @@
 
 
 
+
+
+            //设置图片为酒店首张图片
+            $(document).on('click', '.set-first-image', function(){
+                var firstImageObj = $(this);
+                $.ajax({
+                    type: 'POST',
+                    async: false,
+                    url: '/admin/manageHotel/hotelInfo/setHotelFirstImage',
+                    data: {hotelId:'{{$hotelId}}',imageId:$(this).parent().siblings('.image-id').val()},//type: 1,associateId:'{{$hotelId}}',imageId:$(this).parent().siblings('.image-id').val()},
+                    dataType: 'json',
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                    },
+                    success: function (data) {
+
+                        if(data.statusCode===1)
+                        {
+
+
+                            firstImageObj.parent().siblings('.first-image').removeClass('first-image');
+                            firstImageObj.parents('.file-item').siblings('.file-item').find('.ribbon').addClass('first-image');
+                            toastAlert(data.statusMsg,1);
+                        }
+                        else if(data.statusCode===2 || ata.statusCode===3)
+                        {
+                            toastAlert(data.statusMsg,2);
+                        }
+                    },
+                    error: function (xhr, type) {
+                        alert('Ajax error!');
+                    }
+                });
+            })
 
 
 

@@ -186,6 +186,9 @@ Route::group(['prefix' => '/admin/', 'middleware' => 'App\Http\Middleware\AdminA
 
             //更新房间
             Route::post('/updateRoom', 'Admin\Hotel\HotelController@updateRoom');
+
+            //删除房间
+            Route::post('/deleteRoom', 'Admin\Hotel\HotelController@deleteRoom');
         }
 
         //酒店信息维护
@@ -247,6 +250,8 @@ Route::group(['prefix' => '/admin/', 'middleware' => 'App\Http\Middleware\AdminA
             //取消酒店外网封面图片
             Route::post('hotelInfo/getHotelCoverImage','Admin\Hotel\HotelController@getHotelCoverImage');
 
+            //设计酒店外网首张图片
+            Route::post('hotelInfo/setHotelFirstImage','Admin\Hotel\HotelController@setHotelFirstImage');
 
 
         }
@@ -356,6 +361,28 @@ Route::group(['prefix' => '/admin/', 'middleware' => 'App\Http\Middleware\AdminA
     });
 
     //--------系统设置
+
+    //设置目的地信息
+    Route::get('system/manageDestination','Admin\System\SystemController@manageDestination');
+
+    //获取目的地信息
+    Route::post('system/getDestinationInfo','Admin\System\SystemController@getDestinationInfo');
+
+    //保存目的地信息
+    Route::post('system/saveDestinationInfo','Admin\System\SystemController@saveDestinationInfo');
+
+
+    //设置酒店分类
+    Route::get('system/manageHotelCategory','Admin\System\SystemController@manageHotelCategory');
+
+    //保存分类
+    Route::post('system/saveHotelCategory','Admin\System\SystemController@saveHotelCategory');
+
+    //保存分类
+    Route::post('system/deleteHotelCategory','Admin\System\SystemController@deleteHotelCategory');
+
+
+
     Route::group(['prefix' => 'system/'], function() {
         //-------轮播图设置---
         Route::get('slideConfigure','Admin\System\SystemController@slideConfigure');
@@ -398,6 +425,9 @@ Route::group(['prefix' => '/admin/', 'middleware' => 'App\Http\Middleware\AdminA
     Route::group(['prefix' => 'administrator/'], function() {
 
         //Route::get('manageRoomPriceRequest','Admin\Hotel\HotelController@manageRoomPriceRequest');
+
+
+
 
     });
 

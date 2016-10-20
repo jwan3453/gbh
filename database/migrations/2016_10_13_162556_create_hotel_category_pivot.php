@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCategoryTable extends Migration
+class CreateHotelCategory extends Migration
 {
     /**
      * Run the migrations.
@@ -12,13 +12,10 @@ class CreateCategoryTable extends Migration
      */
     public function up()
     {
-        Schema::create('category', function (Blueprint $table) {
+        Schema::create('hotel_category', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('category_name',20);
-            $table->string('category_name_name',50);
-            $table->string('icon',200);
-            $table->integer('category_level');
-            $table->integer('parent_id');
+            $table->integer('hotel_id')->unsigned()->index();
+            $table->integer('category_id')->unsigned()->index();
             $table->timestamps();
         });
     }
@@ -30,6 +27,6 @@ class CreateCategoryTable extends Migration
      */
     public function down()
     {
-        Schema::drop('category');
+        Schema::drop('hotel_category');
     }
 }

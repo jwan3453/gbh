@@ -1,10 +1,35 @@
 @extends('Admin.Hotel.maintainHotelInfo')
 
+@section('resources')
 
+
+    <link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/dropdown.css') }}>
+    <script src={{ asset('semantic/dropdown.js') }}></script>
+
+
+@stop
 
 @section('infoContent')
 
     <div id="geoData" style="display: none">{{$geoData}}</div>
+
+    <div class="select-hotel-cate-box" id="selectHotelCateBox">
+
+            <i class="icon remove large" id="closeCate"></i>
+        @foreach($categoryList as $category)
+            <div class="hotel-cate-panel">
+                <div class="f-cate-name">
+                    {{$category->category_name}}
+                </div>
+                <div class="s-cate-list">
+                @foreach($category->secondLevelCategory as $secLelCategory)
+                    <span data-id="{{$secLelCategory->id}}" >{{$secLelCategory->category_name}}</span>
+                @endforeach
+                </div>
+            </div>
+        @endforeach
+    </div>
+
 
     <div class="hotel-info  hotel-basic-info">
         <div class="header">酒店基本信息</div>
@@ -14,11 +39,36 @@
             <input type="hidden" value="{{csrf_token()}}" name="_token"/>
             <input type="hidden" value="{{$hotelInfo->id}}" id="hotelId" name="hotelId" />
             <input type="hidden" value="{{$createOrUpdate}}" id="createOrupdate" name="createOrupdate" />
-            <div class="short-input-box ">
-                <label>酒店名称</label>
-                <input type="text" id="hotelName" name="hotelName" value="{{$hotelInfo->name}}">
-                <span>请输入酒店的英文名</span>
+
+
+
+            <div class="long-input-box ">
+                <label>酒店分类</label>
+                <div class="cate-selection" id="selectCate">
+                    @foreach($categories as $category)
+                        <span data-id="{{$category->id}}"><i class="icon remove remove-cate "></i>{{$category->category_name}}</span>
+                    @endforeach
+
+                </div>
+                <span>请选择酒店类别(多选)</span>
+                <input type="hidden" id="selectCateList" name="selectCateList"/>
             </div>
+
+
+
+
+            <div class="short-input-box ">
+                <label>名称</label>
+                <input type="text" id="hotelName" name="hotelName" value="{{$hotelInfo->name}}">
+                <span>请输入酒店的名称</span>
+            </div>
+
+            <div class="short-input-box ">
+                <label>英文名称</label>
+                <input type="text" id="hotelNameEn" name="hotelNameEn" value="{{$hotelInfo->name_en}}">
+                <span>请输入酒店的名称</span>
+            </div>
+
 
             <div class="long-input-box ">
                 <label>省份城市</label>
@@ -65,17 +115,30 @@
                 <input type="text" name="hotelFeature" value="{{$hotelInfo->hotel_features}}">
                 <span>请输入酒店的特色</span>
             </div>
+
+            <div class="long-input-box ">
+                <label>特色(英文)</label>
+                <input type="text" name="hotelFeatureEn" value="{{$hotelInfo->hotel_features_en}}">
+                <span>请输入酒店的特色(英文)</span>
+            </div>
+
             <div class="long-input-box ">
                 <label>酒店简介</label>
-                <textarea name="hotelBrief">{{$hotelInfo->description}}</textarea>
+                <textarea name="hotelDescription">{{$hotelInfo->description}}</textarea>
                 <span>请输入酒店的简介</span>
             </div>
 
             <div class="long-input-box ">
-                <label>酒店封面</label>
-
-                <span>请输入酒店的简介</span>
+                <label>酒店简介(英文)</label>
+                <textarea name="hotelDescriptionEn">{{$hotelInfo->description_en}}</textarea>
+                <span>请输入酒店的简介(英文)</span>
             </div>
+
+            {{--<div class="long-input-box ">--}}
+                {{--<label>酒店封面</label>--}}
+
+                {{--<span>请输入酒店的简介</span>--}}
+            {{--</div>--}}
 
         </form>
 
@@ -440,7 +503,52 @@
 
         $(document).ready(function(){
 
+
+
             $('#province').gbhCityChooser();
+            $('.ui.dropdown')
+                    .dropdown({
+
+                    })
+            ;
+            /**********选择酒店分类*********/
+            var selectCateList = '';
+            $('#selectCate').click(function(){
+                var offset=$(this).offset();
+
+                $('#selectHotelCateBox').css({'top':offset.top-21,'left':offset.left-200}).fadeIn();
+            })
+
+
+            $('#closeCate').click(function(){
+                $('#selectHotelCateBox').fadeOut();
+            })
+
+            //选择分类
+            $('.s-cate-list>span').click(function(){
+
+                var exist = false;
+                var obj = $(this);
+                var html = '<span data-id="'+$(this).attr('data-id')+'"><i class="icon remove remove-cate "></i>'+obj.text()+'</span>';
+
+                //不能重复选择分类
+                $('#selectCate span').each(function(){
+                    if(obj.text() === $(this).text())
+                        exist = true;
+                })
+                if(exist === false)
+                {
+                    $('#selectCate').append(html);
+                }
+
+            })
+
+            //删除分类
+            $(document).on('click','.remove-cate',function(){
+                $(this).parent('span').remove();
+            });
+            /****************************/
+
 
             var isChange = false;
             var createOrupdate = $("#createOrupdate").val();
@@ -450,6 +558,8 @@
             })
             //   $('#city').gbhCityChooser();
 
+
+            //提交更新的表格
             $('#nsBtn').click(function(){
                 var isSubmit = false;
                 $("form").find(":text").each(function(i){
@@ -466,6 +576,12 @@
                 })
 
                 if (isSubmit) {
+
+                    //获取选择的酒店分类
+                    $('#selectCate span').each(function(){
+                        selectCateList += $(this).attr('data-id') +'|';
+                        $('#selectCateList').val(selectCateList);
+                    })
                     $('#hotelBasicInfo').submit();
 
                 }

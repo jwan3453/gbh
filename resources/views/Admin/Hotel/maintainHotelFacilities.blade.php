@@ -60,6 +60,7 @@
 
         $(document).ready(function() {
 
+            //选中设施
             $('.facility-list >label > span').click(function(){
                 if($(this).hasClass('facility-selected'))
                 {
@@ -88,8 +89,29 @@
             }
 //
 //
+            //提交表单,刷新页面
             $('#submitBtn').click(function(){
-                $('#hotelFacilityForm').submit();
+
+
+                var options = {
+                    url: '/admin/manageHotel/hotelInfo/createOrUpdateHotelFacilities',
+                    type: 'post',
+                    dataType: 'json',
+                    encoding: "UTF-8",
+                    data: decodeURIComponent( $("#hotelFacilityForm").serialize(),true),
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                    },
+                    beforeSend:function(){
+
+                    },
+                    success: function (data) {
+                           location.reload();
+                    },
+                    error:function(data){
+                    }
+                };
+                $.ajax(options);
             })
 
         })

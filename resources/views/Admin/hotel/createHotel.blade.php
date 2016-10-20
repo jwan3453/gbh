@@ -9,22 +9,45 @@
 <div>{{$province->parent_id}}</div>
 --}}
     {{--@endforeach--}}
-<div id="geoData" style="display: none">{{$geoData}}</div>
-<div>
-    <div class="h-c-steps">
-        <div class="step s-active ">1</div>
+    <div id="geoData" style="display: none">{{$geoData}}</div>
 
-        <div class="s-line s-l-active "></div>
-        <div class="s-line"></div>
-        <div class="step">2</div>
-        <div class="s-line"></div>
-        <div class="s-line"></div>
-        <div class="step">3</div>
-        <div class="s-line"></div>
-        <div class="s-line"></div>
-        <div class="step ">4</div>
 
+    <div class="select-hotel-cate-box" id="selectHotelCateBox">
+
+        <i class="icon remove large" id="closeCate"></i>
+        @foreach($categoryList as $category)
+            <div class="hotel-cate-panel">
+                <div class="f-cate-name">
+                    {{$category->category_name}}
+                </div>
+                <div class="s-cate-list">
+                    @foreach($category->secondLevelCategory as $secLelCategory)
+                        <span data-id="{{$secLelCategory->id}}" >{{$secLelCategory->category_name}}</span>
+                    @endforeach
+                </div>
+            </div>
+        @endforeach
     </div>
+
+<div>
+    {{--<div class="h-c-steps">--}}
+        {{--<div class="step s-active ">1</div>--}}
+
+        {{--<div class="s-line s-l-active "></div>--}}
+        {{--<div class="s-line"></div>--}}
+        {{--<div class="step">2</div>--}}
+        {{--<div class="s-line"></div>--}}
+        {{--<div class="s-line"></div>--}}
+        {{--<div class="step">3</div>--}}
+        {{--<div class="s-line"></div>--}}
+        {{--<div class="s-line"></div>--}}
+        {{--<div class="step ">4</div>--}}
+
+    {{--</div>--}}
+
+
+
+
 
     <div class="hotel-info  hotel-basic-info">
         <div class="header">酒店基本信息</div>
@@ -34,6 +57,19 @@
             <input type="hidden" value="{{csrf_token()}}" name="_token"/>
             <input type="hidden" value="{{$hotelInfo->id}}" id="hotelId" name="hotelId" />
             <input type="hidden" value="{{$createOrUpdate}}" id="createOrupdate" name="createOrupdate" />
+
+
+
+            <div class="long-input-box ">
+                <label>酒店分类</label>
+                <div class="cate-selection" id="selectCate">
+                </div>
+                <span>请选择酒店类别(多选)</span>
+                <input type="hidden" id="selectCateList" name="selectCateList"/>
+            </div>
+
+
+
             <div class="short-input-box ">
                 <label>酒店名称</label>
                 <input type="text" id="hotelName" name="hotelName" value="{{$hotelInfo->name}}">
@@ -91,11 +127,11 @@
                 <span>请输入酒店的简介</span>
             </div>
 
-            <div class="long-input-box ">
-                <label>酒店封面</label>
+            {{--<div class="long-input-box ">--}}
+                {{--<label>酒店封面</label>--}}
 
-                <span>请输入酒店的简介</span>
-            </div>
+                {{--<span>请输入酒店的简介</span>--}}
+            {{--</div>--}}
 
         </form>
 
@@ -463,6 +499,42 @@
 
             $('#province').gbhCityChooser();
 
+            /**********选择酒店分类*********/
+            var selectCateList = '';
+            $('#selectCate').click(function(){
+                var offset=$(this).offset();
+
+                $('#selectHotelCateBox').css({'top':offset.top-21,'left':offset.left-200}).fadeIn();
+            })
+
+            $('#closeCate').click(function(){
+                $('#selectHotelCateBox').fadeOut();
+            })
+            //选择分类
+            $('.s-cate-list>span').click(function(){
+                var exist = false;
+                var obj = $(this);
+                var html = '<span data-id="'+$(this).attr('data-id')+'"><i class="icon remove remove-cate "></i>'+obj.text()+'</span>';
+
+                //不能重复选择分类
+                $('#selectCate span').each(function(){
+                    if(obj.text() === $(this).text())
+                        exist = true;
+                })
+                if(exist === false)
+                {
+                    $('#selectCate').append(html);
+                }
+
+
+            })
+            //删除分类
+            $(document).on('click','.remove-cate',function(){
+                $(this).parent('span').remove();
+            });
+            /****************************/
+
+
             var isChange = false;
             var createOrupdate = $("#createOrupdate").val();
 
@@ -487,6 +559,15 @@
                 })
 
                 if (isSubmit) {
+
+                     //获取选择的酒店分类
+                    $('#selectCate span').each(function(){
+                        selectCateList += $(this).attr('data-id') +'|';
+                        $('#selectCateList').val(selectCateList);
+                    })
+
+
+
                     $('#hotelBasicInfo').submit();
                     
                 }

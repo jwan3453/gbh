@@ -56,6 +56,7 @@
                         <thead>
                         <tr>
                             <th>名称</th>
+                            <th>名称(英文)</th>
                             <th>距离</th>
                             <th>出租车</th>
                             <th>步行</th>
@@ -69,6 +70,7 @@
                             <tr>
 
                                 <td class="s-name"><span>{{$surrounding->name}}</span></td>
+                                <td class="s-name-en"><span>{{$surrounding->name_en}}</span></td>
                                 <td class="s-distance"><span>{{$surrounding->distance}}</span> km</td>
                                 <td class="s-taxi"><span>{{$surrounding->by_taxi}}</span> 分钟</td>
                                 <td class="s-walk"><span>{{$surrounding->by_walk}}</span> 分钟</td>
@@ -146,6 +148,11 @@
                         <label>名称</label>
                         <input type="text" name="name" id="name" >
 
+                    </div>
+
+                    <div class="add-surrounding-input-box" >
+                        <label>名称(英文)</label>
+                        <input type="text" name="nameEn" id="nameEn" >
                     </div>
                     <div class="add-surrounding-input-box">
                         <label>距离</label>
@@ -306,6 +313,7 @@
             $('#createOrUpdate').val('update');
             $('#surroundingId').val($(this).siblings('.surround-item').val());
             $('#name').val($(this).parent().siblings('.s-name').find('span').text());
+            $('#nameEn').val($(this).parent().siblings('.s-name-en').find('span').text());
             $('#distance').val($(this).parent().siblings('.s-distance').find('span').text());
             $('#byTaxi').val($(this).parent().siblings('.s-taxi').find('span').text());
             $('#byWalk').val($(this).parent().siblings('.s-walk').find('span').text());
@@ -345,6 +353,7 @@
                             //动态添加新的项目
                             var html ='<tr>'+
                                     '<td class="s-name"><span>'+$('#name').val()+'</span></td>'+
+                                    '<td class="s-name-en"><span>'+$('#nameEn').val()+'</span></td>'+
                                     '<td class="s-distance"><span>'+ $('#distance').val()+'</span>km</td>'+
                                     '<td class="s-taxi"><span>'+$('#byTaxi').val()+'</span>分钟</td>'+
                                     '<td class="s-walk"><span>'+$('#byWalk').val()+'</span>分钟</td>'+
@@ -363,6 +372,7 @@
                         {
                             //动态更新项目
                             editItem.parent().siblings('.s-name').find('span').text($('#name').val());
+                            editItem.parent().siblings('.s-name-en').find('span').text($('#nameEn').val());
                             editItem.parent().siblings('.s-distance').find('span').text($('#distance').val());
                             editItem.parent().siblings('.s-taxi').find('span').text($('#byTaxi').val());
                             editItem.parent().siblings('.s-walk').find('span').text($('#byWalk').val());

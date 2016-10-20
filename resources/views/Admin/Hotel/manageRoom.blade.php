@@ -5,6 +5,10 @@
 
     <link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/dropdown.css') }}>
     <script src={{ asset('semantic/dropdown.js') }}></script>
+
+    <link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/dimmer.css') }}>
+    <script src={{ asset('semantic/dimmer.js') }}></script>
+
     <script src={{ asset('js/jquery.form.js') }}></script>
 @stop
 
@@ -23,6 +27,12 @@
                 <div class="short-input-box ">
                     <label>房型名称</label>
                     <input type="text" id="roomName" name="roomName" data-input="房型名称" class="require">
+
+                </div>
+
+                <div class="short-input-box ">
+                    <label>房型名称(英文)</label>
+                    <input type="text" id="roomNameEn" name="roomNameEn"  data-input="房型名称(英文)" class="require">
 
                 </div>
 
@@ -192,38 +202,32 @@
                 </div>
             </div>
 
-            <div style="overflow:auto;display: block">
+                <div style="overflow:auto;display: block">
                 <div class="long-input-box">
                     <label>能否加床</label>
                     <div class="radio-selection">
                         <div class="radio-group">
-                            <input type="radio" name="sex" value="male" /> 不可加床
+                            <input type="radio" name="extraBed" value="1" checked /> 不可加床
 
-                            <input type="radio" name="sex" value="female" /> 免费加床
+                            <input type="radio" name="extraBed" value="2" /> 免费加床
 
-                            <input type="radio" name="sex" value="female" /> 收费加床
+                            <input type="radio" name="extraBed" value="3" /> 收费加床
                         </div>
                     </div>
                 </div>
 
 
                 <div class="long-input-box">
-                    <label>宽带</label>
+                    <label>wifi</label>
                     <div class="radio-selection">
                         <div class="radio-group">
-                            <input type="radio" name="sex" value="male" /> 不可加床
+                            <input type="radio" name="wifi" value="1" checked/> 无
 
-                            <input type="radio" name="sex" value="female" /> 免费加床
+                            <input type="radio" name="wifi" value="2" /> 免费
 
-                            <input type="radio" name="sex" value="female" /> 收费加床
+                            <input type="radio" name="wifi" value="3" /> 收费
                         </div>
-                        <div class="radio-group">
-                            <input type="radio" name="sex" value="male" /> 不可加床
 
-                            <input type="radio" name="sex" value="female" /> 免费加床
-
-                            <input type="radio" name="sex" value="female" /> 收费加床
-                        </div>
                     </div>
                 </div>
 
@@ -232,25 +236,25 @@
                     <label>无烟信息</label>
                     <div class="radio-selection">
                         <div class="radio-group">
-                            <input type="radio" name="sex" value="male" /> 不可吸烟
+                            <input type="radio" name="smoke" value="1" checked /> 不可吸烟
 
-                            <input type="radio" name="sex" value="female" /> 可以吸烟
+                            <input type="radio" name="smoke" value="2" /> 可以吸烟
                         </div>
                     </div>
                 </div>
 
 
 
-                <div class="long-input-box">
-                    <label>是否有窗</label>
-                    <div class="radio-selection">
-                        <div class="radio-group">
-                            <input type="radio" name="sex" value="male" /> 有窗
+                {{--<div class="long-input-box">--}}
+                    {{--<label>是否有窗</label>--}}
+                    {{--<div class="radio-selection">--}}
+                        {{--<div class="radio-group">--}}
+                            {{--<input type="radio" name="sex" value="male" /> 有窗--}}
 
-                            <input type="radio" name="sex" value="female" /> 无窗
-                        </div>
-                    </div>
-                </div>
+                            {{--<input type="radio" name="sex" value="female" /> 无窗--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
             </div>
             <div class="auto-margin regular-btn blue-btn" id="saveRoom">保存房型</div>
         </form>
@@ -271,7 +275,7 @@
 
 
 
-                            <div class="header-option f-left">
+                            <div class="header-option f-left delete-room " id="{{$room->id}}" >
 
                                 <img src = '/Admin/img/垃圾桶.png'/>
                                 <span>删除</span>
@@ -290,8 +294,20 @@
         </table>
 
 
+        <div class="ui page dimmer confirm-request">
 
+            <div id="confirmDeleteBox">
+                <h3>是否删该房型</h3>
+                <div class="confirm-btns">
+                    <div class="regular-btn blue-btn " id="confirmDelete">
+                        确定
+                        <div class="ui active inline  small  loader" id="loader"></div>
+                    </div>
+                    <div class="regular-btn red-btn" id="cancelDelete">取消</div>
+                </div>
 
+            </div>
+        </div>
 
     </div>
 @stop
@@ -300,6 +316,8 @@
 @section('infoScript')
     <script type="text/javascript">
         $(document).ready(function(){
+
+
             $('#newRoomBtn').click(function(){
                 $('#newRoomForm').transition('scale');
             })
@@ -348,9 +366,9 @@
 
             })
 
-            $('.delete-new-bed').on('click',function(){
-
+            $(document).on('click','.delete-new-bed',function(){
                 $(this).parent().remove();
+
                 if(multiBedCount!== 0 )
                     multiBedCount--;
             })
@@ -386,13 +404,57 @@
                             'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
                         },
                         success: function(data){
-                            alert(data.statusMsg);
-
+                            if(data.statusCode === 1)
+                            {
+                                //动态删除项目
+                                toastAlert(data.statusMsg,1);
+                                location.reload();
+                            }
+                            else{
+                                toastAlert(data.statusMsg,2);
+                            }
                         }
                     })
                 }
 
             })
+
+            //删除房型
+            var deleteRoom = ''
+            var deleteRoomRow;
+            $('.delete-room').click(function(){
+                deleteRoom = $(this).attr('id');
+                deleteRoomRow = $(this);
+                $('.dimmer').dimmer('show');
+            })
+
+            $('#confirmDelete').click(function(){
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/admin/manageHotel/deleteRoom',
+                    data: {roomId :deleteRoom},
+                    dataType: 'json',
+
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                    },
+                    success : function(data){
+                        if(data.statusCode === 1)
+                        {
+                            //动态删除项目
+                            deleteRoomRow.parents('tr').remove();
+                            toastAlert(data.statusMsg,1);
+
+                        }
+                        else{
+                            toastAlert(data.statusMsg,2);
+                        }
+                        $('.confirm-request').dimmer('hide');
+                    }
+                })
+            })
+
 
         })
     </script>

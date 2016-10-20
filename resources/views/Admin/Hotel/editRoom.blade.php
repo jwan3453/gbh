@@ -28,6 +28,13 @@
             </div>
 
             <div class="short-input-box ">
+                <label>房型名称(英文)</label>
+                <input type="text" id="roomNameEn" name="roomNameEn" value="{{$room->room_name_en}}" data-input="房型名称(英文)" class="require">
+
+            </div>
+
+
+            <div class="short-input-box ">
                 <label>门市价格</label>
                 <input type="text" id="rackRate" name="rackRate" value="{{$room->rack_rate}}" data-input="房型名称" class="require">
             </div>
@@ -277,12 +284,12 @@
             <div class="long-input-box">
                 <label>能否加床</label>
                 <div class="radio-selection">
-                    <div class="radio-group">
-                        <input type="radio" name="sex" value="male" /> 不可加床
+                    <div class="radio-group" >
+                        <input type="radio" name="extraBed" value="1" /> 不可加床
 
-                        <input type="radio" name="sex" value="female" /> 免费加床
+                        <input type="radio" name="extraBed" value="2" /> 免费加床
 
-                        <input type="radio" name="sex" value="female" /> 收费加床
+                        <input type="radio" name="extraBed" value="3" /> 收费加床
                     </div>
                 </div>
             </div>
@@ -292,19 +299,13 @@
                 <label>宽带</label>
                 <div class="radio-selection">
                     <div class="radio-group">
-                        <input type="radio" name="sex" value="male" /> 不可加床
+                        <input type="radio" name="wifi" value="1" /> 无
 
-                        <input type="radio" name="sex" value="female" /> 免费加床
+                        <input type="radio" name="wifi" value="2" /> 免费
 
-                        <input type="radio" name="sex" value="female" /> 收费加床
+                        <input type="radio" name="wifi" value="3" /> 收费
                     </div>
-                    <div class="radio-group">
-                        <input type="radio" name="sex" value="male" /> 不可加床
 
-                        <input type="radio" name="sex" value="female" /> 免费加床
-
-                        <input type="radio" name="sex" value="female" /> 收费加床
-                    </div>
                 </div>
             </div>
 
@@ -313,25 +314,25 @@
                 <label>无烟信息</label>
                 <div class="radio-selection">
                     <div class="radio-group">
-                        <input type="radio" name="sex" value="male" /> 不可吸烟
+                        <input type="radio" name="smoke" value="1" /> 不可吸烟
 
-                        <input type="radio" name="sex" value="female" /> 可以吸烟
+                        <input type="radio" name="smoke" value="2" /> 可以吸烟
                     </div>
                 </div>
             </div>
 
 
 
-            <div class="long-input-box">
-                <label>是否有窗</label>
-                <div class="radio-selection">
-                    <div class="radio-group">
-                        <input type="radio" name="sex" value="male" /> 有窗
+            {{--<div class="long-input-box">--}}
+                {{--<label>是否有窗</label>--}}
+                {{--<div class="radio-selection">--}}
+                    {{--<div class="radio-group">--}}
+                        {{--<input type="radio" name="sex" value="male" /> 有窗--}}
 
-                        <input type="radio" name="sex" value="female" /> 无窗
-                    </div>
-                </div>
-            </div>
+                        {{--<input type="radio" name="sex" value="female" /> 无窗--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+            {{--</div>--}}
         </div>
         <div class="auto-margin regular-btn blue-btn" id="saveRoom">保存修改</div>
     </form>
@@ -341,6 +342,13 @@
 @section('script')
     <script type="text/javascript">
         $(document).ready(function(){
+
+
+            //给radio选项赋值
+            $('input[name="extraBed"][value='+ '{{$room->is_extra_bed}}'+']').attr("checked",true);
+            $('input[name="wifi"][value='+ '{{$room->wifi}}'+']').attr("checked",true);
+            $('input[name="smoke"][value='+ '{{$room->smoke}}'+']').attr("checked",true);
+
 
 
             //选择多床型，动态添加
@@ -390,9 +398,9 @@
 
             })
 
-            $('.delete-new-bed').on('click',function(){
-
+            $(document).on('click','.delete-new-bed',function(){
                 $(this).parent().remove();
+
                 if(multiBedCount!== 0 )
                     multiBedCount--;
             })

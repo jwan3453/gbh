@@ -37,8 +37,9 @@ class CreateHotelTable extends Migration
             $table->integer('total_rooms');//酒店房间总数
             $table->string('surrounding_environment',250);//周边环境
             $table->string('hotel_brief');
+            $table->string('hotel_brief_eng');
             $table->string('hotel_features',300);//酒店特色
-            $table->string('hotel_features_english',300);
+            $table->string('hotel_features_eng',300);
 
             $table->timestamps();
         });

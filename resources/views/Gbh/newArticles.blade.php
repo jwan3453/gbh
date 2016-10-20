@@ -12,9 +12,6 @@
 
         @include('partial.homeNav')
 
-
-
-
                 <div class="new-articles ">
 
                     <div class="article-nav">

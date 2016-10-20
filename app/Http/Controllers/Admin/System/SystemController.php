@@ -18,191 +18,192 @@ use App\Tool\MessageResult;
 */
 class SystemController extends Controller
 {
-	private $system;
-	function __construct(SystemService $system)
-	{
-		$this->system = $system;
-	}
+    private $system;
+
+    function __construct(SystemService $system)
+    {
+        $this->system = $system;
+    }
 
 
-	//--------------轮播图管理----------
-	public function slideConfigure()
-	{
+    //--------------轮播图管理----------
+    public function slideConfigure()
+    {
         $is = $this->isRolePermission("slide");
 
         if (!$is) {
             return redirect(url('admin/Error/NotPermission'));
         }
 
-		$slideList = $this->system->getSlideList();
-		return view('Admin.System.slideConfigurePage')->with('slideList',$slideList);
-	}
+        $slideList = $this->system->getSlideList();
+        return view('Admin.System.slideConfigurePage')->with('slideList', $slideList);
+    }
 
-	public function uploadImg(Request $request)
-	{      
-		$file = $_FILES[$request->input('filename')];
-  
-        return $this->system->uploadImg($file,'uploads/slide');
-	}
+    public function uploadImg(Request $request)
+    {
+        $file = $_FILES[$request->input('filename')];
 
-	public function createSlide(Request $request)
-	{
-		$jsonResult = new MessageResult();
+        return $this->system->uploadImg($file, 'uploads/slide');
+    }
 
-		$createSlide = $this->system->createOrUpdateSlide($request->input());
+    public function createSlide(Request $request)
+    {
+        $jsonResult = new MessageResult();
 
-		if ($createSlide) {
+        $createSlide = $this->system->createOrUpdateSlide($request->input());
+
+        if ($createSlide) {
             $jsonResult->statusCode = 1;
             $jsonResult->statusMsg = "成功";
-        }else{
+        } else {
             $jsonResult->statusCode = 0;
             $jsonResult->statusMsg = "失败";
         }
 
         return response($jsonResult->toJson());
-	}
+    }
 
-	public function delSlide(Request $request)
-	{
-		$jsonResult = new MessageResult();
+    public function delSlide(Request $request)
+    {
+        $jsonResult = new MessageResult();
 
         $delSlide = $this->system->delSlide($request->input('slideId'));
 
         if ($delSlide) {
             $jsonResult->statusCode = 1;
             $jsonResult->statusMsg = "成功";
-        }else{
+        } else {
             $jsonResult->statusCode = 0;
             $jsonResult->statusMsg = "失败";
         }
 
         return response($jsonResult->toJson());
-	}
+    }
 
 
-	//----------------银行卡、信用卡管理----------------
-	public function creditCardManage()
-	{
+    //----------------银行卡、信用卡管理----------------
+    public function creditCardManage()
+    {
         $is = $this->isRolePermission("creditcard");
 
         if (!$is) {
             return redirect(url('admin/Error/NotPermission'));
         }
 
-		$InternalList = $this->system->getCreditCardList(1);
-		$AbroadList = $this->system->getCreditCardList(2);
-		return view('Admin.System.creditCardManage')->with('InternalList',$InternalList)->with('AbroadList',$AbroadList);
-	}
+        $InternalList = $this->system->getCreditCardList(1);
+        $AbroadList = $this->system->getCreditCardList(2);
+        return view('Admin.System.creditCardManage')->with('InternalList', $InternalList)->with('AbroadList', $AbroadList);
+    }
 
-	public function createCreditCard(Request $request)
-	{
-		$jsonResult = new MessageResult();
+    public function createCreditCard(Request $request)
+    {
+        $jsonResult = new MessageResult();
 
-		$createCreditCard = $this->system->createOrUpdateCreditCard($request->input());
+        $createCreditCard = $this->system->createOrUpdateCreditCard($request->input());
 
-		if ($createCreditCard) {
+        if ($createCreditCard) {
             $jsonResult->statusCode = 1;
             $jsonResult->statusMsg = "成功";
-        }else{
+        } else {
             $jsonResult->statusCode = 0;
             $jsonResult->statusMsg = "失败";
         }
 
         return response($jsonResult->toJson());
-	}
+    }
 
-	public function delCredit(Request $request)
-	{
-		$jsonResult = new MessageResult();
+    public function delCredit(Request $request)
+    {
+        $jsonResult = new MessageResult();
 
         $delCredit = $this->system->delCredit($request->input('creditId'));
 
         if ($delCredit) {
             $jsonResult->statusCode = 1;
             $jsonResult->statusMsg = "成功";
-        }else{
+        } else {
             $jsonResult->statusCode = 0;
             $jsonResult->statusMsg = "失败";
         }
 
         return response($jsonResult->toJson());
-	}
+    }
 
 
-	//-----------------服务分类管理----------------
-	public function serviceSetting()
-	{
+    //-----------------服务分类管理----------------
+    public function serviceSetting()
+    {
         $is = $this->isRolePermission("facility-settings");
 
         if (!$is) {
             return redirect(url('admin/Error/NotPermission'));
         }
 
-		$serviceCategorylist = $this->system->getServiceCategoryList();
-		return view('Admin.System.serviceSetting')->with('serviceCategorylist',$serviceCategorylist);
-	}
+        $serviceCategorylist = $this->system->getServiceCategoryList();
+        return view('Admin.System.serviceSetting')->with('serviceCategorylist', $serviceCategorylist);
+    }
 
-	public function createServiceCategory(Request $request)
-	{
-		$jsonResult = new MessageResult();
+    public function createServiceCategory(Request $request)
+    {
+        $jsonResult = new MessageResult();
 
-		$createServiceCategory = $this->system->createOrUpdateServiceCategory($request->input());
+        $createServiceCategory = $this->system->createOrUpdateServiceCategory($request->input());
 
-		if ($createServiceCategory) {
+        if ($createServiceCategory) {
             $jsonResult->statusCode = 1;
             $jsonResult->statusMsg = "成功";
-        }else{
+        } else {
             $jsonResult->statusCode = 0;
             $jsonResult->statusMsg = "失败";
         }
 
         return response($jsonResult->toJson());
-	}
+    }
 
-	public function delServiceCategory(Request $request)
-	{
-		$jsonResult = new MessageResult();
+    public function delServiceCategory(Request $request)
+    {
+        $jsonResult = new MessageResult();
 
         $delServiceCategory = $this->system->delServiceCategory($request->input('serviceId'));
 
         if ($delServiceCategory) {
             $jsonResult->statusCode = 1;
             $jsonResult->statusMsg = "成功";
-        }else{
+        } else {
             $jsonResult->statusCode = 0;
             $jsonResult->statusMsg = "失败";
         }
 
         return response($jsonResult->toJson());
-	}
+    }
 
 
-	//-----------------酒店服务管理---------------
-	public function serviceItems()
-	{
+    //-----------------酒店服务管理---------------
+    public function serviceItems()
+    {
         $is = $this->isRolePermission("serviceitems");
 
         if (!$is) {
             return redirect(url('admin/Error/NotPermission'));
         }
-        
-		$serviceItemsList = $this->system->getServiceItemsList();
-		return view('Admin.System.serviceItemsPage')->with('serviceItemsList',$serviceItemsList);
-	}
 
-	public function createServiceItem(Request $request)
+        $serviceItemsList = $this->system->getServiceItemsList();
+        return view('Admin.System.serviceItemsPage')->with('serviceItemsList', $serviceItemsList);
+    }
+
+    public function createServiceItem(Request $request)
     {
         $jsonResult = new MessageResult();
 
-		$createServiceItem = $this->system->createOrUpdateServiceItem($request->input());
+        $createServiceItem = $this->system->createOrUpdateServiceItem($request->input());
 
-		if ($createServiceItem) {
+        if ($createServiceItem) {
             $jsonResult->statusCode = 1;
             $jsonResult->statusMsg = "成功";
             $jsonResult->extra_name = $request->input("itemName");
             $jsonResult->service_type = $request->input("serviceType");
             $jsonResult->admin = Session::get('adminusername');
-        }else{
+        } else {
             $jsonResult->statusCode = 0;
             $jsonResult->statusMsg = "失败";
         }
@@ -212,14 +213,14 @@ class SystemController extends Controller
 
     public function delitem(Request $request)
     {
-    	$jsonResult = new MessageResult();
+        $jsonResult = new MessageResult();
 
         $delitem = $this->system->delitem($request->input('serviceId'));
 
         if ($delitem) {
             $jsonResult->statusCode = 1;
             $jsonResult->statusMsg = "成功";
-        }else{
+        } else {
             $jsonResult->statusCode = 0;
             $jsonResult->statusMsg = "失败";
         }
@@ -230,7 +231,7 @@ class SystemController extends Controller
     public function hotelImageManage()
     {
         $hotelImageManage = $this->system->hotelImageManage();
-        return view('Admin.System.hotelImageManage')->with('hotelImageManage',$hotelImageManage);
+        return view('Admin.System.hotelImageManage')->with('hotelImageManage', $hotelImageManage);
     }
 
     public function hotelImageOperation(Request $request)
@@ -245,7 +246,7 @@ class SystemController extends Controller
             $jsonResult->extra_name = $request->input("itemName");
             $jsonResult->service_type = $request->input("serviceType");
             $jsonResult->admin = Session::get('adminusername');
-        }else{
+        } else {
             $jsonResult->statusCode = 0;
             $jsonResult->statusMsg = "失败";
         }
@@ -262,7 +263,7 @@ class SystemController extends Controller
         if ($delhotelImage) {
             $jsonResult->statusCode = 1;
             $jsonResult->statusMsg = "成功";
-        }else{
+        } else {
             $jsonResult->statusCode = 0;
             $jsonResult->statusMsg = "失败";
         }
@@ -270,6 +271,109 @@ class SystemController extends Controller
         return response($jsonResult->toJson());
     }
 
+
+    //管理目的地
+    public function manageDestination()
+    {
+
+        //$initial_a_e = ['A','B','C','D','E'];
+        $citiesByInitial = $this->system->getCities();
+
+        $initialGroup = [];
+        $initialGroup['a_e'] = ['A', 'B', 'C', 'D', 'E'];
+        $initialGroup['f_j'] = ['F', 'G', 'H', 'I', 'J'];
+        $initialGroup['k_p'] = ['K', 'L', 'M', 'N', 'O', 'P'];
+        $initialGroup['q_v'] = ['Q', 'R', 'S', 'T', 'U', 'V'];
+        $initialGroup['w_z'] = ['W', 'R', 'S', 'T', 'U', 'Z'];
+
+
+        return view('Admin.System.manageDestination')->with('citiesByInitial', $citiesByInitial)->with('initialGroup', $initialGroup);
+    }
+
+    //获取目的地信息
+    public function  getDestinationInfo(Request $request)
+    {
+
+        $jsonResult = new MessageResult();
+
+        $result = $this->system->getDestinationInfo($request);
+
+        if ($result) {
+            $jsonResult->statusCode = 1;
+            $jsonResult->statusMsg = "成功";
+            $jsonResult->extra = $result;
+        } else {
+            $jsonResult->statusCode = 0;
+            $jsonResult->statusMsg = "失败";
+        }
+
+        return response($jsonResult->toJson());
+    }
+
+    //保存目的地信息
+    public function saveDestinationInfo(Request $request)
+    {
+
+        $jsonResult = new MessageResult();
+
+        $result = $this->system->saveDestinationInfo($request);
+
+        if ($result) {
+            $jsonResult->statusCode = 1;
+            $jsonResult->statusMsg = "成功";
+            $jsonResult->extra = $result;
+        } else {
+            $jsonResult->statusCode = 0;
+            $jsonResult->statusMsg = "失败";
+        }
+
+        return response($jsonResult->toJson());
+    }
+
+    //设置酒店分类
+    public function manageHotelCategory()
+    {
+        $categories = $this->system->getHotelCategories();
+        return view('Admin.System.manageHotelCategory')->with('categories',$categories);
+    }
+
+    //保存目的地信息
+    public function saveHotelCategory(Request $request)
+    {
+
+        $jsonResult = new MessageResult();
+
+        $result = $this->system->saveHotelCategory($request);
+
+        if ($result) {
+            $jsonResult->statusCode = 1;
+            $jsonResult->statusMsg = "保存成功";
+            $jsonResult->extra = $result;
+        } else {
+            $jsonResult->statusCode = 0;
+            $jsonResult->statusMsg = "保存失败";
+        }
+
+        return response($jsonResult->toJson());
+    }
+
+    //删除酒店分类
+    public function deleteHotelCategory(Request $request)
+    {
+        $jsonResult = new MessageResult();
+        $result =  $this->system->deleteHotelCategory($request);
+
+        if($result)
+        {
+            $jsonResult->statusCode =1;
+            $jsonResult->statusMsg ='删除成功';
+        }
+        else{
+            $jsonResult->statusCode =0;
+            $jsonResult->statusMsg ='删除失败';
+        }
+        return response($jsonResult->toJson());
+    }
 
 
 }

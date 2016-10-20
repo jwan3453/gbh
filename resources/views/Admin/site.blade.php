@@ -18,13 +18,15 @@
     <link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/dropdown.css') }}>
     <script src={{ asset('semantic/dropdown.js') }}></script>
 
+    <link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/divider.css') }}>
+
     @yield('resources')
 
 </head>
 
 <body>
 
-<div class="menu-box">
+<div class="menu-box" >
 
     <div class="menu-logo">
         <img src="/Admin/img/logo.png">
@@ -65,7 +67,7 @@
 
 
 
-<div class="center">
+<div class="center" >
     @yield('content')
     <div class="padding-80">
 

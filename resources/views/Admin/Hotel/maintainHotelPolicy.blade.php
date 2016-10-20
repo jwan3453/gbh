@@ -36,7 +36,7 @@
             </div>
 
             <div class="hotel-policy-row height-40">
-                <span class="policy-title-font float-left">离店时间</span>
+                <span class="policy-title-font float-left ">离店时间</span>
                 <select class=" hotel-policy-input float-left margin-right-10" name="checkoutTimeFrom"  id="checkoutTimeFrom">
                     @foreach($timespans as $timespan)
                         <option value="">{{$timespan}}</option>
@@ -52,7 +52,7 @@
             </div>
 
             <div class="hotel-policy-row height-80">
-                <div class="title-font-box height-40 margin-right-10">
+                <div class="title-font-box height-40 margin-right-10 width-80">
                     <span class="policy-title-font float-left">押金预付</span>
                 </div>
                 <textarea class="hotel-policy-textarea margin-right-10" name="prepaidDeposit">{{$hotelPolicy ==null?'':$hotelPolicy->prepaid_deposit}}</textarea>
@@ -62,7 +62,17 @@
             </div>
 
             <div class="hotel-policy-row height-80">
-                <div class="title-font-box height-40 margin-right-10">
+                <div class="title-font-box height-40 margin-right-10 width-80">
+                    <span class="policy-title-font float-left">押金预付(英文)</span>
+                </div>
+                <textarea class="hotel-policy-textarea margin-right-10" name="prepaidDepositEn">{{$hotelPolicy ==null?'':$hotelPolicy->prepaid_deposit_en}}</textarea>
+                <div class="title-font-box height-40">
+                    <span class="policy-tips-font float-left">在此输入酒店押金入住信息</span>
+                </div>
+            </div>
+
+            <div class="hotel-policy-row height-80">
+                <div class="title-font-box height-40 margin-right-10 width-80">
                     <span class="policy-title-font float-left">膳食安排</span>
                 </div>
                 <textarea class="hotel-policy-textarea margin-right-10" name="cateringArrangements">{{$hotelPolicy ==null?'':$hotelPolicy->catering_arrangements}}</textarea>
@@ -72,7 +82,17 @@
             </div>
 
             <div class="hotel-policy-row height-80">
-                <div class="title-font-box height-40 margin-right-10">
+                <div class="title-font-box height-40 margin-right-10 width-80">
+                    <span class="policy-title-font float-left">膳食安排(英文)</span>
+                </div>
+                <textarea class="hotel-policy-textarea margin-right-10" name="cateringArrangementsEn">{{$hotelPolicy ==null?'':$hotelPolicy->catering_arrangements_en}}</textarea>
+                <div class="title-font-box height-40">
+                    <span class="policy-tips-font float-left">在此输入酒店的餐食与时间，如早餐自助午餐AM10:00等</span>
+                </div>
+            </div>
+
+            <div class="hotel-policy-row height-80">
+                <div class="title-font-box height-40 margin-right-10 width-80">
                     <span class="policy-title-font float-left">其他政策</span>
                 </div>
                 <textarea class="hotel-policy-textarea margin-right-10" name="otherPolicy">{{$hotelPolicy==null?'':$hotelPolicy->other_policy}}</textarea>
@@ -80,6 +100,17 @@
                     <span class="policy-tips-font float-left">酒店其他政策，包括加床，儿童床等</span>
                 </div>
             </div>
+
+            <div class="hotel-policy-row height-80">
+                <div class="title-font-box height-40 margin-right-10 width-80">
+                    <span class="policy-title-font float-left">其他政策(英文)</span>
+                </div>
+                <textarea class="hotel-policy-textarea margin-right-10" name="otherPolicyEn">{{$hotelPolicy==null?'':$hotelPolicy->other_policy_en}}</textarea>
+                <div class="title-font-box height-40">
+                    <span class="policy-tips-font float-left">酒店其他政策，包括加床，儿童床等</span>
+                </div>
+            </div>
+
 
             <div class="hotel-policy-row height-80">
                 <div type="submit" class = "next-step-btn auto-margin" id="nsBtn">下一步</div>
