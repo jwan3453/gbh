@@ -1623,10 +1623,12 @@ body{
 }
 .long-input-box textarea{
 	width:360px;
-	height:240px;
+	height:140px;
 	font-size:12px;
 	background-color: #f8f8f8;
 	border:1px solid #505050;
+	display: inline-block;
+	vertical-align: top;
 }
 .long-input-box span{
 	font-size:12px;

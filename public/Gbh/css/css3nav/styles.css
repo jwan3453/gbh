@@ -1,0 +1,97 @@
+
+
+body.nav-open .site-menu-nav{
+  opacity: 1;
+  display: block;
+  z-index:100;
+  -webkit-transition-timing-function: swing;
+  transition-timing-function: swing;
+  -webkit-transform: translateY(100%);
+  transform: translateY(100%);
+}
+body.nav-open .nav-toggle {
+  box-shadow: none;
+}
+body.nav-open .nav-toggle:before {
+  width: 1200px;
+  height: 1200px;
+  background-color: rgb(9,9,26);
+}
+body.nav-open .nav-toggle .icon {
+  width: 0;
+}
+body.nav-open .nav-toggle .icon:before {
+  -webkit-transform: translateY(9px) rotate(45deg);
+      -ms-transform: translateY(9px) rotate(45deg);
+          transform: translateY(9px) rotate(45deg);
+}
+body.nav-open .nav-toggle .icon:after {
+  -webkit-transform: translateY(-9px) rotate(-45deg);
+      -ms-transform: translateY(-9px) rotate(-45deg);
+          transform: translateY(-9px) rotate(-45deg);
+}
+
+.nav-toggle {
+  width: 50px;
+  height: 50px;
+  z-index: 2;
+  border-radius: 50%;
+  top:0;
+  right:10px;
+  position: absolute;
+  cursor: pointer;
+
+  -webkit-transition-duration: 0.66s;
+          transition-duration: 0.66s;
+  -webkit-transition-timing-function: swing;
+          transition-timing-function: swing;
+}
+.nav-toggle:before {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+      -ms-transform: translateX(-50%) translateY(-50%);
+          transform: translateX(-50%) translateY(-50%);
+  -webkit-transition-duration: 0.66s;
+          transition-duration: 0.66s;
+  -webkit-transition-timing-function: swing;
+          transition-timing-function: swing;
+}
+.nav-toggle .icon {
+  width: 30px;
+  height: 4px;
+  background-color: white;
+  border-radius: 2px;
+  position: absolute;
+  top: 28px;
+  left: 15px;
+  -webkit-transition-duration: 0.5s;
+          transition-duration: 0.5s;
+  transiting-timing-function: swing;
+}
+.nav-toggle .icon:before,
+.nav-toggle .icon:after {
+  width: 30px;
+  height: 4px;
+  background-color: white;
+  border-radius: 2px;
+  content: "";
+  position: absolute;
+  left: 0;
+  -webkit-transition-duration: 0.5s;
+          transition-duration: 0.5s;
+  -webkit-transition-timing-function: swing;
+  transition-timing-function: swing;
+}
+.nav-toggle .icon:before {
+  top: -9px;
+}
+.nav-toggle .icon:after {
+  top: 9px;
+}
+

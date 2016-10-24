@@ -10,7 +10,7 @@
     <title>最新文章</title>
     <div >
 
-        @include('partial.homeNav')
+
 
                 <div class="new-articles ">
 

@@ -8,8 +8,8 @@
 
     <title>关于我们</title>
 
-    <div class="pusher">
-        @include('partial.homeNav')
+    <div>
+
 
     <div class="ui container">
 

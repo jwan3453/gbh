@@ -82,9 +82,18 @@
 
             <div class="long-input-box ">
                 <label>具体地址</label>
-                <input type="text" name="hotelAddress" value="{{$hotelInfo->detail}}">
+                <input type="text" name="hotelAddress" value="{{$hotelInfo->address==null?'':$hotelInfo->address->detail}}">
                 <span>请输入酒店的具体地址</span>
             </div>
+
+
+            <div class="long-input-box ">
+                <label>具体地址(英文)</label>
+                <input type="text" name="hotelAddressEn" value="{{$hotelInfo->address==null?'':$hotelInfo->address->detail_en}}">
+                <span>请输入酒店的具体地址</span>
+            </div>
+
+
             <div class="short-input-box ">
                 <label>邮编</label>
                 <input type="text" name="hotelPostcode" onchange="number(this)" value="{{$hotelInfo->postcode}}">

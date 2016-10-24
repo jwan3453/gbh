@@ -9,7 +9,7 @@
 
     <title>团队经历</title>
     <div >
-        @include('partial.homeNav')
+
         <div class="ui container">
 
             <div class="about-menu-nav">

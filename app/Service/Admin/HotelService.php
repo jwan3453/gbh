@@ -73,6 +73,7 @@ class HotelService {
         $newAddress->city_code = $request->input('cityCode');
         $newAddress->district_code = $request->input('districtCode');
         $newAddress->detail = $request->input('hotelAddress');
+        $newAddress->detail_en = $request->input('hotelAddressEn');
         if($newAddress->save())
         {
 
@@ -117,11 +118,10 @@ class HotelService {
     public function insertPolicy(Request $request)
     {
 
-//        $isInsert = false;
 
         $hotelId = $request->input('hotelId');
-        $checkinTime = $request->input('checkinTimeFrom') . " | " . $request->input('checkinTimeTo');
-        $checkoutTime = $request->input('checkoutTimeFrom') . " | " . $request->input('checkoutTimeTo');
+        $checkinTime = $request->input('checkinTime');// . " | " . $request->input('checkinTimeTo');
+        $checkoutTime = $request->input('checkoutTime');// . " | " . $request->input('checkoutTimeTo');
 
         // dd($request['createOrupdate']);
 
@@ -992,6 +992,9 @@ class HotelService {
         $newRoom->acreage = $request->input('acreage');
         $newRoom->floor = $request->input('floor');
 
+        $newRoom->room_description = $request->input('description');
+        $newRoom->room_description_en = $request->input('descriptionEn');
+
         $newRoom->is_extra_bed = $request->input('extraBed');
         $newRoom->wifi =  $request->input('wifi');
         $newRoom->smoke= $request->input('smoke');
@@ -1033,6 +1036,9 @@ class HotelService {
         $room->num_of_rooms = $request->input('numOfRooms');
         $room->acreage = $request->input('acreage');
         $room->floor = $request->input('floor');
+
+        $room->room_description = $request->input('description');
+        $room->room_description_en = $request->input('descriptionEn');
 
         $room->is_extra_bed = $request->input('extraBed');
         $room->wifi =  $request->input('wifi');
@@ -1156,7 +1162,7 @@ class HotelService {
     {
         $hotelInfo = Hotel::where('id',$hotelId)->select('name','name_en','address_id','postcode','phone','fax','website','total_rooms','hotel_features','hotel_features_en','description','description_en')->first();
 
-        $hotelInfo->address = Address::where('id',$hotelInfo->address_id)->select('province_code','city_code','district_code','detail')->first();
+        $hotelInfo->address = Address::where('id',$hotelInfo->address_id)->select('province_code','city_code','district_code','detail','detail_en')->first();
 
         return $hotelInfo;
 
@@ -1280,21 +1286,22 @@ class HotelService {
         $hotelPolicy = hotelPolicy::where('hotel_id',$hotelId)->select('id','checkin_time','checkout_time','prepaid_deposit','prepaid_deposit_en','catering_arrangements','catering_arrangements_en','other_policy','other_policy_en')->first();
 
 
-        if($hotelPolicy != null)
-        {
-            $check_time = explode(' | ', $hotelPolicy->checkin_time);
+//        if($hotelPolicy != null)
+//        {
+//            $check_time = explode(' | ', $hotelPolicy->checkin_time);
+//
+//
+//            $hotelPolicy->checkinTimeFrom = $check_time[0];
+//            if(count($check_time) ==2)
+//                $hotelPolicy->checkinTimeTo = $check_time[1];
+//
+//            $checkout_time = explode(' | ', $hotelPolicy->checkout_time);
+//
+//            $hotelPolicy->checkoutTimeFrom = $checkout_time[0];
+//            if(count($checkout_time) ==2)
+//                $hotelPolicy->checkoutTimeTo = $checkout_time[1];
+//        }
 
-
-            $hotelPolicy->checkinTimeFrom = $check_time[0];
-            if(count($check_time) ==2)
-                $hotelPolicy->checkinTimeTo = $check_time[1];
-
-            $checkout_time = explode(' | ', $hotelPolicy->checkout_time);
-
-            $hotelPolicy->checkoutTimeFrom = $checkout_time[0];
-            if(count($checkout_time) ==2)
-                $hotelPolicy->checkoutTimeTo = $checkout_time[1];
-        }
 
         return $hotelPolicy;
 

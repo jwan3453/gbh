@@ -12,24 +12,24 @@
     <div>
         <div class="home-page">
 
-            <div class="home-site-header">
-                <div class="home-menu-nav">
-                    <div>
-                        <a href="/"><span>首页</span></a>
-                        <a href="/newArticles">
-                            <span>最新文章</span>
-                        </a>
-                        <a href="/booking"><span>酒店预定</span></a>
-                        <a href="/aboutUs"><span>关于我们</span></a>
+            {{--<div class="home-site-header">--}}
+                {{--<div class="home-menu-nav">--}}
+                    {{--<div>--}}
+                        {{--<a href="/"><span>首页</span></a>--}}
+                        {{--<a href="/newArticles">--}}
+                            {{--<span>最新文章</span>--}}
+                        {{--</a>--}}
+                        {{--<a href="/booking"><span>酒店预定</span></a>--}}
+                        {{--<a href="/aboutUs"><span>关于我们</span></a>--}}
 
-                    </div>
-                </div>
+                    {{--</div>--}}
+                {{--</div>--}}
 
-                <div class="mobile-menu-nav">
-                    <i class="sidebar icon large"></i>
-                </div>
+                {{--<div class="mobile-menu-nav">--}}
+                    {{--<i class="sidebar icon large"></i>--}}
+                {{--</div>--}}
 
-            </div>
+            {{--</div>--}}
             <div class="owl-carousel owl-theme home-slide">
                 @foreach($slideList as $slide)
                     <a target="_blank" href="{{$slide->slide_link}}"><div class="slide">

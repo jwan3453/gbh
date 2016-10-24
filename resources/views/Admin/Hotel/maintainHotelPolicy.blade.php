@@ -18,37 +18,25 @@
 
             <div class="hotel-policy-row height-40">
                 <span class="policy-title-font float-left">入住时间</span>
-                <select class="hotel-policy-input float-left margin-right-10" name="checkinTimeFrom" id="checkinTimeFrom">
+                <select class="hotel-policy-input float-left margin-right-10" name="checkinTime" id="checkinTime">
                     @foreach($timespans as $timespan)
-                        <option value="">{{$timespan}}</option>
+                        <option value="{{$timespan}}">{{$timespan}}</option>
                     @endforeach
                 </select>
 
-                <span class="policy-tips-font float-left">至</span>
 
-                <select class=" hotel-policy-input float-left margin-right-10" name="checkinTimeTo" id="checkinTimeTo">
-                    @foreach($timespans as $timespan)
-                        <option value="">{{$timespan}}</option>
-                    @endforeach
-                </select>
-
-                <span class="policy-tips-font float-left">入住时间决定用户从几时开始算第一天的时间</span>
+                <span class="policy-tips-font float-left">在该时间之后</span>
             </div>
 
             <div class="hotel-policy-row height-40">
                 <span class="policy-title-font float-left ">离店时间</span>
-                <select class=" hotel-policy-input float-left margin-right-10" name="checkoutTimeFrom"  id="checkoutTimeFrom">
+                <select class=" hotel-policy-input float-left margin-right-10" name="checkoutTime"  id="checkoutTime">
                     @foreach($timespans as $timespan)
-                        <option value="">{{$timespan}}</option>
+                        <option value="{{$timespan}}">{{$timespan}}</option>
                     @endforeach
                 </select>
-                <span class="policy-tips-font float-left">至</span>
-                <select class=" hotel-policy-input float-left margin-right-10" name="checkoutTimeTo" id="checkoutTimeTo">
-                    @foreach($timespans as $timespan)
-                        <option value="">{{$timespan}}</option>
-                    @endforeach
-                </select>
-                <span class="policy-tips-font float-left">离店时间决定用户从几时开始算第二天的钱</span>
+
+                <span class="policy-tips-font float-left">在该时间之前</span>
             </div>
 
             <div class="hotel-policy-row height-80">
@@ -139,8 +127,9 @@
             })
 
 
+            $('#checkinTime').find('option[value='+'"{{$hotelPolicy==null?'':$hotelPolicy->checkin_time}}"'+']').attr("selected",true);
 
-            $("#checkinTimeFrom").find("option[text='{{$hotelPolicy==null?'':$hotelPolicy->checkinTimeFrom}}']").attr("selected",true);
+            $('#checkoutTime').find('option[value='+'"{{$hotelPolicy==null?'':$hotelPolicy->checkout_time}}"'+']').attr("selected",true);
         })
     </script>
 @stop

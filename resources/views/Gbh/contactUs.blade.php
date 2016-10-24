@@ -11,7 +11,7 @@
 
     <title>联系我们</title>
     <div >
-        @include('partial.homeNav')
+
     <div class="ui container">
 
         <div class="about-menu-nav">
@@ -69,7 +69,7 @@
                 </div>
             </div>
 
-            <div class="padding-40"></div>
+            <div class="padding-80"></div>
         </div>
     </div>
 
@@ -108,13 +108,7 @@
                 <span>000-000-000</span>
             </div>
 
-            <div class="detail-row">
-                <img src ='/Gbh/img/wechat.png' class="footer-icon wechat-icon"   data-html=''  />
-            </div>
-            <div class="qr-image">
-                <img src = "/Gbh/img/wechat_qr.jpg" style="width:200px; height:200px;">
-                <span style="font-size:14px; display: block;width: 100%; text-align: center">微信扫一扫，关注我们的公众号</span>
-            </div>
+
 
         </div>
 
@@ -132,7 +126,7 @@
         </div>
 
     </div>
-    <div style="height:310px;width:100%;visibility: hidden"></div>
+
 @stop
 
 

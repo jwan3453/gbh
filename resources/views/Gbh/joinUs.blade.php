@@ -12,7 +12,7 @@
     <title>加入我们</title>
     <div >
 
-        @include('partial.homeNav')
+
 
         <div class="ui container">
 

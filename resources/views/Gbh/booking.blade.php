@@ -10,8 +10,6 @@
     <title>酒店预定</title>
     <div >
 
-        @include('partial.homeNav')
-
         <div class="ui container">
             <div class="ucons">
                 <h3 >预定平台还未上线，我们的程序猿正在紧张加班中.....</h3>

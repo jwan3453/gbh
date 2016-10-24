@@ -69,6 +69,20 @@
                     <input type="text" id="acreage" name="acreage" data-input="面积" class="require">
                     <span class="unit">平方</span>
                 </div>
+
+                <div class="long-input-box ">
+                    <label>房型描述</label>
+                    <textarea  id="description" name="description" data-input="房型描述" class="require"></textarea>
+                </div>
+
+
+                <div class="long-input-box ">
+                    <label>房型描述(英文)</label>
+                    <textarea  id="descriptionEn" name="descriptionEn" data-input="房型描述(英文)" class="require"></textarea>
+                </div>
+
+
+
             </div>
             <div class="bed-type" >
                 <label class="header-label">床型</label>

@@ -8,7 +8,7 @@
 
     <div id="article">
 
-        @include('partial.homeNav')
+
 
         <div class=" article-page">
 

@@ -12,7 +12,7 @@
     <title>团队介绍</title>
     <div >
 
-        @include('partial.homeNav')
+       
 
         <div class="ui container" style="position:relative">
 
