@@ -1,6 +1,14 @@
 @extends('Admin.site')
 
 
+@section('resources')
+
+
+    <link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/dimmer.css') }}>
+    <script src={{ asset('semantic/dimmer.js') }}></script>
+
+@stop
+
 
 @section('content')
 
@@ -36,55 +44,58 @@
             <span>批量删除</span>
         </div>
     </div>
+
     <table class="ui primary striped selectable table hotel-table " id="orderTable">
 
 
         <tbody>
 
-            @foreach($manageHotelList as $hotelitem)
+            @foreach($manageHotelList as $hotelItem)
             <tr>
-                <td class="s-td"><input type="checkbox" value="{{$hotelitem->id}}"></td>
+                <td class="s-td"><input type="checkbox" value="{{$hotelItem->id}}"></td>
                 <td class="m-td"> <img class="hotel-img" src = '../GbhMobile/img/tu2.png'></td>
-                <td class="m-td">{{$hotelitem->name}}</td>
-                <td><i class="icon marker large"></i><span>{{$hotelitem->addressInfo}}</span></td>
+                <td class="m-td">{{$hotelItem->name}}</td>
+                <td><i class="icon marker large"></i><span>{{$hotelItem->addressInfo}}</span></td>
                 <td class="l-td">
 
-                    <div class="header-option f-left">
-                        <a href="/admin/manageHotel/editHotel/{{$hotelitem->id}}">
-                            <img src = '/Admin/img/编辑.png'/>
-                            <span class="edit">编辑</span>
-                        </a>
-                    </div>
-                    @if($hotelitem->status == 0)
-                        <div class="header-option f-left" onclick="itemUpOrDown('up',{{$hotelitem->id}})">
+                    {{--<div class="header-option f-left">--}}
+                        {{--<a href="/admin/manageHotel/editHotel/{{$hotelitem->id}}">--}}
+                            {{--<img src = '/Admin/img/编辑.png'/>--}}
+                            {{--<span class="edit">编辑</span>--}}
+                        {{--</a>--}}
+                    {{--</div>--}}
+                    @if($hotelItem->status == 0)
+                        <div class="header-option f-left" onclick="itemUpOrDown('up',{{$hotelItem->id}})">
                             <img src = '/Admin/img/上架.png'/>
                             <span>上架</span>
                         </div>
-                    @elseif($hotelitem->status == 1)
-                        <div class="header-option f-left" onclick="itemUpOrDown('down',{{$hotelitem->id}})">
+                    @elseif($hotelItem->status == 1)
+                        <div class="header-option f-left" onclick="itemUpOrDown('down',{{$hotelItem->id}})">
 
                             <img src = '/Admin/img/下架.png'/>
                             <span>下架</span>
                         </div>
                     @endif
 
-                    <div class="header-option f-left">
-                        <img src = '/Admin/img/垃圾桶.png'/>
-                        <span>删除</span>
-                    </div>
+
 
                     <div class="header-option f-left">
-                        <a href="{{url('admin/manageHotel/hotelInfo/'.$hotelitem->id.'/maintainHotelBasicInfo')}}">
+                        <a href="{{url('admin/manageHotel/hotelInfo/'.$hotelItem->id.'/maintainHotelBasicInfo')}}">
                             <img src = '/Admin/img/维护.png'/>
                             <span>信息维护</span>
                         </a>
                     </div>
 
                     <div class="header-option f-left">
-                        <a href="{{url('admin/manageHotel/hotelInfo/'.$hotelitem->id.'/manageHotelImage')}}">
+                        <a href="{{url('admin/manageHotel/hotelInfo/'.$hotelItem->id.'/maintainHotelImage')}}">
                             <img src = '/Admin/icon/photos-manage.png'/>
                             <span>图片管理</span>
                         </a>
+                    </div>
+
+                    <div class="header-option f-left delete-hotel " data-input="{{$hotelItem->id}}">
+                        <img src = '/Admin/img/垃圾桶.png'/>
+                        <span>删除</span>
                     </div>
 
                 </td>
@@ -94,6 +105,20 @@
 
         </tbody>
     </table>
+
+        <div class="ui page dimmer confirm-request" id="confirmRequest">
+
+            <h3>是否删除该酒店</h3>
+            <div class="confirm-btns">
+                <div class="regular-btn blue-btn confirm" id="confirm">
+                    确定
+                    <div class="ui active inline  small  loader" id="loader"></div>
+                </div>
+                <div class="regular-btn red-btn cancel" id="cancel">取消</div>
+            </div>
+
+        </div>
+
 
     </div>
 @stop
@@ -162,6 +187,44 @@
             }
         })
     }
+
+
+    $(document).ready(function() {
+
+        //删除酒店
+        var hotelId = '';
+        var deleteRowItem;
+        $('.delete-hotel').click(function () {
+            hotelId = $(this).attr('data-input');
+            deleteRowItem = $(this).parents('tr');
+            $('#confirmRequest').dimmer('show');
+        })
+
+        //确认删除酒店
+        $('#confirm').click(function () {
+            $.ajax({
+                type: 'POST',
+                url: '/admin/manageHotel/deleteHotel',
+                data: {hotelId: hotelId},
+                dataType: 'json',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                },
+                success: function (data) {
+                    if (data.statusCode === 1) {
+                        //成功删除酒店 动态删除列表
+                        toastAlert(data.statusMsg, 1);
+                        deleteRowItem.remove();
+                    }
+                    else {
+                        toastAlert(data.statusMsg, 2);
+                    }
+                    $('#confirmRequest').dimmer('hide');
+                }
+            })
+
+        })
+    })
 
 </script>
 

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateHotelSectionTable extends Migration
+class CreateContinentTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,13 +12,10 @@ class CreateHotelSectionTable extends Migration
      */
     public function up()
     {
-        Schema::create('hotel_section', function (Blueprint $table) {
+        Schema::create('continent', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('hotel_id');
-            $table->string('type',100);
-            $table->string('name',100);
-            $table->string('name_en',100);
-            $table->timestamps();
+            $table->string('name',50);
+            $table->string('name_en',50);
         });
     }
 
@@ -29,6 +26,6 @@ class CreateHotelSectionTable extends Migration
      */
     public function down()
     {
-        Schema::drop('hotel_section');
+        Schema::drop('continent');
     }
 }

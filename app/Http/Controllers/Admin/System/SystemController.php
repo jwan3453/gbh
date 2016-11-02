@@ -277,7 +277,7 @@ class SystemController extends Controller
     {
 
         //$initial_a_e = ['A','B','C','D','E'];
-        $citiesByInitial = $this->system->getCities();
+        $cities = $this->system->getCities();
 
         $initialGroup = [];
         $initialGroup['a_e'] = ['A', 'B', 'C', 'D', 'E'];
@@ -285,9 +285,9 @@ class SystemController extends Controller
         $initialGroup['k_p'] = ['K', 'L', 'M', 'N', 'O', 'P'];
         $initialGroup['q_v'] = ['Q', 'R', 'S', 'T', 'U', 'V'];
         $initialGroup['w_z'] = ['W', 'R', 'S', 'T', 'U', 'Z'];
+        $initialGroup['intCity'] = ['intCity'];
 
-
-        return view('Admin.System.manageDestination')->with('citiesByInitial', $citiesByInitial)->with('initialGroup', $initialGroup);
+        return view('Admin.System.manageDestination')->with('cities', $cities)->with('initialGroup', $initialGroup);
     }
 
     //获取目的地信息

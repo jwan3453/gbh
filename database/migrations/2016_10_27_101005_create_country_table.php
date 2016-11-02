@@ -3,24 +3,21 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateProvinceTable extends Migration
+class CreateCountryTable extends Migration
 {
     /**
      * Run the migrations.
-     *
-     *----省份表----
      *
      * @return void
      */
     public function up()
     {
-        Schema::create('province', function (Blueprint $table) {
+        Schema::create('country', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('continent_id');
             $table->string('code',50);
-            $table->string('province_name',50);
-            $table->string('province_name_en',100);
-            $table->integer('parent_id')->default(0);
-            $table->integer('status');
+            $table->string('name',50);
+            $table->string('name_en',100);
         });
     }
 
@@ -31,6 +28,6 @@ class CreateProvinceTable extends Migration
      */
     public function down()
     {
-        Schema::drop('province');
+        Schema::drop('country');
     }
 }

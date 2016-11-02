@@ -66,7 +66,7 @@
             <div class="short-input-box ">
                 <label>英文名称</label>
                 <input type="text" id="hotelNameEn" name="hotelNameEn" value="{{$hotelInfo->name_en}}">
-                <span>请输入酒店的名称</span>
+                <span>请输入酒店的英文名</span>
             </div>
 
 

@@ -30,6 +30,8 @@ use App\Models\HotelFacilityCategory;
 use App\Models\Category;
 use App\Models\HotelCategoryPivot;
 
+use App\Service\Admin\ImageService;
+
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 use Qiniu\Auth as QiniuAuth;
@@ -50,8 +52,8 @@ class HotelService {
     public function getHotelList()
     {
         $list = Hotel::select('id','name','address_id','status')->get();
-        foreach ($list as $hotelitem) {
-            $hotelitem->address = Address::select('province_code','city_code','district_code','detail')->where('id',$hotelitem->address_id)->first();
+        foreach ($list as $hotelItem) {
+            $hotelItem->address = Address::select('province_code','city_code','district_code','detail')->where('id',$hotelItem->address_id)->first();
         }
         return $list;
     }
@@ -142,10 +144,12 @@ class HotelService {
 //            $hotelPolicy = new hotelPolicy();
 //        }
 
-        $hotelPolicy = hotelPolicy::where('hotel_id',$hotelId)->firstOrFail();
+        $hotelPolicy = hotelPolicy::where('hotel_id',$hotelId)->first();
+
         if($hotelPolicy == null)
         {
             $hotelPolicy = new hotelPolicy();
+            $hotelPolicy->hotel_id = $hotelId;
         }
 
 
@@ -1156,7 +1160,63 @@ class HotelService {
 
         return $isUpdate;
     }
-///////////////
+
+    //删除酒店
+    public function deleteHotel( $request)
+    {
+        $hotelId = $request->input('hotelId');
+
+        $hotel = Hotel::where('id',$hotelId)->first();
+
+
+        if($hotel != null)
+        {
+            //删除酒店地址
+            Address::where('id',$hotel->address_id)->delete();
+
+            //删除酒店周边环境项目
+            HotelSurrounding::where('hotel_id',$hotelId)->delete();
+
+            //删除酒店政策
+            HotelPolicy::where('hotel_id',$hotelId)->delete();
+
+            //删除酒店联系人
+            HotelContact::where('hotel_id',$hotelId)->delete();
+
+            //删除酒店设施配置
+            HotelFacility::where('hotel_id',$hotelId)->delete();
+
+            //删除酒店图片
+           $hotelImages =  HotelImage::where('hotel_id',$hotelId)->get();
+
+            //从云端删除图片
+            $imageService = new ImageService();
+            foreach($hotelImages  as $image)
+            {
+                $result = $imageService->deleteImage($image->link);
+                if($result->statusCode == 1)
+                {
+                    $image->delete();
+                }
+            }
+
+            //删除酒店房间信息
+            $rooms = Room::where('hotel_id',$hotelId)->get();
+            foreach($rooms as $room)
+            {
+                if( Bed::where('room_id',$room->id)->delete())
+                {
+                    $room->delete();
+                }
+            }
+
+        }
+
+        return $hotel->delete();
+
+    }
+
+
     //获取酒店基本信息
     public function getHotelBasicInfo($hotelId)
     {
@@ -1465,8 +1525,7 @@ class HotelService {
     public function getHotelCoverImage(Request $request)
     {
         $hotelId = $request->input('hotelId');
-        $coverImageList = HotelImage::where(['hotel_id'=> $hotelId,
-                                      'is_cover'=>1])->orderBy('updated_at','DESC')->get();
+        $coverImageList = HotelImage::where('hotel_id', $hotelId)->where('is_cover','<>',0)->orderBy('updated_at','DESC')->get();
 
 
         $sectionList = HotelSection::select('id','name','type')->get();
@@ -1510,7 +1569,9 @@ class HotelService {
         $hotelId = $request->input('hotelId');
         $imageId = $request->input('imageId');
 
-        return HotelImage::where(['hotel_id'=>$hotelId,'id'=>$imageId])->update(['is_cover'=> 1]);
+        //把之前设置状态改为普通封面
+        HotelImage::where(['hotel_id'=>$hotelId,'is_cover'=> 2])->update(['is_cover'=> 1]);
+        return HotelImage::where(['hotel_id'=>$hotelId,'id'=>$imageId])->update(['is_cover'=> 2]);
     }
 
     public function getStepThreeInfo($hotelId)

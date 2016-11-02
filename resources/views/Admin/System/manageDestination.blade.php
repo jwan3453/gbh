@@ -15,20 +15,23 @@
                 <span id="cap-k_p">KLMNOP</span>
                 <span id="cap-q_v">QRSTUV</span>
                 <span id="cap-w_z">WXYZ</span>
+                <span id="cap-intCity">国外</span>
             </div>
 
             @foreach($initialGroup as $key => $initialList)
             <div id="city_{{$key}}" class="d-city-section" >
 
                 @foreach($initialList as $initial )
-                    @if(isset($citiesByInitial[$initial]))
+                    @if(isset($cities[$initial]))
                     <div class="d-city-group">
-                        <div class="d-city-initial">{{$initial}}
-                        </div>
-
+                        @if(strlen($initial) <=1)
+                            <div class="d-city-initial">
+                                    {{$initial}}
+                            </div>
+                        @endif
                         <div class="d-city-initial-list">
 
-                                @foreach($citiesByInitial[$initial] as $city)
+                                @foreach($cities[$initial] as $city)
                                 <span class="city" id="{{$city->code}}">{{$city->city_name}}</span>
                                 @endforeach
 
@@ -74,7 +77,7 @@
 
 
                 <div class="city-line-detail">
-                    <label>目的地描述:</label>
+                    <label>目的地描述(英文):</label>
                     <textarea id="descriptionEn" name="descriptionEn"></textarea>
                 </div>
 

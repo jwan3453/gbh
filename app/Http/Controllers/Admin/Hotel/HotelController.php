@@ -47,16 +47,21 @@ class HotelController extends Controller
 
         $manageHotelList = $this->hotelService->getHotelList();
 
+
         // dd($manageHotelList);
         foreach ($manageHotelList as $hotelList) {
 
-            $province = $this->commonService->getAdressInfo('province',$hotelList->address->province_code);
-            $city = $this->commonService->getAdressInfo('city',$hotelList->address->city_code);
-            $district = $this->commonService->getAdressInfo('district',$hotelList->address->district_code);
-            $detail = $hotelList->address->detail;
+            if($hotelList->address != null)
+            {
 
-            $hotelList->addressInfo = $province.$city.$district.$detail;
 
+                $province = $this->commonService->getAdressInfo('province',$hotelList->address->province_code);
+                $city = $this->commonService->getAdressInfo('city',$hotelList->address->city_code);
+                $district = $this->commonService->getAdressInfo('district',$hotelList->address->district_code);
+                $detail = $hotelList->address->detail;
+
+                $hotelList->addressInfo = $province.$city.$district.$detail;
+            }
 
         }
 
@@ -198,7 +203,27 @@ class HotelController extends Controller
         return response($jsonResult->toJson());
     }
 
-    //编辑酒店基本信息 //删除
+    //删除酒店
+    public function deleteHotel(Request $request)
+    {
+        $jsonResult = new MessageResult();
+
+        $isUp = $this->hotelService->deleteHotel($request);
+
+        if ($isUp) {
+            $jsonResult->statusCode = 1;
+            $jsonResult->statusMsg = "成功";
+        }else{
+            $jsonResult->statusCode = 2;
+            $jsonResult->statusMsg = "失败";
+        }
+
+        return response($jsonResult->toJson());
+
+    }
+
+
+    //编辑酒店基本信息
     public function editHotel($hotelId)
     {
         $geoData = $this->commonService->getGeoDetail();
@@ -414,11 +439,15 @@ class HotelController extends Controller
         //可选酒店分类列表
         $categoryList = $this->SytemService->getHotelCategories();
 
-        $province = $this->commonService->getAdressInfo('province',$hotelInfo->address->province_code);
-        $city = $this->commonService->getAdressInfo('city',$hotelInfo->address->city_code);
-        $district = $this->commonService->getAdressInfo('district',$hotelInfo->address->district_code);
+        if($hotelInfo->address != null)
+        {
+            $province = $this->commonService->getAdressInfo('province',$hotelInfo->address->province_code);
+            $city = $this->commonService->getAdressInfo('city',$hotelInfo->address->city_code);
+            $district = $this->commonService->getAdressInfo('district',$hotelInfo->address->district_code);
+            $hotelInfo->addressInfo = $province . "-" .$city . "-" . $district;
+        }
 
-        $hotelInfo->addressInfo = $province . "-" .$city . "-" . $district;
+
         //$hotelInfo->detail = $hotelInfo->address->detail;
 
         $hotelInfo->id = $hotelId;
@@ -456,7 +485,8 @@ class HotelController extends Controller
                 return redirect(url('admin/manageHotel/hotelInfo/'.$hotelId.'/maintainHotelBasicInfo'));
             }else{
                 $hotelInfo = new Hotel();
-                return view('Admin.Hotel.geoLocation')->with('createOrUpdate',$createOrUpdate)->with('hotelInfo',$hotelInfo)->with('address',$addressInfo)->with('hotelId',$isCreate);
+                //return view('Admin.Hotel.geoLocation')->with('createOrUpdate',$createOrUpdate)->with('hotelInfo',$hotelInfo)->with('address',$addressInfo)->with('hotelId',$isCreate);
+                return redirect(url('admin/manageHotel'));
             }
 
         }
@@ -473,13 +503,16 @@ class HotelController extends Controller
         $addressInfo = $this->hotelService->getHotelAddress($hotelId);
 
         //获取省份城市名字
-        $province = $this->commonService->getAdressInfo('province',$addressInfo->province_code);
-        $city = $this->commonService->getAdressInfo('city',$addressInfo->city_code);
-        $district = $this->commonService->getAdressInfo('district',$addressInfo->district_code);
+        $address = '';
+        if($addressInfo != null) {
+            $province = $this->commonService->getAdressInfo('province', $addressInfo->province_code);
+            $city = $this->commonService->getAdressInfo('city', $addressInfo->city_code);
+            $district = $this->commonService->getAdressInfo('district', $addressInfo->district_code);
+            $detail = $addressInfo->detail;
+            $address= $province . $city . $district .$detail;
+        }
 
-        $detail = $addressInfo->detail;
 
-        $address = $province . $city . $district .$detail;
         $hotelSurrounding = $this->hotelService->getHotelSurrounding($hotelId);
 
 

@@ -73,6 +73,12 @@
             <div class="short-input-box ">
                 <label>酒店名称</label>
                 <input type="text" id="hotelName" name="hotelName" value="{{$hotelInfo->name}}">
+                <span>请输入酒店的名称</span>
+            </div>
+
+            <div class="short-input-box ">
+                <label>英文名称</label>
+                <input type="text" id="hotelNameEn" name="hotelNameEn" value="{{$hotelInfo->name_en}}">
                 <span>请输入酒店的英文名</span>
             </div>
 
@@ -131,11 +137,21 @@
                 <span>请输入酒店的特色</span>
             </div>
             <div class="long-input-box ">
-                <label>酒店简介</label>
-                <textarea name="hotelBrief">{{$hotelInfo->description}}</textarea>
-                <span>请输入酒店的简介</span>
+                <label>特色(英文)</label>
+                <input type="text" name="hotelFeatureEn" value="{{$hotelInfo->hotel_features_en}}">
+                <span>请输入酒店的特色(英文)</span>
             </div>
 
+            <div class="long-input-box ">
+                <label>酒店简介</label>
+                <textarea name="hotelDescription">{{$hotelInfo->description}}</textarea>
+                <span>请输入酒店的简介</span>
+            </div>
+            <div class="long-input-box ">
+                <label>酒店简介(英文)</label>
+                <textarea name="hotelDescriptionEn">{{$hotelInfo->description_en}}</textarea>
+                <span>请输入酒店的简介(英文)</span>
+            </div>
             {{--<div class="long-input-box ">--}}
                 {{--<label>酒店封面</label>--}}
 

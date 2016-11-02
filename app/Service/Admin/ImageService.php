@@ -41,12 +41,12 @@ class ImageService
         $jsonResult = new MessageResult();
         $file = $request->file('file');
         $imageType = $request->input('imageType');
-        // $type = 0;//1 为酒店图片 2为目的地图片 3为酒店分类图片
+        // $type = 0;//1 为酒店图片 2为目的地图片 3为酒店分类图标
         if($imageType ==1)
         {
             $hotelId = $request->input('hotelId');
             $sectionId= $request->input('sectionId');
-            $type = $request->input('sectionType');
+            $type = $request->input('sectionType');//1 为酒店区域照片 2为房间照片
 
             $filename ='hotelImage/'.$hotelId.'/'.$sectionId.'/'.uniqid().'.'.$file->guessExtension();
 

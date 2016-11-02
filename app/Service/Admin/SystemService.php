@@ -10,6 +10,7 @@ use App\Models\ServiceCategory;
 use App\Models\ExtraService;
 use App\Models\HotelSectionImage;
 use App\Models\City;
+use App\Models\InternationalCity;
 use Session;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -367,6 +368,7 @@ class SystemService
                 }
             }
         }
+        $cityInitialList['intCity'] = InternationalCity::all();
 
         return $cityInitialList;
     }
@@ -376,8 +378,15 @@ class SystemService
     {
         $code = $request->input('code');
 
-        $destinationInfo = DB::table('city')->leftJoin('destination', 'city.code', '=', 'destination.city_code')
+        $destinationInfo = DB::table('city')->join('destination', 'city.code', '=', 'destination.city_code')
             ->where('city.code', $code)->select('city.status', 'city.is_hot', 'destination.num_of_hotel','destination.description','destination.description_en', 'destination.cover_image')->first();
+
+
+        if($destinationInfo == null)
+        {
+            $destinationInfo = DB::table('international_city')->join('destination', 'international_city.code', '=', 'destination.city_code')
+                ->where('international_city.code', $code)->select('international_city.status', 'international_city.is_hot', 'destination.num_of_hotel','destination.description','destination.description_en', 'destination.cover_image')->first();
+        }
 
         return $destinationInfo;
     }

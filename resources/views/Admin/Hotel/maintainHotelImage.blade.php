@@ -341,7 +341,7 @@
                                 var firstImage = '';
                                 for (var i = 0; i < data.extra.length; i++)
                                 {
-                                    if(i === 0)
+                                    if(data.extra[i].is_cover === 2)
                                     {
                                         firstImage = '';
                                     }

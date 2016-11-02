@@ -16,10 +16,10 @@ class CreateCityTable extends Migration
     {
         Schema::create('city', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('code');
+            $table->string('code',50);
             $table->string('city_name',50);
             $table->string('city_name_en',100);
-            $table->integer('province_code');
+            $table->string('province_code',50);
             $table->string('initial',1);
             $table->integer('status');
             $table->integer('parent_id');
