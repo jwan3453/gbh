@@ -17,10 +17,10 @@ class CreateHotelImageTable extends Migration
             $table->integer('hotel_id');
             $table->integer('section_id');
             $table->integer('type');//1为酒店, 2为房间
-            $table->integer('is_cover');//0为否， 1为是
+            $table->integer('is_cover');//0为否， 1为是 2为总封面
             $table->string('image_key',200);
             $table->string('link',200);
-            $table->string('image_desc',200);
+            $table->string('desc',200);
             $table->integer('status');
             $table->timestamps();
         });

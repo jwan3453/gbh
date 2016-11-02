@@ -3,22 +3,21 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAttributeTable extends Migration
+class CreateAdminUser extends Migration
 {
     /**
      * Run the migrations.
-     *
-     *---属性表---
      *
      * @return void
      */
     public function up()
     {
-        Schema::create('attribute', function (Blueprint $table) {
+        Schema::create('admin_user', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('attribute_name',20);
-            $table->string('attribute_icon',10);
-           
+            $table->string('username',100);
+            $table->string('password',350);
+            $table->integer('admin_level');
+            $table->string('permission',200);
         });
     }
 
@@ -29,6 +28,6 @@ class CreateAttributeTable extends Migration
      */
     public function down()
     {
-        Schema::drop('attibute');
+        Schema::drop('country');
     }
 }

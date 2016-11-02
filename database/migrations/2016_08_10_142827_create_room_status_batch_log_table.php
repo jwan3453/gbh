@@ -22,7 +22,7 @@ class CreateTableRoomStatusChangeLog extends Migration
             $table->integer('room_status');
             $table->integer('num_of_blocked_room');
             $table->integer('is_guarantee');
-            $table->timestamps();
+            $table->date('request_date');
         });
     }
 

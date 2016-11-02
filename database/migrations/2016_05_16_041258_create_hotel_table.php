@@ -17,7 +17,7 @@ class CreateHotelTable extends Migration
         Schema::create('hotel', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name',100);
-            $table->string('english_name',100);
+            $table->string('name_en',100);
             $table->integer('address_id')->default(0);
             $table->integer('category_id')->default(0);
             $table->integer('style_id')->default(0);
@@ -27,7 +27,7 @@ class CreateHotelTable extends Migration
             $table->integer('admin_user')->default(0);
             $table->integer('status')->default(0);
             $table->string('description',1000);
-            $table->string('description_english',1000);
+            $table->string('description_en',1000);
             $table->integer('policy_id')->default(0);
             $table->string('tag',200);
             $table->integer('postcode');
@@ -37,8 +37,9 @@ class CreateHotelTable extends Migration
             $table->integer('total_rooms');//酒店房间总数
             $table->string('surrounding_environment',250);//周边环境
             $table->string('hotel_brief');
-            $table->string('hotel_brief_eng');
+            $table->string('hotel_brief_en');
             $table->string('hotel_features',300);//酒店特色
+            $table->string('hotel_features_en',300);//酒店特色
             $table->string('hotel_features_eng',300);
 
             $table->timestamps();

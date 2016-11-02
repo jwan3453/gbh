@@ -19,13 +19,12 @@ class CreateHotelPolicyTable extends Migration
             $table->integer('hotel_id');
             $table->string('checkin_time',200);//入住时间
             $table->string('checkout_time',200);//离店时间
-            $table->string('prepaid',500);//酒店提示
-            $table->string('prepaid_en',500);//酒店提示
+            $table->string('prepaid_deposit',500);//酒店提示
+            $table->string('prepaid_deposit_en',500);//酒店提示
             $table->string('catering_arrangements',500);//膳食安排
             $table->string('catering_arrangements_en',500);//膳食安排
             $table->string('other_policy',500);//是否可携带宠物
             $table->string('other_policy_en',500);//是否可携带宠物
-            
             $table->timestamps();
         });
     }

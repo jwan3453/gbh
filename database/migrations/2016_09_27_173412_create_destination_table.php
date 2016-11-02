@@ -14,7 +14,7 @@ class CreateDestination extends Migration
     {
         Schema::create('destination', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('city_code');
+            $table->string('city_code',50);
             $table->integer('num_of_hotel');
             $table->string('description',500);
             $table->string('description_en',500);

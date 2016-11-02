@@ -18,10 +18,9 @@ class CreateAddressTable extends Migration
             $table->integer('city_code')->default(0);
             $table->integer('district_code')->default(0);
             $table->string('detail',100);
-            $table->string('detail_english',100);
+            $table->string('detail_en',200);
             $table->string('longtitute',15);//经度
             $table->string('latitude',15);//纬度
-            
             $table->timestamps();
         });
     }

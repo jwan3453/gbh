@@ -3,25 +3,23 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUserTable extends Migration
+class CreateHotelFacilityTable extends Migration
 {
     /**
      * Run the migrations.
      *
-     *---用户表----
+     *---酒店设备设置---
      *
      * @return void
      */
     public function up()
     {
-        Schema::create('user', function (Blueprint $table) {
+        Schema::create('hotel_facility', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('username',30);
-            $table->string('password',300);
-            $table->integer('level');
-            $table->integer('point');
-            $table->string('truename',30);
-            $table->string('phone',15);
+            $table->integer('hotel_id');
+            $table->string('contact_json',2000);
+            $table->string('payment_json',2000);
+            $table->string('facilities_checkbox',2000);
             $table->timestamps();
         });
     }
@@ -33,6 +31,6 @@ class CreateUserTable extends Migration
      */
     public function down()
     {
-        Schema::drop('user');
+        Schema::drop('hotel_facility');
     }
 }

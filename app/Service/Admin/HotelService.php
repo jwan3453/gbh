@@ -28,7 +28,7 @@ use App\Models\HotelFacility;
 use App\Models\HotelFacilityList;
 use App\Models\HotelFacilityCategory;
 use App\Models\Category;
-use App\Models\HotelCategoryPivot;
+use App\Models\HotelCategory;
 
 use App\Service\Admin\ImageService;
 

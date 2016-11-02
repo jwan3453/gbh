@@ -18,8 +18,8 @@ class CreateHotelSurroundingTable extends Migration
             $table->string('name',100);
             $table->string('name_en',100);
             $table->integer('distance');
-            $table->integer('by_walk');
             $table->integer('by_taxi');
+            $table->integer('by_walk');
             $table->string('by_bus',200);
             $table->string('by_sub',200);
         });

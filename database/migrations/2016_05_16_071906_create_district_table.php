@@ -16,7 +16,9 @@ class CreateDistrictTable extends Migration
     {
         Schema::create('district', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('code',50);
             $table->string('district_name',50);
+            $table->string('city_code',50);
             $table->integer('parent_id')->default(0);
         });
     }

@@ -37,9 +37,8 @@ class CreateRoomTable extends Migration
             $table->integer('is_extra_bed');//是否可以加床
             $table->integer('extra_bed_costs')->default(0);//加床费用
             $table->integer('smoke');//是否无烟处理
-            $table->string('room_desc');//房型描述
-            $table->string('attribute',500);//json
-
+            $table->string('room_description');//房型描述
+            $table->string('room_description_en');//房型描述
             $table->timestamps();
         });
     }
