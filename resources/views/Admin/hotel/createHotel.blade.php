@@ -1,7 +1,5 @@
 @extends('Admin.site')
 
-
-
 @section('content')
 
     {{--@foreach($geoData['province'] as $province)--}}

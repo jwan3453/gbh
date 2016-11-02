@@ -1,6 +1,5 @@
 @extends('Admin.Hotel.maintainHotelInfo')
 
-
 @section('resources')
 
     <link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/dropdown.css') }}>

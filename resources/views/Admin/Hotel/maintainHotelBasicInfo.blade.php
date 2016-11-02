@@ -1,5 +1,6 @@
 @extends('Admin.Hotel.maintainHotelInfo')
 
+
 @section('resources')
 
 

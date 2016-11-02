@@ -1,5 +1,6 @@
 @extends('Admin.site')
 
+
 @section('resources')
 
 <link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/modal.css') }}>

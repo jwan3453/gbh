@@ -1,9 +1,5 @@
 @extends('Admin.site')
 
-
-
-
-
 @section('content')
 
     <div class="admin-content">

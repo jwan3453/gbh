@@ -1,5 +1,6 @@
 @extends('Admin.site')
 
+
 @section('resources')
 @stop
 
