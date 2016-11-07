@@ -101,7 +101,7 @@ class ImageService
             //如果error 为空则上传成功
             if($error == null)
             {
-                    $link = 'http://7xw0sv.com1.z0.glb.clouddn.com/' . $result['key'];
+                    $link = Config::where('item','bucket_domain')->select('value')->first()->value . $result['key'];
                     $jsonResult->statusCode = 1;
                     $jsonResult->statusMsg = '上传成功';
                     $jsonResult->extra = $link;
