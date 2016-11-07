@@ -16,41 +16,41 @@ Route::get('/', function () {
 });
 
 ///*******************************GbhMibile*********************************************/
-//
-//Route::get('mobile','GbhMobile\homeController@home');
-//Route::get('auth/login','Auth\AuthController@loginPage');
-//
-//Route::get('auth/register','Auth\AuthController@registerPage');
-//
-//Route::get('memberCenter','GbhMobile\Member\MemberController@memberCenter');
-//
-//Route::get('editUserInfo','GbhMobile\Member\MemberController@editUserInfoPage');
-//
-//Route::get('myCollection','GbhMobile\Collection\CollectionController@myCollection');
-//
-//Route::get('evaluateHotel','GbhMobile\Evaluate\EvaluateController@evaluateHotel');
-//
-//Route::get('/search','GbhMobile\HomeController@search');
-//
-//Route::get('/hotel/{hotelId}','GbhMobile\Hotel\HotelController@hotelDetail');
-//
-//Route::get('/hotel/{hotelId}/booking/{roomId}','GbhMobile\Hotel\HotelController@booking');
-//
-//
-//
-//Route::group(['prefix' => 'order'], function() {
-//    Route::post('selectUnpaid','GbhMobile\Order\OrderController@selectUnpaid');
-//
-//	Route::post('selectOrderSuccess','GbhMobile\Order\OrderController@selectOrderSuccess');
-//
-//	Route::post('selectFinished','GbhMobile\Order\OrderController@selectFinished');
-//
-//	Route::get('orderListAll','GbhMobile\Order\OrderController@orderListAll');
-//
-//	Route::get('orderDetail/{ordersn}','GbhMobile\Order\OrderController@orderDetail');
-//});
-//
-//
+
+Route::get('mobile','GbhMobile\homeController@home');
+Route::get('auth/login','Auth\AuthController@loginPage');
+
+Route::get('auth/register','Auth\AuthController@registerPage');
+
+Route::get('memberCenter','GbhMobile\Member\MemberController@memberCenter');
+
+Route::get('editUserInfo','GbhMobile\Member\MemberController@editUserInfoPage');
+
+Route::get('myCollection','GbhMobile\Collection\CollectionController@myCollection');
+
+Route::get('evaluateHotel','GbhMobile\Evaluate\EvaluateController@evaluateHotel');
+
+Route::get('/search','GbhMobile\HomeController@search');
+
+Route::get('/hotel/{hotelId}','GbhMobile\Hotel\HotelController@hotelDetail');
+
+Route::get('/hotel/{hotelId}/booking/{roomId}','GbhMobile\Hotel\HotelController@booking');
+
+
+
+Route::group(['prefix' => 'order'], function() {
+    Route::post('selectUnpaid','GbhMobile\Order\OrderController@selectUnpaid');
+
+	Route::post('selectOrderSuccess','GbhMobile\Order\OrderController@selectOrderSuccess');
+
+	Route::post('selectFinished','GbhMobile\Order\OrderController@selectFinished');
+
+	Route::get('orderListAll','GbhMobile\Order\OrderController@orderListAll');
+
+	Route::get('orderDetail/{ordersn}','GbhMobile\Order\OrderController@orderDetail');
+});
+
+
 ///************end*****************/
 
 

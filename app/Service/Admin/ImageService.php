@@ -26,7 +26,7 @@ class ImageService
     function __construct()
     {
         $this->auth = new QiniuAuth( $this->accessKey,  $this->secretKey);
-        $this->bucket =Config::where('item','bucket')->select('item')->first()->item;
+        $this->bucket =Config::where('item','bucket')->select('value')->first()->value;
     }
 
 
@@ -63,7 +63,7 @@ class ImageService
                 $newImage->type = $type;
                 $newImage->is_cover = 0;
                 $newImage->image_key =  $result['key'];
-                $newImage->link = Config::where('item','bucket-domain')->select('item')->first()->item. $result['key'];
+                $newImage->link = Config::where('item','bucket_domain')->select('value')->first()->value. $result['key'];
                 $newImage->save();
 
                 if ($newImage != null || $newImage->id > 0) {
