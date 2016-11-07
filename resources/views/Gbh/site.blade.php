@@ -62,7 +62,7 @@
                         <a  href="/">
                             <span>首页</span>
                         </a>
-                        <a href="/booking">
+                        <a href="booking.gbhchina.com">
                             <span>酒店预定</span>
                         </a>
                         <a href="/newArticles">

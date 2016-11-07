@@ -105,7 +105,7 @@
 
             <div class="detail-row">
                 <label>商务合作 : </label>
-                <span>000-000-000</span>
+                <span>0592-5657031</span>
             </div>
 
 

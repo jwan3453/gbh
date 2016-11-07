@@ -500,7 +500,7 @@ class SystemService
             $result = $imageService->uploadImage($request);
         }
         $newCategory->category_name = $cateName;
-        $newCategory->category_name_eng = $cateNameEng;
+        $newCategory->category_name_en = $cateNameEng;
         $newCategory->category_level = $cateLevel;
         if($cateLevel !=1 )
         {
