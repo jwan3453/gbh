@@ -11,6 +11,7 @@ use Qiniu\Auth as QiniuAuth;
 use Qiniu\Storage\UploadManager;
 use Qiniu\Storage\BucketManager;
 
+use App\Models\Config;
 /**
  *
  */
@@ -18,13 +19,14 @@ class ImageService
 {
     private $accessKey = 'aavEmxVT7o3vsFMGKUZbJ1udnoAbucqXPmk3tdRX';
     private $secretKey ='nDQPr1L7pcurdV8_7iLIICNjSME2EmCiokHXTGTX';
-    private $bucket = 'gbhchina';
+    private $bucket = '';
     private $auth;
 
 
     function __construct()
     {
         $this->auth = new QiniuAuth( $this->accessKey,  $this->secretKey);
+        $this->bucket =Config::where('item','bucket')->select('item')->first()->item;
     }
 
 
@@ -61,7 +63,7 @@ class ImageService
                 $newImage->type = $type;
                 $newImage->is_cover = 0;
                 $newImage->image_key =  $result['key'];
-                $newImage->link = 'http://7xw0sv.com1.z0.glb.clouddn.com/' . $result['key'];
+                $newImage->link = Config::where('item','bucket-domain')->select('item')->first()->item. $result['key'];
                 $newImage->save();
 
                 if ($newImage != null || $newImage->id > 0) {
