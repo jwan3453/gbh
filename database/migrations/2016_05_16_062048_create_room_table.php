@@ -23,6 +23,7 @@ class CreateRoomTable extends Migration
             $table->integer('num_of_people');//可住人数
             $table->integer('num_of_children');//可携带儿童人数
             $table->integer('num_of_rooms');//房间数量
+            $table->integer('num_of_breakfast');//早餐
             $table->float('acreage');//房间面积
             $table->integer('floor');//楼层
             $table->integer('has_window');//是否有窗户
@@ -37,6 +38,10 @@ class CreateRoomTable extends Migration
             $table->integer('is_extra_bed');//是否可以加床
             $table->integer('extra_bed_costs')->default(0);//加床费用
             $table->integer('smoke');//是否无烟处理
+            $table->string('location_info',500);//位置说明
+            $table->string('location_info_en',500);//位置说明
+            $table->string('other_info',500);//其他说明
+            $table->string('other_info_en',500);//其他说明
             $table->string('room_description');//房型描述
             $table->string('room_description_en');//房型描述
             $table->timestamps();

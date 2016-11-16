@@ -87,6 +87,7 @@
                 <input type="hidden" id="provinceCode" name="provinceCode" value="{{$hotelInfo->address == null?'':$hotelInfo->address->province_code}}">
                 <input type="hidden" id="cityCode" name="cityCode" value="{{$hotelInfo->address ==null?'':$hotelInfo->address->city_code }}">
                 <input type="hidden" id="districtCode" name="districtCode" value="{{$hotelInfo->address==null?'':$hotelInfo->address->district_code}}">
+                <input type="hidden" id="addressType" name="addressType" value="{{$hotelInfo->address==null?'':$hotelInfo->address->type}}">
                 <span>请输入酒店所在省份城市区域</span>
             </div>
 
@@ -176,6 +177,7 @@
             var provinceList = geoData.extra.province;
             var cityList = geoData.extra.city;
             var districtList = geoData.extra.district;
+            var internationalCity = geoData.extra.internationalCity;
             var $container = setupContainer();
             var $searchContainer = setupSearchContainer();
 
@@ -281,12 +283,14 @@
                 var province = document.createElement("div");
                 var city = document.createElement("div");
                 var district = document.createElement('div');
+                var international = document.createElement('div');
 
                 var $container = $(container).attr("id", "container");
                 var $caption = $(caption).attr("id", "caption").addClass('c-caption-section');
                 var $province = $(province).attr("id", "provinceSection");
                 var $city = $(city).attr("id", "citySection");
                 var $district =$(district).attr("id","districtSection");
+                var $international = $(international).attr('id','international');
 
 
                 var captionHtml = '<span class="active" id="cap_p">省份</span>'+
@@ -309,7 +313,16 @@
                         $('<span class="province" id="province_'+provinceList[i].code +'">'+ provinceList[i].province_name+'</span>').appendTo($province);
                 }
 
+                //添加国际城市html
+                var intSectionHtml = '<div class="int-section">'+
+                        '<div class="int-section-name">国际城市</div>';
 
+                for(var j=0; j<internationalCity.length;j++)
+                {
+                    intSectionHtml += '<span class="int-city" data-country="'+internationalCity[j].name+'" id="int_'+internationalCity[j].code+'_'+internationalCity[j].country_code +'">'+ internationalCity[j].city_name+'</span>';
+                }
+
+                $container.append(intSectionHtml);
 
 
 
@@ -439,15 +452,33 @@
 
 
 
-            $(document).on('click','.district',function() {
+            $(document).on('click','.district, .int-city',function() {
+
 
                 $(this).addClass('geo-selected ').siblings('span').removeClass('geo-selected ');
-                selectedDistrictId = $(this).attr('id').split('_')[1];
 
-                $('#districtCode').val($(this).attr('id').split('_')[1]);
-                $('#cityCode').val($(this).attr('id').split('_')[2]);
-                $('#provinceCode').val($(this).attr('id').split('_')[3]);
-                obj.val(selectedProvince + " - "+ selectedCity + " - " +$(this).text());
+                //选择的国际城市
+                if($(this).hasClass('int-city'))
+                {
+
+                    $('#cityCode').val($(this).attr('id').split('_')[1]);
+                    $('#provinceCode').val($(this).attr('id').split('_')[2]);
+                    $('#addressType').val(2);
+                    obj.val($(this).attr('data-country') + " - "+$(this).text());
+                }
+                //选择的国内城市
+                else
+                {
+                    selectedDistrictId = $(this).attr('id').split('_')[1];
+
+                    $('#districtCode').val($(this).attr('id').split('_')[1]);
+                    $('#cityCode').val($(this).attr('id').split('_')[2]);
+                    $('#provinceCode').val($(this).attr('id').split('_')[3]);
+                    $('#addressType').val(1);
+                    obj.val(selectedProvince + " - "+ selectedCity + " - " +$(this).text());
+                }
+
+
 //                provinceSection.show();
 //                citySection.hide();
 //                districtSection.hide();
@@ -614,16 +645,17 @@
 
 
         function faxphone(_this) {
-            var re = /^(\d{0,10}-)?\d{0,10}$/;
-            var val = $(_this).val();
-
-            if (re.test(val)) {
-                return true;
-            }else{
-                $(_this).val("");
-                alert("格式为 XXXX-XXXXXXXXXXX");
-                return false;
-            }
+//            var re = /^(\d{0,10}-)?\d{0,10}$/;
+//            var val = $(_this).val();
+//
+//            if (re.test(val)) {
+//                return true;
+//            }else{
+//                $(_this).val("");
+//                alert("格式为 XXXX-XXXXXXXXXXX");
+//                return false;
+//            }
+            return true;
         }
 
 

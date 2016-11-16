@@ -16,86 +16,124 @@
 
 
             <div class="hotel-policy-row height-40">
-                <span class="policy-title-font float-left">入住时间</span>
-                <select class="hotel-policy-input float-left margin-right-10" name="checkinTime" id="checkinTime">
+                <span class="policy-title-font ">入住时间</span>
+                <select class="hotel-policy-input  margin-right-10" name="checkinTime" id="checkinTime">
                     @foreach($timespans as $timespan)
                         <option value="{{$timespan}}">{{$timespan}}</option>
                     @endforeach
                 </select>
 
 
-                <span class="policy-tips-font float-left">在该时间之后</span>
+                <span class="policy-tips-font ">在该时间之后</span>
             </div>
+
 
             <div class="hotel-policy-row height-40">
-                <span class="policy-title-font float-left ">离店时间</span>
-                <select class=" hotel-policy-input float-left margin-right-10" name="checkoutTime"  id="checkoutTime">
+                <span class="policy-title-font  ">离店时间</span>
+                <select class=" hotel-policy-input   margin-right-10" name="checkoutTime"  id="checkoutTime">
                     @foreach($timespans as $timespan)
                         <option value="{{$timespan}}">{{$timespan}}</option>
                     @endforeach
                 </select>
 
-                <span class="policy-tips-font float-left">在该时间之前</span>
+                <span class="policy-tips-font  ">在该时间之前</span>
+            </div>
+
+
+            <div class="hotel-policy-row height-80">
+                <span class="policy-title-font ">接送机</span>
+                <textarea class="hotel-policy-textarea margin-right-10" name="airportTransfer">{{$hotelPolicy ==null?'':$hotelPolicy->airport_transfer}}</textarea>
+                 <span class="policy-tips-font ">在此输入酒店接送机服务信息</span>
             </div>
 
             <div class="hotel-policy-row height-80">
-                <div class="title-font-box height-40 margin-right-10 width-80">
-                    <span class="policy-title-font float-left">押金预付</span>
-                </div>
+                <span class="policy-title-font  ">接送机(英文)</span>
+                <textarea class="hotel-policy-textarea margin-right-10" name="airportTransferEn">{{$hotelPolicy ==null?'':$hotelPolicy->airport_transfer_en}}</textarea>
+                <span class="policy-tips-font  ">在此输入酒店接送机服务信息</span>
+            </div>
+
+            <div class="hotel-policy-row height-80">
+                <span class="policy-title-font ">支付政策</span>
+                <textarea class="hotel-policy-textarea margin-right-10" name="payPolicy">{{$hotelPolicy ==null?'':$hotelPolicy->pay_policy}}</textarea>
+                <span class="policy-tips-font ">在此输入酒店支付信息</span>
+            </div>
+
+            <div class="hotel-policy-row height-80">
+                <span class="policy-title-font  ">支付政策(英文)</span>
+                <textarea class="hotel-policy-textarea margin-right-10" name="payPolicyEn">{{$hotelPolicy ==null?'':$hotelPolicy->pay_policy_en}}</textarea>
+                <span class="policy-tips-font  ">在此输入酒店支付信息</span>
+            </div>
+
+            <div class="hotel-policy-row height-80">
+                <span class="policy-title-font ">宠物政策</span>
+                <textarea class="hotel-policy-textarea margin-right-10" name="petPolicy">{{$hotelPolicy ==null?'':$hotelPolicy->pet_policy}}</textarea>
+                <span class="policy-tips-font ">在此输入酒店宠物政策</span>
+            </div>
+
+            <div class="hotel-policy-row height-80">
+                <span class="policy-title-font  ">宠物政策(英文)</span>
+                <textarea class="hotel-policy-textarea margin-right-10" name="petPolicyEn">{{$hotelPolicy ==null?'':$hotelPolicy->pet_policy_en}}</textarea>
+                <span class="policy-tips-font  ">在此输入酒店宠物政策</span>
+            </div>
+
+
+
+
+            <div class="hotel-policy-row height-80">
+                <span class="policy-title-font  ">押金预付</span>
                 <textarea class="hotel-policy-textarea margin-right-10" name="prepaidDeposit">{{$hotelPolicy ==null?'':$hotelPolicy->prepaid_deposit}}</textarea>
-                <div class="title-font-box height-40">
-                    <span class="policy-tips-font float-left">在此输入酒店押金入住信息</span>
-                </div>
+                <span class="policy-tips-font  ">在此输入酒店押金入住信息</span>
+
             </div>
 
+
             <div class="hotel-policy-row height-80">
-                <div class="title-font-box height-40 margin-right-10 width-80">
-                    <span class="policy-title-font float-left">押金预付(英文)</span>
-                </div>
+                <span class="policy-title-font  ">押金预付(英文)</span>
                 <textarea class="hotel-policy-textarea margin-right-10" name="prepaidDepositEn">{{$hotelPolicy ==null?'':$hotelPolicy->prepaid_deposit_en}}</textarea>
-                <div class="title-font-box height-40">
-                    <span class="policy-tips-font float-left">在此输入酒店押金入住信息</span>
-                </div>
+                <span class="policy-tips-font  ">在此输入酒店押金入住信息</span>
+
+            </div>
+
+
+            <div class="hotel-policy-row height-80">
+                <span class="policy-title-font ">服务费</span>
+                <textarea class="hotel-policy-textarea margin-right-10" name="serviceFeePolicy">{{$hotelPolicy ==null?'':$hotelPolicy->airport_transfer}}</textarea>
+                <span class="policy-tips-font ">在此输入酒店接送机服信息</span>
             </div>
 
             <div class="hotel-policy-row height-80">
-                <div class="title-font-box height-40 margin-right-10 width-80">
-                    <span class="policy-title-font float-left">膳食安排</span>
-                </div>
-                <textarea class="hotel-policy-textarea margin-right-10" name="cateringArrangements">{{$hotelPolicy ==null?'':$hotelPolicy->catering_arrangements}}</textarea>
-                <div class="title-font-box height-40">
-                    <span class="policy-tips-font float-left">在此输入酒店的餐食与时间，如早餐自助午餐AM10:00等</span>
-                </div>
+                <span class="policy-title-font  ">服务费(英文)</span>
+                <textarea class="hotel-policy-textarea margin-right-10" name="serviceFeePolicyEn">{{$hotelPolicy ==null?'':$hotelPolicy->service_fee_policy}}</textarea>
+                <span class="policy-tips-font  ">在此输入酒店接送机服信息</span>
+            </div>
+
+
+
+            <div class="hotel-policy-row height-80">
+                <span class="policy-title-font  ">膳食安排</span>
+                <textarea class="hotel-policy-textarea margin-right-10" name="cateringArrangements">{{$hotelPolicy ==null?'':$hotelPolicy->service_fee_policy_en}}</textarea>
+                <span class="policy-tips-font  ">在此输入酒店的餐食与时间，如早餐自助午餐AM10:00等</span>
+
             </div>
 
             <div class="hotel-policy-row height-80">
-                <div class="title-font-box height-40 margin-right-10 width-80">
-                    <span class="policy-title-font float-left">膳食安排(英文)</span>
-                </div>
+                <span class="policy-title-font  ">膳食安排(英文)</span>
                 <textarea class="hotel-policy-textarea margin-right-10" name="cateringArrangementsEn">{{$hotelPolicy ==null?'':$hotelPolicy->catering_arrangements_en}}</textarea>
-                <div class="title-font-box height-40">
-                    <span class="policy-tips-font float-left">在此输入酒店的餐食与时间，如早餐自助午餐AM10:00等</span>
-                </div>
+                <span class="policy-tips-font  ">在此输入酒店的餐食与时间，如早餐自助午餐AM10:00等</span>
+
             </div>
 
             <div class="hotel-policy-row height-80">
-                <div class="title-font-box height-40 margin-right-10 width-80">
-                    <span class="policy-title-font float-left">其他政策</span>
-                </div>
+                <span class="policy-title-font  ">其他政策</span>
                 <textarea class="hotel-policy-textarea margin-right-10" name="otherPolicy">{{$hotelPolicy==null?'':$hotelPolicy->other_policy}}</textarea>
-                <div class="title-font-box height-40">
-                    <span class="policy-tips-font float-left">酒店其他政策，包括加床，儿童床等</span>
-                </div>
+                <span class="policy-tips-font  ">酒店其他政策，包括加床，儿童床等</span>
+
             </div>
 
             <div class="hotel-policy-row height-80">
-                <div class="title-font-box height-40 margin-right-10 width-80">
-                    <span class="policy-title-font float-left">其他政策(英文)</span>
-                </div>
+                <span class="policy-title-font  ">其他政策(英文)</span>
                 <textarea class="hotel-policy-textarea margin-right-10" name="otherPolicyEn">{{$hotelPolicy==null?'':$hotelPolicy->other_policy_en}}</textarea>
-                <div class="title-font-box height-40">
-                    <span class="policy-tips-font float-left">酒店其他政策，包括加床，儿童床等</span>
-                </div>
+                <span class="policy-tips-font  ">酒店其他政策，包括加床，儿童床等</span>
             </div>
 
 

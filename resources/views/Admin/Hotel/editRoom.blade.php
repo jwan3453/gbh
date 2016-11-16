@@ -67,6 +67,34 @@
                 <span class="unit">平方</span>
             </div>
 
+            <div class="short-input-box ">
+                <label>早餐</label>
+                <input type="text" id="numOfBreakfast" name="numOfBreakfast" value="{{$room->num_of_breakfast}}" data-input="早餐" class="require">
+            </div>
+
+            <div class="long-input-box ">
+                <label>位置说明</label>
+                <input type="text" id="locationInfo" name="locationInfo" value="{{$room->location_info}}" data-input="位置说明" class="require">
+            </div>
+
+            <div class="long-input-box ">
+                <label>位置说明(英文)</label>
+                <input type="text" id="locationInfoEn" name="locationInfoEn" value="{{$room->location_info_en}}" data-input="位置说明(英文)" class="require">
+            </div>
+
+
+            <div class="long-input-box ">
+                <label>其他</label>
+                <input type="text" id="otherInfo" name="otherInfo" value="{{$room->other_info}}" data-input="其他说明" class="require">
+            </div>
+
+            <div class="long-input-box ">
+                <label>其他(英文)</label>
+                <input type="text" id="otherInfoEn" name="otherInfoEn" value="{{$room->other_info_en}}" data-input="其他说明(英文)" class="require">
+            </div>
+
+
+
             <div class="long-input-box ">
                 <label>房型描述</label>
                 <textarea  id="description" name="description"  data-input="房型描述"   class="require">{{$room->room_description}}</textarea>

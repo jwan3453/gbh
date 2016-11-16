@@ -217,17 +217,34 @@ Route::group(['prefix' => '/admin/', 'middleware' => 'App\Http\Middleware\AdminA
             //提交酒店联系人(添加或修改)
             Route::post('hotelInfo/createOrUpdateContact','Admin\Hotel\HotelController@createOrUpdateContact');
 
+            //删除酒店联系人
+            Route::post('hotelInfo/deleteHotelContact','Admin\Hotel\HotelController@deleteHotelContact');
 
             //管理酒店设施
             Route::get('hotelInfo/{hotelId}/maintainHotelFacilities','Admin\Hotel\HotelController@maintainHotelFacilities');
-
 
             //新增或修改设施清单
             Route::post('hotelInfo/createOrUpdateHotelFacilities' ,'Admin\Hotel\HotelController@createOrUpdateHotelFacilities' );
 
 
-            //删除周边环境项目
-            Route::post('hotelInfo/deleteHotelContact','Admin\Hotel\HotelController@deleteHotelContact');
+            //管理酒店餐饮服务
+            Route::get('hotelInfo/{hotelId}/maintainHotelCateringService','Admin\Hotel\HotelController@maintainHotelCateringService');
+
+            //新增或修改酒店餐饮服务项目
+            Route::post('hotelInfo/createOrUpdateHotelCateringItem' ,'Admin\Hotel\HotelController@createOrUpdateHotelCateringItem' );
+
+            //删除酒店餐饮服务项目
+            Route::post('hotelInfo/deleteHotelCateringItem','Admin\Hotel\HotelController@deleteHotelCateringItem');
+
+            //管理酒店健身娱乐服务
+            Route::get('hotelInfo/{hotelId}/maintainHotelRecreationService','Admin\Hotel\HotelController@maintainHotelRecreationService');
+
+            //新增或修改酒店健身娱乐项目
+            Route::post('hotelInfo/createOrUpdateHotelRecreationItem' ,'Admin\Hotel\HotelController@createOrUpdateHotelRecreationItem' );
+
+            //删除酒店健身娱乐项目
+            Route::post('hotelInfo/deleteHotelRecreationItem','Admin\Hotel\HotelController@deleteHotelRecreationItem');
+
 
             //管理酒店图片
             Route::get('hotelInfo/{hotelId}/maintainHotelImage','Admin\Hotel\HotelController@maintainHotelImage');

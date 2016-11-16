@@ -4,22 +4,25 @@
 
     <div class="admin-content">
         <div class="info-menu">
-
-            <a  class="info-menu-selected" id="informationMaintenance"> <span  >
-                信息维护
-            </span></a>
-            <a href="{{url('admin/manageHotel/hotelInfo/'.$hotelId.'/manageRoom')}}"><span>房型信息</span></a>
-            <a><span>问答管理</span></a>
+            <div class="ui simple dropdown " >
+                    <label>信息维护</label>
+                    <i class="dropdown icon"></i>
+                    <div class="menu">
+                            <div class="sub-item"><a href="{{url('admin/manageHotel/hotelInfo/'.$hotelId.'/maintainHotelBasicInfo')}}" >基本信息</a></div>
+                            <div class="sub-item"><a href="{{url('admin/manageHotel/hotelInfo/'.$hotelId.'/maintainHotelGeoInfo')}}" >交通地理</a></div>
+                            <div class="sub-item"><a href="{{url('admin/manageHotel/hotelInfo/'.$hotelId.'/maintainHotelPolicy')}}" >酒店政策</a></div>
+                            <div class="sub-item"><a href="{{url('admin/manageHotel/hotelInfo/'.$hotelId.'/maintainHotelContact')}}" >联系方式</a></div>
+                            <div class="sub-item"><a href="{{url('admin/manageHotel/hotelInfo/'.$hotelId.'/maintainHotelFacilities')}}" >酒店设施</a></div>
+                            <div class="sub-item"><a href="{{url('admin/manageHotel/hotelInfo/'.$hotelId.'/maintainHotelCateringService')}}" >酒店餐饮</a></div>
+                            <div class="sub-item"><a href="{{url('admin/manageHotel/hotelInfo/'.$hotelId.'/maintainHotelRecreationService')}}" >健身娱乐</a></div>
+                            <div class="sub-item"><a href="{{url('admin/manageHotel/hotelInfo/'.$hotelId.'/maintainHotelImage')}}">酒店图片</a></div>
+                            <div class="sub-item"><a >酒店活动管理</a></div>
+                    </div>
+                </div>
+            <a class="menu-item" href="{{url('admin/manageHotel/hotelInfo/'.$hotelId.'/manageRoom')}}"><span>房型信息</span></a>
+            <a class="menu-item"> <span>问答管理</span></a>
         </div>
-        <ul class="info-maintain-menu" id="infoMaintainMenu">
-            <li><a href="{{url('admin/manageHotel/hotelInfo/'.$hotelId.'/maintainHotelBasicInfo')}}" >基本信息</a></li>
-            <li><a href="{{url('admin/manageHotel/hotelInfo/'.$hotelId.'/maintainHotelGeoInfo')}}" >交通地理</a></li>
-            <li><a href="{{url('admin/manageHotel/hotelInfo/'.$hotelId.'/maintainHotelPolicy')}}" >酒店政策</a></li>
-            <li><a href="{{url('admin/manageHotel/hotelInfo/'.$hotelId.'/maintainHotelContact')}}" >联系方式</a></li>
-            <li><a href="{{url('admin/manageHotel/hotelInfo/'.$hotelId.'/maintainHotelFacilities')}}" >酒店设施</a></li>
-            <li><a href="{{url('admin/manageHotel/hotelInfo/'.$hotelId.'/maintainHotelImage')}}">酒店图片</a></li>
-            <li><a >酒店活动管理</a></li>
-        </ul>
+
         <div class="color-divider"></div>
 
        @yield('infoContent')
@@ -27,42 +30,6 @@
 @stop
 
 @section('script')
-    <script type="text/javascript">
-
-        $(document).ready(function(){
-            $("#informationMaintenance").hover(function() {
-                    t = setTimeout(function(){
-                            if($('#infoMaintainMenu').css('display') == 'none')
-                            {
-                                $('#infoMaintainMenu').transition('drop');
-                            }
-                        },
-                        200);
-                },
-                function(e){
-                    if($('#infoMaintainMenu').is(":hover"))
-                    {
-                        return;
-                    }
-                    else{
-                        $('#infoMaintainMenu').transition('drop');
-                    }
-                });
-            $('#infoMaintainMenu').hover(function(){
-
-            },function(){
-                if($('#informationMaintenance').is(":hover"))
-                {
-                    return;
-                }
-                $('#infoMaintainMenu').transition('drop');
-            })
-        })
-
-
-
-
-    </script>
 
     @yield('infoScript')
 @stop

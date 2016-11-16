@@ -1,11 +1,13 @@
 <?php
 namespace App\Service\Common;
 
+use App\Models\Country;
+use App\Models\InternationalCity;
 use App\Models\Province;
 use App\Models\City;
 use App\Models\District;
 use App\Tool\MessageResult;
-
+use Illuminate\Support\Facades\DB;
 
 class CommonService {
 
@@ -16,6 +18,7 @@ class CommonService {
         $region['city'] = City::all();
         $region['district'] = District::all();
 
+        $region['internationalCity'] = DB::table('international_city')->join('country','country.code','=','international_city.country_code')->select('international_city.*','country.name')->get();
         $jsonResult = new MessageResult();
         $jsonResult->extra = $region;
         return $jsonResult->toJson();
@@ -24,21 +27,32 @@ class CommonService {
     /*
     *  level = city|province|district
     */
-    public function getAdressInfo($level = '' , $code = 110000)
+    public function getAdressInfo($level = '' , $code = 110000, $type)
+
     {
+
         if ($level == '') {
             return false;
         }
         $info = '';
         switch ($level) {
             case 'city':
-                $info = City::select('city_name')->where('code',$code)->first()->city_name;
+                if($type==1)
+                    $info = City::select('city_name')->where('code',$code)->first()->city_name;
+                else
+                    $info = InternationalCity::select('city_name')->where('code',$code)->first()->city_name;
                 break;
             case 'province':
-                $info = Province::select('province_name')->where('code',$code)->first()->province_name;
+                if($type==1)
+                    $info = Province::select('province_name')->where('code',$code)->first()->province_name;
+                else
+                    $info = Country::select('name')->where('code',$code)->first()->name;
                 break;
             case 'district':
-                $info = District::select('district_name')->where('code',$code)->first()->district_name;
+                if($type==1)
+                    $info = District::select('district_name')->where('code',$code)->first()->district_name;
+                else
+                    $info ='';
                 break;
             default:
                 $info = "未知";

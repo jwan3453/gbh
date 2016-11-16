@@ -29,7 +29,8 @@ use App\Models\HotelFacilityList;
 use App\Models\HotelFacilityCategory;
 use App\Models\Category;
 use App\Models\HotelCategory;
-
+use App\Models\HotelCateringService;
+use App\Models\HotelRecreationService;
 use App\Service\Admin\ImageService;
 
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -53,7 +54,7 @@ class HotelService {
     {
         $list = Hotel::select('id','name','address_id','status')->get();
         foreach ($list as $hotelItem) {
-            $hotelItem->address = Address::select('province_code','city_code','district_code','detail')->where('id',$hotelItem->address_id)->first();
+            $hotelItem->address = Address::select('province_code','city_code','district_code','detail','type')->where('id',$hotelItem->address_id)->first();
         }
         return $list;
     }
@@ -71,9 +72,17 @@ class HotelService {
         }else{
             $newAddress = new Address();
         }
+        $newAddress->type = $request->input('addressType');
         $newAddress->province_code = $request->input('provinceCode');
         $newAddress->city_code = $request->input('cityCode');
-        $newAddress->district_code = $request->input('districtCode');
+        if($newAddress->type == 2)
+        {
+            $newAddress->district_code = '';
+        }
+        else{
+            $newAddress->district_code = $request->input('districtCode');
+        }
+
         $newAddress->detail = $request->input('hotelAddress');
         $newAddress->detail_en = $request->input('hotelAddressEn');
         if($newAddress->save())
@@ -81,7 +90,7 @@ class HotelService {
 
 
 
-
+            //酒店明细
             if ($createOrupdate == "update") {
                 $newHotel = Hotel::find($request->input('hotelId'));
             }else{
@@ -157,8 +166,22 @@ class HotelService {
         $hotelPolicy->checkout_time = $checkoutTime;
         $hotelPolicy->prepaid_deposit = $request->input('prepaidDeposit');
         $hotelPolicy->prepaid_deposit_en = $request->input('prepaidDepositEn');
+
+        $hotelPolicy->airport_transfer = $request->input('airportTransfer');
+        $hotelPolicy->airport_transfer_en = $request->input('airportTransferEn');
+
+        $hotelPolicy->pay_policy = $request->input('payPolicy');
+        $hotelPolicy->pay_policy_en = $request->input('payPolicyEn');
+
+        $hotelPolicy->pet_policy = $request->input('petPolicy');
+        $hotelPolicy->pet_policy_en = $request->input('petPolicyEn');
+
         $hotelPolicy->catering_arrangements = $request->input('cateringArrangements');
         $hotelPolicy->catering_arrangements_en = $request->input('cateringArrangementsEn');
+
+        $hotelPolicy->service_fee_policy = $request->input('serviceFeePolicy');
+        $hotelPolicy->service_fee_policy_en = $request->input('serviceFeePolicyEn');
+
         $hotelPolicy->other_policy = $request->input('otherPolicy');
         $hotelPolicy->other_policy_en = $request->input('otherPolicyEn');
 
@@ -993,8 +1016,16 @@ class HotelService {
         $newRoom->num_of_people = $request->input('numOfPeople');
         $newRoom->num_of_children = $request->input('numOfChildren');
         $newRoom->num_of_rooms = $request->input('numOfRooms');
+        $newRoom->num_of_breakfast = $request->input('numOfBreakFast');
         $newRoom->acreage = $request->input('acreage');
         $newRoom->floor = $request->input('floor');
+
+        $newRoom->location_info = $request->input('locationInfo');
+        $newRoom->location_info_en = $request->input('locationInfoEn');
+
+        $newRoom->other_info = $request->input('otherInfo');
+        $newRoom->other_info_en = $request->input('otherInfoEn');
+
 
         $newRoom->room_description = $request->input('description');
         $newRoom->room_description_en = $request->input('descriptionEn');
@@ -1038,8 +1069,15 @@ class HotelService {
         $room->num_of_people = $request->input('numOfPeople');
         $room->num_of_children = $request->input('numOfChildren');
         $room->num_of_rooms = $request->input('numOfRooms');
+        $room->num_of_breakfast = $request->input('numOfBreakfast');
         $room->acreage = $request->input('acreage');
         $room->floor = $request->input('floor');
+
+        $room->location_info = $request->input('locationInfo');
+        $room->location_info_en = $request->input('locationInfoEn');
+
+        $room->other_info = $request->input('otherInfo');
+        $room->other_info_en = $request->input('otherInfoEn');
 
         $room->room_description = $request->input('description');
         $room->room_description_en = $request->input('descriptionEn');
@@ -1222,7 +1260,7 @@ class HotelService {
     {
         $hotelInfo = Hotel::where('id',$hotelId)->select('name','name_en','address_id','postcode','phone','fax','website','total_rooms','hotel_features','hotel_features_en','description','description_en')->first();
 
-        $hotelInfo->address = Address::where('id',$hotelInfo->address_id)->select('province_code','city_code','district_code','detail','detail_en')->first();
+        $hotelInfo->address = Address::where('id',$hotelInfo->address_id)->select('province_code','city_code','district_code','detail','detail_en','type')->first();
 
         return $hotelInfo;
 
@@ -1343,7 +1381,7 @@ class HotelService {
     public function getHotelPolicy($hotelId)
     {
 
-        $hotelPolicy = hotelPolicy::where('hotel_id',$hotelId)->select('id','checkin_time','checkout_time','prepaid_deposit','prepaid_deposit_en','catering_arrangements','catering_arrangements_en','other_policy','other_policy_en')->first();
+        $hotelPolicy = hotelPolicy::where('hotel_id',$hotelId)->first();
 
 
 //        if($hotelPolicy != null)
@@ -1464,6 +1502,102 @@ class HotelService {
             return $newHotelFacility->save();
         }
 
+    }
+
+
+
+    //获取酒店餐饮服务列表
+    public function getHotelCateringServiceList($hotelId)
+    {
+        return HotelCateringService::where('hotel_id',$hotelId)->get();
+    }
+
+
+
+    //创建或更酒店餐饮服务项目
+    public function createOrUpdateHotelCateringItem(Request $request)
+    {
+        $createOrUpdate  = $request->input('createOrUpdate');
+        if($createOrUpdate == 'create')
+        {
+            $cateringItem = new HotelCateringService();
+            $cateringItem->hotel_id = $request->input('hotelId');
+            $cateringItem->name = $request->input('name');
+            $cateringItem->name_en = $request->input('nameEn');
+            $cateringItem->size = $request->input('size');
+            $cateringItem->num_of_table = $request->input('numOfTable');
+            $cateringItem->description = $request->input('description');
+            $cateringItem->description_en = $request->input('descriptionEn');
+            $cateringItem->business_hour = $request->input('businessHour');
+            $cateringItem->save();
+            return $cateringItem->id;
+        }
+        else{
+
+            $cateringItem =  HotelCateringService::find($request->input('cateringId'));
+            $cateringItem->name = $request->input('name');
+            $cateringItem->name_en = $request->input('nameEn');
+            $cateringItem->size = $request->input('size');
+            $cateringItem->num_of_table = $request->input('numOfTable');
+            $cateringItem->description = $request->input('description');
+            $cateringItem->description_en = $request->input('descriptionEn');
+            $cateringItem->business_hour = $request->input('businessHour');
+            return $cateringItem->save();
+
+        }
+    }
+
+
+    //删除酒店餐饮服务项目
+    public function deleteHotelCateringItem(Request $request){
+        return HotelCateringService::where('id',$request->input('cateringId'))->delete();
+    }
+
+
+
+
+    //获取酒店健身娱乐列表
+    public function getHotelRecreationServiceList($hotelId)
+    {
+        return HotelRecreationService::where('hotel_id',$hotelId)->get();
+    }
+
+
+    //创建或更酒店健身娱乐项目
+    public function createOrUpdateHotelRecreationItem(Request $request)
+    {
+        $createOrUpdate  = $request->input('createOrUpdate');
+        if($createOrUpdate == 'create')
+        {
+            $recreationItem = new HotelRecreationService();
+            $recreationItem->hotel_id = $request->input('hotelId');
+            $recreationItem->name = $request->input('name');
+            $recreationItem->name_en = $request->input('nameEn');
+            $recreationItem->num = $request->input('num');
+            $recreationItem->description = $request->input('description');
+            $recreationItem->description_en = $request->input('descriptionEn');
+            $recreationItem->business_hour = $request->input('businessHour');
+            $recreationItem->save();
+            return $recreationItem->id;
+        }
+        else{
+
+            $recreationItem =  HotelRecreationService::find($request->input('recreationId'));
+            $recreationItem->name = $request->input('name');
+            $recreationItem->name_en = $request->input('nameEn');
+            $recreationItem->num= $request->input('num');
+            $recreationItem->description = $request->input('description');
+            $recreationItem->description_en = $request->input('descriptionEn');
+            $recreationItem->business_hour = $request->input('businessHour');
+            return $recreationItem->save();
+
+        }
+    }
+
+
+    //删除酒店健身娱乐项目
+    public function deleteHotelRecreationItem(Request $request){
+        return HotelRecreationService::where('id',$request->input('recreationId'))->delete();
     }
 
 

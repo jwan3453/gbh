@@ -34,7 +34,9 @@
             <span data-id="{{$section->id}}">{{$section->name}}</span>
         @endforeach
 
-            <div class="ui simple dropdown  room-list" id="roomList"><label>客房</label> <i class="dropdown icon"></i>
+            <div class="ui simple dropdown  room-list" id="roomList">
+                <label>客房</label>
+                <i class="dropdown icon"></i>
                 <div class="menu">
                     @foreach($sectionListAndImage['roomList'] as $room)
                         <div data-id="{{$room->id}}" class="room-list-item">{{$room->room_name}}</div>
@@ -266,13 +268,13 @@
 
 
                                     var isCoverText = '设为封面';
-                                    var iscoverClass= 'cover';
-                                    var setCoverClass='set-cover'
+                                    var isCoverClass= 'cover';
+                                    var setCoverClass='set-cover';
 
                                     if(data.extra[i].is_cover ===1)
                                     {
                                          isCoverText = '取消封面';
-                                         iscoverClass = 'is-cover';
+                                        isCoverClass = 'is-cover';
                                         setCoverClass = 'cancel-cover';
                                     }
 
@@ -282,7 +284,7 @@
                                                     '<div class="offline  small-btn red-btn">下线</div>'+
                                                     '<div class="'+setCoverClass +'  small-btn red-btn">'+isCoverText+'</div>' +
                                                 '</div>' +
-                                                '<div class="ui blue ribbon label '+iscoverClass+'  " id="cover_' + data.extra[i].id + '">封面</div>'+
+                                                '<div class="ui blue ribbon label '+isCoverClass+'  " id="cover_' + data.extra[i].id + '">封面</div>'+
                                                 '<i class="remove icon large orange "> </i>' +
                                                 '<img style="width:200px;height:200px" src=' + data.extra[i].link + ' >' +
                                                 '<div class="info"> ' + data.extra[i].image_key + '</div>' +

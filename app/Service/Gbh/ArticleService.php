@@ -73,14 +73,14 @@ class ArticleService {
     public function getArticleByCate($category)
     {
 
-        $articles = Article::where('is_draft',0)->select('category','id','title','author','brief','cover_image','published_at')->get();
+        $articles = Article::where('is_draft',0)->select('category','id','title','author','brief','cover_image','published_at')->orderby('published_at','desc')->get();
         $articleCategories = ArticleCategory::all();
         if($category != 0 )
         {
-            $articles = Article::where('category',$category)->select('category','id','title','author','brief','cover_image','view_count','praise','published_at')->get();
+            $articles = Article::where('category',$category)->select('category','id','title','author','brief','cover_image','view_count','praise','published_at')->orderby('published_at','desc')->get();
         }
         else{
-            $articles = Article::select('category','id','title','author','brief','cover_image','view_count','praise','published_at')->get();
+            $articles = Article::select('category','id','title','author','brief','cover_image','view_count','praise','published_at')->orderby('published_at','desc')->get();
         }
 
         foreach( $articles as $article)

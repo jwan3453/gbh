@@ -1623,7 +1623,7 @@ body{
 }
 .long-input-box textarea{
 	width:360px;
-	height:140px;
+	height:120px;
 	font-size:12px;
 	background-color: #f8f8f8;
 	border:1px solid #505050;
@@ -1846,7 +1846,7 @@ body{
 }
 
 
-.confirm-surrounding-btn,.confirm-contact-btn{
+.confirm-surrounding-btn,.confirm-contact-btn,.confirm-catering-btn,.confirm-recreation-btn{
 	width: 200px;
 	height: 30px;
 	line-height: 30px;
@@ -1913,12 +1913,17 @@ body{
 .hotel-policy-row{
 	width: 100%;
 	margin-bottom: 30px;
+
 }
 
 .policy-title-font{
 	font-size: 14px;
 	color: #787878;
-	margin-left: 10px;
+	margin-left: 20px;
+	width:80px;
+
+	display: inline-block;
+	vertical-align: middle;
 }
 
 .float-left{
@@ -1940,6 +1945,8 @@ body{
 .policy-tips-font{
 	font-size: 12px;
 	color: #a0a0a0;
+	display: inline-block;
+	vertical-align: middle;
 }
 
 .policy-input-font{
@@ -1959,7 +1966,7 @@ body{
 }
 
 .hotel-policy-row .title-font-box{
-	float: left;
+
 	line-height: 40px;
 
 }
@@ -1968,9 +1975,9 @@ body{
 	width: 494px;
 	height: 74px;
 	max-height: 74px;
-	float: left;
+	display: inline-block;
 	max-width: 600px;
-	/*margin-left: 10px;*/
+	vertical-align: middle;
 }
 
 
@@ -2552,18 +2559,7 @@ body{
 	color: #C0C0C0;
 }
 
-.contact-operation-row{
-	font-size: 14px;
-	display: inline-block;
-	cursor: pointer;
-	vertical-align: middle;
-	margin-top:-50px;
-	margin-left:50px;
-}
-.contact-operation-row label{
-	cursor:pointer;
-	margin-right:10px;
-}
+
 
 .radio-item-block{
 	width: 240px;
@@ -2627,6 +2623,20 @@ body{
 
 .contact-box-row span{
 	margin-right: 10px;
+}
+
+
+.contact-operation-row{
+	font-size: 14px;
+	display: inline-block;
+	cursor: pointer;
+	vertical-align: middle;
+	margin-top:-50px;
+	margin-left:50px;
+}
+.contact-operation-row label{
+	cursor:pointer;
+	margin-right:10px;
 }
 
 .edit-contact-modal{
@@ -2700,7 +2710,58 @@ body{
 
 /**********************************/
 
+/*********酒店餐饮服务维护 / 健身娱乐**********/
+.catering-box, .recreation-box{
+	width: 100%;
+	padding-bottom: 20px;
+	position: relative;
+}
 
+.catering-box-row, .recreation-box-row{
+
+	height: 40px;
+	margin-top: 20px;
+	display: inline-block;
+
+}
+
+.catering-box-row label, .recreation-box-row label{
+	font-size: 14px;
+	width:80px;
+	display: inline-block;
+}
+
+.catering-box-row span,.recreation-box-row span{
+	margin-right: 10px;
+}
+
+.edit-catering-modal,.edit-recreation-modal{
+	width: 650px !important;
+	margin-left: -300px !important;
+	padding:10px 40px;
+}
+
+.catering-input,.recreation-input{
+	width: 176px;
+	height: 34px;
+	/*margin-left: 10px;*/
+	margin-right: 20px;
+}
+
+
+.catering-operation-row,.recreation-operation-row{
+	font-size: 14px;
+	cursor: pointer;
+	vertical-align: middle;
+	position: absolute;
+	top:50px;
+	right:40px;
+}
+.catering-operation-row label,.recreation-operation-row label{
+	cursor:pointer;
+	margin-right:10px;
+}
+/********************************/
 
 
 /************轮播图*******************/
@@ -2798,19 +2859,56 @@ body{
 }
 
 
-.info-menu a{
+.info-menu .dropdown{
+	font-size:14px!important;
+	height:35px;
+	line-height: 35px;
+	text-align: center!important;
+	margin: 0 10px;
+
+	width:100px;
+}
+
+.info-menu .menu{
+
+	border-radius: 0px!important;
+	background-color:#f8f8f8!important;
+
+
+
+
+}
+.info-menu .menu .sub-item{
+	width:99px!important;
+	text-align: center!important;
+	display: block!important;
+	font-size:14px;
+	height:35px;
+	line-height: 35px;
+
+}
+
+.info-menu .menu .sub-item:hover{
+	color: #f8f8f8!important;
+	background: #639ae3;
+	cursor:pointer;
+	transition:background-color 0.5s ease;
+}
+
+
+.info-menu .menu-item{
 	display: inline-block;
 	width: 100px ;
 	text-align: center;
 	font-size:14px;
 	height:35px;
 	line-height: 35px;
-	color:#505050;
-	margin-right:10px;
+
+	margin: 0 10px;
 	border-bottom: 2px solid transparent ;
 	border-radius: 2px;
 }
-.info-menu a:hover{
+.info-menu .menu-item:hover{
 	cursor: pointer;
 	border-bottom: 2px solid #639ae3 ;
 	transition:background-color 0.6s ease;
@@ -3044,6 +3142,7 @@ body{
 	line-height: 30px;
 	width:99px;
 	text-align: center;
+	z-index:1001;
 }
 
 .section-list .room-list-item:hover{
@@ -4332,6 +4431,32 @@ text-align: center;
 	background:  #fe875e;;
 	color:white;
 }
+
+
+.int-section{
+
+	padding:10px 2px 0 2px;
+	border-top: 1px solid #505050;
+
+}
+
+.int-section-name{
+	font-size:14px;
+	text-align: center;
+}
+.int-section span{
+	font-size: 12px;
+	margin:2px 0;
+	cursor:pointer;
+	display:inline-block;
+	padding:5px 5px;
+	border-radius: 2px;
+}
+.int-section span:hover{
+	background:  #fe875e;;
+	color:white;
+}
+
 
 .geo-search-line{
 	cursor: pointer;

@@ -70,7 +70,7 @@
 
     <div class="ui page dimmer confirm-request">
 
-        <h3>是否删除该周边项目</h3>
+        <h3>是否删除该联系人</h3>
         <div class="confirm-btns">
             <div class="regular-btn blue-btn confirm">
                 确定

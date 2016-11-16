@@ -55,9 +55,9 @@ class HotelController extends Controller
             {
 
 
-                $province = $this->commonService->getAdressInfo('province',$hotelList->address->province_code);
-                $city = $this->commonService->getAdressInfo('city',$hotelList->address->city_code);
-                $district = $this->commonService->getAdressInfo('district',$hotelList->address->district_code);
+                $province = $this->commonService->getAdressInfo('province',$hotelList->address->province_code,$hotelList->address->type);
+                $city = $this->commonService->getAdressInfo('city',$hotelList->address->city_code,$hotelList->address->type);
+                $district = $this->commonService->getAdressInfo('district',$hotelList->address->district_code,$hotelList->address->type);
                 $detail = $hotelList->address->detail;
 
                 $hotelList->addressInfo = $province.$city.$district.$detail;
@@ -441,9 +441,9 @@ class HotelController extends Controller
 
         if($hotelInfo->address != null)
         {
-            $province = $this->commonService->getAdressInfo('province',$hotelInfo->address->province_code);
-            $city = $this->commonService->getAdressInfo('city',$hotelInfo->address->city_code);
-            $district = $this->commonService->getAdressInfo('district',$hotelInfo->address->district_code);
+            $province = $this->commonService->getAdressInfo('province',$hotelInfo->address->province_code,$hotelInfo->address->type);
+            $city = $this->commonService->getAdressInfo('city',$hotelInfo->address->city_code,$hotelInfo->address->type);
+            $district = $this->commonService->getAdressInfo('district',$hotelInfo->address->district_code,$hotelInfo->address->type);
             $hotelInfo->addressInfo = $province . "-" .$city . "-" . $district;
         }
 
@@ -473,9 +473,9 @@ class HotelController extends Controller
         //判断是创建酒店 还是更新酒店
         $createOrUpdate = $request->input('createOrupdate');
         if ($isCreate) {
-            $province = $this->commonService->getAdressInfo('province',$request->input('provinceCode'));
-            $city = $this->commonService->getAdressInfo('city',$request->input('cityCode'));
-            $district = $this->commonService->getAdressInfo('district',$request->input('districtCode'));
+            $province = $this->commonService->getAdressInfo('province',$request->input('provinceCode'),$request->input('addressType'));
+            $city = $this->commonService->getAdressInfo('city',$request->input('cityCode'),$request->input('addressType'));
+            $district = $this->commonService->getAdressInfo('district',$request->input('districtCode'),$request->input('addressType'));
             $detail = $request->input('hotelAddress');
 
             $addressInfo = $province.$city.$district.$detail;
@@ -672,6 +672,94 @@ class HotelController extends Controller
         else{
             $jsonResult->statusCode =2;
             $jsonResult->statusMsg ='更新失败';
+        }
+        return response($jsonResult->toJson());
+    }
+
+    //维护管理酒店餐饮服务
+    public function maintainHotelCateringService($hotelId)
+    {
+        $cateringServiceList=  $this->hotelService->getHotelCateringServiceList($hotelId);
+        return view('Admin.Hotel.maintainHotelCateringService')->with('hotelId', $hotelId)->with('cateringServiceList',$cateringServiceList);
+    }
+
+
+    //新增或修改酒店餐饮服务项目
+    public function createOrUpdateHotelCateringItem(Request $request)
+    {
+
+        $jsonResult = new MessageResult();
+        $result =  $this->hotelService->createOrUpdateHotelCateringItem($request);
+        if($result)
+        {
+            $jsonResult->statusCode =1;
+            $jsonResult->statusMsg ='更新成功';
+        }
+        else{
+            $jsonResult->statusCode =2;
+            $jsonResult->statusMsg ='更新失败';
+        }
+        return response($jsonResult->toJson());
+    }
+
+    //删除酒店餐饮服务项目
+    public function deleteHotelCateringItem(Request $request)
+    {
+        $jsonResult = new MessageResult();
+        $result =  $this->hotelService->deleteHotelCateringItem($request);
+
+        if($result)
+        {
+            $jsonResult->statusCode =1;
+            $jsonResult->statusMsg ='删除成功';
+        }
+        else{
+            $jsonResult->statusCode =2;
+            $jsonResult->statusMsg ='删除失败';
+        }
+        return response($jsonResult->toJson());
+    }
+
+    //维护管理酒店健身娱乐服务
+    public function maintainHotelRecreationService($hotelId)
+    {
+        $recreationServiceList=  $this->hotelService->getHotelRecreationServiceList($hotelId);
+        return view('Admin.Hotel.maintainHotelRecreationService')->with('hotelId', $hotelId)->with('recreationServiceList',$recreationServiceList);
+    }
+
+
+    //新增或修改酒店健身娱乐项目
+    public function createOrUpdateHotelRecreationItem(Request $request)
+    {
+
+        $jsonResult = new MessageResult();
+        $result =  $this->hotelService->createOrUpdateHotelRecreationItem($request);
+        if($result)
+        {
+            $jsonResult->statusCode =1;
+            $jsonResult->statusMsg ='更新成功';
+        }
+        else{
+            $jsonResult->statusCode =2;
+            $jsonResult->statusMsg ='更新失败';
+        }
+        return response($jsonResult->toJson());
+    }
+
+    //删除酒店健身娱乐项目
+    public function deleteHotelRecreationItem(Request $request)
+    {
+        $jsonResult = new MessageResult();
+        $result =  $this->hotelService->deleteHotelRecreationItem($request);
+
+        if($result)
+        {
+            $jsonResult->statusCode =1;
+            $jsonResult->statusMsg ='删除成功';
+        }
+        else{
+            $jsonResult->statusCode =2;
+            $jsonResult->statusMsg ='删除失败';
         }
         return response($jsonResult->toJson());
     }
