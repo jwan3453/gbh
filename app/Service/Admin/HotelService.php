@@ -96,6 +96,7 @@ class HotelService {
             }else{
                 $newHotel = new Hotel();
             }
+            $newHotel->code = $request->input('hotelCode');
             $newHotel->name = $request->input('hotelName');
             $newHotel->name_en = $request->input('hotelNameEn');
 
@@ -1258,7 +1259,7 @@ class HotelService {
     //获取酒店基本信息
     public function getHotelBasicInfo($hotelId)
     {
-        $hotelInfo = Hotel::where('id',$hotelId)->select('name','name_en','address_id','postcode','phone','fax','website','total_rooms','hotel_features','hotel_features_en','description','description_en')->first();
+        $hotelInfo = Hotel::where('id',$hotelId)->select('code','name','name_en','address_id','postcode','phone','fax','website','total_rooms','hotel_features','hotel_features_en','description','description_en')->first();
 
         $hotelInfo->address = Address::where('id',$hotelInfo->address_id)->select('province_code','city_code','district_code','detail','detail_en','type')->first();
 

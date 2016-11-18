@@ -66,7 +66,11 @@
                 <input type="hidden" id="selectCateList" name="selectCateList"/>
             </div>
 
-
+            <div class="short-input-box ">
+                <label>酒店代码</label>
+                <input type="text" id="hotelCode" name="hotelCode" value="{{$hotelInfo->code}}">
+                <span>请输入酒店的代码</span>
+            </div>
 
             <div class="short-input-box ">
                 <label>酒店名称</label>
