@@ -203,6 +203,24 @@ class HotelController extends Controller
         return response($jsonResult->toJson());
     }
 
+    //置顶酒店
+    public function toTop(Request $request)
+    {
+        $jsonResult = new MessageResult();
+
+        $isUp = $this->hotelService->toTop($request);
+
+        if ($isUp) {
+            $jsonResult->statusCode = 1;
+            $jsonResult->statusMsg = "置顶成功";
+        }else{
+            $jsonResult->statusCode = 2;
+            $jsonResult->statusMsg = "置顶失败";
+        }
+
+        return response($jsonResult->toJson());
+    }
+
     //删除酒店
     public function deleteHotel(Request $request)
     {

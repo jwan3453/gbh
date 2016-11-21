@@ -154,6 +154,7 @@ Route::group(['prefix' => '/admin/', 'middleware' => 'App\Http\Middleware\AdminA
         Route::post('itemUpOrDown','Admin\Hotel\HotelController@itemUpOrDown');
 
         Route::post('deleteHotel','Admin\Hotel\HotelController@deleteHotel');
+        Route::post('toTop','Admin\Hotel\HotelController@toTop');
 
         Route::get('editHotel/{hotelId}','Admin\Hotel\HotelController@editHotel');
         Route::get('editGeoLocation/{hotelId}','Admin\Hotel\HotelController@editGeoLocation');
@@ -396,7 +397,7 @@ Route::group(['prefix' => '/admin/', 'middleware' => 'App\Http\Middleware\AdminA
     //保存分类
     Route::post('system/saveHotelCategory','Admin\System\SystemController@saveHotelCategory');
 
-    //保存分类
+    //删除分类
     Route::post('system/deleteHotelCategory','Admin\System\SystemController@deleteHotelCategory');
 
 

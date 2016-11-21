@@ -271,7 +271,7 @@
                                     var isCoverClass= 'cover';
                                     var setCoverClass='set-cover';
 
-                                    if(data.extra[i].is_cover ===1)
+                                    if(parseInt(data.extra[i].is_cover) ===1)
                                     {
                                          isCoverText = '取消封面';
                                         isCoverClass = 'is-cover';

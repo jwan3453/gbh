@@ -98,6 +98,11 @@
                         <span>删除</span>
                     </div>
 
+                    <div class="header-option f-left stick " data-input="{{$hotelItem->id}}">
+
+                        <span>置顶</span>
+                    </div>
+
                 </td>
             </tr>
 
@@ -198,6 +203,30 @@
             hotelId = $(this).attr('data-input');
             deleteRowItem = $(this).parents('tr');
             $('#confirmRequest').dimmer('show');
+        })
+
+        //置顶推荐酒店
+        $('.stick').click(function(){
+            $.ajax({
+                type: 'POST',
+                url: '/admin/manageHotel/toTop',
+                data: {hotelId:  $(this).attr('data-input')},
+                dataType: 'json',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                },
+                success: function (data) {
+                    if (data.statusCode === 1) {
+                        //成功删除酒店 动态删除列表
+                        toastAlert(data.statusMsg, 1);
+
+                    }
+                    else {
+                        toastAlert(data.statusMsg, 2);
+                    }
+                    $('#confirmRequest').dimmer('hide');
+                }
+            })
         })
 
         //确认删除酒店

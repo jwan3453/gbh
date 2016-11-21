@@ -379,13 +379,13 @@ class SystemService
         $code = $request->input('code');
 
         $destinationInfo = DB::table('city')->join('destination', 'city.code', '=', 'destination.city_code')
-            ->where('city.code', $code)->select('city.status', 'city.is_hot', 'destination.num_of_hotel','destination.description','destination.description_en', 'destination.cover_image')->first();
+            ->where('city.code', $code)->select('city.status', 'city.city_name_en', 'city.is_hot', 'destination.num_of_hotel','destination.description','destination.description_en', 'destination.cover_image')->first();
 
 
         if($destinationInfo == null)
         {
             $destinationInfo = DB::table('international_city')->join('destination', 'international_city.code', '=', 'destination.city_code')
-                ->where('international_city.code', $code)->select('international_city.status', 'international_city.is_hot', 'destination.num_of_hotel','destination.description','destination.description_en', 'destination.cover_image')->first();
+                ->where('international_city.code', $code)->select('international_city.status', 'international_city.is_hot', 'international_city.city_name_en', 'destination.num_of_hotel','destination.description','destination.description_en', 'destination.cover_image')->first();
         }
 
         return $destinationInfo;
@@ -417,6 +417,7 @@ class SystemService
                 $city->is_hot = 1;
             }
 
+            $city->city_name_en = $request->input('nameEn');
             $city->save();
         }
 

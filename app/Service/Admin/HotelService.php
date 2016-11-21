@@ -4,6 +4,7 @@ namespace App\Service\Admin;
 use App\Models\BedType;
 
 use App\Models\RoomStatusBatchLog;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 
@@ -1198,6 +1199,15 @@ class HotelService {
         }
 
         return $isUpdate;
+    }
+
+    //置顶酒店
+    public function toTop( $request)
+    {
+        $hotelId = $request->input('hotelId');
+        $hotel = Hotel::where('id',$hotelId)->first();
+        $hotel->updated_at =Carbon::now();
+        return $hotel->save();
     }
 
     //删除酒店

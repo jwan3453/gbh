@@ -62,6 +62,11 @@
                 </div>
 
                 <div class="city-line-detail">
+                    <label>目的地名字(英文):</label>
+                    <input type="text"  name="nameEn" id="nameEn"/>
+                </div>
+
+                <div class="city-line-detail">
                     <label>酒店数量:</label>
                     <input type="text"  name="numOfHotel" id="numOfHotel"/>
                 </div>
@@ -173,6 +178,9 @@
                         if(data.statusCode === 1)
                         {
 
+
+                            $('#nameEn').val(data.extra.city_name_en);
+
                             if(data.extra.status===0)
                             {
                                 $('#status').removeAttr('checked');
@@ -195,6 +203,13 @@
                         }
                         else{
 
+                            $('#nameEn').val('');
+                            $('#status').prop('checked',false);
+                            $('#is_hot').prop('checked',false);
+                            $('#numOfHotel').val('');
+                            $('#description').val('');
+                            $('#descriptionEn').val('');
+                            $('#pic').attr('src','');
                         }
 
                     }
