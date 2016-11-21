@@ -1291,7 +1291,7 @@ class HotelService {
         }
 
 
-        return Address::where('id',$addressId)->select('province_code','city_code','district_code','detail')->first();
+        return Address::where('id',$addressId)->select('province_code','city_code','district_code','detail','type')->first();
     }
 
     //todo 修改

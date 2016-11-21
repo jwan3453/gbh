@@ -523,9 +523,9 @@ class HotelController extends Controller
         //获取省份城市名字
         $address = '';
         if($addressInfo != null) {
-            $province = $this->commonService->getAdressInfo('province', $addressInfo->province_code);
-            $city = $this->commonService->getAdressInfo('city', $addressInfo->city_code);
-            $district = $this->commonService->getAdressInfo('district', $addressInfo->district_code);
+            $province = $this->commonService->getAdressInfo('province', $addressInfo->province_code,$addressInfo->type);
+            $city = $this->commonService->getAdressInfo('city', $addressInfo->city_code,$addressInfo->type);
+            $district = $this->commonService->getAdressInfo('district', $addressInfo->district_code,$addressInfo->type);
             $detail = $addressInfo->detail;
             $address= $province . $city . $district .$detail;
         }
