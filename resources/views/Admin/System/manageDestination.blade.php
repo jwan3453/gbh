@@ -183,14 +183,14 @@
 
                             if(data.extra.status===0)
                             {
-                                $('#status').removeAttr('checked');
+                                $('#status').prop('checked',false);
                             }
                             else{
                                 $('#status').prop('checked',true);
                             }
                             if(data.extra.is_hot===0)
                             {
-                                $('#is_hot').removeAttr('checked');
+                                $('#is_hot').prop('checked',false);
                             }
                             else{
                                 $('#is_hot').prop('checked',true);
