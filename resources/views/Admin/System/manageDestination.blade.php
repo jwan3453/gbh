@@ -181,14 +181,14 @@
 
                             $('#nameEn').val(data.extra.city_name_en);
 
-                            if(data.extra.status===0)
+                            if(parseInt(data.extra.status)===0)
                             {
                                 $('#status').prop('checked',false);
                             }
                             else{
                                 $('#status').prop('checked',true);
                             }
-                            if(data.extra.is_hot===0)
+                            if(parseInt(data.extra.is_hot)===0)
                             {
                                 $('#is_hot').prop('checked',false);
                             }
