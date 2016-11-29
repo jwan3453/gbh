@@ -49,7 +49,7 @@ class ArticleService {
 
     public function getNewArticleList()
     {
-        $articles['article'] = Article::select('category','id','title','author','brief','cover_image','view_count','praise','published_at')->get();
+        $articles['article'] = Article::select('category','id','title','author','brief','cover_image','view_count','praise','published_at')->orderby('published_at','desc')->get();
         $articles['category'] = ArticleCategory::all();
 
         foreach( $articles['article'] as $article)

@@ -13,17 +13,17 @@
 
     <script src={{ asset('Gbh/js/site.min.js') }}></script>
 
-    {{--<link  rel="stylesheet" type="text/css"  href ={{ asset('Gbh/css/website.min.css') }}>--}}
+    <link  rel="stylesheet" type="text/css"  href ={{ asset('Gbh/css/website.min.css') }}>
 
-    <link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/sidebar.css') }}>
-    <link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/transition.css') }}>
-    <link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/icon.css') }}>
-    <link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/loader.css') }}>
-    <link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/container.css') }}>
-    <link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/popup.css') }}>
-    <link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/sticky.css') }}>
-    <link  rel="stylesheet" type="text/css"  href ={{ asset('Gbh/css/website.css') }}>
-    <link  rel="stylesheet" type="text/css"  href ={{ asset('Gbh/css/css3nav/styles.css') }}>
+    {{--<link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/sidebar.css') }}>--}}
+    {{--<link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/transition.css') }}>--}}
+    {{--<link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/icon.css') }}>--}}
+    {{--<link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/loader.css') }}>--}}
+    {{--<link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/container.css') }}>--}}
+    {{--<link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/popup.css') }}>--}}
+    {{--<link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/sticky.css') }}>--}}
+    {{--<link  rel="stylesheet" type="text/css"  href ={{ asset('Gbh/css/website.css') }}>--}}
+    {{--<link  rel="stylesheet" type="text/css"  href ={{ asset('Gbh/css/css3nav/styles.css') }}>--}}
 
     @yield('resources')
 

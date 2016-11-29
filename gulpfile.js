@@ -20,6 +20,7 @@ elixir(function(mix) {
         './public/semantic/loader.css',
         './public/semantic/popup.css',
         './public/semantic/sticky.css',
-        './public/Gbh/css/website.css'
+        './public/Gbh/css/website.css',
+        './public/Gbh/css/css3nav/styles.css'
     ], './public/Gbh/css/website.min.css');
 });
