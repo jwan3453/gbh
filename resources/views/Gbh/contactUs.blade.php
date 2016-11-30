@@ -167,10 +167,6 @@
                         $(this).attr('src', '/Gbh/img/wechat.png');
                     })
 
-            $('.footer-icon').attr('data-html', $('.qr-image').html())
-                    .popup({
-                        position: 'right center'
-                    })
 
 
             $('.submit-Msg').click(function(){
