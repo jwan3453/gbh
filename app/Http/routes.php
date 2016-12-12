@@ -65,6 +65,10 @@ Route::get('/newArticles', 'Gbh\HomeController@newArticles');
 
 Route::get('/aboutUs','Gbh\HomeController@aboutUs');
 
+Route::get('/hotelUnion','Gbh\HomeController@hotelUnion');
+
+Route::post('/joinUnion','Gbh\HomeController@joinUnion');
+
 Route::get('/joinUs','Gbh\HomeController@joinUs');
 
 Route::get('/history', 'Gbh\HomeController@history');

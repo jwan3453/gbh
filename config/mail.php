@@ -54,7 +54,7 @@ return [
     |
     */
 
-    'from' => ['address' => 'jackywang@gbhchina.com', 'name' => 'jacky'],
+    'from' => ['address' => 'booking@gbhchina.com', 'name' => 'jacky'],
 
     /*
     |--------------------------------------------------------------------------
@@ -80,7 +80,7 @@ return [
     |
     */
 
-    'username' => 'jackywang@gbhchina.com',
+    'username' => 'booking@gbhchina.com',
 
     /*
     |--------------------------------------------------------------------------
@@ -93,7 +93,7 @@ return [
     |
     */
 
-    'password' => 'Jiewen1218',
+    'password' => 'Gbh123456',
 
     /*
     |--------------------------------------------------------------------------

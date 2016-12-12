@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers\Gbh;
 use App\Tool\MessageResult;
+use App\Union;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -38,6 +39,35 @@ class HomeController extends Controller
     public function aboutUs(Request $request)
     {
         return view('Gbh.aboutUs');
+    }
+//新增加入联盟模块
+    public function hotelUnion(){
+        return view('Gbh.hotelUnion');
+    }
+    public function joinUnion(Request $request){
+
+        if($request->isMethod('POST')){
+
+            $union = $request->input('Union');
+//            dd($union['person_email']);
+
+            if(Union::create($union)){
+                //邮箱发送
+                $toEmail = $union['person_email'];
+                $Message = "您好,我们已经收到您的联盟信息,感谢您对我们的信任.请耐心等待我们的工作人员与您取得联系";
+
+                $data = ['email'=>$toEmail, 'Message'=>$Message];
+//
+                Mail::raw($data['Message'],function($message) use ($data){
+                    $message->from('booking@gbhchina.com');
+                    $message->to($data['email'])->subject('来自gbhchina.com提交的申请联盟');
+                });
+
+                return view('Gbh.joinUnion');
+            }else{
+                return redirect()->back();
+            }
+        }
     }
 
 

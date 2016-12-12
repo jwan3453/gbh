@@ -17,6 +17,7 @@
 
     {{--<link  rel="stylesheet" type="text/css"  href ={{ asset('Gbh/css/website.min.css') }}>--}}
     <link rel="shortcut icon" type="image/x-icon" href="http://og9duuhyy.bkt.clouddn.com/logo/gbhchina_log.png" />
+
     <link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/sidebar.css') }}>
     <link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/transition.css') }}>
     <link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/icon.css') }}>
@@ -73,6 +74,10 @@
 
                         <a href="/aboutUs">
                             <span>关于我们</span>
+                        </a>
+
+                        <a href="/hotelUnion">
+                            <span>酒店联盟</span>
                         </a>
 
                     </div>
