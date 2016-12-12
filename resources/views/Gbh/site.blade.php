@@ -7,23 +7,25 @@
     <meta name=”viewport” content=”width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=false;” />
     <meta name=”viewport” content=”width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=no;” />
     <meta name="viewport" content="width=device-width, user-scalable=no" />
+    <meta name="keywords" content="GBH，gbhchina，全球精品酒店，globalBotiqueHotel，精品酒店">
+    <meta name="description" content="全球精品酒店，全球精品酒店平台。在gbh，寻找中国乃至世界上独一无二的精品酒店">
     <meta name="_token" content="{{ csrf_token() }}"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <script src={{ asset('js/jquery-2.1.4.min.js') }}></script>
 
     <script src={{ asset('Gbh/js/site.min.js') }}></script>
 
-    <link  rel="stylesheet" type="text/css"  href ={{ asset('Gbh/css/website.min.css') }}>
-
-    {{--<link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/sidebar.css') }}>--}}
-    {{--<link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/transition.css') }}>--}}
-    {{--<link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/icon.css') }}>--}}
-    {{--<link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/loader.css') }}>--}}
-    {{--<link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/container.css') }}>--}}
-    {{--<link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/popup.css') }}>--}}
-    {{--<link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/sticky.css') }}>--}}
-    {{--<link  rel="stylesheet" type="text/css"  href ={{ asset('Gbh/css/website.css') }}>--}}
-    {{--<link  rel="stylesheet" type="text/css"  href ={{ asset('Gbh/css/css3nav/styles.css') }}>--}}
+    {{--<link  rel="stylesheet" type="text/css"  href ={{ asset('Gbh/css/website.min.css') }}>--}}
+    <link rel="shortcut icon" type="image/x-icon" href="http://og9duuhyy.bkt.clouddn.com/logo/gbhchina_log.png" />
+    <link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/sidebar.css') }}>
+    <link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/transition.css') }}>
+    <link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/icon.css') }}>
+    <link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/loader.css') }}>
+    <link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/container.css') }}>
+    <link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/popup.css') }}>
+    <link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/sticky.css') }}>
+    <link  rel="stylesheet" type="text/css"  href ={{ asset('Gbh/css/website.css') }}>
+    <link  rel="stylesheet" type="text/css"  href ={{ asset('Gbh/css/css3nav/styles.css') }}>
 
     @yield('resources')
 
@@ -46,7 +48,7 @@
             {{--</a>--}}
         {{--</div>--}}
 
-        <div style="position:relative" id="contentSection">
+        <div style="overflow: hidden" id="contentSection">
 
 
             <div class="site-header  ">

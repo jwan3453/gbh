@@ -30,6 +30,9 @@ class ArticleController extends Controller
             //传送门解析微信图片
             $article->wechat_content= str_replace('http://mmbiz.qpic.cn','http://gbhchina.com/resolveWeChatImg?url=http://mmbiz.qpic.cn', $article->wechat_content);
 
+            //墙纸anchor为白色
+            $article->wechat_content =str_replace('#607fa6','#f8f8f8', $article->wechat_content);
+
 
          //   dd($article->wechat_content);
         }

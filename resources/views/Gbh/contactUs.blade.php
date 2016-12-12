@@ -94,7 +94,7 @@
 
             <div class="detail-row">
                 <label>联系邮箱 : </label>
-                <span>business@gbhchina.com</span>
+                <span>winniechen@gbhchina.com</span>
             </div>
 
             <div class="detail-row">

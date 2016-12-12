@@ -10,13 +10,13 @@ html,body{
 }
 a{
 	text-decoration: none;
-	color:white;
+	color:white!important;
 
 }
 
 .dark-anchor{
 	text-decoration: none;
-	color:#505050;
+	color:#505050!important;
 }
 
 .auto-margin{
@@ -119,8 +119,8 @@ a{
 
 
 .logo{
-	width: 60px;
-	height: 60px;
+	width: 70px;
+	height: 70px;
 	background-image: url(/Gbh/img/gbh_logo.png);
 	background-size:cover;
 	float:left;
@@ -137,9 +137,9 @@ a{
 .site-header{
 	top:0;
 	position: fixed;
-	height:60px;
+	height:70px;
 	background-color: rgba(9,9,26,0.5);
-	line-height:60px;
+	line-height:70px;
 	z-index:1001;
 	width: 100%;
 	-webkit-transition: all .6s ease-in-out;
@@ -150,8 +150,8 @@ a{
 .site-header-scroll{
 	transition:  0.4s ease;
 	-webkit-transition:  0.4s ease;
-	height: 70px;
-	line-height:70px;
+	height: 60px;
+	line-height:60px;
 	background-color: rgba(9,9,26,0.9);
 
 
@@ -162,12 +162,12 @@ a{
 
 .site-header-scroll .logo{
 
-	margin-top: 10px;
-	-webkit-transform:scale(1.1) translateX(20px) ;
-	-moz-transform: scale(1.1) translateX(20px) ;
-	-ms-transform: scale(1.1) translateX(20px) ;
-	-o-transform:scale(1.1) translateX(20px) ;
-	transform:  scale(1.1) translateX(20px) ;
+	margin-top: 0px!important;
+	-webkit-transform:scale(0.8) translateX(-20px) ;
+	-moz-transform: scale(0.8) translateX(-20px) ;
+	-ms-transform: scale(0.8) translateX(-20px) ;
+	-o-transform:scale(0.8) translateX(-20px) ;
+	transform:  scale(0.8) translateX(-20px) ;
 	-webkit-transition:  0.4s ease;
 }
 
@@ -178,11 +178,11 @@ a{
 }
 .site-header-scrollTop .logo{
 	margin-top: 5px;
-	-webkit-transform:scale(0.96) translateX(0px) ;
-	-moz-transform: scale(0.96) translateX(0px) ;
-	-ms-transform: scale(0.96) translateX(0px) ;
-	-o-transform:scale(0.96) translateX(0px) ;
-	transform:  scale(0.96) translateX(0px) ;
+	-webkit-transform:scale(1) translateX(0px) ;
+	-moz-transform: scale(1) translateX(0px) ;
+	-ms-transform: scale(1) translateX(0px) ;
+	-o-transform:scale(1) translateX(0px) ;
+	transform:  scale(1) translateX(0px) ;
 	-webkit-transition:  0.4s ease;
 }
 
@@ -634,10 +634,9 @@ a{
 .about-menu-nav{
 	height:50px;
 	width:100%;
-
 	background-color:#f8f8f8;
 	border-radius: 5px;
-	margin-top:70px;
+	margin-top:80px;
 }
 
 
@@ -809,7 +808,7 @@ a{
 
 .recruit-title-list-scroll{
 
-	margin-top:70px!important;
+	margin-top:60px!important;
 }
 
 .recruit-title-list-scroll span{
@@ -825,12 +824,12 @@ a{
 
 	overflow: hidden;
 	border:1px solid transparent;
+
 }
 
 .recruit-box{
 
 	width: 100%;
-
 	padding:20px 0 ;
 
 }
@@ -1040,6 +1039,94 @@ a{
 @keyframes halo {0% { opacity: 0; transform: scale(0.1); }
 	50% {opacity: 1; }
 	100%{opacity: 0;transform: scale(1.5); } }
+
+
+
+.mask {
+	position: absolute;
+	background-color:rgba(0, 0, 0, 0.6);
+	width: 150px;
+	height: 150px;
+
+	margin-top: 25px;
+	margin-left: calc(50% - 75px);
+	transition: all 2s;
+	border-radius: 50%;
+
+
+
+}
+.delay200 {
+	animation-delay: .2s;
+	-webkit-animation-delay: .2s;
+}
+.maskscale {
+	-webkit-animation-duration: 0.5s;
+	animation-duration: 0.5s;
+	-webkit-animation-name: mask-scale;
+	animation-name: mask-scale;
+}
+
+.animated {
+	-webkit-animation-duration: 0.75s;
+	animation-duration: 0.75s;
+	-webkit-animation-fill-mode: both;
+	animation-fill-mode: both;
+}
+
+@keyframes mask-scale {
+	0% {
+		-webkit-transform: scale(1.5);
+		transform: scale(1.5);
+		opacity: .1;
+	}
+	20% {
+		-webkit-transform: scale(2);
+		transform: scale(2);
+		opacity: .2;
+	}
+	30% {
+		-webkit-transform: scale(3);
+		transform: scale(3);
+		opacity: .3;
+	}
+	40% {
+		-webkit-transform: scale(4);
+		transform: scale(4);
+		opacity: .4;
+	}
+	50% {
+		-webkit-transform: scale(5);
+		transform: scale(5);
+		opacity: .5;
+	}
+	60% {
+		-webkit-transform: scale(6);
+		transform: scale(6);
+		opacity: .6;
+	}
+	70% {
+		-webkit-transform: scale(8);
+		transform: scale(8);
+		opacity: .7;
+	}
+	80% {
+		-webkit-transform: scale(10);
+		transform: scale(10);
+		opacity: .8;
+	}
+	90% {
+		-webkit-transform: scale(12);
+		transform: scale(12);
+		opacity: .9;
+	}
+	100% {
+		-webkit-transform: scale(18);
+		transform: scale(18);
+		opacity: 1;
+	}
+
+}
 
 /*******************/
 

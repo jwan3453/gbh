@@ -10,7 +10,7 @@
 
 
     <title>加入我们</title>
-    <div >
+    <div style="" >
 
 
 
@@ -50,7 +50,7 @@
                             媒介经理
                         </span>
 
-                    </div>
+                </div>
 
                 <div class="recruit-box-list" id="recruitBoxList">
                     <div class="recruit-box" id="gad">
@@ -132,7 +132,7 @@
                                     经验1-2年/专科及以上
                                 </span>
 
-                               <a href="http://www.lagou.com/jobs/2078562.html" target="_Blank"> <div class="submit-resume">投递</div></a>
+                                <a href="http://www.lagou.com/jobs/2078562.html" target="_Blank"> <div class="submit-resume">投递</div></a>
                             </div>
                         </div>
                         <div class="recruit-detail">
@@ -282,7 +282,7 @@
 
 
             </div>
-           
+
         </div>
 
     </div>

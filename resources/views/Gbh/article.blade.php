@@ -39,15 +39,15 @@
 
         <div class="article-foot">
             <div class="article-foot-span">阅读量 (  <span class="view-count">{{ $article->view_count }}</span>  )</div>
-            @if( !empty($article->wechat_url))
-                <div class="article-foot-span ">
-                    <img src ='/Gbh/img/wechat.png' class="footer-icon wechat-icon"   data-html='test'/>
-                </div>
-                <div class="qr-image">
-                    {!!  \SimpleSoftwareIO\QrCode\Facades\QrCode::size(200)->generate($article->wechat_url) !!}
-                    <p>微信扫一扫，打开微信原文</p>
-                </div>
-            @endif
+            {{--@if( !empty($article->wechat_url))--}}
+                {{--<div class="article-foot-span ">--}}
+                    {{--<img src ='/Gbh/img/wechat.png' class="footer-icon wechat-icon"   data-html='test'/>--}}
+                {{--</div>--}}
+                {{--<div class="qr-image">--}}
+                    {{--{!!  \SimpleSoftwareIO\QrCode\Facades\QrCode::size(200)->generate($article->wechat_url) !!}--}}
+                    {{--<p>微信扫一扫，打开微信原文</p>--}}
+                {{--</div>--}}
+            {{--@endif--}}
             <div class="heart " id="like" rel="like"></div>
             <div class="likeCount" id="likeCount">{{ $article->praise }}</div>
             <input type="hidden" id="IPdata" value="0.0.0.0" />
@@ -89,7 +89,7 @@
                 if (sessionStorage.getItem("article_"+articleId) != null) {
                     var ip = $("#IPdata").val();
                     console.log(ip);
-                    var praiseIp = sessionStorage.getItem("article_"+articleId);
+                    var praiseIp = sessionStora#607fa6ge.getItem("article_"+articleId);
                     console.log(praiseIp);
                     if (praiseIp == ip) {
                         $("#like").addClass("heartAnimation").attr("rel","unlike");
