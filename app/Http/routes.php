@@ -474,3 +474,4 @@ Route::post('/upload/image','Common\CommonController@uploadImage');
 Route::get('/jacky',function(){
     return view('PersonCV.Jacky');
 });
+
