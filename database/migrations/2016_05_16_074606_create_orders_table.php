@@ -14,16 +14,16 @@ class CreateOrderTable extends Migration
     {
         Schema::create('order', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('order_sn',30);
-            $table->integer('hotel_id');
-            $table->integer('room_id');
-            $table->integer('user_id');
-            $table->integer('room_num');
-            $table->integer('order_personnel_id');
-            $table->string('contact_phone',15);
-            $table->dateTime('arrive_time');//最晚到店时间
-            $table->dateTime('check_time');//入住时间
-            $table->dateTime('checkout_time');//退房时间
+            $table->string('order_sn',30);//订单号
+            $table->integer('hotel_id');//酒店id
+            $table->integer('room_id');//房型id
+            $table->integer('user_id');//用户id
+            $table->integer('num_of_room');//
+            $table->text('guest_list');
+            $table->string('contact_phone',50);//联系电话
+            $table->string('contact_email',100);//联系邮箱;
+            $table->dateTime('check_in_date');//最晚到店时间
+            $table->dateTime('check_out_date');//入住时间
             $table->integer('total_amount');
             $table->integer('pay_status');
             $table->integer('payment_id');

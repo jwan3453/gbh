@@ -152,9 +152,9 @@
                             </td>
 
                             <td>
-                                @if($request->paid_type ==1)
+                                @if($request->pay_type ==1)
                                     现付
-                                @elseif($request->paid_type ==2)
+                                @elseif($request->pay_type ==2)
                                     预付
 
                                 @endif

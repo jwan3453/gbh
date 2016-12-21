@@ -780,7 +780,7 @@ class HotelService {
         //房型
         $roomType = $requestDetail->room_id;
         //付款方式
-        $payType = $requestDetail->payType;
+        $payType = $requestDetail->pay_type;
 
         //改价日期范围
         $dateFrom = $requestDetail->request_date_from;

@@ -45,6 +45,7 @@
                                 预付
 
                             @endif
+
                         </td>
                         <td>{{$request->request_date_from}} ~ {{$request->request_date_to}}</td>
                         <td>{{$request->breakfast}}份</td>

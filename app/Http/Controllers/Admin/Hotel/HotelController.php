@@ -991,9 +991,9 @@ class HotelController extends Controller
         // dd($manageHotelList);
         foreach ($manageHotelList as $hotelList) {
 
-            $province = $this->commonService->getAdressInfo('province',$hotelList->address->province_code);
-            $city = $this->commonService->getAdressInfo('city',$hotelList->address->city_code);
-            $district = $this->commonService->getAdressInfo('district',$hotelList->address->district_code);
+            $province = $this->commonService->getAdressInfo('province',$hotelList->address->province_code,$hotelList->address->type);
+            $city = $this->commonService->getAdressInfo('city',$hotelList->address->city_code,$hotelList->address->type);
+            $district = $this->commonService->getAdressInfo('district',$hotelList->address->district_code,$hotelList->address->type);
             $detail = $hotelList->address->detail;
             $hotelList->addressInfo = $province.$city.$district.$detail;
 
@@ -1126,9 +1126,9 @@ class HotelController extends Controller
         // dd($manageHotelList);
         foreach ($manageHotelList as $hotelList) {
 
-            $province = $this->commonService->getAdressInfo('province',$hotelList->address->province_code);
-            $city = $this->commonService->getAdressInfo('city',$hotelList->address->city_code);
-            $district = $this->commonService->getAdressInfo('district',$hotelList->address->district_code);
+            $province = $this->commonService->getAdressInfo('province',$hotelList->address->province_code,$hotelList->address->type);
+            $city = $this->commonService->getAdressInfo('city',$hotelList->address->city_code,$hotelList->address->type);
+            $district = $this->commonService->getAdressInfo('district',$hotelList->address->district_code,$hotelList->address->type);
             $detail = $hotelList->address->detail;
             $hotelList->addressInfo = $province.$city.$district.$detail;
 
