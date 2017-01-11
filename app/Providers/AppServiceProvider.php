@@ -21,15 +21,20 @@ class AppServiceProvider extends ServiceProvider
      * @return void
      */
     //多个页面共享数据
-    public function boot(Request $request)
+    public function boot()
     {
 
         view()->composer('*',function($view){
             $commonService = new CommonService;
 
             //获得用户
+            $adminUserCookie = '';
+            if(isset($_COOKIE['adminusername']))
+            {
+                $adminUserCookie = $_COOKIE['adminusername'];
+            }
 
-            $getCurrentUser  =  $_COOKIE['adminusername'];
+            $getCurrentUser  =  $adminUserCookie;
             if(!$getCurrentUser){
                 return view('Admin.Sign.sign');
             }
@@ -46,38 +51,36 @@ class AppServiceProvider extends ServiceProvider
 
             //--------menuList
             $menuStr = "";
-            for($i=0; $i < count($getMenuId); $i++){
-                $menuStr .= $getMenuId[$i]->permission_id;
+            for($i=0; $i  < count($getMenuId); $i++){
+                $menuStr .= $getMenuId[$i]->permission_id."|";
             }
-
-            $prevstr     =   substr($menuStr,0,2);                     //大于10的字符串
-            $prevarr      =   str_split($prevstr,2);                   //转化成数组
-
-
+            //转化成数组
+            $prevstr      =   substr($menuStr,0,iconv_strlen($menuStr)-1);                     //大于10的字符串
+            $menuArr      =   explode('|',$prevstr);
 
 
             //--------permissionList
             $perStr = "";
-            for( $i=0; $i < count($getPermission); $i++){
-                $perStr  .= $getPermission[$i]->permission_id;
+            for( $i = 0; $i < count($getPermission); $i++){
+                $perStr  .= $getPermission[$i]->permission_id."|";
             }
+            $perStr = substr($perStr,0,iconv_strlen($perStr)-1);
+            $perToArr = explode('|',$perStr);
 
-            //判断有无10
-            $perStrs   = substr($perStr,iconv_strlen($perStr)-2,2);
-
-            //除10以外剩下的字符串
-            $lastPrems = substr($perStr,0,iconv_strlen($perStr)-2);
-            $lastPrems = str_split($lastPrems,1);
-
-            if($perStrs){
-                array_unshift($lastPrems,$prevarr[0]);
+            $hasPerms = [];
+            for($i=0; $i < count($perToArr); $i++){
+                if(in_array($perToArr[$i],$menuArr)){
+                    $hasPerms[] = $perToArr[$i];
+                }
             }
 
             $allMenuLists = [];
             //查询菜单
-            for( $k=0; $k < count($lastPrems); $k++){
-                $adminUser = new AdminUserService;
-                $allMenuLists[] = $adminUser->loadMenuList($lastPrems[$k]);
+            for( $k=0; $k < count($hasPerms); $k++){
+                $adminUser  = new AdminUserService;
+                if($adminUser->loadMenuList($hasPerms[$k])){
+                    $allMenuLists[] = $adminUser->loadMenuList($hasPerms[$k]);
+                }
             }
 
             $view->with('allMenuList', $allMenuLists);
