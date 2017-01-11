@@ -1,7 +1,16 @@
 /***************公用*******************/
 
 body{
-	position: relative;
+	/*position: relative;*/
+	padding: 0px;
+	margin: 0px;
+}
+
+ul,li{
+	list-style: none;
+}
+input,textarea{
+	outline: none;
 }
 
 .small-btn{
@@ -74,7 +83,8 @@ body{
 
 a{
 	text-decoration: none;
-	color:#505050;
+	/*color: #f0f0f0;*/
+	color: #000;
 }
 
 .f-left{
@@ -777,24 +787,63 @@ a{
 
 body{
 	margin :0;
-	background-color: #d1dadf;
+	background-color: #E3E6EB;
+	/*background-color: #d1dadf;*/
 	position: relative;
 	font-family: "Microsoft YaHei" !important;
 }
 .menu-box{
-	width: 160px;
-	background-color: #2d3c4f;
-	/*padding-top: 20px;*/
-	position: fixed;
+	width: 220px;
+	/*background-color: #253942!important;*/
+	background-color: #414D5B!important;
+	position: absolute;
 	top: 0;
-	bottom: 0;
+
 	left: 0;
-	height: 100%;
-	z-index:1001;
+	_height: 900px;         /*for IE 6*/
+	min-height: 900px;      /*随内容的高度而改变*/
+	z-index:9999;
+	bottom: 0;
+
 }
 
-.menu-logo{
-	/*padding-bottom: 20px;*/
+.menu_{
+	width: 220px;
+	height:60px;
+	background: #333A42;
+}
+
+.menu-top{
+
+	width: 220px;
+	height: 60px;
+	/*background: #85CFD8;*/
+	background: #5FD2A9;
+}
+
+.menu-top span{
+	display: inline-block;
+	width: 35px;
+	height: 35px;
+	border: 1px solid #ddd;
+	border-radius: 35px;
+	margin-left: 18px;
+	margin-top: 12px;
+}
+
+.menu-top span img{
+	display:block;
+	width: 35px;
+	margin: 0 auto;
+	border-radius: 35px;
+}
+
+.menu-top p{
+	font-size: 14px;
+	color: #fff;
+	float: right;
+	padding-right:75px;
+	padding-top: 10px;
 }
 
 .menu-logo img{
@@ -805,117 +854,303 @@ body{
 	margin-bottom: 20px;
 }
 
-.admin-menu-list li, .admin-menu-list a{
-	height: 60px;
-	line-height: 60px;
-	font-size: 14px;
-	border-bottom: 1px solid #5c718c;
+.menu-show{
+
+	float: right;
+	padding-right: 10px;
+	font-size: 16px;
 	color: #86a0c2;
+	cursor: pointer;
+
+}
+
+.menu-show:hover{
+
+	color: #ddd;
+
+}
+
+.admin-menu-list{
+
+	margin-top: -16px;
+
+}
+
+
+.admin-menu-list .header-menu{
+
+	padding: 0;
+	height: 50px;
+
+}
+
+.menu-down{
+	background: rgba(0,0,0,0.2);
+}
+
+.menu-up{
+	background: rgba(0,0,0,0);
+}
+
+.admin-menu-list  .header-menu > li:last-child{
+	border:0;
+}
+
+.admin-menu-list  .header-menu > li:first-child{
+	border-top: 1px solid #264F58;
+}
+
+.admin-menu-list > li, .admin-menu-list a{
+	height: 50px;
+	line-height: 50px;
+	font-size: 14px;
+	/*color: #86a0c2;*/
+	color: #F1F1F1;
 	cursor:pointer;
 	list-style:none;
 	display:block;
 }
 
-.admin-menu-list .menu-selected{
-	background-color: #151f2d;
-	color: #a1c1eb;
-
-	-moz-box-shadow:5px 5px 8px rgba(0,0,0,0.4) inset;               /* For Firefox3.6+ */
-	-webkit-box-shadow:5px 5px 8px rgba(0,0,0,0.4) inset;            /* For Chrome5+, Safari5+ */
-	box-shadow:5px 5px 8px rgba(0,0,0,0.36) inset;                    /* For Latest Opera */
-}
-
-.admin-menu-list li img{
-	position: absolute;
-	margin-top: 18px;
-	left: 20px;
-	height:24px;
-	width:24px;
-}
-
-.admin-menu-list li span{
-	margin-left: 58px;
-}
-
-.second-level-menu-box{
-	width: 120px;
-	background-color: #2d3c4f;
-	position: fixed;
-	left: 160px;
-	top: 0;
-	bottom: 0;
-	display: none;
-	z-index: 10000;
-	padding-top: 115px;
-	-moz-box-shadow:4px 0 4px rgba(0,0,0,0.3) inset;               /* For Firefox3.6+ */
-	-webkit-box-shadow:4px 0 4px rgba(0,0,0,0.3) inset;            /* For Chrome5+, Safari5+ */
-	box-shadow:4px 0 4px rgba(0,0,0,0.3) inset;                    /* For Latest Opera */
-}
-
-.second-level-menu-box li{
+.admin-menu-list div{
 	height: 50px;
 	line-height: 50px;
+	font-size: 14px;
+	/*color: #86a0c2;*/
+	color: #F1F1F1;
+	cursor:pointer;
+	list-style:none;
+	display:block;
+}
+
+.admin-menu-list a{
+	padding-left: 20px;
+	position: relative;
+}
+
+.admin-menu-list div{
+	padding-left: 20px;
+	position: relative;
+}
+
+.admin-menu-list a:hover,.admin-menu-list div:hover{
+	/*background: rgba(0,0,0,0.2);*/
+	background: #63738A;
+	color: #FFF;
+	transition: color 0.1s ease;
+}
+
+.currentPath{
+	background: #545F71!important;
+}
+
+.choiceNav{
+	display: none;
+	position: absolute;
+	top: 0px;
+	left: -40px;
+	width: 3px;
+	height: 50px;
+	background: #44B99C;
+}
+
+.pathNav{
+	/*display: none;*/
+	position: absolute;
+	top: 0px;
+	left: -40px;
+	width: 3px;
+	height: 50px;
+	background: #44B99C;
+}
+
+.admin-menu-list a >img{
+	display: inline-block;
+	position: absolute;
+	left: 20px;
+	width: 20px;
+	height: 20px;
+	padding-top: 15px;
+	font-weight: 700;
+}
+
+.admin-menu-list div >img{
+	display: inline-block;
+	position: absolute;
+	left: 20px;
+	width: 20px;
+	height: 20px;
+	padding-top: 15px;
+	font-weight: 700;
+}
+
+.admin-menu-list a >img.home{
+	width: 20px;
+	height: 20px;
+	left: 20px;
+}
+
+.admin-menu-list a >span,.admin-menu-list div >span{
+	margin-left: 40px;
+}
+
+.admin-menu-list a >i.left,.admin-menu-list div >i.left{
+	float: right;
+	padding-right: 6px;
+	font-size: 18px;
+	font-weight: 400;
+}
+
+.open-menu{
+	margin-top: -5px!important;
+	padding-right: 40px!important;
+	transform: rotate(-90deg);
+	-ms-transform:rotate(-90deg); 	/* IE 9 */
+	-moz-transform:rotate(-90deg); 	/* Firefox */
+	-webkit-transform:rotate(-90deg); /* Safari 和 Chrome */
+	-o-transform:rotate(-90deg); 	/* Opera */
+}
+
+.secondMenu{
+	display: none;
+}
+
+.subMenu li{
+	list-style:none;
+	margin-left: -40px;
+}
+
+.subMenu li,.subMenu a{
+	display: block;
+	border: none;
+	height: 30px;
+	line-height: 30px;
 	font-size: 12px;
-	color: #86a0c2;
-	list-style: none;
-	border-bottom: 1px solid #5c718c;
-	cursor: pointer;
 }
 
-.second-level-menu-box li img {
-
-	position: absolute;
-	margin-top: 18px;
-	left: 10px;
-    width:14px;
-    height:14px;
+.subMenu a{
+	padding-left: 60px;
 }
 
-.second-level-menu-box li span {
-	margin-left: 30px;
+.subMenu a:hover{
+	background: #63738A;
+	/*background: rgba(43,113,125,0.6);*/
+	color: #fff;
 }
 
-.breadcrumb{
-	margin-top: 20px;
-	height: 24px;
-	margin-bottom: 20px;
-	line-height: 24px;
-	margin-left: 200px;
-}
-
-.breadcrumb span{
-	font-size: 14px;
-	position: absolute;
-	left: 228px;
-	color: #787878;
-}
-
-.breadcrumb .breadcrumb-menu{
-	font-size: 14px;
-	position: absolute;
-	left: 256px;
-}
-
-.breadcrumb-right{
-	margin-left: 10px;
-	position: absolute;
-	margin-top: 6px;
-	margin-right: 10px;
-}
-
-.breadcrumb-menu-text{
-	font-size: 14px;
-	margin-left: 28px;
+.subMenu a.secondNav{
+	/*background: rgba(43,113,125,0.6);*/
+	background: #545F71;
+	color: #fff;
 }
 
 .center{
 	position: absolute;
-	left: 200px;
-	min-height: calc(100% - 60px);
+	left: 220px;
+	/*min-height: calc(100% - 60px);*/
 	/*width:calc(100% - 160px);*/
 }
 
+.content-header{
+	width: 100%;
+	height: 60px;
+	background: #333A42;
+	/*background: #E8E8E8;*/
+	/*background:linear-gradient(to right,#fff,#85CFD8);*/
+	/*background:-moz-linear-gradient(to right,#fff,#85CFD8);   !* Firefox *!*/
+	/*background:-webkit-linear-gradient(to right,#fff,#85CFD8);*/
+	/*filter: progid:DXImageTransform.Microsoft.gradient(startcolorstr=#fff,endcolorstr=#85CFD8,gradientType=1);    !* IE *!*/
+}
 
+.content-header ul{
+	height: 40px;
+	margin-top:-12px;
+	float: right;
+	padding-right: 0px;
+	padding-top: 10px;
+}
+
+.content-header > ul > li{
+	line-height: 40px;
+	float: left;
+	height: 60px;
+	width: 80px;
+	padding-left: 20px;
+	padding-top: 10px;
+	color: #f8f8f8!important;
+}
+
+.content-header ul li a{
+	color: #f8f8f8;
+}
+
+.content-header ul li a:hover{
+	color: #44B99C;
+	transition: color 0.3s ease;
+}
+
+.content-header > ul > li.user-action{
+	position: relative;
+	cursor: pointer;
+}
+
+.content-header > ul > li.user-action:hover .user-down{
+	color: #44B99C!important;
+	transition: color 0.3s ease!important;
+	position: relative;
+	cursor: pointer;
+}
+
+.content-header > ul > li.user-action > a{
+	padding-left: 28px;
+}
+
+.user-nav a{
+	color: #fff!important;
+}
+
+.user-nav a:hover{
+	color: #44B99C!important;
+	transition:color 0.1s ease 0s;
+}
+
+i.right{
+	position: absolute;
+}
+
+.nav-down{
+	top:22px;
+	left: 32px;
+	transform: rotate(90deg);
+	-webkit-transform: rotate3d(0,0,1,90deg);
+	-moz-transform: rotate3d(0,0,1,90deg);
+	-o-transform: rotate3d(0,0,1,90deg);
+	-ms-transform: rotate3d(0,0,1,90deg);
+	color: #44B99C;
+	transition:color 0.1s ease 0s;
+}
+
+.content-header > ul li.user-action ul{
+	width: 30px;
+	height: 50px;
+	background: #333A42;
+	position: absolute;
+	top:74px;
+	right: 0px;
+	z-index: 100;
+}
+
+.content-header > ul > li.user-action ul{
+	display: none;
+	box-shadow:0 0 10px #001;
+}
+
+.content-header > ul > li.user-action ul li{
+	width: 35px;
+	height: 20px;
+	margin-left: -20px;
+	margin-top: -12px;
+	font-size: 14px;
+}
 
 .admin-copy-right{
 	height:80px;
@@ -954,6 +1189,7 @@ body{
 	background: #f8f8f8;
 	border:1px solid #f8f8f8;
 	position: relative;
+	margin: 0px auto;
 }
 
 .hotel-search-bar input{
@@ -976,31 +1212,33 @@ body{
 
 	width:150px;
 	height:30px;
-	background: #639ae3;
+	/*background: #639ae3;*/
+	background: rgba(37,57,66,0.8);
 	margin:5px 0 0 10px;
-	border-radius: 2px;
 	line-height: 30px;
 	text-align: center;
 	color:white;
 	cursor: pointer;
+	border-radius: 5px;
 
 }
 
 .add-hotel-btn:hover{
 
 	color: #f8f8f8;
-	background: #0d71bb;
+	/*background: #0d71bb;*/
+	background: #253942;
 	transition:background-color 0.5s ease;
 
 }
 
 .hotel-list-header{
+	width: 960px;
 	font-size: 14px;
 	background: #dfe8f4;
 	color:#505050;
 	height:40px;
-	margin-top:20px;
-
+	margin: 20px auto -10px;
 }
 
 .select-all{
@@ -1040,7 +1278,8 @@ body{
 
 }
 .hotel-table {
-	margin-top:0px!important;
+	/*width: 960px!important;*/
+	margin: 0px;!important;
 	font-size:14px!important;
 }
 .hotel-table td{
@@ -2043,9 +2282,10 @@ body{
 
 	width:150px;
 	height:30px;
-	background: #639ae3;
+	/*background: #639ae3;*/
+	background: rgba(37,57,66,0.8);
 	margin:5px 0 0 10px;
-	border-radius: 2px;
+	border-radius: 5px;
 	line-height: 30px;
 	text-align: center;
 	color:white;
@@ -2056,7 +2296,8 @@ body{
 .add-article-btn:hover{
 
 	color: #f8f8f8;
-	background: #0d71bb;
+	/*background: #0d71bb;*/
+	background: #253942;
 	transition:background-color 0.5s ease;
 
 }
@@ -4481,3 +4722,880 @@ text-align: center;
 	color:#f8f8f8;
 }
 /**********************/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*********** Role ***********/
+
+
+
+/*********** 用户管理页面 ***********/
+#containerUser{
+	width: 1000px;
+}
+
+.container-header{
+	margin: 18px auto;
+	width: 950px;
+	height: 33px;
+	border:2px solid #253942;
+	border-radius: 5px ;
+}
+
+.container-header i.marker{
+	color: #253942;
+	font-size: 16px;
+	padding-left: 10px;
+}
+
+.container-header span{
+	display: inline-block;
+	line-height: 35px;
+	color: #253942;
+	font-size: 14px;
+	margin-left: 20px;
+}
+
+.container-header span a:hover{
+	color: #253942;
+	text-decoration:underline;
+	cursor: pointer;
+}
+
+.container-action{
+	width: 1000px;
+	margin: -10px auto;
+	font-size: 12px;
+}
+
+.container-action button{
+	cursor: pointer;
+	float: right;
+	margin-top: -40px;
+	margin-right: 25px;
+	border: none;
+	outline: none;
+	width: 80px;
+	height: 30px;
+	/*background: #253942;*/
+	background: rgba(37,57,66,0.8);
+	border-radius: 5px;
+	color: #ddd;
+}
+
+.container-action button:hover{
+	background: #253942;
+	color: #fff;
+	transition: 0.3s all ease;
+}
+
+.container-header i.right{
+	padding-top: 8px;
+}
+
+.user-table{
+	width: 950px;
+	margin: 30px auto;
+	font-size: 14px;
+}
+
+.user-table .ui.table thead th {
+	/*background: #5FD2A9!important;*/
+	background: #414D5B!important;
+	color: #fff!important;
+}
+
+.user-table .ui.table{
+	text-align: center!important;
+}
+
+.user-table .ui.table tr:hover{
+	background: #F8F8FF;
+}
+
+td ul{
+	display: block;
+	width: 180px;
+	margin:0 auto;
+	padding-left: 20px;
+}
+
+td ul li{
+	list-style: none;
+	float: left;
+	padding-left: 20px;
+}
+
+#editBtn_,#removeBtn{
+	cursor: pointer;
+}
+
+#pageBox{
+	width: 1000px;
+}
+
+.pages{
+	width: 200px;
+	margin-right: 20px;
+}
+
+.pages ul{
+	width: 140px;
+	height: 30px;
+	margin-top: 50px;
+}
+
+.pages ul li{
+	line-height: 30px;
+	text-align: center;
+	width: 30px;
+	height: 30px;
+	border: 1px solid #EDEDED;
+	background:#5FD2A9!important;
+	float: left!important;
+}
+
+.pages ul li:first-child,.pages ul li:last-child{
+	width: 30px;
+	height: 30px;
+	background: #fff!important;
+}
+
+.pages ul li:first-child{
+	border-bottom-left-radius: 5px;
+	border-top-left-radius: 5px;
+}
+
+.pages ul li:last-child{
+	border-bottom-right-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+
+/*********** 用户管理页面  end***********/
+
+
+
+
+/***********     添加用户    ***********/
+
+.ui.modal.add.test{
+	width: 800px!important;
+	margin-left: -30%!important;
+}
+
+.contents{
+	height: 320px!important;
+}
+
+.contents ul{
+	width: 700px!important;
+	margin-left: -60px!important;
+}
+
+.contents ul li{
+	float: left!important;
+}
+
+.contents ul li input{
+	font-size: 14px!important;
+}
+
+.ui.modal.add>.close{
+	top:0.5rem!important;
+	right: 0.5rem!important;
+	color: #000!important;
+}
+
+.ui.modal.add>.contents{
+	width: 500px;
+	height: 300px;
+}
+
+.form-box{
+	width: 450px;
+	height: 200px;
+	margin: 20px auto;
+}
+
+.form-box form{
+	padding-left: 90px;
+}
+
+.form-box form input{
+	padding-left: 10px;
+	outline: none;
+	width: 180px;
+	height: 30px;
+}
+
+.form-box form li{
+	padding-top: 20px;
+}
+
+input:-webkit-autofill{-webkit-box-shadow: 0 0 0 1000px #fff inset!important; }
+
+#addUserBox{
+	width: 400px;
+}
+
+.add-user-btn{
+	cursor: pointer;
+	display: inline-block;
+	padding-top: 0px;
+	margin-top: 20px;
+	margin-left: 150px;
+	width: 120px;
+	height: 35px;
+	line-height: 35px;
+	text-align: center;
+	background:#253942 ;
+	color: #fff;
+	border-radius: 5px;
+	font-size: 14px;
+}
+
+.add-user-btn span{
+	margin-top: -5px;
+}
+
+#addUserBox input{
+	border: 0;
+	padding-left: 5px;
+	padding-top: 0px;
+	margin-top: 20px;
+	margin-right: -20px;
+	float: right;
+	width: 120px;
+	height: 35px;
+	line-height: 35px;
+	text-align: center;
+	background:#253942 ;
+	color: #fff;
+	border-radius: 5px;
+}
+
+#addUserBtn,.loader{
+	display: inline-block;
+	margin-top: -19px!important;
+}
+
+.loader_{
+	display: none!important;
+}
+
+.ui.loader:after {
+	position: absolute;
+	content: '';
+	top: -110%;
+	left: 200%;
+	width: 40%!important;
+	height: 40%!important;
+	-webkit-animation: loader 0.6s linear;
+	animation: loader 0.6s linear;
+	-webkit-animation-iteration-count: infinite;
+	animation-iteration-count: infinite;
+	border-radius: 200rem!important;
+	border-color: #5FD2A9 transparent transparent !important;  /*修改边环样式*/
+	border-style: solid;
+	border-width: 0.2em;
+	box-shadow: 0px 0px 0px 1px transparent;
+}
+
+.ui.loader:before,
+.ui.loader:after {
+	width: 1.2857em!important;
+	height: 1.2857em!important;
+	margin: 1em 0em 0em -0.8em!important;
+}
+/**** 添加用户   END****/
+
+
+
+/***********     修改用户    ***********/
+
+.ui.modal.edit{
+	width: 800px!important;
+	margin-left: -30%!important;
+}
+
+.contents ul{
+	width: 700px;
+	margin-left: -60px;
+}
+
+.contents ul li{
+	float: left;
+}
+
+.contents ul li input{
+	font-size: 14px;
+}
+
+.ui.modal.edit>.close{
+	top:0.5rem!important;
+	right: 0.5rem!important;
+	color: #000!important;
+}
+
+.ui.modal.edit>.contents{
+	width: 500px;
+	height: 300px;
+}
+
+#editUserBox{
+	width: 400px;
+	margin-top: 40px;
+}
+
+#editUserBox div{
+	padding: 0px;
+}
+
+.edit-user-btn{
+	cursor: pointer;
+	display: inline-block;
+	margin-top: 20px;
+	margin-left: 150px;
+	width: 120px;
+	height: 35px;
+	line-height: 35px;
+	text-align: center;
+	background:#253942 ;
+	color: #fff;
+	border-radius: 5px;
+	font-size: 14px;
+}
+
+#editUserBox input{
+	border: 0;
+	padding-left: 5px;
+	padding-top: 0px;
+	margin-top: 20px;
+	margin-right: -20px;
+	float: right;
+	width: 120px;
+	height: 35px;
+	line-height: 35px;
+	text-align: center;
+	background:#253942 ;
+	color: #fff;
+	border-radius: 5px;
+}
+
+.get-id{
+	display: none;
+}
+
+.ui.loaders:before,
+.ui.loaders:after {
+	width: 1.2857em!important;
+	height: 1.2857em!important;
+	margin: -1.5em 0em 0em 2.0em!important;
+}
+
+.edit-loader{
+	display: none!important;
+}
+
+/***********  修改用户  end  ***********/
+
+
+
+
+/***********  绑定角色  ***********/
+
+.ui.modal.role-bind{
+	width: 300px!important;
+	height: 300px!important;
+	margin-left: -10%!important;
+	font-size: 14px!important;
+}
+
+.ui.modal.role-bind .close{
+	top:0.5rem;
+	right: 0.5rem;
+	color: #000;
+}
+
+.ui.modal.role-bind #bindForm{
+	clear: both;
+	margin-top: 30px;
+}
+
+.ui.modal.role-bind #bindForm input{
+	padding-left: 10px;
+}
+
+.ui.modal.role-bind #bindForm select{
+	width: 150px;
+	height: 30px;
+	border: 1px solid #ccc;
+}
+
+#bindForm ul li{
+	clear: both;
+	display: block;
+	margin-left: 50px;
+	margin-top: 10px;
+}
+
+#bindRoleBox{
+	clear: both;
+	width: 300px;
+	height: 80px;
+	margin-left: 110px;
+}
+
+#bindRoleBtn{
+	margin-top: 20px!important;
+	width: 80px;
+	height: 30px;
+	background: #253942;
+	border-radius: 5px;
+	text-align: center;
+	line-height: 30px;
+	color: #fff;
+	cursor: pointer;
+}
+
+/***********  绑定角色  end  ***********/
+
+
+
+
+
+/*********** end **********/
+
+
+
+
+
+
+
+/***********  用户组模块  ***********/
+
+.user-group tr ul{
+	width: 240px;
+	padding-left: 0px;
+}
+
+.user-group td ul li{
+	list-style: none;
+	float: left;
+	padding-left: 20px;
+}
+
+#detailBtn{
+	cursor: pointer;
+}
+
+/****** Add/edit group  *******/
+
+textarea{
+	padding-left: 10px!important;
+	font-size: 14px!important;
+}
+
+.ui.modal.group-modal,.ui.modal.group-modal{
+	width: 400px!important;
+	margin-left: -15%!important;
+	height: 320px;
+}
+
+#addGroupForms ul,#editGroupForms ul{
+	margin-left: -120px;
+}
+
+.ui.modal.add.group-modal .contents textarea,.ui.modal.edit.group-modal .contents textarea{
+	resize: none;
+	width: 180px;
+	height: 60px;
+}
+
+#addGroupForms input,#addGroupForms textarea,#editGroupForms input,#editGroupForms textarea{
+	margin-left: 20px;
+	border: 1px solid #ccc;
+}
+
+.form-group-box ul li,#addUserGroup,#editUserGroup{
+	clear: both;
+}
+
+.form-group-box{
+	width: 450px;
+	height: 200px;
+	margin: 20px auto;
+}
+
+.form-group-box form{
+	padding-left: 75px;
+}
+
+.form-group-box form input{
+	padding-left: 10px;
+	outline: none;
+	width: 180px;
+	height: 30px;
+}
+
+.form-group-box form li{
+	padding-top: 20px;
+}
+
+#addUserGroup,#editUserGroup{
+	margin-top: 20px;
+}
+
+.add-group-btn,#addUserGroup input,.edit-group-btn,#editUserGroup input{
+	cursor: pointer;
+	display: inline-block;
+	margin-top: 20px;
+	width: 80px;
+	height: 35px;
+	line-height: 35px;
+	text-align: center;
+	background:#253942 ;
+	color: #fff;
+	border-radius: 5px;
+	font-size: 14px;
+}
+
+#addUserGroup input,#editUserGroup input{
+	background: #fff;
+	border: 2px solid #253942;
+	color: #000;
+	line-height: 28px;
+	margin-top: 14px;
+	margin-left: 30px;
+	padding-right: 10px;
+}
+/****** Add/edit group end *******/
+
+
+/************* detail ************/
+
+
+.ui.modal.detail.group-modal{
+	width: 700px!important;
+	margin-left: -25%!important;
+	height: 320px;
+}
+
+#detailGroupForms input{
+	border: 1px solid #ccc;
+	margin-left: 20px;
+}
+
+#detailGroupForms textarea{
+	width: 180px;
+	height: 65px;
+	border: 1px solid #ccc;
+	resize: none;
+}
+
+#detailGroupForms ul{
+	width: 700px;
+	margin-top: -20px;
+	margin-left: -170px!important;
+}
+
+#groupMember{
+	vertical-align: top;
+	margin-left: 120px;
+}
+
+#groupMember span,#groupMember textarea{
+	float: left;
+	margin-top: -25px;
+}
+
+#groupMember span{
+	display: block;
+	height: 155px;
+	vertical-align: top!important;
+}
+
+#groupMember textarea{
+	border: 1px solid #ccc;
+	margin-top: -165px;
+	margin-left: 60px!important;
+	width: 187px;
+	height: 120px;
+	resize: none;
+}
+
+.ui.modal.detail>.close{
+	top:1.0rem!important;
+	right: 1.0rem!important;
+	color: #000!important;
+}
+
+
+/****** Add/edit group end *******/
+
+
+
+/******** 角色绑定 *******/
+
+.ui.modal.detail.binding{
+	width: 380px!important;
+	margin-left: -15%!important;
+	height: 260px!important;
+}
+
+#detailGroupForms{
+	font-size: 14px;
+}
+
+#detailGroupForms input{
+	padding-left: 10px;
+}
+
+#detailGroupForms select{
+	width: 151px;
+	height: 30px;
+	line-height: 30px;
+	margin-left: 10px;
+	outline: none;
+	cursor: pointer;
+}
+
+.form-binding-box ul{
+	display: block;
+	padding-top: 40px;
+	padding-left: 200px!important;
+}
+
+.form-binding-box ul li{
+	clear: both;
+	margin-top: 10px;
+}
+
+#groupMember{
+	display: block;
+	margin-top: 200px;
+}
+
+#choiceRole{
+	margin-left: 120px;
+	margin-top: 10px;
+	width: 80px;
+	height: 30px;
+	background: #253942;
+	color: #fff;
+	border-radius: 5px;
+	text-align: center;
+	line-height: 30px;
+	cursor: pointer;
+}
+
+/******* 角色绑定 end *******/
+
+
+/********* 用户组模块 end **********/
+
+
+
+
+
+
+
+
+
+/*********  分配模块  **********/
+#settingForm{
+	margin-top: -70px;
+}
+
+.ui.table.group.setting-prems{
+	width: 940px;
+}
+
+#lastBtnBlock{
+	cursor: pointer;
+	float: right;
+}
+
+#rolesBlock span{
+	font-size: 12px;
+}
+
+#rolesBlock p{
+	float: right;
+	width: 80px;
+	height: 25px;
+	border: 1px solid #253942;
+	margin-right: 25px;
+	margin-top: -5px;
+	text-align: center;
+	line-height: 25px;
+	border-radius: 5px;
+	font-size: 14px;
+}
+
+#rolesBlock p:hover,#rolesBlock p a:hover{
+	background: #253942;
+	color: #fff;
+	transition:  0.2s all linear;
+}
+
+#rolesBlock p a{
+	color: #253942;
+}
+
+#rolesBlock p a:hover{
+	color: #fff;
+}
+
+#rolesBlock input{
+	width: 120px;
+	height: 20px;
+	border: 1px solid #ccc;
+	font-size: 14px;
+	line-height: 20px;
+	margin-left: 10px;
+	padding-left: 10px;
+}
+
+#selectListBtn{
+	width: 80px;
+	height: 30px;
+	background: rgba(37,57,66,0.8);
+	text-align: center;
+	line-height: 30px;
+	border-radius: 5px;
+	color: #fff;
+	margin-right: 25px;
+	font-size: 12px;
+}
+
+#selectListBtn:hover{
+	background: #253942;
+	color: #fff;
+	transition: 0.3s all ease;
+}
+
+#selectListBox{
+	width: 900px;
+	height: 50px;
+	margin-top: 10px;
+}
+
+#selectListBox p,#selectListBox div{
+	float: left;
+	font-size: 14px;
+}
+
+#selectListBox div{
+	margin-top: 12px;
+	margin-left: 20px;
+}
+
+#selectListBox span{
+	display: inline-block;
+	width: 90px;
+	height: 20px;
+	background: #5FD2A9;
+	text-align: center;
+	line-height: 20px;
+	border-radius: 5px;
+	color: #fff;
+	vertical-align: middle;
+	margin-left: 5px;
+	margin-top: -6px;
+}
+
+.remove-select{
+	cursor: pointer!important;
+}
+
+#checkBoxStyle{
+	width: 10px!important;
+	height: 10px!important;
+	background: #ccc;
+	margin-left: 55px;
+	border-radius: 100%;
+	position: relative;
+	-webkit-box-shadow: 0px 1px 3px rgba(0,0,0,0.9);
+	-moz-box-shadow: 0px 1px 3px rgba(0,0,0,0.9);
+	box-shadow: 0px 1px 3px rgba(0,0,0,0.9);
+}
+
+#checkBoxStyle label{
+	display: block;
+	width: 8px;
+	height: 8px;
+	border-radius: 100px;
+
+	-webkit-transition: all .5s ease;
+	-moz-transition: all .5s ease;
+	-o-transition: all .5s ease;
+	-ms-transition: all .5s ease;
+	transition: all .5s ease;
+	cursor: pointer;
+	position: absolute;
+	top: 1px;
+	left: 1px;
+	z-index: 1;
+
+	background: #fff;
+
+	-webkit-box-shadow:inset 0px 1px 3px rgba(255,255,255,0.1);
+	-moz-box-shadow:inset 0px 1px 3px rgba(255,255,255,0.1);
+	box-shadow:inset 0px 1px 3px rgba(255,255,255,0.1);
+}
+
+#checkBoxStyle input[type=checkbox]:checked + label {
+	background: #5FD2A9;
+}
+
+.ui.small.modal{
+	width: 300px!important;
+	margin-left: -10%!important;
+}
+
+.ui.small.modal .content{
+	width: 300px!important;
+	height: 60px;
+	text-align: center;
+	line-height: 50px;
+	padding: 0px!important;
+}
+
+.ui.small.modal .actions{
+	font-size: 14px;
+}
+
+.ui.small.modal .actions span{
+	cursor: pointer;
+	display: inline-block;
+	text-align: center;
+	line-height: 22px;
+	width: 40px;
+	height: 22px;
+	border: 1px solid #253942;
+	border-radius: 5px;
+	font-size: 12px;
+}
+
+.ui.small.modal .actions span:hover{
+	background: #253942;
+	color: #fff;
+	transition: 0.2s all ease;
+}
+
+
+/********* 分配模块 end **********/

@@ -2,30 +2,47 @@
 
 namespace App\Service\Admin;
 
-use App\Models\AdminUser;
+use App\Models\Role\AdminUser;
 
 use App\Tool\MessageResult;
-
+use App\Models\MenuSetting;
 use Hash;
 
 /**
 * 
 */
 class AdminUserService{
-	
+
+
+
+    public function loadMenuList($IdForPerms){
+
+        $firstMenuRes = MenuSetting::where('menu_level','=',1)->where('permission_id',$IdForPerms)->get();
+
+        foreach($firstMenuRes as $secondMenuList)
+        {
+
+            $secondMenuList->secondMenu = MenuSetting::where(['menu_level'=>2,'parent_id'=>$secondMenuList->id])->get();
+
+        }
+        return $firstMenuRes;
+
+    }
+
 	public function isAdmin($request)
     {
         //--是否有该用户名
         $admin = AdminUser::where('username',$request['username'])->select('password')->first();
+
         $isLogin = false;
         //---验证密码是否正确
         if (Hash::check($request['password'], $admin->password)) {
             //---密码是否需要重新加密
-            if (Hash::needsRehash($admin->password)) {
-                $password = Hash::make($request['password']);
-                //---将新的密码更新到数据
-                AdminUser::where('username',$request['username'])->update(['password'=>$password]);
-            }
+//            if (Hash::needsRehash($admin->password)) {
+//                $password = Hash::make($request['password']);
+//                //---将新的密码更新到数据
+//                AdminUser::where('username',$request['username'])->update(['password'=>$password]);
+//            }
 
             $isLogin = true;
         }

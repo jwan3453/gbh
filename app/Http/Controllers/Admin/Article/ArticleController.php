@@ -13,7 +13,8 @@ use App\Models\Article;
 use App\Models\ArticleCategory;
 
 use App\Tool\MessageResult;
-use Carbon\Carbon;
+use Illuminate\Support\Facades\Session;
+use App\Service\Common\CommonService;
 
 class ArticleController extends Controller
 {
@@ -25,22 +26,45 @@ class ArticleController extends Controller
 
 
     private $article;
-    public function __construct( ArticleService $article){
+
+    private $commonService;
+
+    public function __construct( ArticleService $article,CommonService $commonService){
         $this->article = $article ;
+        $this->commonService = $commonService;
 
     }
 
     public function index()
     {
 
-        $is = $this->isRolePermission("article");
+        //判断权限
+        $getCurrentUser = Session::get('adminusername');
+        //查询用户
+        $userInfo       = $this->commonService->checkInUser($getCurrentUser);
 
-        if (!$is) {
-            return redirect(url('admin/Error/NotPermission'));
+        if($userInfo){
+
+            //获取路由
+            $currentUrl    = $this->commonService->getCurrentUrl();
+
+            $getMenuName   = $this->commonService->getMenuName($currentUrl);
+            //父级菜单
+            $firstMenuName = $this->commonService->firstMenuName($getMenuName);
+
+            //查询有无权限
+            $checkIsPerm = $this->commonService->checkIsPermArticle($userInfo);
+
+            if($checkIsPerm){
+                $articles = $this->article->getArticles();
+
+                return view('Admin.Article.manageArticle')->with(['articles' => $articles , 'getMenuName' => $getMenuName, 'firstMenuName' => $firstMenuName]);
+            }else{
+                return redirect(url('admin/Error/NotPermission'));
+            }
+
         }
 
-        $articles = $this->article->getArticles();
-        return view('Admin.Article.manageArticle')->with('articles',$articles);
     }
 
     /**
@@ -82,6 +106,7 @@ class ArticleController extends Controller
             $jsonResult->statusCode = 0;
             $jsonResult->statusMsg = "失败";
         }
+
 
         return response($jsonResult->toJson());
     }

@@ -5,6 +5,7 @@
 @section('content')
 
     <div>
+        @include('admin.partial.breadcrumbTrail')
         <div class="article-search-bar">
             <a class="add-article-btn f-left" href="/admin/manageArticle/create">
                 <i class="icon plus "></i> 创建新文章

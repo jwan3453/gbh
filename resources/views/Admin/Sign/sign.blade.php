@@ -37,6 +37,7 @@
 <body>
 
 <div class="login-box">
+    <div class="alert-box" id="alertBox"></div>
 
     <div class="login-logo">
         <img src="/Admin/img/chang.png">
@@ -80,29 +81,65 @@
     host = window.location.host;
     
     function ToSubmit() {
-        console.log($('#loginForm').serialize());
+
+
         $.ajax({
-            type: 'POST',
-            url: '/admin/Sign',
-            data: $('#loginForm').serialize(),
-            dataType: 'json',
+            type:'POST',
+            url:'/admin/checkadminuser',
+            data:$('#loginForm').serialize(),
+            dataType:'json',
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
             },
             success: function(data){
-                console.log(data);
+                if(data.status == 1){
 
-                if (data.status == 1) {
-                    $("#msg").html(data.Msg);
-                    location.href = "http://"+host+"/admin/AdminCenter";
+                    console.log($('#loginForm').serialize());
+                    $.ajax({
+                        type: 'POST',
+                        url: '/admin/Sign',
+                        data: $('#loginForm').serialize(),
+                        dataType: 'json',
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                        },
+                        success: function(data){
+
+                            if (data.status == 1) {
+                                location.href = "http://"+host+"/admin/AdminCenter";
+                            }else{
+                                toastAlert('密码错误',1);
+                            }
+                        },
+                        error: function(xhr, type){
+                            alert('Ajax error!')
+                        }
+                    });
+
+
                 }else{
-                    $("#msg").html(data.Msg);
+                    toastAlert('用户名不正确',1);
                 }
-            },
-            error: function(xhr, type){
-                alert('Ajax error!')
             }
         });
+
+    }
+
+    function toastAlert(Msg,status)
+    {
+
+        if(status === 1)
+        {
+            $('#alertBox').removeClass('wrong-input').addClass('wrong-input');
+        }
+        if(status === 2){
+            $('#alertBox').removeClass('success-toast').addClass('success-toast');
+        }
+        $('#alertBox').text(Msg).fadeIn();
+
+        setTimeout(function () {
+            $('#alertBox').fadeOut();
+        }, 2000);
     }
 
 

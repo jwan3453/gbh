@@ -13,7 +13,11 @@
     <link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/transition.css') }}>
     <link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/icon.css') }}>
     <link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/table.css') }}>
+    <link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/modal.min.css') }}>
+    <link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/loader.css') }}>
     <script src={{ asset('semantic/transition.js') }}></script>
+    {{--<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.11.6/semantic.min.css"/>--}}
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.11.6/semantic.min.js"></script>
 
     <link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/dropdown.css') }}>
     <script src={{ asset('semantic/dropdown.js') }}></script>
@@ -26,57 +30,103 @@
 
 <body>
 
-<div class="menu-box" >
-
+<div class="menu-box" id="menuBox">
+    <div class="menu_"></div>
     <div class="menu-logo">
         <img src="/Admin/img/logo.png">
+
+    </div>
+
+    <div class="menu-top">
+        <span><img src="/Admin/img/boys.png"></span>
+        <p>管理员{{ Session::get('adminusername') }}</p>
     </div>
 
     <div class="admin-menu-list">
-        <li href="admin/AdminCenter" name="home" onclick="firstMenuClick(this)">
-            <img src="/Admin/icon/home-select.png" name="home" style="draggable='false'">
-            <span>首页</span>
-        </li>
-        <li href="admin/menuSetting" name="menu-setting" onclick="firstMenuClick(this)">
-            <img src="/Admin/icon/menu-setting.png" name="menu-setting">
-            <span>菜单设置</span>
-        </li>
+
+        <ul class="header-menu">
+
+            <li>
+                <a href="{{ url('/admin/AdminCenter') }}">
+                    <img src="/Admin/icon/menu/home.png" class="home">
+                    {{--<i class="home icon"></i>--}}
+                    <span>首页</span>
+                </a>
+            </li>
+            @foreach($allMenuList as $firstMenuLists)
+                @foreach($firstMenuLists as $firstMenuList)
+            <li>
+                @if(session('currentPath_') && (session('currentPath_') === url($firstMenuList->menu_chaining)))
+                    <div href="{{url($firstMenuList->menu_chaining)}} " value="{{ count($firstMenuList->secondMenu) }}" redirect="false" class="currentNav currentPath">
+                        <span class="pathNav"></span>
+                        <img src="{{$firstMenuList->icon_img_1}}">
+                        <span>{{$firstMenuList->menu_name}}</span>
+                        @if(count($firstMenuList->secondMenu) > 0)
+                            <i class="angle left icon"></i>
+                        @endif
+                    </div>
+                @else
+                    <div href="{{url($firstMenuList->menu_chaining)}} " value="{{ count($firstMenuList->secondMenu) }}" redirect="false" class="currentNav">
+                        <span class="choiceNav"></span>
+                        <img src="{{$firstMenuList->icon_img_1}}">
+                        <span>{{$firstMenuList->menu_name}}</span>
+                        @if(count($firstMenuList->secondMenu) > 0)
+                            <i class="angle left icon"></i>
+                        @endif
+                    </div>
+                @endif
+
+                <ul class="subMenu navContent secondMenu">
+
+                    @if(count($firstMenuList->secondMenu) > 0)
+                        @foreach($firstMenuList->secondMenu as $key => $secondMenuList)
+                        @if(session('currentPath_') && (session('currentPath_') === url($secondMenuList->menu_chaining)))
+                            <li>
+                                <a href="{{url($secondMenuList->menu_chaining)}}" session="{{ session('currentPath_') }}" class="secondNav Nav_">{{ $secondMenuList->menu_name }}</a>
+
+                            </li>
+                        @else
+                            <li>
+                                <a href="{{url($secondMenuList->menu_chaining)}}" session="#" class="Nav_">{{ $secondMenuList->menu_name }}</a>
+                            </li>
+                        @endif
+                        @endforeach
+
+                    @endif
+                </ul>
+
+
+            </li>
+            @endforeach
+            @endforeach
+
+        </ul>
+
     </div>
 
-
-
-</div>
-
-<div class="second-level-menu-box" one-level="">
-    <!-- <li onclick="secondMenuClick(this)">
-        <img src="/Admin/icon/todayorder.png" name="todayorder">
-        <span>今日订单</span>
-    </li> -->
-</div>
-
-<div class="breadcrumb">
-    <img src="/Admin/icon/home-breadcrumb.png">
-    <span>首页</span>
-        <span class="breadcrumb-menu">
-            
-        </span>
 </div>
 
 
-
-
-
-
-<div class="center" >
+<div class="center" id="centerBox">
+    <div class="content-header">
+        <ul>
+            <li><a href="#">查看日志</a></li>
+            <li><a href="#">系统设置</a></li>
+            <li class="user-action user-choice">
+                <i class="angle right icon"></i>
+                <a href="#" class="user-down">用户</a>
+                <ul class="user-nav">
+                    <li><a href="{{url('/admin/logout')}}">退出</a></li>
+                    <li style="margin-top: 4px;"><a href="#">设置</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
     @yield('content')
     <div class="padding-80">
 
     </div>
 
-    {{--<div class="admin-copy-right">--}}
-    {{--<span>全球精品酒店 版权所有 2016-2028 保留所有权利</span>--}}
-    {{--<span>Copyright 2016-2028 Opulun.com All right reserved</span>--}}
-    {{--</div>--}}
 </div>
 
 
@@ -90,128 +140,77 @@
 @yield('script')
 
 <script type="text/javascript">
-    $(document).ready(function(){
-        if (sessionStorage.getItem("breadcrumb") != null) {
-            $(".breadcrumb-menu").html(sessionStorage.getItem("breadcrumb"));
+    $(document).ready(function() {
+
+        //下拉选中效果
+        if ($(".Nav_").hasClass('secondNav')) {
+            $(".currentNav").children('i.left').addClass('open-menu');
+            $(".secondNav").parent().parent().removeClass('secondMenu');
         }
-        $.ajax({
-            type: 'POST',
-            url: '/admin/menuSetting/getFirstMenu',
-            data: {},
-            dataType: 'json',
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-            },
-            success : function(data){
-                var menuList = '';
-                for (var i = 0; i < data.length; i++) {
-                    // console.log(data[i]);
-                    menuList += '<li href="'+data[i].menu_chaining+'" name="'+data[i].menu_name_eg+'" onclick="firstMenuClick(this)" menuId="'+data[i].id+'">';
-                    menuList += '<img src="'+data[i].icon_img_1+'" name="'+data[i].menu_name_eg+'">';
-                    menuList += '<span>'+data[i].menu_name+'</span>';
-                    menuList += '</li>';
-                }
-                $('.admin-menu-list').children().eq(0).after(menuList);
-                //------验证本地存储中的菜单名----------
-                if (sessionStorage.getItem("clickMenuImgName") != null) {
-                   // $(".admin-menu-list").find("li[name='"+sessionStorage.getItem("clickMenuImgName")+"']").children("img").attr('src','/Admin/icon/'+sessionStorage.getItem("clickMenuImgName")+'-select.png');
-                   // $(".admin-menu-list").find("li[name='"+sessionStorage.getItem("clickMenuImgName")+"']").addClass("menu-selected");
-                }
+
+        //menu下拉
+        $(".currentNav").click(function () {
+
+
+            var secondCount = $(this).attr('value');
+            var href_ = $(this).attr('href');
+
+            if (secondCount > 0) {
+
+                $(this).toggleClass("menu-down").siblings(".currentNav").removeClass("menu-up");  //第一次下拉的样式
+                $(this).toggleClass("menu-up").siblings(".currentNav").removeClass("menu-down");  //再次点击的样式
+
+            } else {
+                window.location.href = href_;
             }
-        })
-        for(i in document.images)document.images[i].ondragstart=imgdragstart;
-    })
 
-    var selectimgname = 'home';
-    var newimgname = 'home';
+            //控制箭头样式
+            if ($(this).children('i.left').hasClass('open-menu')) {
+                $(this).children('i.left').removeClass('open-menu');
+            } else {
+                $(this).children('i.left').addClass('open-menu');
+            }
 
-    function firstMenuClick(_this) {
-        var srcPath = '/Admin/icon/';
-        //----将已选中的一级菜单文字颜色及图片切换为未选中的-----
-        selectimgname = $(".admin-menu-list .menu-selected > img").attr('name');
-        $(".admin-menu-list .menu-selected > img").attr('src' , srcPath + selectimgname + '.png');
-        $(".admin-menu-list .menu-selected").removeClass('menu-selected');
-        //----将当前选中的一级菜单文字颜色及图片切换为已选中的-------
-        $(_this).addClass('menu-selected');
-        newimgname = $(_this).children('img').attr('name');
-        //$(_this).children('img').attr('src' , srcPath + newimgname + '-select.png');
-        //-----如果点击的是首页则直接跳转------
-        if (newimgname === 'home') {
-            // console.log($(_this).attr('href'));
-            sessionStorage.removeItem("breadcrumb");
-            sessionStorage.setItem("clickMenuImgName", "home");
-            location.href = '/'+$(_this).attr('href');
-            $(".breadcrumb-menu").html('');
-            $('.second-level-menu-box').transition('hide');
-            return false;
+
+            $(this).next(".navContent").slideToggle(500).siblings(".navContent").slideUp(500);  //下一级元素下滑速度
+
+        });
+
+
+        //user
+        $(".user-choice").hover(
+                function () {
+                    $(".user-nav").slideDown(200);
+                    $(this).children('i.right').addClass('nav-down');
+                },
+                function () {
+                    $(".user-nav").slideUp(200);
+                    $(this).children('i.right').removeClass('nav-down');
+                }
+        );
+
+        //自适应高度
+        function AdjustHeight() {
+
+            var heightMenu = document.getElementById('menuBox').offsetHeight;
+            var heightContent = document.getElementById('centerBox').offsetHeight;
+
+            if (heightMenu > heightContent) {
+
+                document.getElementById('centerBox').style.height = heightMenu;
+
+            } else {
+
+                document.getElementById('menuBox').style.height = heightContent;
+
+            }
+
         }
-        //---将一级菜单名称填充入二级菜单dom中--------
-        $(".second-level-menu-box").attr('one-level' , $(_this).children('span').html());
+
+        AdjustHeight();
 
 
-        $.ajax({
-            type: 'POST',
-            url: '/admin/menuSetting/getSecondMenu',
-            data: {menuId : $(_this).attr('menuId')},
-            dataType: 'json',
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-            },
-            success : function(data){
-            var secondMenuList = '';
-                for (var i = 0; i < data.getSecondMenu.length; i++) {
-                    secondMenuList += '<li href="'+data.getSecondMenu[i].menu_chaining+'" onclick="secondMenuClick(this)">';
-                    secondMenuList += '<img src="'+data.getSecondMenu[i].icon_img_1+'" name="todayorder">';
-                    secondMenuList += '<span>'+data.getSecondMenu[i].menu_name+'</span>';
-                    secondMenuList += '</li>';
-                }
-                $(".second-level-menu-box").html(secondMenuList);
-            }
-        })
-
-        if (selectimgname === newimgname) { //--如果选中同一个菜单则收起二级菜单
-
-            if ($(_this).attr('href') == '' || $(_this).attr('href') == 'undefined') {
-                $('.second-level-menu-box').transition('swing right');
-            }
-            else{
-                var rightImg = '<img src="/Admin/icon/breadcrumb-right.png" class="breadcrumb-right">';
-                var oneLevelDocument = '<a class="breadcrumb-menu-text">'+$(_this).children("span").html()+'</a>';
-                sessionStorage.setItem("breadcrumb", rightImg + oneLevelDocument);
-                location.href = '/'+$(_this).attr('href');
-            }
-
-
-        }else{
-            //------将菜单名存入本地存储-------------
-            sessionStorage.setItem("clickMenuImgName", $(_this).attr('name'));
-            // console.log($(_this).attr('menuId'));
-            
-            if ($(_this).attr('href') == '' || $(_this).attr('href') == 'undefined') {
-                $('.second-level-menu-box').transition('hide').transition('swing right');
-            }
-            else{
-                var rightImg = '<img src="/Admin/icon/breadcrumb-right.png" class="breadcrumb-right">';
-                var oneLevelDocument = '<a class="breadcrumb-menu-text">'+$(_this).children("span").html()+'</a>';
-                sessionStorage.setItem("breadcrumb", rightImg + oneLevelDocument);
-                location.href = '/'+$(_this).attr('href');
-            }
-        }
-    }
-
-    function secondMenuClick(_this) {
-        console.log($(_this).attr('href'));
-        var oneLevel = $(".second-level-menu-box").attr('one-level');
-        var secondLevel = $(_this).children('span').html();
-        var rightImg = '<img src="/Admin/icon/breadcrumb-right.png" class="breadcrumb-right">';
-        var oneLevelDocument = '<a class="breadcrumb-menu-text">'+oneLevel+'</a>';
-        var secondLevelDocument = '<a class="breadcrumb-menu-text">'+secondLevel+'</a>';
-        $(".breadcrumb-menu").html(rightImg + oneLevelDocument + rightImg + secondLevelDocument);
-        sessionStorage.setItem("breadcrumb", rightImg + oneLevelDocument + rightImg + secondLevelDocument);
-        //-------收起二级菜单------
-        $('.second-level-menu-box').transition('hide');
-        location.href = '/'+$(_this).attr('href');
-    }
+    });
 
     function imgdragstart(){return false;}
 
@@ -248,6 +247,7 @@
             $('#alertBox').fadeOut();
         }, 2000);
     }
+
 </script>
 
 </html>
