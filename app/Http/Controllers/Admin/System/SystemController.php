@@ -12,6 +12,7 @@ use App\Service\Admin\SystemService;
 use Session;
 
 use App\Tool\MessageResult;
+use App\Service\Common\CommonService;
 
 /**
 * 
@@ -20,23 +21,27 @@ class SystemController extends Controller
 {
     private $system;
 
-    function __construct(SystemService $system)
+    private $commonService;
+
+    function __construct(SystemService $system,CommonService $commonService)
     {
         $this->system = $system;
+        $this->commonService = $commonService;
     }
 
 
     //--------------轮播图管理----------
     public function slideConfigure()
     {
-        $is = $this->isRolePermission("slide");
+        //获取路由
+        $currentUrl    = $this->commonService->getCurrentUrl();
 
-        if (!$is) {
-            return redirect(url('admin/Error/NotPermission'));
-        }
+        $getMenuName   = $this->commonService->getMenuName($currentUrl);
+        //父级菜单
+        $firstMenuName = $this->commonService->firstMenuName($getMenuName);
 
         $slideList = $this->system->getSlideList();
-        return view('Admin.System.slideConfigurePage')->with('slideList', $slideList);
+        return view('Admin.System.slideConfigurePage')->with(['slideList' => $slideList , 'getMenuName' => $getMenuName, 'firstMenuName' => $firstMenuName]);
     }
 
     public function uploadImg(Request $request)
@@ -84,15 +89,17 @@ class SystemController extends Controller
     //----------------银行卡、信用卡管理----------------
     public function creditCardManage()
     {
-        $is = $this->isRolePermission("creditcard");
 
-        if (!$is) {
-            return redirect(url('admin/Error/NotPermission'));
-        }
+        //获取路由
+        $currentUrl    = $this->commonService->getCurrentUrl();
+
+        $getMenuName   = $this->commonService->getMenuName($currentUrl);
+        //父级菜单
+        $firstMenuName = $this->commonService->firstMenuName($getMenuName);
 
         $InternalList = $this->system->getCreditCardList(1);
         $AbroadList = $this->system->getCreditCardList(2);
-        return view('Admin.System.creditCardManage')->with('InternalList', $InternalList)->with('AbroadList', $AbroadList);
+        return view('Admin.System.creditCardManage')->with('InternalList', $InternalList)->with(['AbroadList' => $AbroadList , 'getMenuName' => $getMenuName, 'firstMenuName' => $firstMenuName]);
     }
 
     public function createCreditCard(Request $request)
@@ -133,11 +140,6 @@ class SystemController extends Controller
     //-----------------服务分类管理----------------
     public function serviceSetting()
     {
-        $is = $this->isRolePermission("facility-settings");
-
-        if (!$is) {
-            return redirect(url('admin/Error/NotPermission'));
-        }
 
         $serviceCategorylist = $this->system->getServiceCategoryList();
         return view('Admin.System.serviceSetting')->with('serviceCategorylist', $serviceCategorylist);
@@ -181,11 +183,6 @@ class SystemController extends Controller
     //-----------------酒店服务管理---------------
     public function serviceItems()
     {
-        $is = $this->isRolePermission("serviceitems");
-
-        if (!$is) {
-            return redirect(url('admin/Error/NotPermission'));
-        }
 
         $serviceItemsList = $this->system->getServiceItemsList();
         return view('Admin.System.serviceItemsPage')->with('serviceItemsList', $serviceItemsList);

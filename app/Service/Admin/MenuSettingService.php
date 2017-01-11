@@ -4,6 +4,7 @@ namespace App\Service\Admin;
 use App\Models\MenuSetting;
 
 use App\Tool\MessageResult;
+use Illuminate\Database\Eloquent\Collection;
 
 
 class MenuSettingService {
@@ -19,6 +20,7 @@ class MenuSettingService {
     	$MenuList = MenuSetting::where('parent_id' , $parent_id)->select('id','menu_name','icon_img_1','menu_description','menu_chaining')->get();
         return $MenuList ;
     }
+
 
    	public function uploadIcon($file,$menuLevel)
    	{

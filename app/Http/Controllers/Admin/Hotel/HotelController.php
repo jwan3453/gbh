@@ -15,7 +15,7 @@ use App\Service\Admin\HotelService;
 use App\Service\Admin\ImageService;
 use App\Models\Hotel;
 
-use App\Models\RoomPrice;
+use Illuminate\Support\Facades\Session;
 
 class HotelController extends Controller
 {
@@ -39,16 +39,31 @@ class HotelController extends Controller
 
     public function index()
     {
-        $is = $this->isRolePermission("hotel-manage");
 
-        if (!$is) {
+        //获取路由
+        $currentUrl    = $this->commonService->getCurrentUrl();
+
+        $getMenuName   = $this->commonService->getMenuName($currentUrl);
+
+        //父级菜单
+        $firstMenuName = $this->commonService->firstMenuName($getMenuName);
+
+        //判断权限
+        $getCurrentUser = Session::get('adminusername');
+        //查询用户
+        $userInfo       = $this->commonService->checkInUser($getCurrentUser);
+
+        //查询有无权限
+        $checkIsPerm = $this->commonService->checkIsPermHotel($userInfo);
+
+        if(!$checkIsPerm){
+
             return redirect(url('admin/Error/NotPermission'));
         }
 
+
         $manageHotelList = $this->hotelService->getHotelList();
 
-
-        // dd($manageHotelList);
         foreach ($manageHotelList as $hotelList) {
 
             if($hotelList->address != null)
@@ -65,7 +80,7 @@ class HotelController extends Controller
 
         }
 
-        return view('Admin.Hotel.manageHotel')->with('manageHotelList',$manageHotelList);
+        return view('Admin.Hotel.manageHotel')->with(['manageHotelList' => $manageHotelList , 'getMenuName' => $getMenuName, 'firstMenuName' => $firstMenuName]);
     }
 
     /**
@@ -986,6 +1001,23 @@ class HotelController extends Controller
     public function manageRoomStatus()
     {
 
+        //获取路由
+        $currentUrl    = $this->commonService->getCurrentUrl();
+
+        $getMenuName   = $this->commonService->getMenuName($currentUrl);
+        //父级菜单
+        $firstMenuName = $this->commonService->firstMenuName($getMenuName);
+
+        //判断权限
+        $getCurrentUser = Session::get('adminusername');
+        //查询用户
+        $userInfo       = $this->commonService->checkInUser($getCurrentUser);
+
+        //查询有无权限
+        $checkIsPerm = $this->commonService->checkIsPermRoomStatus($userInfo);
+        if(!$checkIsPerm) {
+            return redirect(url('admin/Error/NotPermission'));
+        }
         $manageHotelList = $this->hotelService->getHotelList();
 
         // dd($manageHotelList);
@@ -999,7 +1031,7 @@ class HotelController extends Controller
 
         }
 
-        return view('Admin.RoomStatus.manageRoomStatus')->with('manageHotelList',$manageHotelList);
+        return view('Admin.RoomStatus.manageRoomStatus')->with(['manageHotelList' => $manageHotelList , 'getMenuName' => $getMenuName, 'firstMenuName' => $firstMenuName]);
     }
 
     //编辑跟新酒店房态
@@ -1121,6 +1153,24 @@ class HotelController extends Controller
     public function manageRoomPrice()
     {
 
+
+        //获取路由
+        $currentUrl    = $this->commonService->getCurrentUrl();
+
+        $getMenuName   = $this->commonService->getMenuName($currentUrl);
+        //父级菜单
+        $firstMenuName = $this->commonService->firstMenuName($getMenuName);
+
+        //判断权限
+        $getCurrentUser = Session::get('adminusername');
+        //查询用户
+        $userInfo       = $this->commonService->checkInUser($getCurrentUser);
+
+        //查询有无权限
+        $checkIsPerm = $this->commonService->checkIsPermRoomPrice($userInfo);
+        if(!$checkIsPerm) {
+            return redirect(url('admin/Error/NotPermission'));
+        }
         $manageHotelList = $this->hotelService->getHotelList();
 
         // dd($manageHotelList);
@@ -1134,7 +1184,7 @@ class HotelController extends Controller
 
         }
 
-        return view('Admin.RoomPrice.manageRoomPrice')->with('manageHotelList',$manageHotelList);
+        return view('Admin.RoomPrice.manageRoomPrice')->with(['manageHotelList' => $manageHotelList , 'getMenuName' => $getMenuName, 'firstMenuName' => $firstMenuName]);
     }
 
     //编辑跟新酒店房价

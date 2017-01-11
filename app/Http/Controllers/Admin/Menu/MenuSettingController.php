@@ -30,13 +30,13 @@ class MenuSettingController extends Controller
     public function index()
     {
 
-        $is = $this->isRolePermission("all");
-        if (!$is) {
-            return redirect(url('admin/Error/NotPermission'));
-        }
+//        $is = $this->isRolePermission("all");
+//        if (!$is) {
+//            return redirect(url('admin/Error/NotPermission'));
+//        }
 
         $menuList = $this->menuSetting->getOneMenu();
-        // dd($menuList);
+//         dd($menuList);
         return view('Admin.Menu.menuSetting')->with('menuList',$menuList);
     }
 

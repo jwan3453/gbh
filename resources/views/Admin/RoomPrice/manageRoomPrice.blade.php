@@ -3,7 +3,7 @@
 
 
 @section('content')
-
+    @include('admin.partial.breadcrumbTrail')
     <div >
         <div class="hotel-search-bar">
             <div class="add-hotel-btn f-left" onclick="location.href='/admin/manageHotel/create'">

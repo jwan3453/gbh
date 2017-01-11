@@ -17,6 +17,7 @@
 
 @section('content')
 
+	@include('admin.partial.breadcrumbTrail')
 <div class="classification-box">
 	<div class="classification-box-title">
 		<span>国内银行卡管理</span>

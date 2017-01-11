@@ -22,11 +22,11 @@ class OrderController extends Controller
     public function orderSearchPage()
     {
 
-        $is = $this->isRolePermission("order-search");
-
-        if (!$is) {
-            return redirect(url('admin/Error/NotPermission'));
-        }
+//        $is = $this->isRolePermission("order-search");
+//
+//        if (!$is) {
+//            return redirect(url('admin/Error/NotPermission'));
+//        }
 
         return view('Admin.Order.orderSearchPage');
     }
