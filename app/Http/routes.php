@@ -105,7 +105,7 @@ Route::get('/resolveWeChatImg/{url?}','Gbh\HomeController@resolveWechatImage');
 
 /*************************AdminCenter*********************************/
 
-Route::group(['prefix' => '/admin/', 'middleware' => 'App\Http\Middleware\AdminAuthenticate','pathsession'], function() {
+Route::group(['prefix' => '/admin/', 'middleware' => ['App\Http\Middleware\AdminAuthenticate','pathsession','authority']], function() {
     Route::get('AdminCenter','Admin\homeController@index');
 
     //--------菜单设置
@@ -169,8 +169,6 @@ Route::group(['prefix' => '/admin/', 'middleware' => 'App\Http\Middleware\AdminA
 
         //管理酒店图片
         {
-
-
             Route::post('uploadImage','Admin\Hotel\HotelController@uploadImage');
 
             Route::post('deleteHotelImage','Admin\Hotel\HotelController@deleteHotelImage');
@@ -202,7 +200,7 @@ Route::group(['prefix' => '/admin/', 'middleware' => 'App\Http\Middleware\AdminA
             //基本信息Hotel
             Route::get('hotelInfo/{hotelId}/maintainHotelBasicInfo', 'Admin\Hotel\HotelController@maintainHotelBasicInfo');
             //交通信息
-            Route::get('hotelInfo/{hotelId}/maintainHotelGeoInfo', 'Admin\Hotel\HotelController@maintainHotelGeoInfo');
+            Route::get('hotelInfo/{hotelId}/maintainHotelGeoInfo',  'Admin\Hotel\HotelController@maintainHotelGeoInfo');
 
             //提交新的周边环境(添加或修改)
             Route::post('hotelInfo/createOrUpdateSurrounding','Admin\Hotel\HotelController@createOrUpdateSurrounding');
@@ -217,7 +215,7 @@ Route::group(['prefix' => '/admin/', 'middleware' => 'App\Http\Middleware\AdminA
             Route::post('hotelInfo/createOrUpdatePolicy','Admin\Hotel\HotelController@createOrUpdatePolicy');
 
             //酒店联系人
-            Route::get('hotelInfo/{hotelId}/maintainHotelContact','Admin\Hotel\HotelController@maintainHotelContact');
+            Route::get('hotelInfo/{hotelId}/maintainHotelContact', 'Admin\Hotel\HotelController@maintainHotelContact');
 
             //提交酒店联系人(添加或修改)
             Route::post('hotelInfo/createOrUpdateContact','Admin\Hotel\HotelController@createOrUpdateContact');
@@ -252,13 +250,13 @@ Route::group(['prefix' => '/admin/', 'middleware' => 'App\Http\Middleware\AdminA
 
 
             //管理酒店图片
-            Route::get('hotelInfo/{hotelId}/maintainHotelImage','Admin\Hotel\HotelController@maintainHotelImage');
+            Route::get('hotelInfo/{hotelId}/maintainHotelImage', 'Admin\Hotel\HotelController@maintainHotelImage');
 
             //上传酒店图片
-            Route::post('hotelInfo/uploadHotelImage','Admin\Hotel\HotelController@uploadHotelImage');
+            Route::post('hotelInfo/uploadHotelImage', 'Admin\Hotel\HotelController@uploadHotelImage');
 
             //删除酒店图片
-            Route::post('hotelInfo/deleteHotelImage','Admin\Hotel\HotelController@deleteHotelImage');
+            Route::post('hotelInfo/deleteHotelImage', 'Admin\Hotel\HotelController@deleteHotelImage');
 
             //获取酒店区域照片
             Route::post('hotelInfo/getSectionImage','Admin\Hotel\HotelController@getSectionImage');
@@ -267,10 +265,10 @@ Route::group(['prefix' => '/admin/', 'middleware' => 'App\Http\Middleware\AdminA
             Route::post('hotelInfo/setHotelCoverImage','Admin\Hotel\HotelController@setHotelCoverImage');
 
             //取消酒店外网封面图片
-            Route::post('hotelInfo/cancelHotelCoverImage','Admin\Hotel\HotelController@cancelHotelCoverImage');
+            Route::post('hotelInfo/cancelHotelCoverImage', 'Admin\Hotel\HotelController@cancelHotelCoverImage');
 
 
-            //取消酒店外网封面图片
+            //获取酒店外网封面图片
             Route::post('hotelInfo/getHotelCoverImage','Admin\Hotel\HotelController@getHotelCoverImage');
 
             //设计酒店外网首张图片
@@ -320,10 +318,10 @@ Route::group(['prefix' => '/admin/', 'middleware' => 'App\Http\Middleware\AdminA
         //酒店列表
         Route::get('/', 'Admin\Hotel\HotelController@manageRoomPrice');
 
-        //查看酒店房态
+        //查看酒店房价
         Route::get('/show/{hotelId}', 'Admin\Hotel\HotelController@showRoomPrice');
 
-        //搜索酒店房态
+        //搜索酒店房价
         Route::post('/searchRoomPrice', 'Admin\Hotel\HotelController@showRoomPrice');
 
 
@@ -406,7 +404,7 @@ Route::group(['prefix' => '/admin/', 'middleware' => 'App\Http\Middleware\AdminA
 
 
 
-    Route::group(['prefix' => 'system/','middleware'  =>  'permission'], function() {
+    Route::group(['prefix' => 'system/'], function() {
         //-------轮播图设置---
         Route::get('slideConfigure','Admin\System\SystemController@slideConfigure');
         Route::post('uploadImg','Admin\System\SystemController@uploadImg');
@@ -443,13 +441,13 @@ Route::group(['prefix' => '/admin/', 'middleware' => 'App\Http\Middleware\AdminA
     //-----无权限访问
     Route::get('Error/NotPermission','Admin\homeController@NotPermission');
 
-
     //超级管理员
-    Route::group(['prefix' => 'administrator/','middleware'  =>  'authority'], function() {
+    Route::group(['prefix' => 'administrator/','middleware'  =>  ['role:admin']], function() {
 
         //Route::get('manageRoomPriceRequest','Admin\Hotel\HotelController@manageRoomPriceRequest');
 
         //--------用户管理----
+
         Route::get('/usermanager','Admin\Role\RoleManagerController@show');
 
         //--------新增用户----
@@ -464,13 +462,13 @@ Route::group(['prefix' => '/admin/', 'middleware' => 'App\Http\Middleware\AdminA
         Route::post('/checkedituser','Admin\Role\RoleManagerController@checkEditUser');
 
         //获得用户数据
-        Route::post('/detailuser','Admin\Role\RoleManagerController@detailUser');
+        Route::post('/detailuser',['middleware' => ['permissions:detailuser'],  'uses'  => 'Admin\Role\RoleManagerController@detailUser']);
 
         //编辑存储用户
         Route::post('/updateuser','Admin\Role\RoleManagerController@updateUser');
 
         //删除用户
-        Route::post('/removeuser','Admin\Role\RoleManagerController@deleteUser');
+        Route::post('/removeuser',['middleware' => ['permissions:removeuser'], 'uses'  =>  'Admin\Role\RoleManagerController@deleteUser']);
 
         //--------绑定角色----
         Route::post('/detailcurrentbind','Admin\Role\RoleManagerController@detailCurrentBind');
@@ -483,7 +481,7 @@ Route::group(['prefix' => '/admin/', 'middleware' => 'App\Http\Middleware\AdminA
 
 
         //--------角色组管理----
-        Route::get('/rolegroupmanager','Admin\Role\RoleManagerController@showRole');
+        Route::get('/rolegroupmanager',[ 'middleware' => ['permissions:roleGroupManager'], 'uses' => 'Admin\Role\RoleManagerController@showRole']);
 
         //检查角色组重复性
         Route::post('/checknewrole','Admin\Role\RoleManagerController@checkNewRole');
@@ -492,16 +490,16 @@ Route::group(['prefix' => '/admin/', 'middleware' => 'App\Http\Middleware\AdminA
         Route::post('/checkeditrole','Admin\Role\RoleManagerController@checkEditRole');
 
         //新增角色组
-        Route::post('/creategroup','Admin\Role\RoleManagerController@createRole');
+        Route::post('/creategroup',['middleware' => ['permissions:creategroup'],'uses' => 'Admin\Role\RoleManagerController@createRole']);
 
         //获得角色组数据
         Route::post('/detailrole','Admin\Role\RoleManagerController@detailRole');
 
         //删除角色组
-        Route::post('/removerole','Admin\Role\RoleManagerController@deleteRole');
+        Route::post('/removerole',['middleware' => ['permissions:removerole'],'uses' => 'Admin\Role\RoleManagerController@deleteRole']);
 
         //编辑存储角色组
-        Route::post('/updaterole','Admin\Role\RoleManagerController@updateRole');
+        Route::post('/updaterole',['middleware' => ['permissions:updaterole'],'uses' => 'Admin\Role\RoleManagerController@updateRole']);
 
         //获取所有绑定用户
         Route::post('/detailhasuser','Admin\Role\RoleManagerController@detailHasUser');
@@ -511,13 +509,13 @@ Route::group(['prefix' => '/admin/', 'middleware' => 'App\Http\Middleware\AdminA
 
 
         //--------权限管理----
-        Route::get('/permissionmanager','Admin\Role\RoleManagerController@showPermission');
+        Route::get('/permissionmanager',['middleware' => ['permissions:permissionmanager'],'uses' => 'Admin\Role\RoleManagerController@showPermission']);
 
         //检查权限重复性
         Route::post('/checknewpermissions','Admin\Role\RoleManagerController@checkNewPermissions');
 
         //新增权限
-        Route::post('/createpermissions','Admin\Role\RoleManagerController@createPermissions');
+        Route::post('/createpermissions',['middleware' => ['permissions:createpermissions'],'uses'  => 'Admin\Role\RoleManagerController@createPermissions']);
 
         //获取权限详情
         Route::post('/detailpermission','Admin\Role\RoleManagerController@detailPermissions');
@@ -526,28 +524,35 @@ Route::group(['prefix' => '/admin/', 'middleware' => 'App\Http\Middleware\AdminA
         Route::post('/checkeditpermission','Admin\Role\RoleManagerController@checkEditPermissions');
 
         //编辑存储权限
-        Route::post('/updatepermission','Admin\Role\RoleManagerController@updatePermissions');
+        Route::post('/updatepermission',['middleware' => ['permissions:updatepermission'],'uses' => 'Admin\Role\RoleManagerController@updatePermissions']);
 
         //删除权限
-        Route::post('/removepermission','Admin\Role\RoleManagerController@deletePermissions');
+        Route::post('/removepermission',['middleware' => ['permissions:removepermission'],'uses' => 'Admin\Role\RoleManagerController@deletePermissions']);
+
+        //判断权限类型
+        Route::post('/permtype','Admin\Role\RoleManagerController@permType');
+        Route::post('/permtypeforedit','Admin\Role\RoleManagerController@permTypeForEdit');
+
+        //判断菜单类型
+        Route::post('/menutypeforedit','Admin\Role\RoleManagerController@menuTypeForEdit');
 
 
 
 
 
         //--------权限分配----
-        Route::get('/permissionassignment','Admin\Role\RoleManagerController@permissionAssignment');
+        Route::get('/permissionassignment',['middleware' => ['permissions:permissionassignment'],'uses' => 'Admin\Role\RoleManagerController@permissionAssignment']);
 
         Route::post('/detailgroup','Admin\Role\RoleManagerController@detailGroup');
 
         //给用户组分配权限
-        Route::get('/assignpermissions/{id}','Admin\Role\RoleManagerController@assignPermissions');
+        Route::get('/assignpermissions/{id}',['middleware' => ['permissions:assignpermissions'],'uses' => 'Admin\Role\RoleManagerController@assignPermissions']);
 
         //存储分配权限
         Route::post('/settingpermission','Admin\Role\RoleManagerController@settingPermissions');
 
         //移除绑定的权限
-        Route::post('/removealreadyperm','Admin\Role\RoleManagerController@removeAlreadyPerm');
+        Route::post('/removealreadyperm',['middleware' => ['permissions:removealreadyperm'],'uses' => 'Admin\Role\RoleManagerController@removeAlreadyPerm']);
 
 
     });

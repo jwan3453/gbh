@@ -17,16 +17,12 @@ class AdminUserService{
 
     public function loadMenuList($IdForPerms){
 
-        $firstMenuRes = MenuSetting::where('menu_level','=',1)->where('permission_id',$IdForPerms)->get();
-
+        $firstMenuRes = MenuSetting::where('menu_level','=',1)->where('id',$IdForPerms)->get();
         foreach($firstMenuRes as $secondMenuList)
         {
-
             $secondMenuList->secondMenu = MenuSetting::where(['menu_level'=>2,'parent_id'=>$secondMenuList->id])->get();
-
         }
         return $firstMenuRes;
-
     }
 
 	public function isAdmin($request)

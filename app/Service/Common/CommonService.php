@@ -16,8 +16,9 @@ use Illuminate\Support\Facades\DB;
 
 use App\Models\Role\Role;
 use Illuminate\Http\Request;
-//use Illuminate\Support\Facades\Request;
+use App\Models\Role\MenuPermission;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Route;
 
 class CommonService {
 
@@ -40,6 +41,7 @@ class CommonService {
     public function getAdressInfo($level = '' , $code = 110000, $type)
 
     {
+
 
         if ($level == '') {
             return false;
@@ -68,7 +70,6 @@ class CommonService {
                 $info = "未知";
                 break;
         }
-
         return $info;
 
 
@@ -80,16 +81,46 @@ class CommonService {
         return Session::get('adminusername');
 
     }
-
+    //根据用户名查询所在的角色组
     public function checkWhereRole($getSession){
 
-        $user = AdminUser::where('username',$getSession)->first();
+        $user    = AdminUser::where('username',$getSession)->first();
 
-        $hasRole= RoleUser::where('user_id',$user->user_id)->first();
+        $hasRole = RoleUser::where('user_id',$user->user_id)->first();
 
-        $role = Role::where('id',$hasRole->role_id)->first();
+        $role    = Role::where('id',$hasRole->role_id)->first();
 
         return $role;
+
+    }
+
+    //根据角色查询绑定的权限
+    public function getBindPermission($role_id){
+
+        $permission = PermissionRole::where('role_id',$role_id)->get();
+        $permissionArr = [];
+        foreach($permission as $permissionList){
+
+            $permissionArr[] = $permissionList->permission_id;
+
+        }
+        return $permissionArr;
+
+    }
+
+    //匹配路由
+    public function checkRouteUrl($permission_id){
+
+        //当前路由
+        $currentRouteData = Session::get('currentPath_');
+        $currentRoute     = substr($currentRouteData,13);
+
+        $permissionData   = Permission::where('id',$permission_id)->first();
+        if($currentRoute == $permissionData->route){
+            return true;
+        }else{
+            return false;
+        }
 
     }
 
@@ -113,31 +144,31 @@ class CommonService {
 
     public function checkIsPermArticle($userInfo){
 
-        return $userInfo->may('文章管理');
+        return $userInfo->may('manageArticle');
 
     }
 
     public function checkIsPermHotel($userInfo){
 
-        return $userInfo->may('酒店管理');
+        return $userInfo->may('manageHotel');
 
     }
 
     public function checkIsPermRoomStatus($userInfo){
 
-        return $userInfo->may('房态管理');
+        return $userInfo->may('manageRoomStatus');
 
     }
 
     public function checkIsPermRoomPrice($userInfo){
 
-        return $userInfo->may('房价管理');
+        return $userInfo->may('manageRoomPrice');
 
     }
 
     public function checkIsPermSystems($userInfo){
 
-        return $userInfo->may('系统配置');
+        return $userInfo->may('systemsManage');
 
     }
 
@@ -147,15 +178,46 @@ class CommonService {
 
     }
 
+    public function getMenuForPerm($permId){
+
+        return Permission::where('id',$permId)->where('menu_type',1)->get();
+
+    }
+
+    public function getMenuForSecond($permId){
+
+        return Permission::where('id',$permId)->where('menu_type',2)->get();
+
+    }
+
     public function getMenuInfo(){
 
         return MenuSetting::where('menu_level',1)->get();
 
     }
 
+    public function getSecondMenu(){
+
+        return MenuSetting::where('menu_level',2)->get();
+
+    }
+
     public function checkAdminUser(Request $request){
 
         return AdminUser::where('username',$request->input('username'))->first();
+
+    }
+
+    public function putIdSession($menu_id){
+
+        $MenuInfo = MenuSetting::where('id',$menu_id)->first();
+        return Session::put($MenuInfo->id,$menu_id);
+
+    }
+    //记录二级菜单的所属的一级菜单
+    public function addFirstMenu($second_id){
+
+        return MenuSetting::where('id',$second_id)->first();
 
     }
 
@@ -167,7 +229,7 @@ class CommonService {
     //--------面包屑导航----
     public function getCurrentUrl(){
 
-        $getUrl  = Session::get('currentPath_');
+        $getUrl  = session('currentPath_');
 
         //是否有其它参数:
         $strPos = strpos($getUrl,'?',0);

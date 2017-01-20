@@ -12,11 +12,18 @@ namespace App\Http\Middleware;
 
 use Illuminate\Http\Request;
 use Illuminate\Session\Middleware\StartSession;
+use Closure;
+use Illuminate\Support\Facades\Session;
 
-class DirectionPathSession extends StartSession{
+class DirectionPathSession{
 
+    public function handle(Request $request,Closure $next){
 
-    //这里要使用StartSession才能将值存入
+        session(['currentPath_'=>$request->fullUrl()]);
+
+        return $next($request);
+
+    }
 
 
 }

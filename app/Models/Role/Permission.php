@@ -13,7 +13,7 @@ class Permission extends EntrustPermission {
 
     protected $table = 'permissions';
 
-    protected $fillable = ['name','display_name','description'];
+    protected $fillable = ['name','display_name','description','route','permission_level','parent_id','menu_id','menu_type'];
 
     public function Role()
     {

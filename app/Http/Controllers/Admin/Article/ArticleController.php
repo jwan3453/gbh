@@ -75,21 +75,39 @@ class ArticleController extends Controller
     public function createArticle()
     {
 
+        //AddressSession
+        Session::put('currentPath_','http://e.com/admin/manageArticle');
+        //获取路由
+        $currentUrl    = $this->commonService->getCurrentUrl();
+        //父级菜单
+        $getMenuName   = $this->commonService->getMenuName($currentUrl);
+
+        $SecondMenuName = '添加文章';
+
         $article = new Article();
         $articleCategories = ArticleCategory::all();
 
-        return view('Admin.Article.createArticle')->with('article',$article)->with('articleCategories',$articleCategories);
+        return view('Admin.Article.createArticle')->with(['article'  => $article , 'articleCategories' => $articleCategories, 'getMenuName' => $getMenuName, 'SecondMenuName' => $SecondMenuName]);
         //
     }
 
     public function classificationandtag()
     {
+        Session::put('currentPath_','http://e.com/admin/manageArticle');
+        //获取路由
+        $currentUrl    = $this->commonService->getCurrentUrl();
+
+        //父级菜单
+        $getMenuName   = $this->commonService->getMenuName($currentUrl);
+
+        $SecondMenuName = '文章分类管理';
+
         $tagNameList = $this->article->getAllArticleTag();
         $categoryList = $this->article->getAllArticleCategory();
 
         $oneLevelCategoryList = $this->article->getOneLevelCategory();
 
-        return view('Admin.Article.ClassificationAndTag')->with('tagNameList',$tagNameList)->with('categoryList',$categoryList)->with('oneLevelCategoryList',$oneLevelCategoryList);
+        return view('Admin.Article.ClassificationAndTag')->with(['tagNameList' => $tagNameList , 'categoryList' => $categoryList , 'oneLevelCategoryList' => $oneLevelCategoryList ,'getMenuName' => $getMenuName, 'SecondMenuName' => $SecondMenuName]);
     }
 
     public function addArticleTag(Request $request)
@@ -201,9 +219,18 @@ class ArticleController extends Controller
      */
     public function editArticle($articleId)
     {
+
+        Session::put('currentPath_','http://e.com/admin/manageArticle');
+
+        //获取路由
+        $currentUrl    = $this->commonService->getCurrentUrl();
+        //父级菜单
+        $getMenuName   = $this->commonService->getMenuName($currentUrl);
+
+        $SecondMenuName = '编辑文章';
         $articleCategories = ArticleCategory::all();
         $article = $this->article->getArticle($articleId);
-        return view('Admin.Article.editArticle')->with('article',$article)->with('articleCategories',$articleCategories);
+        return view('Admin.Article.editArticle')->with('article',$article)->with(['articleCategories' => $articleCategories , 'getMenuName' => $getMenuName, 'SecondMenuName' => $SecondMenuName]);
         //
     }
 

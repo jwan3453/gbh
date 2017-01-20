@@ -64,4 +64,13 @@ return [
         'expire' => 60,
     ],
 
+
+    'providers' => [
+        'users' => [
+            'driver' => 'eloquent',
+            'model'  => App\Models\Role\AdminUser::class,
+            'table'  => 'admin_user',
+        ],
+    ],
+
 ];

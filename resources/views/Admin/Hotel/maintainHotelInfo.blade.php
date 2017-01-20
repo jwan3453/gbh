@@ -1,8 +1,8 @@
 @extends('Admin.site')
 
 @section('content')
-
-    <div class="admin-content">
+    {{--@include('admin.partial.breadcrumbTrail')--}}
+    <div class="admin-content" id="adminContent">
         <div class="info-menu">
             <div class="ui simple dropdown " >
                     <label>信息维护</label>
@@ -32,4 +32,26 @@
 @section('script')
 
     @yield('infoScript')
+
+    <script>
+
+        $(function(){
+
+            function AdjustHeights() {
+
+                var heightMenu = document.getElementById('menuBox').offsetHeight;
+
+                var heightHotel = document.getElementById('adminContent').offsetHeight;
+
+                if(heightHotel > heightMenu){
+                    $('#menuBox').css('height',heightHotel+60);
+                }
+
+            }
+
+            AdjustHeights();
+
+        });
+
+    </script>
 @stop

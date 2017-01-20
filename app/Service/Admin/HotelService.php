@@ -3,6 +3,7 @@ namespace App\Service\Admin;
 
 use App\Models\BedType;
 
+use App\Models\Role\AdminUser;
 use App\Models\RoomStatusBatchLog;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -41,7 +42,7 @@ use Qiniu\Storage\UploadManager;
 use Qiniu\Storage\BucketManager;
 use App\Tool\MessageResult;
 
-
+use Illuminate\Support\Facades\Session;
 
 class HotelService {
 
@@ -53,10 +54,24 @@ class HotelService {
 
     public function getHotelList()
     {
-        $list = Hotel::select('id','name','address_id','status')->get();
-        foreach ($list as $hotelItem) {
-            $hotelItem->address = Address::select('province_code','city_code','district_code','detail','type')->where('id',$hotelItem->address_id)->first();
+        //查询当前用户所管理的酒店
+        $currentUsername = Session::get('adminusername');
+        $getHotel        = AdminUser::where('username',$currentUsername)->first();
+
+        if($getHotel->hotel_type == 1){
+            $list = Hotel::where('id',$getHotel->hotel_id)->select('id','name','address_id','status')->get();
+            foreach ($list as $hotelItem) {
+                $hotelItem->address = Address::select('province_code','city_code','district_code','detail','type')->where('id',$hotelItem->address_id)->first();
+            }
+        }elseif($getHotel->hotel_type == 2){
+            $list = Hotel::select('id','name','address_id','status')->get();
+            foreach ($list as $hotelItem) {
+                $hotelItem->address = Address::select('province_code','city_code','district_code','detail','type')->where('id',$hotelItem->address_id)->first();
+            }
+        }else{
+            return 'NotPermission';
         }
+
         return $list;
     }
 

@@ -77,19 +77,21 @@
                 @endif
 
                 <ul class="subMenu navContent secondMenu">
-
                     @if(count($firstMenuList->secondMenu) > 0)
                         @foreach($firstMenuList->secondMenu as $key => $secondMenuList)
-                        @if(session('currentPath_') && (session('currentPath_') === url($secondMenuList->menu_chaining)))
-                            <li>
-                                <a href="{{url($secondMenuList->menu_chaining)}}" session="{{ session('currentPath_') }}" class="secondNav Nav_">{{ $secondMenuList->menu_name }}</a>
+                            @if(session($secondMenuList->id) == $secondMenuList->id)
+                                @if(session('currentPath_') && (session('currentPath_') === url($secondMenuList->menu_chaining)))
+                                    <input type="hidden" name="sessionId" id="sessionId" value="{{session($secondMenuList->id)}}">
+                                    <li>
+                                        <a href="{{url($secondMenuList->menu_chaining)}}" session="{{ session('currentPath_') }}" class="secondNav Nav_">{{ $secondMenuList->menu_name }}</a>
 
-                            </li>
-                        @else
-                            <li>
-                                <a href="{{url($secondMenuList->menu_chaining)}}" session="#" class="Nav_">{{ $secondMenuList->menu_name }}</a>
-                            </li>
-                        @endif
+                                    </li>
+                                @else
+                                    <li>
+                                        <a href="{{url($secondMenuList->menu_chaining)}}" session="#" class="Nav_">{{ $secondMenuList->menu_name }}</a>
+                                    </li>
+                                @endif
+                            @endif
                         @endforeach
 
                     @endif
@@ -151,15 +153,14 @@
         //menu下拉
         $(".currentNav").click(function () {
 
-
             var secondCount = $(this).attr('value');
             var href_ = $(this).attr('href');
 
             if (secondCount > 0) {
-
+                $("#menuBox").css('height',900);  //菜单高度变化
                 $(this).toggleClass("menu-down").siblings(".currentNav").removeClass("menu-up");  //第一次下拉的样式
-                $(this).toggleClass("menu-up").siblings(".currentNav").removeClass("menu-down");  //再次点击的样式
 
+                $(this).toggleClass("menu-up").siblings(".currentNav").removeClass("menu-down");  //再次点击的样式
             } else {
                 window.location.href = href_;
             }
@@ -192,16 +193,13 @@
         //自适应高度
         function AdjustHeight() {
 
-            var heightMenu = document.getElementById('menuBox').offsetHeight;
             var heightContent = document.getElementById('centerBox').offsetHeight;
 
-            if (heightMenu > heightContent) {
+            var heightMenu = document.getElementById('menuBox').offsetHeight;
 
-                document.getElementById('centerBox').style.height = heightMenu;
+            if (heightMenu < heightContent) {
 
-            } else {
-
-                document.getElementById('menuBox').style.height = heightContent;
+                $('#menuBox').css('height',heightContent+60);
 
             }
 

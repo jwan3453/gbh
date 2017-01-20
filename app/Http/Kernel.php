@@ -33,5 +33,8 @@ class Kernel extends HttpKernel
         'permission'   => \App\Http\Middleware\SystemManager::class,
         'pathsession'  => \App\Http\Middleware\DirectionPathSession::class,
         'usersession'  => \App\Http\Middleware\UsernameSession::class,
+        'role'         => \Zizaco\Entrust\Middleware\EntrustRole::class,
+        'permissions'  => \Zizaco\Entrust\Middleware\EntrustPermission::class,
+        'ability'      => \Zizaco\Entrust\Middleware\EntrustAbility::class,
     ];
 }

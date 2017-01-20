@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use App\Service\Common\CommonService;
+use Illuminate\Support\Facades\Route;
 
 class AuthorityAuthenticate
 {
@@ -23,11 +24,17 @@ class AuthorityAuthenticate
     {
         $getCurrentUser = $request->session()->get('adminusername');
         //查询绑定的角色
-        $userInfo       = $this->commonService->checkInUser($getCurrentUser);
+        $checkWhichRole = $this->commonService->checkWhereRole($getCurrentUser);
+        //根据角色查询绑定的权限
+        $getBindPermission   = $this->commonService->getBindPermission($checkWhichRole->id);
+        //匹配路由
 
-        $checkIsRole    = $this->commonService->checkIsRole($userInfo);
+        $checkRouteUrl = [];
+        for($i=0; $i < count($getBindPermission); $i++){
+            $checkRouteUrl[] = $this->commonService->checkRouteUrl($getBindPermission[$i]);
+        }
 
-        if($checkIsRole){
+        if($checkRouteUrl){
             return $next($request);
         }else{
             return view('Admin.Error.NotPermission');

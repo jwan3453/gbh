@@ -7,6 +7,7 @@
 <div>{{$province->parent_id}}</div>
 --}}
     {{--@endforeach--}}
+    @include('admin.partial.breadcrumbTrail')
     <div id="geoData" style="display: none">{{$geoData}}</div>
 
 

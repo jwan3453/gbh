@@ -101,6 +101,7 @@ a{
 	width:1120px;
 	background-color: #f8f8f8;
 	padding:10px 10px;
+	margin-left: -40px;
 }
 .disabled-input{
 	border:1px solid #cfcfcf!important;
@@ -793,29 +794,29 @@ body{
 	font-family: "Microsoft YaHei" !important;
 }
 .menu-box{
-	width: 220px;
+	width: 180px;
 	/*background-color: #253942!important;*/
 	background-color: #414D5B!important;
 	position: absolute;
 	top: 0;
 
 	left: 0;
-	_height: 900px;         /*for IE 6*/
-	min-height: 900px;      /*随内容的高度而改变*/
+	_height: 850px;         /*for IE 6*/
+	min-height: 850px;      /*随内容的高度而改变*/
 	z-index:9999;
 	bottom: 0;
 
 }
 
 .menu_{
-	width: 220px;
+	width: 180px;
 	height:60px;
-	background: #333A42;
+	background: #414D5B;
 }
 
 .menu-top{
 
-	width: 220px;
+	width: 180px;
 	height: 60px;
 	/*background: #85CFD8;*/
 	background: #5FD2A9;
@@ -827,7 +828,7 @@ body{
 	height: 35px;
 	border: 1px solid #ddd;
 	border-radius: 35px;
-	margin-left: 18px;
+	margin-left: 12px;
 	margin-top: 12px;
 }
 
@@ -839,11 +840,11 @@ body{
 }
 
 .menu-top p{
-	font-size: 14px;
+	font-size: 12px;
 	color: #fff;
 	float: right;
-	padding-right:75px;
-	padding-top: 10px;
+	padding-right:47px;
+	padding-top: 15px;
 }
 
 .menu-logo img{
@@ -925,6 +926,7 @@ body{
 .admin-menu-list a{
 	padding-left: 20px;
 	position: relative;
+	font-size: 12px;
 }
 
 .admin-menu-list div{
@@ -996,18 +998,22 @@ body{
 .admin-menu-list a >i.left,.admin-menu-list div >i.left{
 	float: right;
 	padding-right: 6px;
-	font-size: 18px;
+	font-size: 14px;
 	font-weight: 400;
 }
 
 .open-menu{
-	margin-top: -5px!important;
-	padding-right: 40px!important;
+	margin-top: -4px!important;
+	padding-right: 45px!important;
 	transform: rotate(-90deg);
 	-ms-transform:rotate(-90deg); 	/* IE 9 */
 	-moz-transform:rotate(-90deg); 	/* Firefox */
 	-webkit-transform:rotate(-90deg); /* Safari 和 Chrome */
 	-o-transform:rotate(-90deg); 	/* Opera */
+}
+
+.header-menu li div span{
+	font-size: 12px;
 }
 
 .secondMenu{
@@ -1054,6 +1060,8 @@ body{
 	width: 100%;
 	height: 60px;
 	background: #333A42;
+	padding-right: 40px;
+	margin-left: -40px;
 	/*background: #E8E8E8;*/
 	/*background:linear-gradient(to right,#fff,#85CFD8);*/
 	/*background:-moz-linear-gradient(to right,#fff,#85CFD8);   !* Firefox *!*/
@@ -4744,6 +4752,8 @@ text-align: center;
 /*********** 用户管理页面 ***********/
 #containerUser{
 	width: 1000px;
+	margin-left: -20px;
+	padding-right: 20px;
 }
 
 .container-header{
@@ -4810,6 +4820,84 @@ text-align: center;
 	margin: 30px auto;
 	font-size: 14px;
 }
+
+.user-table > ul{
+	display: block;
+	width: 900px;
+	height: 600px;
+}
+
+.user-table > ul >li{
+	width: 950px;
+	/*height: 35px;*/
+	margin-left: -38px;
+	border-bottom: 1px solid #ccc;
+}
+
+
+.user-table > ul > li > span,.user-table .currentPerms > span{
+	display: inline-block;
+	width: 318px;
+	height: 45px;
+	text-align: center;
+	line-height: 45px;
+	margin-left: -4px;
+	white-space:nowrap;
+	overflow:hidden;
+	text-overflow:ellipsis;
+}
+
+.currentPerms:hover{
+	background: rgba(0,0,0,0.1);
+}
+
+.second-perms{
+	margin-left: -40px;
+}
+
+.second-perms > li:hover{
+	background: rgba(0,0,0,0.2);
+}
+
+.user-table .second-perms span p{
+	margin-left: 120px;
+}
+
+
+.second-perms li > span{
+	display: inline-block;
+	width: 318px;
+	height: 35px;
+	text-align: center;
+	line-height: 35px;
+	margin-left: -4px;
+	/*border-bottom: 1px solid #ccc;*/
+}
+
+.first-cols{
+	color: #fff;
+	background: #414D5B;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+.first-cols span{
+	margin-bottom: -2px;
+}
+
+.second-perms li{
+	border-bottom: 1px solid #ccc;
+	/*border-top: 1px solid #ccc;*/
+}
+
+.second-perms li:last-child{
+	border-bottom: none;
+}
+
+.second-perms li:first-child{
+	border-top: 1px solid #ccc;
+}
+
 
 .user-table .ui.table thead th {
 	/*background: #5FD2A9!important;*/
@@ -4943,6 +5031,10 @@ td ul li{
 
 .form-box form li{
 	padding-top: 20px;
+}
+
+.ui.modal.add.test #addForm select{
+	width: 190px;
 }
 
 input:-webkit-autofill{-webkit-box-shadow: 0 0 0 1000px #fff inset!important; }
@@ -5348,6 +5440,80 @@ textarea{
 
 
 
+/****** Add perm *******/
+
+.ui.modal.add.perm-group-modal{
+	width: 700px!important;
+	margin-left: -30%;
+	height: 400px!important;
+}
+
+.addPerm li div span,.editPerms li div span{
+	display: inline-block;
+	width: 65px;
+}
+
+.ui.modal.add.perm-group-modal #addGroupForms{
+	margin-left: 80px;
+}
+
+#MenuShowLists,#editMenuShowLists,#editPermShowLists,#permShowLists{
+	width: 300px;
+	height: 30px;
+}
+
+#editMenuShowLists select,#editPermShowLists select{
+	outline: none;
+	cursor:pointer;
+}
+
+#selectPermType,#menuLists{
+	cursor: pointer;
+	width: 193px;
+	margin-left: 15px;
+	outline:none;
+}
+
+.ui.modal.edit.perm-group-modal{
+	width: 700px!important;
+	margin-left: -30%!important;
+	height: 400px!important;
+}
+
+.ui.modal.edit.perm-group-modal .editPerms{
+	width: 600px;
+	margin-left: 60px;
+	margin-top: 30px;
+}
+
+.editPerms input{
+	width: 180px;
+	height: 34px;
+	padding-left: 10px;
+}
+
+.editPerms ul li{
+	margin-top: 20px;
+}
+
+.editPerms select{
+	width: 195px;
+	margin-left: 15px;
+}
+
+.showMenu,.showMenu_{
+	display: none!important;
+}
+
+.showSecond,.showSecond_{
+	display: none!important;
+}
+
+/**** Add perm end ****/
+
+
+
+
 /******** 角色绑定 *******/
 
 .ui.modal.detail.binding{
@@ -5522,11 +5688,11 @@ textarea{
 	cursor: pointer!important;
 }
 
-#checkBoxStyle{
+.checkBoxStyle{
 	width: 10px!important;
 	height: 10px!important;
 	background: #ccc;
-	margin-left: 55px;
+	margin-left: 50px;
 	border-radius: 100%;
 	position: relative;
 	-webkit-box-shadow: 0px 1px 3px rgba(0,0,0,0.9);
@@ -5534,32 +5700,55 @@ textarea{
 	box-shadow: 0px 1px 3px rgba(0,0,0,0.9);
 }
 
-#checkBoxStyle label{
+.checkBoxStyle span{
+	text-align: left;
+	margin-left: 10px;
+}
+
+.checkBoxStyle label{
 	display: block;
 	width: 8px;
 	height: 8px;
 	border-radius: 100px;
-
 	-webkit-transition: all .5s ease;
 	-moz-transition: all .5s ease;
 	-o-transition: all .5s ease;
-	-ms-transition: all .5s ease;
+	/*-ms-transition: all .5s ease;*/
 	transition: all .5s ease;
 	cursor: pointer;
 	position: absolute;
 	top: 1px;
 	left: 1px;
-	z-index: 1;
-
+	z-index: 999;
 	background: #fff;
-
 	-webkit-box-shadow:inset 0px 1px 3px rgba(255,255,255,0.1);
 	-moz-box-shadow:inset 0px 1px 3px rgba(255,255,255,0.1);
-	box-shadow:inset 0px 1px 3px rgba(255,255,255,0.1);
+	box-shadow:inset 0px 1spx 3px rgba(255,255,255,0.1);
 }
 
-#checkBoxStyle input[type=checkbox]:checked + label {
+.checkBoxStyle input[type=checkbox]:checked + label {
 	background: #5FD2A9;
+}
+
+.checkBoxStyle span{
+	vertical-align: middle;
+	display: inline-block;
+	width: 200px;
+	height: 35px;
+	padding-left: 10px;
+}
+
+.checkBoxStyle_ ul{
+	text-align: left;
+	margin-left: -55px;
+	width: 450px;
+}
+
+.checkBoxStyle_ ul li{
+	width: 160px;
+	height: 20px;
+	float: left;
+	margin-left: 30px;
 }
 
 .ui.small.modal{
@@ -5598,4 +5787,52 @@ textarea{
 }
 
 
+.checkAllBox{
+	text-align: left;
+}
+
 /********* 分配模块 end **********/
+
+
+
+/*********** Not Permission **********/
+
+#errorContainer{
+	width:970px;
+	margin-left: -40px;
+	padding-right: 40px;
+	margin-top: -40px;
+}
+
+.error-box{
+	width: 930px;
+	height: 700px;
+	background: #F7F7F7;
+	margin-top: 40px;
+}
+
+.error-box img{
+	width: 400px;
+	display: block;
+	margin: auto;
+	padding-top: 80px;
+}
+
+.error-box h2{
+	margin-left: 230px;
+	margin-top: 80px;
+}
+
+.error-box p{
+	width: 80px;
+	height: 30px;
+	border: 2px solid #414D5B;
+	text-align: center;
+	line-height: 30px;
+	border-radius: 5px;
+	font-size: 14px;
+	margin: auto;
+	cursor: pointer;
+}
+
+/********* Not Permission end **********/

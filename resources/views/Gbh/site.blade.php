@@ -80,11 +80,6 @@
                             <span>酒店联盟</span>
                         </a>
 
-                        <a href="/gbh/login">
-                            <span>注册/登录</span>
-                        </a>
-
-
                     </div>
 
                 </div>

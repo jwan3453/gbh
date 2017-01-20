@@ -39,49 +39,117 @@ class AppServiceProvider extends ServiceProvider
                 return view('Admin.Sign.sign');
             }
 
+
+
+
+            //--------permissionList
             //查询所在的角色组
             $checkWhereRole  =  $commonService->checkWhereRole($getCurrentUser);
 
             //获得该组的权限
             $getPermission   =  $commonService->getPermissions($checkWhereRole->id);
 
-            //菜单Info
-            $getMenuId       =  $commonService->getMenuInfo();
+            //获得一级MenuId
+            $perCon = [];
+            for( $i = 0; $i < count($getPermission); $i++){
+
+                $perCon[] = $commonService->getMenuForPerm($getPermission[$i]->permission_id);
+
+            }
+            //MenuId转化成数组
+            $perConArr = [];
+            for($i = 0; $i < count($perCon) ; $i++){
+                foreach($perCon[$i] as $newArr){
+                    $perConArr[] = "$newArr->menu_id";
+                }
+            }
+            //获得二级MenuId
+            $secondCon = [];
+            for($j = 0; $j < count($getPermission); $j++){
+
+                $secondCon[] = $commonService->getMenuForSecond($getPermission[$j]->permission_id);
+
+            }
+            //MenuId转化成数组
+            $secondConArr = [];
+            for($j = 0; $j < count($secondCon) ; $j++){
+                foreach($secondCon[$j] as $newSecondArr){
+                    $secondConArr[] = "$newSecondArr->menu_id";
+                }
+            }
+
+
+
+
 
 
             //--------menuList
+            //一级菜单Info
+            $getMenuId       =  $commonService->getMenuInfo();
             $menuStr = "";
             for($i=0; $i  < count($getMenuId); $i++){
-                $menuStr .= $getMenuId[$i]->permission_id."|";
+                $menuStr .= $getMenuId[$i]->id."|";
             }
             //转化成数组
             $prevstr      =   substr($menuStr,0,iconv_strlen($menuStr)-1);                     //大于10的字符串
             $menuArr      =   explode('|',$prevstr);
 
-
-            //--------permissionList
-            $perStr = "";
-            for( $i = 0; $i < count($getPermission); $i++){
-                $perStr  .= $getPermission[$i]->permission_id."|";
+            //二级菜单Info
+            $getMenuIdForSecond = $commonService->getSecondMenu();
+            $menuStr_ = "";
+            for($j=0; $j < count($getMenuIdForSecond); $j++){
+                $menuStr_ .= $getMenuIdForSecond[$j]->id."|";
             }
-            $perStr = substr($perStr,0,iconv_strlen($perStr)-1);
-            $perToArr = explode('|',$perStr);
+            //转化成数组
+            $prevstr_      = substr($menuStr_,0,iconv_strlen($menuStr_)-1);
+            $menuArr_      = explode('|',$prevstr_);
 
+            //匹配存在的一级菜单
             $hasPerms = [];
-            for($i=0; $i < count($perToArr); $i++){
-                if(in_array($perToArr[$i],$menuArr)){
-                    $hasPerms[] = $perToArr[$i];
+            for($i=0; $i < count($perConArr); $i++){
+                if(in_array($perConArr[$i],$menuArr)){
+                    $hasPerms[] = $perConArr[$i];
                 }
             }
+            //匹配存在的二级菜单
+            $hasSecondPerms = [];
+            for($j=0; $j < count($secondConArr); $j++){
+                if(in_array($secondConArr[$j],$menuArr_)){
+                    $hasSecondPerms[] = $secondConArr[$j];
+                }
+            }
+            //记录二级菜单的所属的一级菜单
+            $addFirstMenu = [];
+            for($p=0; $p < count($hasSecondPerms); $p++){
+                $addFirstMenuData = $commonService->addFirstMenu($hasSecondPerms[$p]);
+                $addFirstMenu[]   = "$addFirstMenuData->parent_id";
+            }
+            $firstMenu = array_unique($addFirstMenu);
+            $addFirstMenuArr = [];
+            foreach($firstMenu as $firstMenuValue){
+                if(!in_array($firstMenuValue,$hasPerms)){
+                    $addFirstMenuArr[] = $firstMenuValue;
+                }
+            }
+            $hasNewPerms = array_merge($hasPerms, $addFirstMenuArr);
+
+
+
+            //forSession
+            for($q=0;$q < count($hasSecondPerms); $q++){
+                $commonService->putIdSession($hasSecondPerms[$q]);
+            }
+
 
             $allMenuLists = [];
             //查询菜单
-            for( $k=0; $k < count($hasPerms); $k++){
+            for( $k=0; $k < count($hasNewPerms); $k++){
                 $adminUser  = new AdminUserService;
-                if($adminUser->loadMenuList($hasPerms[$k])){
-                    $allMenuLists[] = $adminUser->loadMenuList($hasPerms[$k]);
+                if($adminUser->loadMenuList($hasNewPerms[$k])){
+                    $allMenuLists[] = $adminUser->loadMenuList($hasNewPerms[$k]);
                 }
             }
+
 
             $view->with('allMenuList', $allMenuLists);
         });

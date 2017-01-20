@@ -25,7 +25,7 @@ class AdminUser extends Model implements AuthenticatableContract,
 
     protected $primaryKey = 'user_id';
 
-    protected $fillable   = ['username', 'password','truename','mobile','remarks','hotel_id','position'];
+    protected $fillable   = ['username', 'password','truename','mobile','remarks','hotel_id','position','hotel_type'];
 
     public function Role(){
 

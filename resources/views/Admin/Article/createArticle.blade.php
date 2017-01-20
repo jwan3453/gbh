@@ -11,10 +11,11 @@
 
 @section('content')
 
+    @include('admin.partial.breadcrumbTrail')
     <div class="margin">
     </div>
 
-    <div style="background-color: #f8f8f8; padding:10px;" >
+    <div style="background-color: #f8f8f8; padding:10px;" id="createArticle">
         <form action="{{url('/admin/manageArticle/create')}}" method="post" id="articleForm">
 
             @include('Admin.Article.editorForm')
@@ -55,4 +56,31 @@
         </div>
 
     </div>
+    <script>
+
+        $(function() {
+
+
+            function AdjustHeights() {
+
+                var heightMenu = document.getElementById('menuBox').offsetHeight;
+
+                var heightCreate = document.getElementById('createArticle').offsetHeight;
+
+                if (2 * heightCreate > heightMenu) {
+                    $('#menuBox').css('height', 2 * heightCreate);
+                }
+
+            }
+
+            AdjustHeights();
+        });
+    </script>
 @stop
+
+
+@section('script')
+
+
+@stop
+

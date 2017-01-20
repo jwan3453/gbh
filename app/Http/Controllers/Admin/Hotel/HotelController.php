@@ -16,7 +16,7 @@ use App\Service\Admin\ImageService;
 use App\Models\Hotel;
 
 use Illuminate\Support\Facades\Session;
-
+use Illuminate\Support\Facades\Route;
 class HotelController extends Controller
 {
     /**
@@ -63,24 +63,27 @@ class HotelController extends Controller
 
 
         $manageHotelList = $this->hotelService->getHotelList();
+        if($manageHotelList == "NotPermission"){
+            return redirect(url('admin/Error/NotPermission'));
+        }else{
+            foreach ($manageHotelList as $hotelList) {
 
-        foreach ($manageHotelList as $hotelList) {
-
-            if($hotelList->address != null)
-            {
+                if($hotelList->address != null)
+                {
 
 
-                $province = $this->commonService->getAdressInfo('province',$hotelList->address->province_code,$hotelList->address->type);
-                $city = $this->commonService->getAdressInfo('city',$hotelList->address->city_code,$hotelList->address->type);
-                $district = $this->commonService->getAdressInfo('district',$hotelList->address->district_code,$hotelList->address->type);
-                $detail = $hotelList->address->detail;
+                    $province = $this->commonService->getAdressInfo('province',$hotelList->address->province_code,$hotelList->address->type);
+                    $city = $this->commonService->getAdressInfo('city',$hotelList->address->city_code,$hotelList->address->type);
+                    $district = $this->commonService->getAdressInfo('district',$hotelList->address->district_code,$hotelList->address->type);
+                    $detail = $hotelList->address->detail;
 
-                $hotelList->addressInfo = $province.$city.$district.$detail;
+                    $hotelList->addressInfo = $province.$city.$district.$detail;
+                }
+
             }
 
+            return view('Admin.Hotel.manageHotel')->with(['manageHotelList' => $manageHotelList , 'getMenuName' => $getMenuName, 'firstMenuName' => $firstMenuName]);
         }
-
-        return view('Admin.Hotel.manageHotel')->with(['manageHotelList' => $manageHotelList , 'getMenuName' => $getMenuName, 'firstMenuName' => $firstMenuName]);
     }
 
     /**
@@ -449,6 +452,14 @@ class HotelController extends Controller
     //创建酒店 输入基本信息
     public function createHotel()
     {
+        Session::put('currentPath_','http://e.com/admin/manageHotel');
+        //获取路由
+        $currentUrl    = $this->commonService->getCurrentUrl();
+        //父级菜单
+        $getMenuName   = $this->commonService->getMenuName($currentUrl);
+
+        $SecondMenuName = '新建酒店';
+
         $geoData = $this->commonService->getGeoDetail();
         $categoryList = $this->SytemService->getHotelCategories();
         $hotelInfo = new Hotel();
@@ -456,13 +467,23 @@ class HotelController extends Controller
         return view('Admin.Hotel.createHotel')->with('geoData',$geoData)
                                               ->with('categoryList',$categoryList)
                                               ->with('hotelInfo',$hotelInfo)
-                                              ->with('createOrUpdate',$createOrUpdate);
+                                              ->with('createOrUpdate',$createOrUpdate)
+                                              ->with(['getMenuName' => $getMenuName, 'SecondMenuName' => $SecondMenuName]);
         //
     }
 
     //维护酒店基本信息
     public function maintainHotelBasicInfo($hotelId)
     {
+
+        Session::put('currentPath_','http://e.com/admin/manageHotel');
+        //获取路由
+        $currentUrl    = $this->commonService->getCurrentUrl();
+        //父级菜单
+        $getMenuName   = $this->commonService->getMenuName($currentUrl);
+
+        $SecondMenuName = '酒店信息维护';
+
         $geoData = $this->commonService->getGeoDetail();
         $hotelInfo = $this->hotelService->getHotelBasicInfo($hotelId);
 
@@ -801,8 +822,17 @@ class HotelController extends Controller
     //管理酒店图片
     public function maintainHotelImage($hotelId)
     {
+
+        Session::put('currentPath_','http://e.com/admin/manageHotel');
+        //获取路由
+        $currentUrl    = $this->commonService->getCurrentUrl();
+        //父级菜单
+        $getMenuName   = $this->commonService->getMenuName($currentUrl);
+
+        $SecondMenuName = '图片管理';
+
         $sectionListAndImage = $this->hotelService->getHotelImages($hotelId);
-        return view('Admin.Hotel.maintainHotelImage')->with('sectionListAndImage',$sectionListAndImage)->with('hotelId',$hotelId);
+        return view('Admin.Hotel.maintainHotelImage')->with('sectionListAndImage',$sectionListAndImage)->with('hotelId',$hotelId)->with(['getMenuName' => $getMenuName, 'SecondMenuName' => $SecondMenuName]);
     }
 
     //上传酒店图片
