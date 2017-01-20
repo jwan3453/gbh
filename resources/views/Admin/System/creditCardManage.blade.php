@@ -232,6 +232,14 @@
 			
 		}
 	}
+
+	function AdjustCardHeight() {
+
+		$('#menuBox').css('height',900);
+
+	}
+
+	AdjustCardHeight();
 </script>
 
 @stop

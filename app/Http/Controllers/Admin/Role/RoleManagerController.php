@@ -10,6 +10,7 @@ use App\Tool\MessageResult;
 use App\Http\Controllers\Controller;
 use App\Service\Admin\RoleService;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Route;
 
 
 class RoleManagerController extends Controller
@@ -48,6 +49,7 @@ class RoleManagerController extends Controller
     //用户管理
     public function show()
     {
+        $name = Route::current();
         //是否有权限
         $getSession = Session::get('adminusername');
 
@@ -63,8 +65,9 @@ class RoleManagerController extends Controller
             $dataRes   =   $this->adminRole->userData();          //用户数据
             $countRes  =   $this->adminRole->countData();         //用户数量
             $roleRes   =   $this->adminRole->roleData();          //角色数据
+            $hotelRes  =   $this->adminRole->hotelData();         //酒店数据
 
-            return view('Admin.Role.userManager',compact('dataRes','roleRes'),['pageNum' => $dataRes])->with(['countRes'=> $countRes,'getMenuName' => $getMenuName, 'firstMenuName' => $firstMenuName]);
+            return view('Admin.Role.userManager',compact('dataRes','roleRes','hotelRes'),['pageNum' => $dataRes])->with(['countRes'=> $countRes,'getMenuName' => $getMenuName, 'firstMenuName' => $firstMenuName]);
 
         }
     }
@@ -90,6 +93,7 @@ class RoleManagerController extends Controller
     //权限管理
     public function showPermission(){
 
+        //--------Menu
         //获取路由
         $currentUrl    = $this->commonService->getCurrentUrl();
 
@@ -97,13 +101,20 @@ class RoleManagerController extends Controller
         //父级菜单
         $firstMenuName = $this->commonService->firstMenuName($getMenuName);
 
+        //--------Permission
         $permissionRes = $this->adminRole->permissionData();
-        return view('Admin.Role.permissionManager',compact('permissionRes'))->with(['getMenuName' => $getMenuName, 'firstMenuName' => $firstMenuName]);
+        //--------Menu
+        $getFirstMenu       = $this->adminRole->getMenuData();
+        $getSecondMenu      = $this->adminRole->getSecondMenu();
+
+
+        return view('Admin.Role.permissionManager',compact('getFirstMenu',$getFirstMenu),compact('getSecondMenu' , $getSecondMenu))->with(['permissionRes' => $permissionRes,'getMenuName' => $getMenuName, 'firstMenuName' => $firstMenuName]);
 
     }
 
     //权限分配
     public function permissionAssignment(){
+
 
         //获取路由
         $currentUrl    = $this->commonService->getCurrentUrl();
@@ -391,11 +402,20 @@ class RoleManagerController extends Controller
 
     public function detailPermissions(){
 
-        $detailRes = $this->adminRole->getPermissions();
+        $detailRes    = $this->adminRole->getPermissions();
+
         if($detailRes){
 
             $resultjson = new MessageResult();
-            $resultjson->extra =  $detailRes;
+            if($detailRes->parent_id){
+                //存在绑定权限组
+                $resultjson->statusMsg = $detailRes->parent_id;
+                $resultjson->extra =  $detailRes;
+
+            }elseif(!$detailRes->parent_id){
+                $resultjson->statusMsg = null;
+                $resultjson->extra =  $detailRes;
+            }
 
             return response($resultjson->toJson());
 
@@ -629,11 +649,14 @@ class RoleManagerController extends Controller
         $firstMenuName = $this->commonService->firstMenuName($getMenuName);
 
         $detailRole         =   $this->adminRole->detailRole($id);           //角色信息
-        $permissions        =   $this->adminRole->menuInfoData();          //权限列表
 
-        $currentPermission  =   $this->adminRole->currentPerm($id);          //当前拥有权限
+        //-----permission
+        $permissions        =   $this->adminRole->permissionData();            //权限列表
 
-        return view('admin.role.settingPermissions',compact('detailRole','permissions','currentPermission'))->with(['getMenuName' => $getMenuName,'firstMenuName' => $firstMenuName]);
+        $currentPermission  =  $this->adminRole->currentPerm($id);          //当前拥有权限
+
+        return view('admin.role.settingPermissions',compact('detailRole','currentPermission'))->with(['permissions' => $permissions,'getMenuName' => $getMenuName,'firstMenuName' => $firstMenuName]);
+
 
     }
 
@@ -668,5 +691,95 @@ class RoleManagerController extends Controller
         return $choiceRes;
 
     }
+
+    //判断权限类型
+    public function permType(){
+
+        $getPermList = $this->adminRole->typePermList();
+        $permId   = [];
+        $permName = [];
+        for($i = 0; $i < count($getPermList) ; $i++){
+            $permId[]   = $getPermList[$i]->id;
+            $permName[] = $getPermList[$i]->display_name;
+        }
+
+        $jsonResult = new MessageResult();
+
+        if($getPermList){
+
+            $jsonResult->statusCode = 1;
+            $jsonResult->statusMsg  = $permId;
+            $jsonResult->extra      = $permName;
+
+        }else{
+
+            $jsonResult->statusCode = 0;
+            $jsonResult->statusMsg  = "失败";
+
+        }
+
+        return response($jsonResult->toJson());
+
+    }
+
+    public function permTypeForEdit(){
+
+        $getPermList = $this->adminRole->typePermList();
+        $permId   = [];
+        $permName = [];
+        for($i = 0; $i < count($getPermList) ; $i++){
+            $permId[]   = $getPermList[$i]->id;
+            $permName[] = $getPermList[$i]->display_name;
+        }
+
+        $jsonResult = new MessageResult();
+
+        if($getPermList){
+
+            $jsonResult->statusCode = 1;
+            $jsonResult->statusMsg  = $permId;
+            $jsonResult->extra      = $permName;
+
+        }else{
+
+            $jsonResult->statusCode = 0;
+            $jsonResult->statusMsg  = "失败";
+
+        }
+
+        return response($jsonResult->toJson());
+
+    }
+
+    public function menuTypeForEdit(){
+
+        $getMenuList = $this->adminRole->typeMenuList();
+        $menuId   = [];
+        $menuName = [];
+        for($i = 0; $i < count($getMenuList) ; $i++){
+            $menuId[]   = $getMenuList[$i]->id;
+            $menuName[] = $getMenuList[$i]->menu_name;
+        }
+
+        $jsonResult = new MessageResult();
+
+        if($getMenuList){
+
+            $jsonResult->statusCode = 1;
+            $jsonResult->statusMsg  = $menuId;
+            $jsonResult->extra      = $menuName;
+
+        }else{
+
+            $jsonResult->statusCode = 0;
+            $jsonResult->statusMsg  = "失败";
+
+        }
+
+        return response($jsonResult->toJson());
+
+
+    }
+
 
 }

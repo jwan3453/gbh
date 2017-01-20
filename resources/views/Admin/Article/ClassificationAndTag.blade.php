@@ -15,7 +15,7 @@
 @stop
 
 @section('content')
-
+	@include('admin.partial.breadcrumbTrail')
 <div class="classification-box">
 	<div class="classification-box-title">
 		<span>文章分类管理</span>

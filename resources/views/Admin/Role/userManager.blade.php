@@ -4,7 +4,6 @@
 
 @stop
 
-
 @section('content')
 
 <div id="containerUser">
@@ -77,16 +76,36 @@
                         <div>联系方式 :&nbsp;&nbsp;&nbsp;<input type="text" name="mobile" placeholder="请输入联系方式"></div>
                     </li>
                     <li>
-                        <div style="margin-left: 50px;">所属酒店 :&nbsp;&nbsp;&nbsp;<input type="text" name="hotel_id" placeholder="请输入酒店名"></div>
+                        <div style="margin-left: 50px;">输入密码 :&nbsp;&nbsp;&nbsp;<input type="password" name="password" placeholder="请输入密码"></div>
                     </li>
                     <li>
-                        <div>输入密码 :&nbsp;&nbsp;&nbsp;<input type="password" name="password" placeholder="请输入密码"></div>
+                        <div>确认密码 :&nbsp;&nbsp;&nbsp;<input type="password" id="pwd" placeholder="请确认密码"></div>
                     </li>
                     <li>
-                        <div style="margin-left: 50px;">确认密码 :&nbsp;&nbsp;&nbsp;<input type="password" id="pwd" placeholder="请确认密码"></div>
+                        <div style="margin-left: 50px;">所任职位 :&nbsp;&nbsp;&nbsp;<input type="text" name="position" placeholder="请输入所任职位"></div>
                     </li>
                     <li>
-                        <div>所任职位 :&nbsp;&nbsp;&nbsp;<input type="text" name="position" placeholder="请输入所任职位"></div>
+                        <div>
+                            所属酒店 :&nbsp;&nbsp;&nbsp;
+                            {{--<input type="text" name="hotel_id" placeholder="请输入酒店名">--}}
+                            <select name="hotel_type" id="hotel_type" onchange="hotelType();">
+                                <option value="0">无所属酒店</option>
+                                <option value="1">管理部分酒店</option>
+                                <option value="2">管理所有酒店</option>
+                            </select>
+                        </div>
+                    </li>
+                    <li>
+                        <div style="margin-left: 50px;" id="selectHotelList">
+                            酒店选择 :&nbsp;&nbsp;&nbsp;
+                            {{--<input type="text" name="hotel_id" placeholder="请输入酒店名">--}}
+                            <select name="hotelId" id="hotelId" disabled>
+                                <option value="0">尚未选择酒店</option>
+                                @foreach($hotelRes as $hotelResLists)
+                                    <option value="{{$hotelResLists->id}}">{{$hotelResLists->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
                     </li>
                 </ul>
                 <div id="addUserBox">
@@ -110,7 +129,7 @@
         <div class="form-box">
             <form id="editForm">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                <input type="hidden" name="userid" id="userId">
+                <input type="hidden" name="userId" id="userId">
                 <ul>
                     <li>
                         <div>用 &nbsp;户 &nbsp;名 :&nbsp;&nbsp;&nbsp;<input type="text" id="username_" name="username_" placeholder="请输入用户名"></div>
@@ -122,13 +141,32 @@
                         <div>联系方式 :&nbsp;&nbsp;&nbsp;<input type="text" id="mobile_" name="mobile_" placeholder="请输入联系方式"></div>
                     </li>
                     <li>
-                        <div style="margin-left: 50px;">所属酒店 :&nbsp;&nbsp;&nbsp;<input type="text" id="hotel_" name="hotel_ids" placeholder="请输入酒店名"></div>
+                        <div style="margin-left: 50px;">所任职位 :&nbsp;&nbsp;&nbsp;<input type="text" id="position_" name="position_" placeholder="请输入所任职位"></div>
                     </li>
                     <li>
-                        <div>所任职位 :&nbsp;&nbsp;&nbsp;<input type="text" id="position_" name="position_" placeholder="请输入所任职位"></div>
+                        <div>备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注 :&nbsp;&nbsp;&nbsp;<input type="text" name="position_" placeholder="请输入所任职位"></div>
                     </li>
                     <li>
-                        <div style="margin-left: 50px;">备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注 :&nbsp;&nbsp;&nbsp;<input type="text" name="position_" placeholder="请输入所任职位"></div>
+                        <div style="margin-left: 50px;margin-top: 10px;">
+                            所属酒店 :&nbsp;&nbsp;&nbsp;
+                            <select name="edit_hotel_type" id="edit_hotel_type" onchange="hotelType_();" style="width:190px;">
+                                <option value="0">无所属酒店</option>
+                                <option value="1">管理部分酒店</option>
+                                <option value="2">管理所有酒店</option>
+                            </select>
+                        </div>
+                    </li>
+                    <li>
+                        <div id="editSelectHotel" style="margin-top: 10px;margin-left: -80px;">
+                            酒店选择 :&nbsp;&nbsp;&nbsp;
+                            {{--<input type="text" name="hotel_id" placeholder="请输入酒店名">--}}
+                            <select name="editHotelId" id="editHotelId" disabled>
+                                <option value="0">尚未选择酒店</option>
+                                @foreach($hotelRes as $hotelResLists)
+                                    <option value="{{$hotelResLists->id}}">{{$hotelResLists->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
                     </li>
                 </ul>
                 <div id="editUserBox">
@@ -194,10 +232,25 @@
 </div>
 
 @stop
-
 @section('script')
-
     <script>
+
+        //酒店类型
+        function hotelType(){
+            if($("#hotel_type").val() == 1){
+                $("#hotelId").attr('disabled',false);
+            }else{
+                $("#hotelId").attr('disabled',true);
+            }
+        }
+
+        function hotelType_(){
+            if($("#edit_hotel_type").val() == 1){
+                $("#editHotelId").attr('disabled',false);
+            }else{
+                $("#editHotelId").attr('disabled',true);
+            }
+        }
 
         function editUser(id){
 
@@ -214,7 +267,7 @@
                 success:function(data){
                     if(data){
 
-                        $("#userId").val(data.extra.id);
+                        $("#userId").val(data.extra.user_id);
                         $("#username_").val(data.extra.username);
                         $("#truename_").val(data.extra.truename);
                         $("#mobile_").val(data.extra.mobile);
@@ -370,6 +423,11 @@
                     $("input[name='position']").focus();
                     return false;
                 }
+                if($("#hotel_type").val() == 1 && $("#hotelId").val() == 0){
+                    toastAlert('酒店选择不能为空',2);
+                    $("#hotelId").focus();
+                    return false;
+                }
 
 
                 $(this).html("提交中");
@@ -475,6 +533,11 @@
                 if(position_ == ""){
                     toastAlert('职位不能为空',2);
                     $("input[name='position_']").focus();
+                    return false;
+                }
+                if($("#edit_hotel_type").val() == 1 && $("#editHotelId").val() == 0){
+                    toastAlert('酒店选择不能为空',2);
+                    $("#editHotelId").focus();
                     return false;
                 }
 

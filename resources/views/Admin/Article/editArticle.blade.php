@@ -10,11 +10,11 @@
 
 
 @section('content')
-
+    @include('admin.partial.breadcrumbTrail')
     <div class="margin">
     </div>
 
-    <div style="background-color: #f8f8f8; padding:10px;" >
+    <div style="background-color: #f8f8f8; padding:10px;" id="editArticle_">
         <form action="{{url('/admin/manageArticle/edit/'.$article->id)}}" method="post" id="articleForm">
 
             @include('Admin.Article.editorForm')
@@ -51,4 +51,20 @@
         </div>
 
     </div>
+
+    <script>
+
+        $(function(){
+            function AdjustEditHeights() {
+
+                $('#menuBox').css('height',4791+60);
+
+            }
+
+            AdjustEditHeights();
+        });
+
+    </script>
 @stop
+
+

@@ -10,6 +10,7 @@
     <div id="containerUser">
         @include('admin.partial.breadcrumbTrail')
         <div class="role-table" style="margin-top: 100px;">
+
             <ul style="margin-top: 40px;">
                 <form id="settingForm">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -18,12 +19,12 @@
                     <li id="rolesBlock" style="vertical-align: middle;">
                         <span style="vertical-align: middle;display: inline-block;width:62px;">角色</span><input readonly type="text" value="{{ $detailRole->display_name }}">
                         <span style="margin-left: 20px;vertical-align: middle;">描述</span><input readonly type="text" value="{{ $detailRole->description }}" style="width: 200px;">
-                        <p><a class="back-manager" href="{{ url('/admin/administrator/permissionassignment') }}">返回</a></p>
+                        {{--<p><a class="back-manager" href="{{ url('/admin/administrator/permissionassignment') }}">返回</a></p>--}}
                     </li>
                     <li id="permBlock">
                         <div id="selectListBox">
-                            <p style="font-size: 12px;">当前权限</p>
-                            <div>
+                            {{--<p style="font-size: 12px;">当前权限</p>--}}
+                            <div style="display: none;">
                                 @foreach( $currentPermission as $currentList )
                                     <span data-id="{{$currentList->id}}"><i class="icon remove remove-select" onclick="removeAlready({{ $currentList->id }})"></i>{{$currentList->display_name}}</span>
                                     <div style="display: none;" data-value="{{$currentList->id}}" id="currentPermIds"></div>
@@ -34,32 +35,50 @@
                     </li>
                     <li>
                         <div class="user-table" style="margin-top: -8px;margin-left: -3px;">
+
                         <table class="ui table group setting-prems">
-                            <div id="authorityList" >
+                            {{--<div id="authorityList" >--}}
                                 <p style="font-size: 12px;margin-left: 2px;">权限列表</p>
                                 <tr style="background: #414D5B; color:#fff; border-top-left-radius: 10px;border-top-right-radius: 10px;">
                                     <td style="padding: 0px;"><p class="add-roles">添加权限(多选)</p></td>
-                                    <td style="padding: 0px;">权限名</td>
+                                    <td style="padding: 0px;">功能列表</td>
                                     <td style="padding: 0px;">描述</td>
                                 </tr>
-                                @foreach($permissions as $permissionsList)
+                                @foreach($permissions as $permissionList)
                                     <tr>
-                                        <td>
-                                            <div id="checkBoxStyle">
-                                                <input style="opacity: 0;" type="checkbox" name="selectPermList" id="{{$permissionsList->permission_id}}" value="{{$permissionsList->permission_id}}" onclick="checkHasPerms({{$permissionsList->permission_id}})" style="cursor: pointer;">
-                                                <label for="{{$permissionsList->permission_id}}"></label>
+                                        <td style="border-right: 1px solid #ccc;width: 180px;" class="checkAllBox">
+                                            <div class="checkBoxStyle">
+                                                <input style="opacity: 0; cursor: pointer;" class="selectPermList selectPermList{{$permissionList->id}}" type="checkbox" name="selectPermList" id="{{$permissionList->id}}" value="{{$permissionList->id}}">
+                                                <label for="{{$permissionList->id}}" ><span>{{$permissionList->display_name}}</span></label>
                                             </div>
                                         </td>
-                                        <td><span data-id="{{$permissionsList->permission_id}}">{{$permissionsList->menu_name}}</span></td>
-                                        <td>{{$permissionsList->description}}</td>
+                                        <td style="border-right: 1px solid #ccc;width: 450px; float: left" class="selectPermList_ selectPermList_{{$permissionList->id}}" data-id="{{$permissionList->id}}">
+                                            <div style="margin-top: -10px;" class="checkBoxStyle_">
+                                                <ul>
+                                        @if(count($permissionList->secondPerm) > 0)
+                                            @foreach($permissionList->secondPerm as $key => $secondPermList)
+                                                <li>
+                                                    <div class="checkBoxStyle" style=" margin-left: 0px;margin-top: 10px; float: left;">
+                                                    <input style="opacity: 0; cursor: pointer;" type="checkbox" class="permList_ permList_{{$permissionList->id}}" name="permList_" id="{{$secondPermList->id}}" value="{{$secondPermList->id}}">
+                                                    <label for="{{$secondPermList->id}}"><span style="margin-top: -1px;">{{$secondPermList->display_name}}</span></label>
+                                                    </div>
+                                                </li>
+                                            @endforeach
+                                        @endif
+                                                </ul>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            {{$permissionList->description}}
+                                        </td>
                                     </tr>
                                 @endforeach
-                            </div>
+                            {{--</div>--}}
                         </table>
                         </div>
                     </li>
                     <li id="lastBtnBlock">
-                        <div id="selectListBtn" onclick="subSelectPerms()">确认添加</div>
+                        <div id="selectListBtn" onclick="subSelectPerms()">保存</div>
                     </li>
                 </form>
             </ul>
@@ -91,15 +110,62 @@
 
     <script>
 
-        function checkHasPerms(id){
-            $("#selectListBox span").each(function(){
-                if($(this).attr('data-id') == id){
-                    toastAlert("权限已有",2);
-                    $("#"+id).prop("checked",false);
-                    return false;
+        $(function(){
+            $(".selectPermList").click(function(){
+                var temp_id = $(this).attr('id');
+                var obj = $(this);
+                if(this.checked){
+                    $(this).parents().parents().siblings(".selectPermList_").find("input[name='permList_']").each(function(){this.checked=true;});
+
+                }else{
+                    $(this).parents().parents().siblings(".selectPermList_").find("input[name='permList_']").each(function(){this.checked=false;});
                 }
             });
+
+            $("input[name='permList_']").click(function(){
+
+                var temp_id  =  $(this).parents().parents().parents().attr('data-id');
+                var list     =  document.getElementsByClassName('permList_'+temp_id).length;
+                if(list  ==  $(".selectPermList_"+temp_id).find("input[name='permList_']:checked").length ){
+                    $(".selectPermList"+temp_id).prop("checked",true);
+                }else{
+                    $(".selectPermList"+temp_id).prop("checked",false);
+                }
+
+            });
+        });
+
+
+        //已有权限
+        function checkHasPerms(){
+
+
+            $("#selectListBox span").each(function(){
+                var obj = $(this);
+                $(".selectPermList").each(function(){
+                    if(obj.attr('data-id') == $(this).attr('id')){
+                        $(this).prop("checked",true);
+                        $(this).parents().parents().siblings(".selectPermList_").find("input[name='permList_']").each(function(){this.checked=true;});
+                    }
+                });
+                $(".permList_").each(function(){
+
+                    if(obj.attr('data-id') == $(this).attr('id')){
+                        $(this).prop("checked",true);
+                    }
+
+                    var id = $(this).attr('id');
+                    var list     =  document.getElementsByClassName('permList_'+id).length;
+                    if(list  ==  $(".selectPermList_"+id).find("input[name='permList_']:checked").length ){
+                        $(".selectPermList"+id).prop("checked",true);
+                    }else{
+                        $(".selectPermList"+id).prop("checked",false);
+                    }
+                });
+
+            });
         }
+        checkHasPerms();
 
         function subSelectPerms(){
 
@@ -109,6 +175,13 @@
             for( var i=0; i < check_id.length; i ++){
                 if( check_id[i].checked){
                     per_id += check_id[i].value + ',';
+                }
+            }
+
+            var second_id = document.getElementsByName('permList_');
+            for(var j=0; j < second_id.length; j++){
+                if(second_id[j].checked){
+                    per_id += second_id[j].value + ',';
                 }
             }
             $("#selectPerList").val(per_id);

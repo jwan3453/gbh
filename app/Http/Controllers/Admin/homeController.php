@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Service\Admin\AdminUserService;
 use App\Tool\MessageResult;
 use App\Service\Common\CommonService;
+use Illuminate\Support\Facades\Session;
 
 
 class HomeController extends Controller
@@ -47,70 +48,70 @@ class HomeController extends Controller
         $getMenuId       =  $this->commonService->getMenuInfo();
 
 
-        //--------menuList
-        $menuStr = "";
-        for($i=0; $i < count($getMenuId); $i++){
-            $menuStr .= $getMenuId[$i]->permission_id;
-        }
-        static  $pos = 0;
-        $sub = substr($menuStr,$pos,2);
-        $curstr = $sub;
-        function subToStr($sub,$pos,$menuStr,$curstr){
-
-            if($sub > 10){
-                $pos += 2;
-                $sub = substr($menuStr,$pos,2);
-                $curstr .= $sub;
-
-                subToStr($sub,$pos,$menuStr,$curstr);
-                return $curstr;
-
-            }elseif($sub = 10){
-                return $sub;
-            }
-
-        }
-        $strtostr     =   subToStr($sub,$pos,$menuStr,$curstr);
-        $prevstr      =   "";
-        $prevstr     .=   $strtostr;                     //大于10的字符串
-        $prevarr      =   str_split($prevstr,2);
-
-
-        $lastMenu     =   substr($menuStr,$pos+2,count($getMenuId)-count($prevstr));     //剩下的字符串
-        $lastMenuList =   str_split($lastMenu,1);
-
-
-        //--------permissionList
-        $perStr = "";
-        for( $i=0; $i < count($getPermission); $i++){
-            $perStr  .= $getPermission[$i]->permission_id;
-        }
-        $perStrs   = substr($perStr,6,2);
-        $lastPrems = substr($perStr,0,6);              //剩下的字符串
-
-        //查找匹配字符串(数组)
-        $menuForPerms = "";
-        for($i = 0; $i < count($lastMenuList); $i++){
-            $resSearch = strpos($lastPrems,$lastMenu[$i],0);
-            if($resSearch){
-                $menuForPerms .= substr($lastMenu,$resSearch,1);
-            }
-        }
-        $menuForPermsArray  = str_split($menuForPerms,1);
-
-
-        if($perStrs == $prevstr){
-            array_unshift($menuForPermsArray,$prevarr[0]);
-        }
-
-
-        //查询菜单
-
-        for( $k=0; $k < count($menuForPermsArray); $k++){
-            $allMenuLists = $this->adminUser->loadMenuList($menuForPermsArray[$k]);
-
-        }
-        return view('Admin.home',compact('allMenuLists'));
+//        //--------menuList
+//        $menuStr = "";
+//        for($i=0; $i < count($getMenuId); $i++){
+//            $menuStr .= $getMenuId[$i]->permission_id;
+//        }
+//        static  $pos = 0;
+//        $sub = substr($menuStr,$pos,2);
+//        $curstr = $sub;
+//        function subToStr($sub,$pos,$menuStr,$curstr){
+//
+//            if($sub > 10){
+//                $pos += 2;
+//                $sub = substr($menuStr,$pos,2);
+//                $curstr .= $sub;
+//
+//                subToStr($sub,$pos,$menuStr,$curstr);
+//                return $curstr;
+//
+//            }elseif($sub = 10){
+//                return $sub;
+//            }
+//
+//        }
+//        $strtostr     =   subToStr($sub,$pos,$menuStr,$curstr);
+//        $prevstr      =   "";
+//        $prevstr     .=   $strtostr;                     //大于10的字符串
+//        $prevarr      =   str_split($prevstr,2);
+//
+//
+//        $lastMenu     =   substr($menuStr,$pos+2,count($getMenuId)-count($prevstr));     //剩下的字符串
+//        $lastMenuList =   str_split($lastMenu,1);
+//
+//
+//        //--------permissionList
+//        $perStr = "";
+//        for( $i=0; $i < count($getPermission); $i++){
+//            $perStr  .= $getPermission[$i]->permission_id;
+//        }
+//        $perStrs   = substr($perStr,6,2);
+//        $lastPrems = substr($perStr,0,6);              //剩下的字符串
+//
+//        //查找匹配字符串(数组)
+//        $menuForPerms = "";
+//        for($i = 0; $i < count($lastMenuList); $i++){
+//            $resSearch = strpos($lastPrems,$lastMenu[$i],0);
+//            if($resSearch){
+//                $menuForPerms .= substr($lastMenu,$resSearch,1);
+//            }
+//        }
+//        $menuForPermsArray  = str_split($menuForPerms,1);
+//
+//
+//        if($perStrs == $prevstr){
+//            array_unshift($menuForPermsArray,$prevarr[0]);
+//        }
+//
+//
+//        //查询菜单
+//
+//        for( $k=0; $k < count($menuForPermsArray); $k++){
+//            $allMenuLists = $this->adminUser->loadMenuList($menuForPermsArray[$k]);
+//
+//        }
+        return view('Admin.home');
 
 
     }
@@ -123,7 +124,33 @@ class HomeController extends Controller
     public function logout(Request $request){
 
         setcookie('adminusername','test3',time()+3600*10);
+        //根据当前的用户名获取绑定的二级菜单,清空对应的session
+        $currentSession = Session::get('adminusername');
+        //Role
+        $role = $this->commonService->checkWhereRole($currentSession);
+        //获得该组的权限
+        $getPermission   =  $this->commonService->getPermissions($role->id);
+        //获得二级MenuId
+        $secondCon = [];
+        for($j = 0; $j < count($getPermission); $j++){
+
+            $secondCon[] = $this->commonService->getMenuForSecond($getPermission[$j]->permission_id);
+
+        }
+        //MenuId转化成数组
+        $secondConArr = [];
+        for($j = 0; $j < count($secondCon) ; $j++){
+            foreach($secondCon[$j] as $newSecondArr){
+                $secondConArr[] = "$newSecondArr->menu_id";
+            }
+        }
+        //清空session
+        for($i=0; $i < count($secondConArr) ; $i++){
+            $request->session()->forget($secondConArr[$i]);
+        }
+
         $request->session()->forget('adminusername');
+
         return view('Admin.Sign.sign');
 
     }

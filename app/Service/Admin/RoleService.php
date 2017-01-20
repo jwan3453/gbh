@@ -9,6 +9,7 @@
 namespace App\Service\Admin;
 
 
+use App\Models\Hotel;
 use App\Models\Role\RoleUser;
 use Illuminate\Support\Facades\DB;
 use App\Models\Role\AdminUser;
@@ -19,6 +20,7 @@ use App\Models\MenuSetting;
 use App\Models\Role\Permission;
 use App\Models\Role\Role;
 use App\Models\Role\PermissionRole;
+use App\Models\Role\MenuPermission;
 use Illuminate\Support\Facades\Session;
 
 class RoleService {
@@ -35,13 +37,20 @@ class RoleService {
 
     public  function userData(){
 
-        return DB::table('admin_user')->leftJoin('hotel','admin_user.hotel_id','=','hotel.id')->leftJoin('roles','admin_user.role_id','=','roles.id')->select('admin_user.*','hotel.id','hotel.name','roles.display_name')->paginate(3);
+        return DB::table('admin_user')->leftJoin('hotel','admin_user.hotel_id','=','hotel.id')->leftJoin('roles','admin_user.role_id','=','roles.id')->select('admin_user.*','hotel.id','hotel.name','roles.display_name')->paginate(15);
 
     }
 
     public function countData(){
 
         return AdminUser::count('user_id');
+
+    }
+
+    //酒店数据
+    public function hotelData(){
+
+        return Hotel::all();
 
     }
 
@@ -64,13 +73,25 @@ class RoleService {
     //新增用户
     public function addUser(){
 
+        if($_POST['hotel_type'] == 1){
+            $hotelType  =   1;
+            $hotelId    =   $_POST['hotelId'];
+        }else if($_POST['hotel_type'] == 2){
+            $hotelType  =   2;
+            $hotelId    =   0;
+        }else{
+            $hotelType  =   0;
+            $hotelId    =   0;
+        }
+
         return AdminUser::create([
-            'username'  =>  $_POST['username'],
-            'truename'  =>  $_POST['truename'],
-            'mobile'    =>  $_POST['mobile'],
-            'hotel_id'  =>  $_POST['hotel_id'],
-            'position'  =>  $_POST['position'],
-            'password'  =>  bcrypt($_POST['password']),
+            'username'    =>  $_POST['username'],
+            'truename'    =>  $_POST['truename'],
+            'mobile'      =>  $_POST['mobile'],
+            'position'    =>  $_POST['position'],
+            'password'    =>  bcrypt($_POST['password']),
+            'hotel_type'  =>  $hotelType,
+            'hotel_id'    =>  $hotelId,
         ]);
 
     }
@@ -85,14 +106,26 @@ class RoleService {
     //编辑存储
     public function storeUser(){
 
+        if($_POST['edit_hotel_type'] == 1){
+            $hotelType  =  1;
+            $hotelId    =  $_POST['editHotelId'];
+        }else if($_POST['edit_hotel_type'] == 2){
+            $hotelType  =  2;
+            $hotelId    =  0;
+        }else{
+            $hotelType  =  0;
+            $hotelId    =  0;
+        }
+
         $data = [
-            'username'  =>  $_POST['username_'],
-            'truename'  =>  $_POST['truename_'],
-            'mobile'    =>  $_POST['mobile_'],
-            'hotel_id'  =>  $_POST['hotel_ids'],
-            'position'  =>  $_POST['position_']
+            'username'    =>  $_POST['username_'],
+            'truename'    =>  $_POST['truename_'],
+            'mobile'      =>  $_POST['mobile_'],
+            'position'    =>  $_POST['position_'],
+            'hotel_type'  =>  $hotelType,
+            'hotel_id'    =>  $hotelId,
         ];
-        return AdminUser::where('user_id',$_POST['userid'])->update($data);
+        return AdminUser::where('user_id',$_POST['userId'])->update($data);
 
     }
     public function editUsername(){
@@ -272,7 +305,20 @@ class RoleService {
         $newStr  =   substr($str,0,strlen($str)-1);
         $split   =   explode(',',$newStr);                   //str_split(字符串,分割长度);
 
-        for($i=0; $i< count($split); $i++){
+        //与原绑定做比较
+        $prevHas = $this->prevHasPermissions($roleId);
+        $hasPermId = [];
+        foreach($prevHas as $prevHasId){
+            $hasPermId[] = $prevHasId->permission_id;
+        }
+        for($k=0; $k < count($hasPermId); $k++){
+            if(!in_array($hasPermId[$k],$split)){
+                //移除与当前不一致的权限
+                $this->removeHas($roleId,$hasPermId[$k]);
+            }
+        }
+        //存入数据
+        for($i=0; $i < count($split); $i++){
 
             //验证是否已绑定权限
             $hasPerms = $this->checkPerm($roleId,$split[$i]);
@@ -287,6 +333,18 @@ class RoleService {
 
         }
         return "ok";
+
+    }
+
+    public function prevHasPermissions($roleId){
+
+        return PermissionRole::where('role_id',$roleId)->get();
+
+    }
+
+    public function removeHas($roleId,$hasPermId){
+
+        return PermissionRole::where('role_id',$roleId)->where('permission_id',$hasPermId)->delete();
 
     }
 
@@ -335,28 +393,62 @@ class RoleService {
     //--------权限管理------
     public function permissionData(){
 
-        return Permission::all();
+        $firstPermList = Permission::where('permission_level',1)->get();
+        foreach($firstPermList as $secondPermList){
+            $secondPermList->secondPerm = Permission::where(['permission_level' => 2,'parent_id' => $secondPermList->id])->get();
+        }
+        return $firstPermList;
 
     }
 
-    public function menuInfoData(){
+    public function permInfoData(){
 
-//        return MenuSetting::where('menu_level',1)->get();
-        return DB::table('menu_setting')->where('menu_level',1)->leftJoin('permissions','menu_setting.permission_id','=','permissions.id')->get();
+//        return DB::table('permissions')->leftJoin('menu_permission','permissions.id','=','menu_permission.permission_id')->leftJoin('menu_setting','menu_permission.menu_id','=','menu_setting.id')->get();
+        return Permission::all();
 
     }
 
     //检查权限重复性
     public function checkPermissions(){
 
-        return DB::table('permissions')->where('display_name',$_POST['permissionName'])->first();
+        return DB::table('permissions')->where('display_name',$_POST['permissionName'])->orWhere('name',$_POST['englishName'])->first();
 
     }
 
     //新增权限
     public function addPermissions(){
 
-        return DB::insert('insert into permissions (display_name,description) value (?,?)',[$_POST['permissionName'],$_POST['description']]);
+
+        //是否选择绑定权限组:
+        if($_POST['selectPermType'] == 1){
+            $parentId         = $_POST['permLists'];
+            $permission_level = 2;
+        }else{
+            $parentId         = 0;
+            $permission_level = 1;
+        }
+        //绑定菜单类型
+        if($_POST['selectMenuType']      == 1){
+            $getMenuId        = $_POST['menuLists'];
+            $menuType         = 1;
+        }elseif($_POST['selectMenuType'] == 2){
+            $getMenuId        = $_POST['secondMenuList'];
+            $menuType         = 2;
+        }else{
+            $getMenuId        = 0;
+            $menuType         = 0;
+        }
+
+        return Permission::create([
+            'name'               =>       $_POST['englishName'],
+            'display_name'       =>       $_POST['permissionName'],
+            'description'        =>       $_POST['description'],
+            'route'              =>       $_POST['routeUrl'],
+            'permission_level'   =>       $permission_level,
+            'parent_id'          =>       $parentId,
+            'menu_id'            =>       $getMenuId,
+            'menu_type'          =>       $menuType
+        ]);
 
     }
 
@@ -364,6 +456,31 @@ class RoleService {
     public function getPermissions(){
 
         return DB::table('permissions')->where('id',$_POST['id'])->first();
+
+    }
+
+    //获得菜单Name
+    public function getMenuName($menuId){
+
+        return MenuSetting::where('id',$menuId)->first();
+
+    }
+
+    public function getMenuData(){
+
+        return MenuSetting::where('menu_level',1)->get();
+
+    }
+
+    public function getSecondMenu(){
+
+        return MenuSetting::where('menu_level',2)->get();
+
+    }
+
+    public function toMenuId($permId){
+
+        return MenuPermission::where('permission_id',$permId)->get();
 
     }
 
@@ -376,8 +493,71 @@ class RoleService {
 
     //编辑存储权限
     public function storePermissions(){
+        //权限类型
+        if($_POST['selectPermType_'] == 1){
+            $permission_level = 2;
+            $parent_id = $_POST['permListsForEdit'];
+        }else{
+            $permission_level = 1;
+            $parent_id = 0;
+        }
+        //绑定菜单类型
+        if($_POST['selectMenuType_']      == 1){
+            $getMenuId = $_POST['menuListsForEdit'];
+            $menuType  = 1;
+        }elseif($_POST['selectMenuType_'] == 2){
+            $getMenuId = $_POST['secondMenuListForEdit'];
+            $menuType  = 2;
+        }else{
+            $getMenuId = 0;
+            $menuType  = 0;
+        }
 
-        return DB::table('permissions')->where('id',$_POST['id'])->update(['display_name' => $_POST['permissionName'],'description' => $_POST['description']]);
+        return DB::table('permissions')->where('id',$_POST['permissionId'])->update([
+            'display_name'      =>  $_POST['permissionName_'],
+            'description'       =>  $_POST['description_'],
+            'name'              =>  $_POST['englishName_'],
+            'route'             =>  $_POST['routeUrl_'],
+            'permission_level'  =>  $permission_level,
+            'parent_id'         =>  $parent_id,
+            'menu_id'           =>  $getMenuId,
+            'menu_type'         =>  $menuType
+        ]);
+
+        //选择绑定酒店
+//        if($editData){
+//            if($_POST['selectPermType_'] == 1){
+//
+//                $getPermId  = $_POST['permissionId'];
+//                $getMenuId  = $_POST['menuListsForEdit'];
+//                $getType    = $_POST['selectPermType_'];
+//
+//                MenuPermission::where('permission_id',$getPermId)->delete();
+//
+//                MenuPermission::create([
+//                    'permission_id'   =>  $getPermId,
+//                    'menu_id'         =>  $getMenuId,
+//                    'permission_type' =>  $getType
+//                ]);
+//            }
+//            return true;
+//        }else{
+//            if($_POST['selectPermType_'] == 1){
+//
+//                $getPermId  = $_POST['permissionId'];
+//                $getMenuId  = $_POST['menuListsForEdit'];
+//                $getType    = $_POST['selectPermType_'];
+//
+//                MenuPermission::where('permission_id',$getPermId)->delete();
+//
+//                MenuPermission::create([
+//                    'permission_id'   =>  $getPermId,
+//                    'menu_id'         =>  $getMenuId,
+//                    'permission_type' =>  $getType
+//                ]);
+//            }
+//            return true;
+//        }
 
     }
 
@@ -388,6 +568,23 @@ class RoleService {
 
     }
 
+    //判断权限类型
+    public function typePermList(){
+
+        if($_POST['type'] == 1){
+            return Permission::where('permission_level',1)->get();
+        }
+
+    }
+
+    //判断菜单类型
+    public function typeMenuList(){
+
+        if($_POST['type'] == 1){
+            return MenuSetting::where('menu_level',1)->get();
+        }
+
+    }
 
 
 }
