@@ -112,11 +112,13 @@ class CommonService {
     public function checkRouteUrl($permission_id){
 
         //当前路由
-        $currentRouteData = Session::get('currentPath_');
-        $currentRoute     = substr($currentRouteData,13);
+
+        $currentRoute = Route::current();
+//        $currentRouteData = session('currentPath_');
+//        $currentRoute     = substr($currentRouteData,13);
 
         $permissionData   = Permission::where('id',$permission_id)->first();
-        if($currentRoute == $permissionData->route){
+        if($currentRoute->getPath() == $permissionData->route){
             return true;
         }else{
             return false;

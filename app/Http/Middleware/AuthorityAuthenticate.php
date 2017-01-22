@@ -31,8 +31,11 @@ class AuthorityAuthenticate
 
         $checkRouteUrl = [];
         for($i=0; $i < count($getBindPermission); $i++){
-            $checkRouteUrl[] = $this->commonService->checkRouteUrl($getBindPermission[$i]);
+            if($this->commonService->checkRouteUrl($getBindPermission[$i])){
+                $checkRouteUrl[] = $this->commonService->checkRouteUrl($getBindPermission[$i]);
+            }
         }
+
 
         if($checkRouteUrl){
             return $next($request);
