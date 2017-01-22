@@ -59,7 +59,7 @@
                                             @foreach($permissionList->secondPerm as $key => $secondPermList)
                                                 <li>
                                                     <div class="checkBoxStyle" style=" margin-left: 0px;margin-top: 10px; float: left;">
-                                                    <input style="opacity: 0; cursor: pointer;" type="checkbox" class="permList_ permList_{{$permissionList->id}}" name="permList_" id="{{$secondPermList->id}}" value="{{$secondPermList->id}}">
+                                                    <input style="opacity: 0; cursor: pointer;" type="checkbox" class="permList_ permList_{{$permissionList->id}}" data-id="{{$permissionList->id}}" name="permList_" id="{{$secondPermList->id}}" value="{{$secondPermList->id}}">
                                                     <label for="{{$secondPermList->id}}"><span style="margin-top: -1px;">{{$secondPermList->display_name}}</span></label>
                                                     </div>
                                                 </li>
@@ -112,8 +112,6 @@
 
         $(function(){
             $(".selectPermList").click(function(){
-                var temp_id = $(this).attr('id');
-                var obj = $(this);
                 if(this.checked){
                     $(this).parents().parents().siblings(".selectPermList_").find("input[name='permList_']").each(function(){this.checked=true;});
 
@@ -124,7 +122,7 @@
 
             $("input[name='permList_']").click(function(){
 
-                var temp_id  =  $(this).parents().parents().parents().attr('data-id');
+                var temp_id  =  $(this).attr('data-id');
                 var list     =  document.getElementsByClassName('permList_'+temp_id).length;
                 if(list  ==  $(".selectPermList_"+temp_id).find("input[name='permList_']:checked").length ){
                     $(".selectPermList"+temp_id).prop("checked",true);
@@ -132,7 +130,12 @@
                     $(".selectPermList"+temp_id).prop("checked",false);
                 }
 
+                if($(".selectPermList_"+temp_id).find("input[name='permList_']:checked").length > 0){
+                    $(".selectPermList"+temp_id).prop("checked",true);
+                }
+
             });
+
         });
 
 
@@ -141,29 +144,35 @@
 
 
             $("#selectListBox span").each(function(){
+
                 var obj = $(this);
                 $(".selectPermList").each(function(){
                     if(obj.attr('data-id') == $(this).attr('id')){
                         $(this).prop("checked",true);
-                        $(this).parents().parents().siblings(".selectPermList_").find("input[name='permList_']").each(function(){this.checked=true;});
                     }
                 });
+
                 $(".permList_").each(function(){
 
                     if(obj.attr('data-id') == $(this).attr('id')){
                         $(this).prop("checked",true);
                     }
 
-                    var id = $(this).attr('id');
-                    var list     =  document.getElementsByClassName('permList_'+id).length;
-                    if(list  ==  $(".selectPermList_"+id).find("input[name='permList_']:checked").length ){
+                    var id = $(this).attr('data-id');
+                    if($(".selectPermList_"+id).find("input[name='permList_']:checked").length > 0){
                         $(".selectPermList"+id).prop("checked",true);
-                    }else{
-                        $(".selectPermList"+id).prop("checked",false);
                     }
+//                    var list  =  document.getElementsByClassName('permList_'+id).length;
+//                    if(list  ==  $(".selectPermList_"+id).find("input[name='permList_']:checked").length ){
+//                        $(".selectPermList"+id).prop("checked",true);
+//                    }else{
+//                        $(".selectPermList"+id).prop("checked",false);
+//                    }
+
                 });
 
             });
+
         }
         checkHasPerms();
 
