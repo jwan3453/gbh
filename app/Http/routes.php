@@ -442,7 +442,7 @@ Route::group(['prefix' => '/admin/', 'middleware' => ['App\Http\Middleware\Admin
     Route::get('Error/NotPermission','Admin\homeController@NotPermission');
 
     //超级管理员
-    Route::group(['prefix' => 'administrator/','middleware'  =>  ['role:admin']], function() {
+    Route::group(['prefix' => 'administrator/'], function() {
 
         //Route::get('manageRoomPriceRequest','Admin\Hotel\HotelController@manageRoomPriceRequest');
 
@@ -462,13 +462,13 @@ Route::group(['prefix' => '/admin/', 'middleware' => ['App\Http\Middleware\Admin
         Route::post('/checkedituser','Admin\Role\RoleManagerController@checkEditUser');
 
         //获得用户数据
-        Route::post('/detailuser',['middleware' => ['permissions:detailuser'],  'uses'  => 'Admin\Role\RoleManagerController@detailUser']);
+        Route::post('/detailuser', 'Admin\Role\RoleManagerController@detailUser');
 
         //编辑存储用户
         Route::post('/updateuser','Admin\Role\RoleManagerController@updateUser');
 
         //删除用户
-        Route::post('/removeuser',['middleware' => ['permissions:removeuser'], 'uses'  =>  'Admin\Role\RoleManagerController@deleteUser']);
+        Route::post('/removeuser', 'Admin\Role\RoleManagerController@deleteUser');
 
         //--------绑定角色----
         Route::post('/detailcurrentbind','Admin\Role\RoleManagerController@detailCurrentBind');
@@ -481,7 +481,7 @@ Route::group(['prefix' => '/admin/', 'middleware' => ['App\Http\Middleware\Admin
 
 
         //--------角色组管理----
-        Route::get('/rolegroupmanager',[ 'middleware' => ['permissions:roleGroupManager'], 'uses' => 'Admin\Role\RoleManagerController@showRole']);
+        Route::get('/rolegroupmanager', 'Admin\Role\RoleManagerController@showRole');
 
         //检查角色组重复性
         Route::post('/checknewrole','Admin\Role\RoleManagerController@checkNewRole');
@@ -490,16 +490,16 @@ Route::group(['prefix' => '/admin/', 'middleware' => ['App\Http\Middleware\Admin
         Route::post('/checkeditrole','Admin\Role\RoleManagerController@checkEditRole');
 
         //新增角色组
-        Route::post('/creategroup',['middleware' => ['permissions:creategroup'],'uses' => 'Admin\Role\RoleManagerController@createRole']);
+        Route::post('/creategroup', 'Admin\Role\RoleManagerController@createRole');
 
         //获得角色组数据
         Route::post('/detailrole','Admin\Role\RoleManagerController@detailRole');
 
         //删除角色组
-        Route::post('/removerole',['middleware' => ['permissions:removerole'],'uses' => 'Admin\Role\RoleManagerController@deleteRole']);
+        Route::post('/removerole', 'Admin\Role\RoleManagerController@deleteRole');
 
         //编辑存储角色组
-        Route::post('/updaterole',['middleware' => ['permissions:updaterole'],'uses' => 'Admin\Role\RoleManagerController@updateRole']);
+        Route::post('/updaterole', 'Admin\Role\RoleManagerController@updateRole');
 
         //获取所有绑定用户
         Route::post('/detailhasuser','Admin\Role\RoleManagerController@detailHasUser');
@@ -509,13 +509,13 @@ Route::group(['prefix' => '/admin/', 'middleware' => ['App\Http\Middleware\Admin
 
 
         //--------权限管理----
-        Route::get('/permissionmanager',['middleware' => ['permissions:permissionmanager'],'uses' => 'Admin\Role\RoleManagerController@showPermission']);
+        Route::get('/permissionmanager', 'Admin\Role\RoleManagerController@showPermission');
 
         //检查权限重复性
         Route::post('/checknewpermissions','Admin\Role\RoleManagerController@checkNewPermissions');
 
         //新增权限
-        Route::post('/createpermissions',['middleware' => ['permissions:createpermissions'],'uses'  => 'Admin\Role\RoleManagerController@createPermissions']);
+        Route::post('/createpermissions', 'Admin\Role\RoleManagerController@createPermissions');
 
         //获取权限详情
         Route::post('/detailpermission','Admin\Role\RoleManagerController@detailPermissions');
@@ -524,10 +524,10 @@ Route::group(['prefix' => '/admin/', 'middleware' => ['App\Http\Middleware\Admin
         Route::post('/checkeditpermission','Admin\Role\RoleManagerController@checkEditPermissions');
 
         //编辑存储权限
-        Route::post('/updatepermission',['middleware' => ['permissions:updatepermission'],'uses' => 'Admin\Role\RoleManagerController@updatePermissions']);
+        Route::post('/updatepermission', 'Admin\Role\RoleManagerController@updatePermissions');
 
         //删除权限
-        Route::post('/removepermission',['middleware' => ['permissions:removepermission'],'uses' => 'Admin\Role\RoleManagerController@deletePermissions']);
+        Route::post('/removepermission', 'Admin\Role\RoleManagerController@deletePermissions');
 
         //判断权限类型
         Route::post('/permtype','Admin\Role\RoleManagerController@permType');
@@ -541,18 +541,18 @@ Route::group(['prefix' => '/admin/', 'middleware' => ['App\Http\Middleware\Admin
 
 
         //--------权限分配----
-        Route::get('/permissionassignment',['middleware' => ['permissions:permissionassignment'],'uses' => 'Admin\Role\RoleManagerController@permissionAssignment']);
+        Route::get('/permissionassignment', 'Admin\Role\RoleManagerController@permissionAssignment');
 
         Route::post('/detailgroup','Admin\Role\RoleManagerController@detailGroup');
 
         //给用户组分配权限
-        Route::get('/assignpermissions/{id}',['middleware' => ['permissions:assignpermissions'],'uses' => 'Admin\Role\RoleManagerController@assignPermissions']);
+        Route::get('/assignpermissions/{id}', 'Admin\Role\RoleManagerController@assignPermissions');
 
         //存储分配权限
         Route::post('/settingpermission','Admin\Role\RoleManagerController@settingPermissions');
 
         //移除绑定的权限
-        Route::post('/removealreadyperm',['middleware' => ['permissions:removealreadyperm'],'uses' => 'Admin\Role\RoleManagerController@removeAlreadyPerm']);
+        Route::post('/removealreadyperm', 'Admin\Role\RoleManagerController@removeAlreadyPerm');
 
 
     });
