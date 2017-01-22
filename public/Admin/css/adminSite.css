@@ -1051,9 +1051,10 @@ body{
 
 .center{
 	position: absolute;
-	left: 220px;
-	/*min-height: calc(100% - 60px);*/
-	/*width:calc(100% - 160px);*/
+	left: 180px;
+	width:calc(100% - 180px);
+	box-sizing:border-box;
+
 }
 
 .content-header{
@@ -4752,8 +4753,7 @@ text-align: center;
 /*********** 用户管理页面 ***********/
 #containerUser{
 	width: 1000px;
-	margin-left: -20px;
-	padding-right: 20px;
+	margin-left: 20px;
 }
 
 .container-header{
@@ -5798,14 +5798,12 @@ textarea{
 /*********** Not Permission **********/
 
 #errorContainer{
-	width:970px;
 	margin-left: -40px;
 	padding-right: 40px;
 	margin-top: -40px;
 }
 
 .error-box{
-	width: 930px;
 	height: 700px;
 	background: #F7F7F7;
 	margin-top: 40px;
@@ -5819,7 +5817,7 @@ textarea{
 }
 
 .error-box h2{
-	margin-left: 230px;
+	margin-left: 26%;
 	margin-top: 80px;
 }
 
@@ -5831,7 +5829,7 @@ textarea{
 	line-height: 30px;
 	border-radius: 5px;
 	font-size: 14px;
-	margin: auto;
+	margin:60px auto;
 	cursor: pointer;
 }
 

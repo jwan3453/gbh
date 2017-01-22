@@ -114,11 +114,10 @@ class CommonService {
         //当前路由
 
         $currentRoute = Route::current();
-//        $currentRouteData = session('currentPath_');
-//        $currentRoute     = substr($currentRouteData,13);
 
         $permissionData   = Permission::where('id',$permission_id)->first();
-        if($currentRoute->getPath() == $permissionData->route){
+        $route = substr($permissionData->route,1,strlen($permissionData->route));
+        if($currentRoute->getPath() == $route){
             return true;
         }else{
             return false;
@@ -231,15 +230,9 @@ class CommonService {
     //--------面包屑导航----
     public function getCurrentUrl(){
 
-        $getUrl  = session('currentPath_');
+        $currentUrl = session('currentPath_');
 
-        //是否有其它参数:
-        $strPos = strpos($getUrl,'?',0);
-        if($strPos){
-            return substr($getUrl,13,$strPos-13);
-        }
-
-        return substr($getUrl,13);
+        return $currentUrl;
 
     }
 
@@ -257,7 +250,7 @@ class CommonService {
     //将地址存入Session
     public function putSession($putSession){
 
-        return Session::put('currentPath_',$putSession);
+        return session(['currentPath_'=>$putSession]);
 
     }
 

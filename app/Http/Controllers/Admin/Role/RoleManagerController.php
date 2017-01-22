@@ -642,9 +642,9 @@ class RoleManagerController extends Controller
     public function assignPermissions($id){
 
         //获取路由
-        $currentUrl    = 'http://e.com/admin/administrator/permissionassignment';
+        $currentUrl    = '/admin/administrator/permissionassignment';
         $this->commonService->putSession($currentUrl);
-        $getMenuName   = $this->commonService->getMenuName(substr($currentUrl,13));
+        $getMenuName   = $this->commonService->getMenuName($currentUrl);
         //父级菜单
         $firstMenuName = $this->commonService->firstMenuName($getMenuName);
 

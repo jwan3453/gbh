@@ -76,7 +76,7 @@ class ArticleController extends Controller
     {
 
         //AddressSession
-        Session::put('currentPath_','http://e.com/admin/manageArticle');
+        Session::put('currentPath_','/admin/manageArticle');
         //获取路由
         $currentUrl    = $this->commonService->getCurrentUrl();
         //父级菜单
@@ -93,7 +93,7 @@ class ArticleController extends Controller
 
     public function classificationandtag()
     {
-        Session::put('currentPath_','http://e.com/admin/manageArticle');
+        Session::put('currentPath_','/admin/manageArticle');
         //获取路由
         $currentUrl    = $this->commonService->getCurrentUrl();
 
@@ -220,7 +220,7 @@ class ArticleController extends Controller
     public function editArticle($articleId)
     {
 
-        Session::put('currentPath_','http://e.com/admin/manageArticle');
+        Session::put('currentPath_','/admin/manageArticle');
 
         //获取路由
         $currentUrl    = $this->commonService->getCurrentUrl();
