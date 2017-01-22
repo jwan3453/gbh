@@ -525,7 +525,7 @@
                 $(this).html("提交中");
 //                $(".loader").removeClass('loader_');
 
-                //验证用户名是否重复
+                //验证权限名是否重复
                 $.ajax({
                     type:'POST',
                     async:false,

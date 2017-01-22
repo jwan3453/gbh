@@ -56,7 +56,7 @@
             @foreach($allMenuList as $firstMenuLists)
                 @foreach($firstMenuLists as $firstMenuList)
             <li>
-                @if(session('currentPath_') && (session('currentPath_') === url($firstMenuList->menu_chaining)))
+                @if(session('currentPath_') && (session('currentPath_') === $firstMenuList->menu_chaining))
                     <div href="{{url($firstMenuList->menu_chaining)}} " value="{{ count($firstMenuList->secondMenu) }}" redirect="false" class="currentNav currentPath">
                         <span class="pathNav"></span>
                         <img src="{{$firstMenuList->icon_img_1}}">
@@ -80,7 +80,7 @@
                     @if(count($firstMenuList->secondMenu) > 0)
                         @foreach($firstMenuList->secondMenu as $key => $secondMenuList)
                             @if(session($secondMenuList->id) == $secondMenuList->id)
-                                @if(session('currentPath_') && (session('currentPath_') === url($secondMenuList->menu_chaining)))
+                                @if(session('currentPath_') && (session('currentPath_') === $secondMenuList->menu_chaining))
                                     <input type="hidden" name="sessionId" id="sessionId" value="{{session($secondMenuList->id)}}">
                                     <li>
                                         <a href="{{url($secondMenuList->menu_chaining)}}" session="{{ session('currentPath_') }}" class="secondNav Nav_">{{ $secondMenuList->menu_name }}</a>

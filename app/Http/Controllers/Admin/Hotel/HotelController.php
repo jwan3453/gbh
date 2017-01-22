@@ -452,7 +452,7 @@ class HotelController extends Controller
     //创建酒店 输入基本信息
     public function createHotel()
     {
-        Session::put('currentPath_','http://e.com/admin/manageHotel');
+        Session::put('currentPath_','/admin/manageHotel');
         //获取路由
         $currentUrl    = $this->commonService->getCurrentUrl();
         //父级菜单
@@ -476,7 +476,7 @@ class HotelController extends Controller
     public function maintainHotelBasicInfo($hotelId)
     {
 
-        Session::put('currentPath_','http://e.com/admin/manageHotel');
+        Session::put('currentPath_','/admin/manageHotel');
         //获取路由
         $currentUrl    = $this->commonService->getCurrentUrl();
         //父级菜单
@@ -823,7 +823,7 @@ class HotelController extends Controller
     public function maintainHotelImage($hotelId)
     {
 
-        Session::put('currentPath_','http://e.com/admin/manageHotel');
+        Session::put('currentPath_','/admin/manageHotel');
         //获取路由
         $currentUrl    = $this->commonService->getCurrentUrl();
         //父级菜单
