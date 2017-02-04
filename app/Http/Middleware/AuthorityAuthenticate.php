@@ -29,6 +29,7 @@ class AuthorityAuthenticate
         $getBindPermission   = $this->commonService->getBindPermission($checkWhichRole->id);
         //匹配路由
         $checkRouteUrl = [];
+
         for($i=0; $i < count($getBindPermission); $i++){
             if($this->commonService->checkRouteUrl($getBindPermission[$i])){
                 $checkRouteUrl[] = $this->commonService->checkRouteUrl($getBindPermission[$i]);

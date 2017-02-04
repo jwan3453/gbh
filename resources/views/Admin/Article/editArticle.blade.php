@@ -14,7 +14,7 @@
     <div class="margin">
     </div>
 
-    <div style="background-color: #f8f8f8; padding:10px;" id="editArticle_">
+    <div style="background-color: #f8f8f8;width:calc( 95% - 20px);margin:20px auto;padding:10px ;" id="editArticle_">
         <form action="{{url('/admin/manageArticle/edit/'.$article->id)}}" method="post" id="articleForm">
 
             @include('Admin.Article.editorForm')

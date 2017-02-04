@@ -31,7 +31,7 @@
 <body>
 
 <div class="menu-box" id="menuBox">
-    <div class="menu_"></div>
+    {{--<div class="menu_"></div>--}}
     <div class="menu-logo">
         <img src="/Admin/img/logo.png">
 

@@ -9,8 +9,8 @@
 
     <div id="containerUser">
         @include('admin.partial.breadcrumbTrail')
-        <div class="container-action" style="margin-top: 40px;">
-            <p style="margin-left: 25px;">当前角色组总数:{{ $countRes }}</p>
+        <div class="container-action" >
+
             <button class="standard modal">添加角色组</button>
         </div>
         <div class="user-table">
@@ -116,10 +116,10 @@
                     <input type="hidden" name="roleIdInfo" id="roleIdInfo">
                     <ul>
                         <li>
-                            <div><span>角&nbsp;&nbsp;色&nbsp;&nbsp;名:</span><input readonly type="text" id="role-name" name="role-name" style="margin-left: 27px;height: 30px"></div>
+                            <div><span>角色名:</span><input readonly type="text" id="role-name" name="role-name" style=";height: 30px"></div>
                         </li>
                         <li>
-                            <div><span>绑定用户 :</span><textarea readonly id="bindUserList" style="margin-left: 25px;"></textarea></div>
+                            <div><span>绑定用户 :</span><textarea readonly id="bindUserList" style=""></textarea></div>
                         </li>
 
                     </ul>

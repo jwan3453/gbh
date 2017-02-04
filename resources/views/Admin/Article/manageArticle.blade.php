@@ -3,9 +3,9 @@
 
 
 @section('content')
+    @include('admin.partial.breadcrumbTrail')
+    <div class="h-content">
 
-    <div>
-        @include('admin.partial.breadcrumbTrail')
         <div class="article-search-bar">
             <a class="add-article-btn f-left" href="/admin/manageArticle/create">
                 <i class="icon plus "></i> 创建新文章
@@ -14,37 +14,44 @@
             <i class="icon search "></i>
         </div>
 
-        <div class="article-list-header">
-            <div class="select-all f-left">
-                <label><input type="checkbox"/>全选</label>
-            </div>
+        {{--<div class="article-list-header">--}}
+            {{--<div class="select-all f-left">--}}
+                {{--<label><input type="checkbox"/>全选</label>--}}
+            {{--</div>--}}
 
-            <div class="header-option f-left">
+            {{--<div class="header-option f-left">--}}
 
-                <img src = '/Admin/img/上架.png'/>
-                <span>批量上架</span>
-            </div>
+                {{--<img src = '/Admin/img/上架.png'/>--}}
+                {{--<span>批量上架</span>--}}
+            {{--</div>--}}
 
-            <div class="header-option f-left">
+            {{--<div class="header-option f-left">--}}
 
-                <img src = '/Admin/img/下架.png'/>
-                <span>批量下架</span>
-            </div>
+                {{--<img src = '/Admin/img/下架.png'/>--}}
+                {{--<span>批量下架</span>--}}
+            {{--</div>--}}
 
-            <div class="header-option f-left">
+            {{--<div class="header-option f-left">--}}
 
-                <img src = '/Admin/img/垃圾桶.png'/>
-                <span>批量删除</span>
-            </div>
-        </div>
+                {{--<img src = '/Admin/img/垃圾桶.png'/>--}}
+                {{--<span>批量删除</span>--}}
+            {{--</div>--}}
+        {{--</div>--}}
         <table class="ui primary striped selectable table article-table " id="orderTable">
-
+            <thead>
+            <tr>
+                <th>文章图片</th>
+                <th>文章标题</th>
+                <th>文章类别</th>
+                <th>操作</th>
+            </tr>
+            </thead>
 
             <tbody>
 
             @foreach($articles as $article )
             <tr>
-                <td class="s-td"><input type="checkbox"></td>
+                {{--<td class="s-td"><input type="checkbox"></td>--}}
                 <td class="m-td"> <img class="article-img" src = '{{$article->cover_image}}'></td>
                 <td class="m-td">{{$article->title}}</td>
                 <td><span>{{$article->category_name}}</span></td>

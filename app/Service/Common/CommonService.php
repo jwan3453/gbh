@@ -114,10 +114,13 @@ class CommonService {
         //当前路由
 
         $currentRoute = Route::current();
+//        $currentRouteData = session('currentPath_');
+//        $currentRoute     = substr($currentRouteData,13);
 
         $permissionData   = Permission::where('id',$permission_id)->first();
-        $route = substr($permissionData->route,1,strlen($permissionData->route));
-        if($currentRoute->getPath() == $route){
+        $routePath = '/'.$currentRoute->getPath();
+
+        if($routePath == $permissionData->route){
             return true;
         }else{
             return false;
@@ -233,7 +236,6 @@ class CommonService {
         $currentUrl = session('currentPath_');
 
         return $currentUrl;
-
     }
 
     public function getMenuName($currentUrl){
@@ -250,7 +252,7 @@ class CommonService {
     //将地址存入Session
     public function putSession($putSession){
 
-        return session(['currentPath_'=>$putSession]);
+        return Session::put('currentPath_',$putSession);
 
     }
 

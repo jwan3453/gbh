@@ -26,7 +26,7 @@
 
         <div class="hotel-info">
             <div class="header">酒店图片</div>
-        </div>
+
 
         <div class="section-list" id="sectionList">
 

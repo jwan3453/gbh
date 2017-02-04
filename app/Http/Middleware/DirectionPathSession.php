@@ -19,6 +19,7 @@ class DirectionPathSession{
 
     public function handle(Request $request,Closure $next){
 
+
         session(['currentPath_'=>$request->getPathInfo()]);
 
         return $next($request);

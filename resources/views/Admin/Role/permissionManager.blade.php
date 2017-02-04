@@ -9,15 +9,15 @@
 
     <div id="containerUser">
         @include('admin.partial.breadcrumbTrail')
-        <div class="container-action" style="margin-top: 60px;margin-bottom: 40px;">
+        <div class="container-action">
             {{--<p>当前用户总数:{{ $countRes }}</p>--}}
             <button class="standard modal">添加权限</button>
         </div>
         <div class="user-table">
 
-            <ul style="margin-top: 30px;">
-                <li class="first-cols" style="margin-left: -38px;">
-                    <span style="text-align: left;"><p style="margin-left: 100px;margin-top: 0px;">权限功能列表</p></span>
+            <ul >
+                <li class="first-cols" >
+                    <span >权限功能列表</span>
                     <span>描述</span>
                     <span>操作</span>
                 </li>
@@ -37,7 +37,7 @@
                             @foreach($permissionList->secondPerm as $key => $secondPermList)
                                 <li>
                                     <span style="display: none;">{{$secondPermList->id}}</span>
-                                    <span style="text-align: left;"><p style="margin-top: 0px;">|--{{$secondPermList->display_name}}</p></span>
+                                    <span style="text-align: left;"><p style="margin-top: 0px;">|->{{$secondPermList->display_name}}</p></span>
                                     <span>{{$secondPermList->description}}</span>
                                     <span>
                                         <span id="editBtn_" onclick="editPermission({{ $secondPermList->id }})"><i class="edit icon"></i>修改</span>
@@ -64,7 +64,7 @@
             添加新权限
         </div>
         <div class="contents">
-            <div class="form-group-box_">
+            <div class="">
                 <form id="addGroupForms" class="editPerms addPerms">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <ul style="margin-top: -20px;">

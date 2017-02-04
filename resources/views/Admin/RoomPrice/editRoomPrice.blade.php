@@ -11,6 +11,8 @@
 
 @section('content')
 
+    @include('admin.partial.breadcrumbTrail')
+
     <div class="light-bg">
         <div class="room-price-search">
             <form style="display: inline-block" action="{{url('/admin/manageRoomPrice/searchRoomPrice')}}" method="post" id="searchForm">

@@ -9,22 +9,22 @@
 
     <div id="containerUser">
         @include('admin.partial.breadcrumbTrail')
-        <div class="role-table" style="margin-top: 100px;">
+        <div class="role-table" style="margin-top: 20px;">
 
-            <ul style="margin-top: 40px;">
-                <form id="settingForm">
+
+            <form id="settingForm" class="setting-form">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <input type="hidden" id="detailRoleId" name="detailRoleId" value="{{ $detailRole->id }}">
                 {{--<li id="{{ $detailRole->id }}" class="get-id"></li>--}}
-                    <li id="rolesBlock" style="vertical-align: middle;">
-                        <span style="vertical-align: middle;display: inline-block;width:62px;">角色</span><input readonly type="text" value="{{ $detailRole->display_name }}">
-                        <span style="margin-left: 20px;vertical-align: middle;">描述</span><input readonly type="text" value="{{ $detailRole->description }}" style="width: 200px;">
+                    <div id="rolesBlock" >
+                        <span style="vertical-align: middle;display: inline-block;width:40px;">角色:</span><input readonly type="text" value="{{ $detailRole->display_name }}">
+                        <span style="margin-left: 20px;vertical-align: middle;display:inline-block;width:40px;">描述:</span><input readonly type="text" value="{{ $detailRole->description }}" style="width: 200px;">
                         {{--<p><a class="back-manager" href="{{ url('/admin/administrator/permissionassignment') }}">返回</a></p>--}}
-                    </li>
-                    <li id="permBlock">
+                    </div>
+                    <div id="permBlock" style="display: none;">
                         <div id="selectListBox">
                             {{--<p style="font-size: 12px;">当前权限</p>--}}
-                            <div style="display: none;">
+                            <div >
                                 @foreach( $currentPermission as $currentList )
                                     <span data-id="{{$currentList->id}}"><i class="icon remove remove-select" onclick="removeAlready({{ $currentList->id }})"></i>{{$currentList->display_name}}</span>
                                     <div style="display: none;" data-value="{{$currentList->id}}" id="currentPermIds"></div>
@@ -32,18 +32,17 @@
                                 <input type="hidden" id="selectPerList" name="selectPerList"/>
                             </div>
                         </div>
-                    </li>
-                    <li>
-                        <div class="user-table" style="margin-top: -8px;margin-left: -3px;">
-
+                    </div>
+                    <div >
                         <table class="ui table group setting-prems">
                             {{--<div id="authorityList" >--}}
-                                <p style="font-size: 12px;margin-left: 2px;">权限列表</p>
-                                <tr style="background: #414D5B; color:#fff; border-top-left-radius: 10px;border-top-right-radius: 10px;">
-                                    <td style="padding: 0px;"><p class="add-roles">添加权限(多选)</p></td>
-                                    <td style="padding: 0px;">功能列表</td>
-                                    <td style="padding: 0px;">描述</td>
+                            <thead>
+                                <tr >
+                                    <th >添加权限(多选)</th>
+                                    <th >功能列表</th>
+                                    <th >描述</th>
                                 </tr>
+                            </thead>
                                 @foreach($permissions as $permissionList)
                                     <tr>
                                         <td style="border-right: 1px solid #ccc;width: 180px;" class="checkAllBox">
@@ -75,13 +74,14 @@
                                 @endforeach
                             {{--</div>--}}
                         </table>
-                        </div>
-                    </li>
-                    <li id="lastBtnBlock">
+
+                    </div>
+                    <div id="lastBtnBlock">
                         <div id="selectListBtn" onclick="subSelectPerms()">保存</div>
-                    </li>
-                </form>
-            </ul>
+                    </div>
+
+
+            </form>
         </div>
     </div>
 

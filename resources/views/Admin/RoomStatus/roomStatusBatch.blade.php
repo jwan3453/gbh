@@ -11,6 +11,8 @@
 
 @section('content')
 
+    @include('admin.partial.breadcrumbTrail')
+
     <div class="light-bg">
 
         <form class="room-status-batch-edit" id="roomStatusBatchForm" method="post" action="{{url('/admin/manageRoomPrice/roomBatchSubmit')}}">

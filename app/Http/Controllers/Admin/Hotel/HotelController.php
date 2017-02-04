@@ -17,6 +17,9 @@ use App\Models\Hotel;
 
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Route;
+
+
+
 class HotelController extends Controller
 {
     /**
@@ -40,13 +43,10 @@ class HotelController extends Controller
     public function index()
     {
 
-        //获取路由
-        $currentUrl    = $this->commonService->getCurrentUrl();
 
-        $getMenuName   = $this->commonService->getMenuName($currentUrl);
 
-        //父级菜单
-        $firstMenuName = $this->commonService->firstMenuName($getMenuName);
+        $nav =  $this-> getCurrentNav();
+
 
         //判断权限
         $getCurrentUser = Session::get('adminusername');
@@ -82,7 +82,7 @@ class HotelController extends Controller
 
             }
 
-            return view('Admin.Hotel.manageHotel')->with(['manageHotelList' => $manageHotelList , 'getMenuName' => $getMenuName, 'firstMenuName' => $firstMenuName]);
+            return view('Admin.Hotel.manageHotel')->with(['manageHotelList' => $manageHotelList , 'getMenuName' => $nav['menuName'], 'firstMenuName' => $nav['firstMenuName']]);
         }
     }
 
@@ -452,6 +452,7 @@ class HotelController extends Controller
     //创建酒店 输入基本信息
     public function createHotel()
     {
+
         Session::put('currentPath_','/admin/manageHotel');
         //获取路由
         $currentUrl    = $this->commonService->getCurrentUrl();
@@ -513,7 +514,9 @@ class HotelController extends Controller
                                                     ->with('categoryList',$categoryList)
                                                     ->with('hotelInfo',$hotelInfo)
                                                     ->with('createOrUpdate',$createOrUpdate)
-                                                    ->with('hotelId',$hotelId);
+                                                    ->with('hotelId',$hotelId)
+                                                    ->with('getMenuName',$getMenuName)
+                                                    ->with('SecondMenuName', $SecondMenuName);
     }
 
 
@@ -553,6 +556,15 @@ class HotelController extends Controller
     //维护酒店交通信息
     public function maintainHotelGeoInfo($hotelId){
 
+        Session::put('currentPath_','/admin/manageHotel');
+        //获取路由
+        $currentUrl    = $this->commonService->getCurrentUrl();
+        //父级菜单
+        $getMenuName   = $this->commonService->getMenuName($currentUrl);
+
+        $SecondMenuName = '酒店周边信息';
+
+
         //获取地址信息, 省份代码
         $addressInfo = $this->hotelService->getHotelAddress($hotelId);
 
@@ -572,7 +584,13 @@ class HotelController extends Controller
 
         $createOrUpdate = "update";
 
-        return view('Admin.Hotel.maintainHotelGeoInfo')->with('address',$address)->with('hotelId',$hotelId)->with('hotelSurrounding',$hotelSurrounding)->with('createOrUpdate',$createOrUpdate);
+        return view('Admin.Hotel.maintainHotelGeoInfo')
+                            ->with('address',$address)
+                            ->with('hotelId',$hotelId)
+                            ->with('hotelSurrounding',$hotelSurrounding)
+                            ->with('createOrUpdate',$createOrUpdate)
+                            ->with('getMenuName',$getMenuName)
+                            ->with('SecondMenuName', $SecondMenuName);
 
     }
 
@@ -618,6 +636,15 @@ class HotelController extends Controller
     //维护酒店政策
     public function maintainHotelPolicy($hotelId)
     {
+
+        Session::put('currentPath_','/admin/manageHotel');
+        //获取路由
+        $currentUrl    = $this->commonService->getCurrentUrl();
+        //父级菜单
+        $getMenuName   = $this->commonService->getMenuName($currentUrl);
+
+        $SecondMenuName = '酒店政策';
+
         $hotelPolicy  = $this->hotelService->getHotelPolicy($hotelId);
         $timespans = ['00:00','00:30','01:00','01:30','02:00','02:30',
                      '03:00','03:30','04:00','04:30','05:00','05:30',
@@ -629,7 +656,11 @@ class HotelController extends Controller
                      '21:00','21:30','22:00','22:30','23:00','23:30',
                      '24:00'];
         return view('Admin.Hotel.maintainHotelPolicy')->with('hotelId',$hotelId)
-                                                      ->with('hotelPolicy',$hotelPolicy)->with('timespans',$timespans);
+                                                      ->with('hotelPolicy',$hotelPolicy)
+                                                      ->with('timespans',$timespans)
+                                                      ->with('getMenuName',$getMenuName)
+                                                      ->with('SecondMenuName', $SecondMenuName);
+
     }
 
     //创建或更新酒店政策
@@ -651,8 +682,21 @@ class HotelController extends Controller
     //维护酒店联系人
     public function maintainHotelContact($hotelId)
     {
+
+
+        Session::put('currentPath_','/admin/manageHotel');
+        //获取路由
+        $currentUrl    = $this->commonService->getCurrentUrl();
+        //父级菜单
+        $getMenuName   = $this->commonService->getMenuName($currentUrl);
+
+        $SecondMenuName = '酒店联系人';
+
         $contactList =  $this->hotelService->getHotelContactList($hotelId);
-        return view('Admin.Hotel.maintainHotelContact')->with('hotelId', $hotelId)->with('contactList',$contactList);
+        return view('Admin.Hotel.maintainHotelContact')->with('hotelId', $hotelId)
+                                                       ->with('contactList',$contactList)
+                                                        ->with('getMenuName',$getMenuName)
+                                                        ->with('SecondMenuName', $SecondMenuName);
     }
 
 
@@ -699,6 +743,16 @@ class HotelController extends Controller
     //维护管理酒店设施
     public function maintainHotelFacilities($hotelId)
     {
+
+
+        Session::put('currentPath_','/admin/manageHotel');
+        //获取路由
+        $currentUrl    = $this->commonService->getCurrentUrl();
+        //父级菜单
+        $getMenuName   = $this->commonService->getMenuName($currentUrl);
+
+        $SecondMenuName = '酒店设施';
+
         $createOrUpdate = 'create';
         $hotelFacilities = $this->hotelService->getHotelFacilities($hotelId);
 
@@ -708,7 +762,11 @@ class HotelController extends Controller
             $createOrUpdate = 'update';
         }
 
-        return view('Admin.Hotel.maintainHotelFacilities')->with('hotelId',$hotelId)->with('hotelFacilities',$hotelFacilities)->with('createOrUpdate',$createOrUpdate);
+        return view('Admin.Hotel.maintainHotelFacilities')->with('hotelId',$hotelId)
+                                                          ->with('hotelFacilities',$hotelFacilities)
+                                                          ->with('createOrUpdate',$createOrUpdate)
+                                                          ->with('getMenuName',$getMenuName)
+                                                          ->with('SecondMenuName', $SecondMenuName);
 
     }
 
@@ -733,8 +791,19 @@ class HotelController extends Controller
     //维护管理酒店餐饮服务
     public function maintainHotelCateringService($hotelId)
     {
+        Session::put('currentPath_','/admin/manageHotel');
+        //获取路由
+        $currentUrl    = $this->commonService->getCurrentUrl();
+        //父级菜单
+        $getMenuName   = $this->commonService->getMenuName($currentUrl);
+
+        $SecondMenuName = '酒店餐饮';
+
         $cateringServiceList=  $this->hotelService->getHotelCateringServiceList($hotelId);
-        return view('Admin.Hotel.maintainHotelCateringService')->with('hotelId', $hotelId)->with('cateringServiceList',$cateringServiceList);
+        return view('Admin.Hotel.maintainHotelCateringService')->with('hotelId', $hotelId)
+                                                               ->with('cateringServiceList',$cateringServiceList)
+                                                               ->with('getMenuName',$getMenuName)
+                                                               ->with('SecondMenuName', $SecondMenuName);;
     }
 
 
@@ -777,8 +846,20 @@ class HotelController extends Controller
     //维护管理酒店健身娱乐服务
     public function maintainHotelRecreationService($hotelId)
     {
+
+        Session::put('currentPath_','/admin/manageHotel');
+        //获取路由
+        $currentUrl    = $this->commonService->getCurrentUrl();
+        //父级菜单
+        $getMenuName   = $this->commonService->getMenuName($currentUrl);
+
+        $SecondMenuName = '酒店健身娱乐';
+
         $recreationServiceList=  $this->hotelService->getHotelRecreationServiceList($hotelId);
-        return view('Admin.Hotel.maintainHotelRecreationService')->with('hotelId', $hotelId)->with('recreationServiceList',$recreationServiceList);
+        return view('Admin.Hotel.maintainHotelRecreationService')->with('hotelId', $hotelId)
+                                                                 ->with('recreationServiceList',$recreationServiceList)
+                                                                 ->with('getMenuName',$getMenuName)
+                                                                 ->with('SecondMenuName', $SecondMenuName);
     }
 
 
@@ -823,13 +904,14 @@ class HotelController extends Controller
     public function maintainHotelImage($hotelId)
     {
 
+
         Session::put('currentPath_','/admin/manageHotel');
         //获取路由
         $currentUrl    = $this->commonService->getCurrentUrl();
         //父级菜单
         $getMenuName   = $this->commonService->getMenuName($currentUrl);
 
-        $SecondMenuName = '图片管理';
+        $SecondMenuName = '酒店图片管理';
 
         $sectionListAndImage = $this->hotelService->getHotelImages($hotelId);
         return view('Admin.Hotel.maintainHotelImage')->with('sectionListAndImage',$sectionListAndImage)->with('hotelId',$hotelId)->with(['getMenuName' => $getMenuName, 'SecondMenuName' => $SecondMenuName]);
@@ -963,9 +1045,19 @@ class HotelController extends Controller
 
     //管理房间
     public function manageRoom($hotelId){
+
+        Session::put('currentPath_','/admin/manageHotel');
+        //获取路由
+        $currentUrl    = $this->commonService->getCurrentUrl();
+        //父级菜单
+        $getMenuName   = $this->commonService->getMenuName($currentUrl);
+
+        $SecondMenuName = '酒店房型管理';
+
         $roomList = $this->hotelService->getRoomTypeList($hotelId);
         $bedTypes = $this->hotelService->getAllBedType();
-        return view('Admin.Hotel.manageRoom')->with('bedTypes', $bedTypes)->with('roomList',$roomList)->with('hotelId',$hotelId);
+        return view('Admin.Hotel.manageRoom')->with('bedTypes', $bedTypes)->with('roomList',$roomList)->with('hotelId',$hotelId)
+                                             ->with(['getMenuName' => $getMenuName, 'SecondMenuName' => $SecondMenuName]);
     }
 
     //创建新房型
@@ -993,9 +1085,17 @@ class HotelController extends Controller
     public function editRoom($hotelId, $roomId)
     {
 
+        Session::put('currentPath_','/admin/manageHotel');
+        //获取路由
+        $currentUrl    = $this->commonService->getCurrentUrl();
+        //父级菜单
+        $getMenuName   = $this->commonService->getMenuName($currentUrl);
+
+        $SecondMenuName = '编辑房型管理';
         $room = $this->hotelService->editRoom($hotelId,$roomId);
         $bedTypes = $this->hotelService->getAllBedType();
-        return view('Admin.Hotel.editRoom')->with('room',$room)->with('bedTypes', $bedTypes)->with('hotelId',$hotelId)->with('roomId',$roomId);
+        return view('Admin.Hotel.editRoom')->with('room',$room)->with('bedTypes', $bedTypes)->with('hotelId',$hotelId)->with('roomId',$roomId)
+            ->with(['getMenuName' => $getMenuName, 'SecondMenuName' => $SecondMenuName]);
     }
 
     public function updateRoom(Request $request)
@@ -1067,6 +1167,14 @@ class HotelController extends Controller
     //编辑跟新酒店房态
     public function showRoomStatus(Request $request, $hotelId = 0){
 
+        Session::put('currentPath_','/admin/manageRoomStatus');
+        //获取路由
+        $currentUrl    = $this->commonService->getCurrentUrl();
+        //父级菜单
+        $getMenuName   = $this->commonService->getMenuName($currentUrl);
+
+        $SecondMenuName = '房态维护';
+
         //post 搜索请求和get 请求都是这个方法
 
         //获取post的search请求数据
@@ -1112,7 +1220,8 @@ class HotelController extends Controller
                                                       ->with('weekDayList',$weekDayList)
                                                       ->with('roomStatusMonthList',$roomStatusMonthList)
                                                       ->with('hotelId',$hotelId)
-                                                      ->with('selectedDate',$date);
+                                                      ->with('selectedDate',$date)
+                                                      ->with(['getMenuName' => $getMenuName, 'SecondMenuName' => $SecondMenuName]);
     }
 
 
@@ -1120,9 +1229,18 @@ class HotelController extends Controller
     public function roomStatusBatch($hotelId)
     {
 
+        Session::put('currentPath_','/admin/manageRoomStatus');
+        //获取路由
+        $currentUrl    = $this->commonService->getCurrentUrl();
+        //父级菜单
+        $getMenuName   = $this->commonService->getMenuName($currentUrl);
+
+        $SecondMenuName = '批量修改房态';
+
         $roomTypeList = $this->hotelService->getRoomTypeList($hotelId);
         $requestList= $this->hotelService->getRoomStatusBatchLogList($hotelId);
-        return view('Admin.RoomStatus.roomStatusBatch')->with('hotelId',$hotelId)->with('roomTypeList',$roomTypeList)->with('requestList',$requestList);
+        return view('Admin.RoomStatus.roomStatusBatch')->with('hotelId',$hotelId)->with('roomTypeList',$roomTypeList)->with('requestList',$requestList)
+            ->with(['getMenuName' => $getMenuName, 'SecondMenuName' => $SecondMenuName]);
     }
 
     //提交批量修改房态请求
@@ -1170,9 +1288,20 @@ class HotelController extends Controller
     //查看批量更改房态改变记录
     public function roomStatusBatchLog($hotelId)
     {
+
+
+        Session::put('currentPath_','/admin/manageRoomStatus');
+        //获取路由
+        $currentUrl    = $this->commonService->getCurrentUrl();
+        //父级菜单
+        $getMenuName   = $this->commonService->getMenuName($currentUrl);
+
+        $SecondMenuName = '房态修改单';
+
         $roomTypeList = $this->hotelService->getRoomTypeList($hotelId);
         $logList= $this->hotelService->getRoomStatusBatchLogList($hotelId);
-        return view('Admin.RoomStatus.showRoomStatusBatchLog')->with('hotelId',$hotelId)->with('roomTypeList',$roomTypeList)->with('logList',$logList);
+        return view('Admin.RoomStatus.showRoomStatusBatchLog')->with('hotelId',$hotelId)->with('roomTypeList',$roomTypeList)->with('logList',$logList)
+                                                              ->with(['getMenuName' => $getMenuName, 'SecondMenuName' => $SecondMenuName]);
 
     }
 
@@ -1184,12 +1313,7 @@ class HotelController extends Controller
     {
 
 
-        //获取路由
-        $currentUrl    = $this->commonService->getCurrentUrl();
-
-        $getMenuName   = $this->commonService->getMenuName($currentUrl);
-        //父级菜单
-        $firstMenuName = $this->commonService->firstMenuName($getMenuName);
+        $nav = $this->getCurrentNav();
 
         //判断权限
         $getCurrentUser = Session::get('adminusername');
@@ -1214,13 +1338,20 @@ class HotelController extends Controller
 
         }
 
-        return view('Admin.RoomPrice.manageRoomPrice')->with(['manageHotelList' => $manageHotelList , 'getMenuName' => $getMenuName, 'firstMenuName' => $firstMenuName]);
+        return view('Admin.RoomPrice.manageRoomPrice')->with(['manageHotelList' => $manageHotelList , 'getMenuName' => $nav['menuName'], 'firstMenuName' => $nav['firstMenuName'] ]);
     }
 
     //编辑跟新酒店房价
     public function showRoomPrice(Request $request, $hotelId = 0){
 
 
+        Session::put('currentPath_','/admin/manageRoomPrice');
+        //获取路由
+        $currentUrl    = $this->commonService->getCurrentUrl();
+        //父级菜单
+        $getMenuName   = $this->commonService->getMenuName($currentUrl);
+
+        $SecondMenuName = '房价维护';
 
         //post 搜索请求和get 请求都是这个方法
         $date = date('Y-m-d');
@@ -1264,7 +1395,8 @@ class HotelController extends Controller
                                                     ->with('roomPriceMonthList',$roomPriceMonthList)
                                                     ->with('weekDayList',$weekDayList)
                                                     ->with('hotelId',$hotelId)
-                                                    ->with('selectedDate',$date);
+                                                    ->with('selectedDate',$date)
+                                                    ->with(['getMenuName' => $getMenuName, 'SecondMenuName' => $SecondMenuName]);
     }
 
     //获得日期是周几
@@ -1285,9 +1417,20 @@ class HotelController extends Controller
     //批量修改房价
     public function roomPriceBatch($hotelId){
 
+        Session::put('currentPath_','/admin/manageRoomPrice');
+        //获取路由
+        $currentUrl    = $this->commonService->getCurrentUrl();
+        //父级菜单
+        $getMenuName   = $this->commonService->getMenuName($currentUrl);
+
+        $SecondMenuName = '批量修改房价';
+
+
+
         $roomTypeList = $this->hotelService->getRoomTypeList($hotelId);
         $requestList= $this->hotelService->getRoomPriceBatchRequestList($hotelId);
-        return view('Admin.RoomPrice.roomPriceBatch')->with('hotelId',$hotelId)->with('roomTypeList',$roomTypeList)->with('requestList',$requestList);
+        return view('Admin.RoomPrice.roomPriceBatch')->with('hotelId',$hotelId)->with('roomTypeList',$roomTypeList)->with('requestList',$requestList)
+                                                     ->with(['getMenuName' => $getMenuName, 'SecondMenuName' => $SecondMenuName]);
 
     }
 
@@ -1331,31 +1474,42 @@ class HotelController extends Controller
 
 
     //超级管理员 管理批量房价申请
-    public function manageRoomPriceRequest()
-    {
-        $manageHotelList = $this->hotelService->getHotelList();
-
-        // dd($manageHotelList);
-        foreach ($manageHotelList as $hotelList) {
-
-            $province = $this->commonService->getAdressInfo('province',$hotelList->address->province_code);
-            $city = $this->commonService->getAdressInfo('city',$hotelList->address->city_code);
-            $district = $this->commonService->getAdressInfo('district',$hotelList->address->district_code);
-            $detail = $hotelList->address->detail;
-            $hotelList->addressInfo = $province.$city.$district.$detail;
-
-        }
-        return view('Admin.RoomPrice.manageRoomPriceRequest')->with('manageHotelList',$manageHotelList);
-    }
+//    public function manageRoomPriceRequest()
+//    {
+//
+//
+//        $manageHotelList = $this->hotelService->getHotelList();
+//
+//        // dd($manageHotelList);
+//        foreach ($manageHotelList as $hotelList) {
+//
+//            $province = $this->commonService->getAdressInfo('province',$hotelList->address->province_code);
+//            $city = $this->commonService->getAdressInfo('city',$hotelList->address->city_code);
+//            $district = $this->commonService->getAdressInfo('district',$hotelList->address->district_code);
+//            $detail = $hotelList->address->detail;
+//            $hotelList->addressInfo = $province.$city.$district.$detail;
+//
+//        }
+//        return view('Admin.RoomPrice.manageRoomPriceRequest')->with('manageHotelList',$manageHotelList);
+//    }
 
 
 
     //查看批量更改房价改变记录
     public function processRoomPriceRequest($hotelId)
     {
+        Session::put('currentPath_','/admin/manageRoomPrice');
+        //获取路由
+        $currentUrl    = $this->commonService->getCurrentUrl();
+        //父级菜单
+        $getMenuName   = $this->commonService->getMenuName($currentUrl);
+
+        $SecondMenuName = '房价申请单';
+
         $roomTypeList = $this->hotelService->getRoomTypeList($hotelId);
         $requestList= $this->hotelService->getRoomPriceBatchRequestList($hotelId);
-        return view('Admin.RoomPrice.processRoomPriceRequest')->with('hotelId',$hotelId)->with('roomTypeList',$roomTypeList)->with('requestList',$requestList);
+        return view('Admin.RoomPrice.processRoomPriceRequest')->with('hotelId',$hotelId)->with('roomTypeList',$roomTypeList)->with('requestList',$requestList)
+            ->with(['getMenuName' => $getMenuName, 'SecondMenuName' => $SecondMenuName]);
 
     }
     //确认房价修改请求
@@ -1369,6 +1523,24 @@ class HotelController extends Controller
         $jsonResult->statusCode = 1;
         return response($jsonResult->toJson());
 
+    }
+
+
+    public function getCurrentNav(){
+        //获取路由
+        $currentUrl    = $this->commonService->getCurrentUrl();
+
+
+        $getMenuName   = $this->commonService->getMenuName($currentUrl);
+
+
+        //父级菜单
+        $firstMenuName = $this->commonService->firstMenuName($getMenuName);
+
+        $nav['menuName'] = $getMenuName;
+        $nav['firstMenuName'] = $firstMenuName;
+
+        return $nav;
     }
 
 

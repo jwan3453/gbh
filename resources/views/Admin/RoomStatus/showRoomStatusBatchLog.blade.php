@@ -12,6 +12,8 @@
 
 @section('content')
 
+    @include('admin.partial.breadcrumbTrail')
+
     <div class="light-bg">
         <div>
             <table class="ui primary striped selectable table room-price-request-list " >

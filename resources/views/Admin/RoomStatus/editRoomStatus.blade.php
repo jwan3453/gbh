@@ -11,6 +11,8 @@
 
 @section('content')
 
+    @include('admin.partial.breadcrumbTrail')
+
     <div class="light-bg">
         <div class="room-status-search">
             <form style="display: inline-block" action="{{url('/admin/manageRoomStatus/searchRoomStatus')}}" method="post" id="searchForm">

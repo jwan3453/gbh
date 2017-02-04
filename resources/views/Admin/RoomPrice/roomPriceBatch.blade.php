@@ -10,6 +10,8 @@
 
 @section('content')
 
+    @include('admin.partial.breadcrumbTrail')
+
     <div class="light-bg">
 
         <form class="room-price-batch-edit" id="roomPriceBatchForm" method="post" action="{{url('/admin/manageRoomPrice/roomPriceBatchSubmit')}}">

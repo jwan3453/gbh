@@ -12,7 +12,7 @@
 @section('infoContent')
 
 
-
+    <div class="info-content">
     <form class="detail-form room-detail-from-visible" id="updateRoomForm" action='{{url("/admin/manageHotel/updateRoom")}}' method="Post">
 
         <div class="header">房型维护</div>
@@ -376,6 +376,7 @@
         </div>
         <div class="auto-margin regular-btn blue-btn" id="saveRoom">保存修改</div>
     </form>
+    </div>
 @stop
 
 

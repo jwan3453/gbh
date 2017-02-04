@@ -30,6 +30,7 @@ class CreateOrderTable extends Migration
             $table->string('coupon_code',20);
             $table->integer('is_guarantee');//是否缴纳保证金
             $table->integer('order_status');
+            $table->string('order_status_remark','500');
             $table->timestamps();
         });
     }
