@@ -20,21 +20,21 @@
             </thead>
             <tbody>
 
-            @foreach($manageHotelList as $hotelitem)
+            @foreach($manageHotelList as $hotelItem)
                 <tr>
                     {{--<td class="s-td"><input type="checkbox" value="{{$hotelitem->id}}"></td>--}}
-                    <td class="m-td"> <img class="hotel-img" src = '../GbhMobile/img/tu2.png'></td>
-                    <td class="m-td">{{$hotelitem->name}}</td>
-                    <td><i class="icon marker large"></i><span>{{$hotelitem->addressInfo}}</span></td>
+                    <td class="m-td"> <img class="hotel-img" src = '{{$hotelItem->firstCoverImage->link}}'></td>
+                    <td class="m-td">{{$hotelItem->name}}</td>
+                    <td><i class="icon marker large"></i><span>{{$hotelItem->addressInfo}}</span></td>
                     <td class="l-td">
 
                         <div class="header-option f-left">
-                            <a href="/admin/manageRoomStatus/show/{{$hotelitem->id}}">
+                            <a href="/admin/manageRoomStatus/show/{{$hotelItem->id}}">
                                 <img src = '/Admin/img/编辑.png'/>
                                 <span class="edit">管理房态</span>
                             </a>
 
-                            <a href="/admin/manageRoomStatus/roomStatusBatchLog/{{$hotelitem->id}}">
+                            <a href="/admin/manageRoomStatus/roomStatusBatchLog/{{$hotelItem->id}}">
                                 <img src = '/Admin/img/编辑.png'/>
                                 <span class="edit">查看房价修改记录</span>
                             </a>

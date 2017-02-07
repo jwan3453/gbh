@@ -72,6 +72,11 @@ class HotelService {
             return 'NotPermission';
         }
 
+        foreach($list as $hotel)
+        {
+            $hotel->firstCoverImage = $this->getHotelFirstImage($hotel->id);
+        }
+
         return $list;
     }
 
@@ -1731,7 +1736,18 @@ class HotelService {
 
         //把之前设置状态改为普通封面
         HotelImage::where(['hotel_id'=>$hotelId,'is_cover'=> 2])->update(['is_cover'=> 1]);
+
+        //把图片设置为封面
         return HotelImage::where(['hotel_id'=>$hotelId,'id'=>$imageId])->update(['is_cover'=> 2]);
+    }
+
+    //获取酒店首张封面图片
+    public function getHotelFirstImage($hotelId)
+    {
+        $image = HotelImage::where(['hotel_id'=>$hotelId,'is_cover'=> 2])->first();
+        if($image == null)
+            $image = HotelImage::where('hotel_id',$hotelId)->orderBy('updated_at','desc')->first();
+        return $image;
     }
 
     public function getStepThreeInfo($hotelId)

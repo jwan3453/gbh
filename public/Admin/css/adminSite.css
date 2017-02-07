@@ -163,7 +163,10 @@ a{
 
 /************首页************/
 .home-center{
-	width: 1140px;
+	width:98%;
+	min-width:1000px;
+
+	margin:20px auto;
 }
 
 .colmun-upper{

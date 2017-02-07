@@ -78,9 +78,11 @@ class HotelController extends Controller
                     $detail = $hotelList->address->detail;
 
                     $hotelList->addressInfo = $province.$city.$district.$detail;
+
                 }
 
             }
+
 
             return view('Admin.Hotel.manageHotel')->with(['manageHotelList' => $manageHotelList , 'getMenuName' => $nav['menuName'], 'firstMenuName' => $nav['firstMenuName']]);
         }
@@ -1038,6 +1040,14 @@ class HotelController extends Controller
         return response($jsonResult->toJson());
     }
 
+    //获取酒店封面搜张图片
+    public function getHotelFirstImage($hotelId)
+    {
+        $image = $this->hotelService->getHotelFirstImage($hotelId);
+        return $image;
+    }
+
+
 
     //////////////////////////////////////////////////////////////////////////////////////////
 
@@ -1525,7 +1535,7 @@ class HotelController extends Controller
 
     }
 
-
+    //获取面包屑导航菜单
     public function getCurrentNav(){
         //获取路由
         $currentUrl    = $this->commonService->getCurrentUrl();
