@@ -69,12 +69,14 @@ class HotelService {
                 $hotelItem->address = Address::select('province_code','city_code','district_code','detail','type')->where('id',$hotelItem->address_id)->first();
             }
         }else{
-            return 'NotPermission';
+            $list = null;
         }
 
-        foreach($list as $hotel)
-        {
-            $hotel->firstCoverImage = $this->getHotelFirstImage($hotel->id);
+        if($list != null){
+            foreach($list as $hotel)
+            {
+                $hotel->firstCoverImage = $this->getHotelFirstImage($hotel->id);
+            }
         }
 
         return $list;

@@ -52,7 +52,13 @@
             @foreach($articles as $article )
             <tr>
                 {{--<td class="s-td"><input type="checkbox"></td>--}}
-                <td class="m-td"> <img class="article-img" src = '{{$article->cover_image}}'></td>
+                <td class="m-td">
+                    @if(isset($article->cover_image))
+                    <img class="article-img" src = '{{$article->cover_image}}'>
+                    @else
+                        <img class="article-img" src = '/Admin/img/default-image-gbh.jpg'>
+                    @endif
+                </td>
                 <td class="m-td">{{$article->title}}</td>
                 <td><span>{{$article->category_name}}</span></td>
                 <td class="l-td">

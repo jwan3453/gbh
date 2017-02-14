@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 
+use App\Models\Hotel;
 use App\Models\MenuSetting;
 use App\Models\Role\AdminUser;
 use Illuminate\Http\Request;
@@ -38,6 +39,71 @@ class AppServiceProvider extends ServiceProvider
             if(!$getCurrentUser){
                 return view('Admin.Sign.sign');
             }
+
+
+
+            //----------判断订单管理菜单的权限
+
+
+            $hotel_type = $commonService->getHotelType($getCurrentUser);
+
+            $manageHotelStatus = 0;
+            $manageHotelId     = 0;
+
+            //管理所有酒店
+            if($hotel_type->hotel_type == 2){
+
+                //订单管理二级菜单
+                $getOrderMenuId = $commonService->getOrderMenuId();
+
+                foreach($getOrderMenuId as $OrderMenuId){
+                    if($OrderMenuId->id == 26){
+                        //设为二级菜单
+                        $SecondMenuStatus = $commonService->secondMenuStatus($OrderMenuId->id);
+                        if($SecondMenuStatus->menu_level != 2){
+                            $commonService->changeMenuStatus($OrderMenuId->id);
+                        }
+                    }else{
+                        //取消二级菜单
+                        $SecondMenuStatus = $commonService->secondMenuStatus($OrderMenuId->id);
+                        if($SecondMenuStatus->menu_level == 2){
+                            $commonService->cancelMenuStatus($OrderMenuId->id);
+                        }
+                    }
+                }
+
+                $manageHotelStatus = 2;
+                $manageHotelId     = 0;
+            }
+
+            if($hotel_type->hotel_type == 1){
+                //管理部分酒店的二级菜单
+                $getOrderMenuId = $commonService->getOrderMenuId();
+                foreach($getOrderMenuId as $OrderMenuId){
+                    if($OrderMenuId->id != 26){
+                        //设为二级菜单
+                        $SecondMenuStatus = $commonService->secondMenuStatus($OrderMenuId->id);
+                        if($SecondMenuStatus->menu_level != 2){
+                            $commonService->changeMenuStatus($OrderMenuId->id);
+                        }
+                    }else{
+                        //取消二级菜单
+                        $SecondMenuStatus = $commonService->secondMenuStatus($OrderMenuId->id);
+                        if($SecondMenuStatus->menu_level == 2){
+                            $commonService->cancelMenuStatus($OrderMenuId->id);
+                        }
+                    }
+                }
+
+                //获取用户所管理的酒店
+                $getHotelId = $commonService->manageHotelId($getCurrentUser);
+
+                $manageHotelStatus  =  1;
+                $manageHotelId      =  $getHotelId->hotel_id;
+
+            }
+
+
 
 
 
@@ -151,7 +217,7 @@ class AppServiceProvider extends ServiceProvider
             }
 
 
-            $view->with('allMenuList', $allMenuLists);
+            $view->with(['allMenuList' => $allMenuLists ,'manageHotelStatus' => $manageHotelStatus , 'manageHotelId' => $manageHotelId]);
         });
     }
 

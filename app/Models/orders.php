@@ -1,11 +1,13 @@
 <?php
 
+
 namespace App\Models;
+
 
 use Illuminate\Database\Eloquent\Model;
 
-class Room extends Model
-{
-    protected $table = 'room';
-}
+class Orders extends Model{
 
+    protected $table = 'orders';
+
+}

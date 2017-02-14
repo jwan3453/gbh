@@ -432,11 +432,6 @@ Route::group(['prefix' => '/admin/', 'middleware' => ['App\Http\Middleware\Admin
         Route::post('delhotelImage','Admin\System\SystemController@delhotelImage');
     });
 
-    //--------订单处理
-    Route::group(['prefix' => 'order/'], function() {
-        Route::get('orderSearchPage','Admin\Order\OrderController@orderSearchPage');
-        Route::get('untreatedPage','Admin\Order\OrderController@untreatedPage');
-    });
 
     //-----无权限访问
     Route::get('Error/NotPermission','Admin\homeController@NotPermission');
@@ -557,6 +552,38 @@ Route::group(['prefix' => '/admin/', 'middleware' => ['App\Http\Middleware\Admin
 
     });
 
+
+    //订单管理
+    Route::get('manageOrders','Admin\Order\OrderController@index');
+    Route::group(['prefix' => 'manageOrders'],function(){
+
+        //酒店列表
+        Route::get('/hotellist','Admin\Order\OrderController@hotelList');
+
+        //酒店订单查询
+        Route::get('/hotelordersearch/{hotelId}','Admin\Order\OrderController@hotelOrderSearch');
+
+        //post订单查询
+//        Route::post('/ordersearchforpost','Admin\Order\OrderController@orderSearchForPost');
+        Route::post('/ordersearchforhotel','Admin\Order\OrderController@orderSearchForHotel');
+
+        //酒店订单查询(二级菜单)
+//        Route::get('/ordersearchforsecondmenu','Admin\Order\OrderController@orderSearchForSecondMenu');
+
+        //查看订单详情
+        Route::get('/detailorderinfo/{orderId}','Admin\Order\OrderController@detailOrderInfo');
+
+        //未处理订单
+        Route::get('/unprocessedorders/{hotelId}','Admin\Order\OrderController@unprocessedOrders');
+
+        //今日订单
+        Route::get('/todayorders/{hotelId}','Admin\Order\OrderController@todayOrders');
+
+        //所有订单
+        Route::get('/allorders/{hotelId}','Admin\Order\OrderController@allOrders');
+
+
+    });
 
     
 });

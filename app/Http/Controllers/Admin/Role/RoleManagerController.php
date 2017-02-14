@@ -540,20 +540,38 @@ class RoleManagerController extends Controller
      */
     public function deleteUser()
     {
-        $removeRes  = $this->adminRole->removeUser();
+        //是否绑定角色组
+        $hasBindGroup = $this->adminRole->IsHasBindGroup();
         $jsonResult = new MessageResult();
+        if($hasBindGroup->user_id != $_POST['userId']){
+            $removeRes  = $this->adminRole->removeUser();
+            if($removeRes){
 
-        if($removeRes){
+                $jsonResult->statusCode = 1;
+                $jsonResult->statusMsg  = "成功";
 
-            $jsonResult->statusCode = 1;
-            $jsonResult->statusMsg  = "成功";
+            }else{
 
+                $jsonResult->statusCode = 0;
+                $jsonResult->statusMsg  = "失败";
+
+            }
         }else{
+            $this->adminRole->removeHasBingRole();
+            $removeRes  = $this->adminRole->removeUser();
+            if($removeRes){
 
-            $jsonResult->statusCode = 0;
-            $jsonResult->statusMsg  = "失败";
+                $jsonResult->statusCode = 1;
+                $jsonResult->statusMsg  = "成功";
 
+            }else{
+
+                $jsonResult->statusCode = 0;
+                $jsonResult->statusMsg  = "失败";
+
+            }
         }
+
 
         return response($jsonResult->toJson());
     }
@@ -561,20 +579,27 @@ class RoleManagerController extends Controller
 
     public function deleteRole(){
 
-        $deleteRes  = $this->adminRole->removeRole();
+        //是否含有组员
+        $bindGroup = $this->adminRole->IsHasGroup();
         $jsonResult = new MessageResult();
+        if($bindGroup->role_id != $_POST['roleId']){
+            $deleteRes  = $this->adminRole->removeRole();
+            if($deleteRes){
 
-        if($deleteRes){
+                $jsonResult->statusCode = 1;
+                $jsonResult->statusMsg  = "成功";
 
-            $jsonResult->statusCode = 1;
-            $jsonResult->statusMsg  = "成功";
+            }else{
 
+                $jsonResult->statusCode = 0;
+                $jsonResult->statusMsg  = "失败";
+
+            }
         }else{
-
             $jsonResult->statusCode = 0;
             $jsonResult->statusMsg  = "失败";
-
         }
+
 
         return response($jsonResult->toJson());
 
@@ -583,19 +608,23 @@ class RoleManagerController extends Controller
 
     public function deletePermissions(){
 
-        $deleteRes  = $this->adminRole->removePermissions();
+        //是否有绑定权限
+        $bindPermission = $this->adminRole->IsHasPermission();
         $jsonResult = new MessageResult();
+        if($bindPermission->permission_id != $_POST['id']){
+            $deleteRes  = $this->adminRole->removePermissions();
 
-        if($deleteRes){
-
-            $jsonResult->statusCode = 1;
-            $jsonResult->statusMsg  = "成功";
+            if($deleteRes){
+                $jsonResult->statusCode = 1;
+                $jsonResult->statusMsg  = "成功";
+            }else{
+                $jsonResult->statusCode = 0;
+                $jsonResult->statusMsg  = "失败";
+            }
 
         }else{
-
             $jsonResult->statusCode = 0;
             $jsonResult->statusMsg  = "失败";
-
         }
 
         return response($jsonResult->toJson());

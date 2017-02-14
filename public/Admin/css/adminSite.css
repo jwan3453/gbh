@@ -5971,3 +5971,334 @@ textarea{
 }
 
 /********* Not Permission end **********/
+
+
+
+
+
+
+/*********** 订单管理 **********/
+
+.order-list-box tbody td{
+	font-size: 12px!important;
+}
+
+.detail-count-orders{
+	width: 966px;
+	margin: 30px auto;
+	font-size: 12px;
+}
+
+.detail-count-orders span{
+	color: #EC7259;
+	font-weight: 700;
+	font-size: 16px;
+}
+
+
+
+
+/*********** 订单搜索详情 ***********/
+
+.order-search-partial .order-search-info td{
+	font-size: 12px!important;
+}
+
+.detail-order-info{
+	font-size: 12px;
+}
+
+.order-sn{
+	margin-top: 40px;
+}
+
+.order-sn span:nth-child(2){
+	float: right;
+}
+
+.order-status-box ul{
+	margin:20px auto;
+	width: 940px;
+	height: 50px;
+}
+
+.order-arrow-status{
+	text-align: center;
+	line-height: 35px;
+	float: left;
+	width: 225px;
+	height: 34px;
+	margin-top: 10px;
+	background: rgba(0,0,0,0.3);
+	position: relative;
+}
+
+.order-status-submit{
+	margin-left: -40px;
+}
+
+.order-status-payment{
+	margin-left: 20px;
+}
+
+.order-status-confirm{
+	margin-left: 20px;
+}
+
+.order-status-checkIn{
+	margin-left: 20px;
+}
+
+
+.small-arrow{
+	display: inline-block;
+	width: 0px;
+	height: 0px;
+	border-top: 17px solid transparent ;
+	border-bottom: 17px solid transparent;
+	border-left: 17px solid rgba(0,0,0,0.3);
+	position: absolute;
+	right: -17px;
+	top: 0px;
+}
+
+.left-small-arrow{
+	display: inline-block;
+	width: 0px;
+	height: 0px;
+	border-top: 17px solid rgba(0,0,0,0.3) ;
+	border-bottom: 17px solid rgba(0,0,0,0.3);
+	border-left: 17px solid transparent;
+	position: absolute;
+	left: -17px;
+	top: 0px;
+}
+
+.current-status{
+	background: #5FD2A9;
+	color: #fff;
+}
+
+.current-arrow-status{
+	border-left: 17px solid #5FD2A9;
+}
+
+.current-left-arrow-status{
+	border-top: 17px solid #5FD2A9 ;
+	border-bottom: 17px solid #5FD2A9;
+}
+
+/*****/
+
+.hotel-detail-info{
+	margin-top: 30px;
+}
+
+.hotel-detail-info ul{
+	width: 700px;
+	height: 90px;
+}
+
+.hotel-image-info{
+	display: block;
+	width: 120px;
+	height: 80px;
+}
+
+.hotel-detail-info ul li{
+	float: left;
+	width: 230px;
+	height: 90px;
+}
+
+.hotel-detail-left{
+	line-height: 90px;
+	font-size: 14px;
+}
+
+.hotel-detail-middle{
+	margin-left: -100px;
+}
+
+.detail-address-info{
+	margin-left:  -60px;
+	margin-top: -5px;
+	line-height: 30px;
+}
+
+.detail-address-info span{
+	display: block;
+}
+
+.hotel-name-info{
+	font-size: 14px;
+	font-weight: 700;
+}
+
+/*****/
+
+.check-in-info ul{
+	width: 700px;
+	height: 90px;
+}
+
+.check-in-info ul li{
+	float: left;
+	width: 230px;
+	height: 90px;
+}
+
+.check-time-middle{
+	line-height: 90px;
+	margin-left: -100px;
+}
+
+.check-time-right{
+	margin-left: -60px;
+}
+
+/****/
+
+.person-detail{
+	line-height: 90px;
+	margin-left: -60px;
+}
+
+.order-date-choice{
+	width: 920px;
+	margin: auto;
+	font-size: 12px;
+}
+
+.order-date-choice span{
+	display: inline-block;
+	width:75px;
+}
+
+.order-search-list{
+	width: 920px;
+	margin: auto;
+}
+
+.order-search-list ul{
+	width: 960px;
+	height: 180px;
+	margin-left: -40px;
+	font-size: 12px;
+}
+
+.order-search-list ul li{
+	width: 300px;
+	height: 45px;
+	float: left;
+}
+
+.order-search-list ul li > span{
+	display: inline-block;
+	width: 75px;
+}
+
+.order-search-list ul li > input,.order-search-list ul li > select,.order-date-choice select{
+	width: 170px;
+	height: 25px;
+	outline:none;
+}
+
+.order-search-list ul li > input{
+	padding-left: 10px;
+	width: 160px;
+}
+
+.search-bottom{
+	width: 960px;
+}
+
+.search-submit{
+	margin: auto;
+	width: 140px;
+	height: 30px;
+	background: rgba(37,57,66,0.8);
+	text-align: center;
+	line-height: 30px;
+	color: #fff;
+	cursor: pointer;
+}
+
+.search-submit:hover{
+	background: #253942;
+}
+
+.date-choice-list{
+	display: inline;
+	margin-left: 45px;
+}
+
+.date-choice-list input{
+	width: 170px;
+	height: 25px;
+	padding-left: 10px;
+}
+
+.ordered-time,.check-in-time{
+	display: none;
+}
+
+.order-search-form{
+	height: 350px;
+}
+
+.search-results-box thead{
+	background: #253942!important;
+}
+
+.search-results-style{
+	font-size: 12px!important;
+}
+
+.all-search-order{
+	width: 100px;
+	height: 25px;
+	background: #253942;
+	text-align: center;
+	line-height: 25px;
+	margin-bottom: 20px;
+	border-radius: 5px;
+}
+
+.all-search-order a{
+	color: #fff;
+	font-size: 12px;
+}
+
+
+
+
+/********* 订单搜索 end *********/
+
+
+/*********** 未处理订单 **********/
+
+.unprocessed-orders table td{
+	font-size: 12px!important;
+}
+
+
+/********* 未处理订单 end *********/
+
+
+/************* 今日订单 **********/
+
+.today-orders table td{
+	font-size: 12px!important;
+}
+
+/*********** 今日订单 end **********/
+
+
+
+/********* 订单管理 end **********/
+
+
+
+
+
