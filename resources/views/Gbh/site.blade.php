@@ -76,10 +76,6 @@
                             <span>关于我们</span>
                         </a>
 
-                        <a href="/hotelUnion">
-                            <span>酒店联盟</span>
-                        </a>
-
                     </div>
 
                 </div>

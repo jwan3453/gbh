@@ -121,7 +121,7 @@ class HomeController extends Controller
 
         $data = ['name'=>$name, 'email'=>$email, 'homeMessage'=>$homeMessage, 'toEmail'=>$toEmail];
         Mail::send('emails.contactMessage', $data, function ($message) use ($data) {
-            $message->from('jackywang@gbhchina.com');
+            $message->from('booking@gbhchina.com');
             $message->to($data['toEmail'])->subject('来自gbhchina.com提交的信息');
         });
 
