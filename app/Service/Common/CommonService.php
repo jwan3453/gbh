@@ -256,6 +256,42 @@ class CommonService {
 
     }
 
+
+
+
+
+    //---------判断订单管理菜单的权限----
+    public function getHotelType($getCurrentUser){
+        return AdminUser::where('username',$getCurrentUser)->first();
+    }
+
+    //订单管理二级菜单
+    public function getOrderMenuId(){
+        return MenuSetting::where('parent_id',8)->get();
+    }
+
+    //判断二级是否是二级菜单
+    public function secondMenuStatus($allHotelId){
+        return MenuSetting::where('id',$allHotelId)->first();
+    }
+
+    //设为二级菜单
+    public function changeMenuStatus($allHotelId){
+        return MenuSetting::where('id',$allHotelId)->update(['menu_level'=>2]);
+    }
+
+    //取消二级菜单
+    public function cancelMenuStatus($allHotelId){
+        return MenuSetting::where('id',$allHotelId)->update(['menu_level'=>0]);
+    }
+
+    //获取用户所管理的酒店
+    public function manageHotelId($getCurrentUser){
+        return AdminUser::where('username',$getCurrentUser)->first();
+    }
+
+
+
 }
 
 

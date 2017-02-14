@@ -23,7 +23,13 @@
             @foreach($manageHotelList as $hotelItem)
                 <tr>
                     {{--<td class="s-td"><input type="checkbox" value="{{$hotelitem->id}}"></td>--}}
-                    <td class="m-td"> <img class="hotel-img" src = '{{$hotelItem->firstCoverImage->link}}'></td>
+                    <td class="m-td">
+                        @if(isset($hotelItem->firstCoverImage->link))
+                            <img class="hotel-img" src = '{{$hotelItem->firstCoverImage->link}}'>
+                        @else
+                            <img class="hotel-img" src = '/Admin/img/default-image-gbh.jpg'>
+                        @endif
+                    </td>
                     <td class="m-td">{{$hotelItem->name}}</td>
                     <td><i class="icon marker large"></i><span>{{$hotelItem->addressInfo}}</span></td>
                     <td class="l-td">

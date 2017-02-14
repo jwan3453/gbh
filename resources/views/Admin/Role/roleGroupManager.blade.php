@@ -206,7 +206,7 @@
                         toastAlert('删除成功',1);
                         window.location.href = '/admin/administrator/rolegroupmanager';
                     }else{
-                        toastAlert('删除失败',2);
+                        toastAlert('该组尚有成员,无法删除',2);
                         return false;
                     }
 

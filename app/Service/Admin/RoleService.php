@@ -140,6 +140,12 @@ class RoleService {
         return AdminUser::where('user_id',$_POST['userId'])->delete();
 
     }
+    public function IsHasBindGroup(){
+        return RoleUser::where('user_id',$_POST['userId'])->first();
+    }
+    public function removeHasBingRole(){
+        return RoleUser::where('user_id',$_POST['userId'])->delete();
+    }
 
 
 
@@ -285,6 +291,9 @@ class RoleService {
 
         return DB::table('roles')->where('id',$_POST['roleId'])->delete();
 
+    }
+    public function IsHasGroup(){
+        return RoleUser::where('role_id',$_POST['roleId'])->first();
     }
 
 
@@ -566,6 +575,10 @@ class RoleService {
 
         return DB::table('permissions')->where('id',$_POST['id'])->delete();
 
+    }
+    //是否有绑定权限
+    public function IsHasPermission(){
+        return PermissionRole::where('permission_id',$_POST['id'])->first();
     }
 
     //判断权限类型

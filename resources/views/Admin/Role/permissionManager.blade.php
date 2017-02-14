@@ -454,7 +454,7 @@
                         toastAlert('删除成功',1);
                         window.location.href = '/admin/administrator/permissionmanager';
                     }else{
-                        toastAlert('删除失败',2);
+                        toastAlert('请先解除对该权限的绑定',2);
                         return false;
                     }
 

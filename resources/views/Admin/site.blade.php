@@ -83,12 +83,20 @@
                                 @if(session('currentPath_') && (session('currentPath_') === $secondMenuList->menu_chaining))
                                     <input type="hidden" name="sessionId" id="sessionId" value="{{session($secondMenuList->id)}}">
                                     <li>
-                                        <a href="{{url($secondMenuList->menu_chaining)}}" session="{{ session('currentPath_') }}" class="secondNav Nav_">{{ $secondMenuList->menu_name }}</a>
+                                        @if(($firstMenuList->id == 8) && ($manageHotelStatus == 1))
+                                            <a href="{{url($secondMenuList->menu_chaining)}}/{{$manageHotelId}}" session="{{ session('currentPath_') }}" class="secondNav Nav_">{{ $secondMenuList->menu_name }}</a>
+                                        @else
+                                            <a href="{{url($secondMenuList->menu_chaining)}}" session="{{ session('currentPath_') }}" class="secondNav Nav_">{{ $secondMenuList->menu_name }}</a>
+                                        @endif
 
                                     </li>
                                 @else
                                     <li>
-                                        <a href="{{url($secondMenuList->menu_chaining)}}" session="#" class="Nav_">{{ $secondMenuList->menu_name }}</a>
+                                        @if(($firstMenuList->id == 8) && ($manageHotelStatus == 1))
+                                            <a href="{{url($secondMenuList->menu_chaining)}}/{{$manageHotelId}}" session="#" class="Nav_">{{ $secondMenuList->menu_name }}</a>
+                                        @else
+                                            <a href="{{url($secondMenuList->menu_chaining)}}" session="#" class="Nav_">{{ $secondMenuList->menu_name }}</a>
+                                        @endif
                                     </li>
                                 @endif
                             @endif
