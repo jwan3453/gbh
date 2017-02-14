@@ -92,6 +92,9 @@ class HotelService {
         //储存酒店地址
         if ($createOrupdate == "update") {
             $newAddress = Address::find($request->input('addressId'));
+            if($newAddress == null){
+                $newAddress = new Address();
+            }
         }else{
             $newAddress = new Address();
         }
