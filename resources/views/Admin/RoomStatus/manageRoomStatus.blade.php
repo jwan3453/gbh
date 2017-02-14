@@ -5,7 +5,7 @@
 
 
 @section('content')
-    @include('admin.partial.breadcrumbTrail')
+    @include('Admin.partial.breadcrumbTrail')
     <div class="h-content">
 
         <table class="ui primary striped selectable table hotel-table " id="orderTable">

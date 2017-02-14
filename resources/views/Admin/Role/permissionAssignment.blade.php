@@ -8,7 +8,7 @@
 @section('content')
 
     <div id="containerUser">
-        @include('admin.partial.breadcrumbTrail')
+        @include('Admin.partial.breadcrumbTrail')
         <div class="container-action" style="margin-top: 60px;margin-bottom: 20px;">
         </div>
         <div class="user-table" >
