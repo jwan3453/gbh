@@ -6,7 +6,7 @@
 
 
 @section('content')
-    @include('admin.partial.breadcrumbTrail')
+    @include('Admin.partial.breadcrumbTrail')
     <div class="h-content order-list-box">
 
         <div class="all-search-order">

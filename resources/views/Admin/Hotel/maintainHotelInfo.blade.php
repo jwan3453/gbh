@@ -4,7 +4,7 @@
     {{--@include('admin.partial.breadcrumbTrail')--}}
     <div class="admin-content" id="adminContent">
 
-        @include('admin.partial.breadcrumbTrail')
+        @include('Admin.partial.breadcrumbTrail')
 
         <div class="info-menu">
             <div class="ui simple dropdown " >

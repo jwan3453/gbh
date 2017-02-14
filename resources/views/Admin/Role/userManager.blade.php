@@ -7,7 +7,7 @@
 @section('content')
 
 <div id="containerUser">
-    @include('admin.partial.breadcrumbTrail')
+    @include('Admin.partial.breadcrumbTrail')
     <div class="container-action" >
 
         <button class="standard modal">添加用户</button>

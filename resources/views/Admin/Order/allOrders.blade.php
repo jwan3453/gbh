@@ -7,7 +7,7 @@
 
 @section('content')
 
-    @include('admin.partial.breadcrumbTrail')
+    @include('Admin.partial.breadcrumbTrail')
 
     <div class="detail-count-orders">
         订单总数 : <span>{{$countOrders}}</span>
