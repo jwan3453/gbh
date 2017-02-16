@@ -50,12 +50,12 @@ class OrderController extends Controller
 //            return redirect(url('admin/Error/NotPermission'));
 //        }
 
-        return view('Admin.Order.orderSearchPage');
+//        return view('Admin.Order.orderSearchPage');
     }
 
     public function untreatedPage()
     {
-        return view('Admin.Order.untreatedPage');
+//        return view('Admin.Order.untreatedPage');
     }
 
     /**
@@ -153,7 +153,7 @@ class OrderController extends Controller
 
             return view('Admin.Order.manageHotelList')->with(['manageIsAllHotel' => $manageIsAllHotel ,'getMenuName' => $nav['menuName'], 'firstMenuName' => $nav['firstMenuName']]);
         }else{
-            return redirect(url('admin/Error/NotPermission'));
+            return redirect(url('Admin/Error/NotPermission'));
         }
 
     }
@@ -181,8 +181,6 @@ class OrderController extends Controller
             if($hotelOrderInfo){
 
                 return view('Admin.Order.hotelOrderSearch',compact('hotelOrderInfo'))->with(['hotelId' => $hotelId,'getMenuName' => $nav['menuName'], 'firstMenuName' => $nav['firstMenuName']]);
-
-            }else{
 
             }
 
@@ -272,7 +270,7 @@ class OrderController extends Controller
         $SecondMenuName = $getDetailInfo->hotelDetail->name.'订单详情';
 
 
-        return view('admin.Order.detailOrderDisplay')->with(['getDetailInfo' => $getDetailInfo,'getMenuName' => $getMenuName, 'SecondMenuName' => $SecondMenuName]);
+        return view('Admin.Order.detailOrderDisplay')->with(['getDetailInfo' => $getDetailInfo,'getMenuName' => $getMenuName, 'SecondMenuName' => $SecondMenuName]);
     }
 
     //未处理订单
@@ -348,7 +346,7 @@ class OrderController extends Controller
 
             }
 
-            return view('admin.Order.todayOrders',compact('todayOrders'))->with(['countOrders' => $countOrders,'getMenuName' => $nav['menuName'], 'firstMenuName' => $nav['firstMenuName']]);
+            return view('Admin.Order.todayOrders',compact('todayOrders'))->with(['countOrders' => $countOrders,'getMenuName' => $nav['menuName'], 'firstMenuName' => $nav['firstMenuName']]);
         }
 
         if($getHotelType->hotel_type == 2){
