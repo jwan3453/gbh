@@ -684,7 +684,7 @@ class RoleManagerController extends Controller
 
         $currentPermission  =  $this->adminRole->currentPerm($id);          //当前拥有权限
 
-        return view('admin.role.settingPermissions',compact('detailRole','currentPermission'))->with(['permissions' => $permissions,'getMenuName' => $getMenuName,'firstMenuName' => $firstMenuName]);
+        return view('Admin.Role.settingPermissions',compact('detailRole','currentPermission'))->with(['permissions' => $permissions,'getMenuName' => $getMenuName,'firstMenuName' => $firstMenuName]);
 
 
     }
