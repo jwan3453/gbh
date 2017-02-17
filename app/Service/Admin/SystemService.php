@@ -419,6 +419,28 @@ class SystemService
 
             $city->city_name_en = $request->input('nameEn');
             $city->save();
+        }else{
+            $international = InternationalCity::where('code',$code)->first();
+            if($international != null){
+                if($request->input('status') == null)
+                {
+                    $international->status = 0;
+                }
+                else{
+                    $international->status = 1;
+                }
+
+                if($request->input('is_hot') == null)
+                {
+                    $international->is_hot = 0;
+                }
+                else{
+                    $international->is_hot = 1;
+                }
+
+                $international->city_name_en = $request->input('nameEn');
+                $international->save();
+            }
         }
 
         $imageService = new ImageService();
@@ -432,7 +454,7 @@ class SystemService
         }
 
 
-        $destination = destination::where('city_code',$code)->first();
+        $destination = Destination::where('city_code',$code)->first();
         if($destination != null)
         {
 

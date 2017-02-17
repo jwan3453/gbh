@@ -582,7 +582,7 @@ class RoleManagerController extends Controller
         //是否含有组员
         $bindGroup = $this->adminRole->IsHasGroup();
         $jsonResult = new MessageResult();
-        if($bindGroup->role_id != $_POST['roleId']){
+        if($bindGroup == NULL || $bindGroup->role_id != $_POST['roleId']){
             $deleteRes  = $this->adminRole->removeRole();
             if($deleteRes){
 
@@ -611,7 +611,7 @@ class RoleManagerController extends Controller
         //是否有绑定权限
         $bindPermission = $this->adminRole->IsHasPermission();
         $jsonResult = new MessageResult();
-        if($bindPermission->permission_id != $_POST['id']){
+        if($bindPermission == NULL || $bindPermission->permission_id != $_POST['id']){
             $deleteRes  = $this->adminRole->removePermissions();
 
             if($deleteRes){
@@ -684,7 +684,7 @@ class RoleManagerController extends Controller
 
         $currentPermission  =  $this->adminRole->currentPerm($id);          //当前拥有权限
 
-        return view('admin.role.settingPermissions',compact('detailRole','currentPermission'))->with(['permissions' => $permissions,'getMenuName' => $getMenuName,'firstMenuName' => $firstMenuName]);
+        return view('Admin.Role.settingPermissions',compact('detailRole','currentPermission'))->with(['permissions' => $permissions,'getMenuName' => $getMenuName,'firstMenuName' => $firstMenuName]);
 
 
     }

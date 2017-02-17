@@ -8,7 +8,7 @@
 @section('content')
 
     <div id="containerUser">
-        @include('admin.partial.breadcrumbTrail')
+        @include('Admin.partial.breadcrumbTrail')
         <div class="container-action">
             {{--<p>当前用户总数:{{ $countRes }}</p>--}}
             <button class="standard modal">添加权限</button>

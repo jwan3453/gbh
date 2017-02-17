@@ -15,7 +15,7 @@
 
 @section('content')
 
-	@include('admin.partial.breadcrumbTrail')
+	@include('Admin.partial.breadcrumbTrail')
 <div class="classification-box">
 	<div class="classification-box-title">
 		<span>轮播图管理</span>
