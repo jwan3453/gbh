@@ -281,7 +281,7 @@ class SystemController extends Controller
         $initialGroup['f_j'] = ['F', 'G', 'H', 'I', 'J'];
         $initialGroup['k_p'] = ['K', 'L', 'M', 'N', 'O', 'P'];
         $initialGroup['q_v'] = ['Q', 'R', 'S', 'T', 'U', 'V'];
-        $initialGroup['w_z'] = ['W', 'R', 'S', 'T', 'U', 'Z'];
+        $initialGroup['w_z'] = ['W', 'X', 'Y', 'Z'];
         $initialGroup['intCity'] = ['intCity'];
 
         return view('Admin.System.manageDestination')->with('cities', $cities)->with('initialGroup', $initialGroup);
