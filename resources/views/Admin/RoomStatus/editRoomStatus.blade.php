@@ -92,7 +92,7 @@
                                     <span class="down">已预订:<span class="n-of-sold-room">{{$roomStatus->num_of_sold_room}}</span></span>
                                 @endif
 
-                                <input type="hidden" class="r-id" value="{{$roomStatus->room_id}}">
+                                <input type="hidden" class="r-id" value="{{$roomType->id}}">
                                 <input type="hidden" class="p-d" value="{{$roomStatus->date}}">
                                 <input type="hidden" class="r-s" value="{{$roomStatus->room_status}}">
                                 <input type="hidden" class="p-t" value="1">
@@ -144,7 +144,7 @@
 
                 </div>
 
-                <div class="regular-btn red-btn auto-margin " id="submitPrice">提交价格</div>
+                <div class="regular-btn red-btn auto-margin " id="submitStatus">提交房态</div>
             </form>
         </div>
 
@@ -197,9 +197,9 @@
                 {
                     $('#updateStatusPopup').hide();
                 }
-                var top= $(this).offset().top;
+                var top= $(this).offset().top-110;
                 var left = $(this).offset().left;
-                $('#updateStatusPopup').css('top',top).css('left',left-200).fadeIn();
+                $('#updateStatusPopup').css('top',top).css('left',left-210).fadeIn();
             })
 
             //关闭房态框
@@ -208,7 +208,7 @@
             })
 
             //提交新的房态
-            $('#submitPrice').click(function(){
+            $('#submitStatus').click(function(){
                 if($('#numOfBlockedRoom').val()==='' || parseInt($('#numOfBlockedRoom').val())=== 0 )
                 {
                     toastAlert('房间数量不能为空或零');

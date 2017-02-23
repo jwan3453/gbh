@@ -624,6 +624,7 @@ class HotelService {
 
         }
 
+        //todo need to change the logic of display room status
         return $priceList;
     }
 
@@ -650,6 +651,15 @@ class HotelService {
         $updateRoomStatus=  RoomStatus::where(['hotel_id'=>$hotelId,
             'room_id'=>$roomId,
             'date'=>$date])->first();
+
+        if($updateRoomStatus== null)
+        {
+
+            $updateRoomStatus = new RoomStatus();
+            $updateRoomStatus->hotel_id = $hotelId;
+            $updateRoomStatus->room_id = $roomId;
+            $updateRoomStatus->date = $date;
+        }
         if($payType==1)
         {
             $updateRoomStatus->num_of_blocked_room =$numOfBlockedRoom;
@@ -681,6 +691,18 @@ class HotelService {
          $roomPrice =  RoomPrice::where(['hotel_id'=>$hotelId,
                                         'room_id'=>$roomId,
                                         'date'=>$date])->first();
+
+
+
+        if($roomPrice== null)
+        {
+
+            $roomPrice = new RoomPrice();
+            $roomPrice->hotel_id = $hotelId;
+            $roomPrice->room_id = $roomId;
+            $roomPrice->date = $date;
+        }
+
         if($payType==1)
         {
             $roomPrice->rate =$roomRate;

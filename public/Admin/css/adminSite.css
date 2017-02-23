@@ -99,7 +99,10 @@ a{
 }
 .admin-content{
 
-
+	min-width: 960px;
+	width:95%;
+	padding:10px 0 ;
+	margin:20px auto;
 
 }
 .disabled-input{

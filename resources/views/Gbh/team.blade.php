@@ -45,7 +45,7 @@
                 </div>
 
                 <div class="mem-right member" >
-                    <img src = 'Gbh/img/qing.png' data-content="这个就是小明，嗯">
+                    <img src = 'Gbh/img/qing.png' data-content="2015年10月加入联盟,负责联盟的品牌运营">
                     <div class="position">Winne 陈</div>
                 </div>
 
@@ -54,17 +54,17 @@
             <div class="team-member">
 
                 <div class="mem-left member"  >
-                    <img src = 'Gbh/img/long.png'  data-title="Tim 张" data-content="2016年1月加入联盟,毕业于悉尼大学，现在在联盟担任技术合伙人一职位" >
+                    <img src = 'Gbh/img/long.png'  data-title="Tim 张" data-content="负责联盟酒店微信运营" >
                     <div class="position">Tim</div>
                 </div>
 
                 <div class="mem-middle member">
-                    <img src = 'Gbh/img/ting.png' data-content="Patty 王">
+                    <img src = 'Gbh/img/ting.png' data-content="Patty 王, 负责联盟的酒店市场">
                     <div class="position">Patty 王</div>
                 </div>
 
                 <div class="mem-right member" >
-                    <img src = 'Gbh/img/hong.png' data-content="Vincent 洪">
+                    <img src = 'Gbh/img/hong.png' data-content="刚来，实习中....">
                     <div class="position">Vincent 洪</div>
                 </div>
 
@@ -73,7 +73,7 @@
             <div class="team-member">
 
                 <div class="mem-left member"  >
-                    <img src = 'Gbh/img/continue.png'  data-title="欢迎加入我们" data-content="2016年1月加入联盟,毕业于悉尼大学，现在在联盟担任技术合伙人一职位" >
+                    <img src = 'Gbh/img/continue.png'  data-title="欢迎加入我们" data-content="we want you !" >
                     <div class="position">To be continue</div>
                 </div>
 

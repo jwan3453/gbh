@@ -92,7 +92,7 @@
                                         <span class="down">早餐:<span class="n-of-bf">{{$roomPrice->num_of_breakfast}}</span></span>
                                     @endif
                                         <input type="hidden" class="r-c" value="{{$roomPrice->commission}}">
-                                        <input type="hidden" class="r-id" value="{{$roomPrice->room_id}}">
+                                        <input type="hidden" class="r-id" value="{{$roomType->id}}">
                                         <input type="hidden" class="p-d" value="{{$roomPrice->date}}">
                                         <input type="hidden" class="p-t" value="1">
                                 </td>
@@ -199,9 +199,9 @@
                 {
                     $('#updatePricePopup').hide();
                 }
-                var top= $(this).offset().top;
+                var top= $(this).offset().top-110;
                 var left = $(this).offset().left;
-                $('#updatePricePopup').css('top',top).css('left',left-200).fadeIn();
+                $('#updatePricePopup').css('top',top).css('left',left-210).fadeIn();
             })
 
             //关闭变价框

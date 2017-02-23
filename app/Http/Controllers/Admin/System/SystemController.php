@@ -141,8 +141,15 @@ class SystemController extends Controller
     public function serviceSetting()
     {
 
+        //获取路由
+        $currentUrl    = $this->commonService->getCurrentUrl();
+
+        $getMenuName   = $this->commonService->getMenuName($currentUrl);
+        //父级菜单
+        $firstMenuName = $this->commonService->firstMenuName($getMenuName);
+
         $serviceCategorylist = $this->system->getServiceCategoryList();
-        return view('Admin.System.serviceSetting')->with('serviceCategorylist', $serviceCategorylist);
+        return view('Admin.System.serviceSetting')->with(['serviceCategorylist'=>$serviceCategorylist, 'getMenuName' => $getMenuName, 'firstMenuName' => $firstMenuName]);
     }
 
     public function createServiceCategory(Request $request)
@@ -273,6 +280,15 @@ class SystemController extends Controller
     public function manageDestination()
     {
 
+
+
+        //获取路由
+        $currentUrl    = $this->commonService->getCurrentUrl();
+
+        $getMenuName   = $this->commonService->getMenuName($currentUrl);
+        //父级菜单
+        $firstMenuName = $this->commonService->firstMenuName($getMenuName);
+
         //$initial_a_e = ['A','B','C','D','E'];
         $cities = $this->system->getCities();
 
@@ -284,7 +300,7 @@ class SystemController extends Controller
         $initialGroup['w_z'] = ['W', 'X', 'Y', 'Z'];
         $initialGroup['intCity'] = ['intCity'];
 
-        return view('Admin.System.manageDestination')->with('cities', $cities)->with('initialGroup', $initialGroup);
+        return view('Admin.System.manageDestination')->with(['cities'=> $cities,'initialGroup'=> $initialGroup,'getMenuName' => $getMenuName, 'firstMenuName' => $firstMenuName]);
     }
 
     //获取目的地信息
@@ -330,8 +346,17 @@ class SystemController extends Controller
     //设置酒店分类
     public function manageHotelCategory()
     {
+
+
+        //获取路由
+        $currentUrl    = $this->commonService->getCurrentUrl();
+
+        $getMenuName   = $this->commonService->getMenuName($currentUrl);
+        //父级菜单
+        $firstMenuName = $this->commonService->firstMenuName($getMenuName);
+
         $categories = $this->system->getHotelCategories();
-        return view('Admin.System.manageHotelCategory')->with('categories',$categories);
+        return view('Admin.System.manageHotelCategory')->with(['categories'=>$categories, 'getMenuName' => $getMenuName, 'firstMenuName' => $firstMenuName]);;
     }
 
     //保存目的地信息

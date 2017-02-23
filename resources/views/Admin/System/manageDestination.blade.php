@@ -6,6 +6,7 @@
 
 @section('content')
 
+    @include('Admin.partial.breadcrumbTrail')
     <div class="admin-content">
         <div class="destination-list">
 
