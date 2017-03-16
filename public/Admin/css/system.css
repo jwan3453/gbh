@@ -1,0 +1,146 @@
+
+/*
+   公共部分
+*/
+
+.container{
+    width: 1127px;
+    margin-left: auto !important;
+    margin-right: auto !important;
+
+}
+.regular-btn{
+    line-height: 35px;
+    text-align: center;
+    font-size:16px;
+    border: none;
+    height:35px;
+    color:white;
+
+    width:120px ;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.blue-btn{
+    background-color:#639ae3;
+}
+.red-btn{
+    background-color:#ff5f76;
+}
+
+
+.f-left{
+    float:left;
+}
+.f-right{
+    float:right;
+}
+/*错误提示*/
+.alert-box{
+    position: fixed;
+    top:20px;
+    left:calc(50% - 100px);
+    color:white;
+    width:200px;
+    height:40px;
+    background-color:#ff5f76;
+    border-radius: 5px;
+    font-size:14px;
+    line-height: 40px;
+    text-align: center;
+    display: none;
+    z-index:1001;
+}
+.success-toast{
+    background-color:#40c39a;
+}
+
+.wrong-input{
+    border:1px solid #ff5f76!important;
+}
+#alertBox{ margin-top: 23%; }
+/*
+创建评分系统页面
+*/
+
+
+
+.new-section{
+    padding:30px;
+    overflow: hidden;
+    clear:both;
+}
+.new-section input{
+    height:35px;
+    width:200px;
+    line-height: 35px;
+    box-sizing: border-box;
+    margin-right: 20px;
+}
+.section-list
+{
+    padding:15px 0 ;
+}
+
+.section-list span{
+    background-color:#639ae3;
+    display: inline-block;
+    height:25px;
+    line-height: 25px;
+    border-radius: 3px;
+    font-size: 12px;
+    padding:0 10px;
+    color: #f8f8f8;
+}
+.section-list i{
+    cursor: pointer;
+}
+
+.new-marking-items{
+    padding:30px;
+    overflow: hidden;
+    clear:both;
+}
+.new-marking-items label{
+    font-size: 14px;
+    margin-right:10px;
+    width:100px;
+    display: inline-block;
+}
+.new-marking-items  select{
+    width:100px;
+    height:30px;
+    line-height: 30px;
+}
+
+.new-marking-items textarea{
+    height:120px;
+    width:600px;
+    vertical-align: middle;
+}
+
+.marking-item-list{
+    padding:30px;
+    overflow: hidden;
+    clear:both;
+}
+.marking-item-list i{
+    cursor: pointer;
+}
+
+.marking-item-list label{
+    font-size: 16px;
+
+    display: block;
+    margin-bottom: 10px;
+}
+.marking-item-list span{
+    background-color:#639ae3;
+    display: inline-block;
+    height:25px;
+    line-height: 25px;
+    border-radius: 3px;
+    font-size: 12px;
+    padding:0 10px;
+    color: #f8f8f8;
+}

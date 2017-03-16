@@ -582,9 +582,30 @@ Route::group(['prefix' => '/admin/', 'middleware' => ['App\Http\Middleware\Admin
         //所有订单
         Route::get('/allorders/{hotelId}','Admin\Order\OrderController@allOrders');
 
-
     });
 
+
+    //酒店评分系统
+    Route::get('/markingSystem','Admin\MarkingSystem\MarkingSystemController@index');
+
+
+    Route::group(['prefix' => 'markingSystem'],function() {
+        //创建评分系统
+        Route::get('/createMarkingSystem', 'Admin\MarkingSystem\MarkingSystemController@createMarkingSystem');
+
+        //创建分区
+        Route::post('/createMarkingSection', 'Admin\MarkingSystem\MarkingSystemController@createMarkingSection');
+
+        //删除分区
+        Route::post('/deleteMarkingSection', 'Admin\MarkingSystem\MarkingSystemController@deleteMarkingSection');
+
+        //创建评分区
+        Route::post('/createMarkingItems','Admin\MarkingSystem\MarkingSystemController@createMarkingItems');
+
+        //删除评分项
+        Route::post('/deleteMarkingStandard', 'Admin\MarkingSystem\MarkingSystemController@deleteMarkingStandard');
+
+    });
     
 });
 

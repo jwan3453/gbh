@@ -17,7 +17,7 @@
     <link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/loader.css') }}>
     <script src={{ asset('semantic/transition.js') }}></script>
     {{--<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.11.6/semantic.min.css"/>--}}
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.11.6/semantic.min.js"></script>
+    {{--<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.11.6/semantic.min.js"></script>--}}
 
     <link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/dropdown.css') }}>
     <script src={{ asset('semantic/dropdown.js') }}></script>
