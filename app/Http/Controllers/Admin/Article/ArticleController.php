@@ -33,6 +33,7 @@ class ArticleController extends Controller
         $this->article = $article ;
         $this->commonService = $commonService;
 
+
     }
 
     public function index()

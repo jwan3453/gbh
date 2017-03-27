@@ -12,7 +12,7 @@
     <link  rel="stylesheet" type="text/css"  href ={{ asset('Admin/css/system.css') }}>
     {{--<link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/transition.css') }}>--}}
     {{--<link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/icon.css') }}>--}}
-    {{--<link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/table.css') }}>--}}
+    <link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/table.css') }}>
     {{--<link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/modal.min.css') }}>--}}
     {{--<link  rel="stylesheet" type="text/css"  href ={{ asset('semantic/loader.css') }}>--}}
     {{--<script src={{ asset('semantic/transition.js') }}></script>--}}

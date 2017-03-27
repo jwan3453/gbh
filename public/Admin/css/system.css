@@ -35,6 +35,10 @@
 .f-right{
     float:right;
 }
+
+.auto-margin{
+    margin:auto;
+}
 /*错误提示*/
 .alert-box{
     position: fixed;
@@ -143,4 +147,78 @@
     font-size: 12px;
     padding:0 10px;
     color: #f8f8f8;
+}
+
+/*
+    系统评分页面
+*/
+
+.eva-hotel-d{
+    margin: 20px 0 0 0;
+}
+
+.eva-hotel-d label{
+    font-size: 16px;
+    margin-right: 10px;
+    width:80px;
+    display: inline-block;
+}
+
+.eva-hotel-d input{
+
+    width:200px;
+    height:26px;
+    border-radius:3px;
+
+}
+.eva-hotel-d span{
+    display: inline-block;
+}
+
+.marking-table{
+    font-size: 13px!important;
+}
+.marking-table th{
+    text-align: center!important;
+}
+
+.marking-table td{
+    text-align: center!important;
+}
+.marking-table .evl-points{
+    width:50px;
+    height:28px;
+    text-align: center;
+}
+
+.marking-table .evl-desc{
+    width:200px;
+    height:28px;
+    text-align: center;
+}
+
+.marking-table .sign_file{
+    width:150px;
+}
+
+.s-name{
+    font-size: 14px;
+    font-weight: 600;
+    margin: 30px 0 20px 0;
+    text-align: center;
+}
+.s-des{
+    font-size: 12px;
+
+
+}
+
+
+
+/* Mobily Only */
+@media only screen and (max-width: 767px) {
+    .container{
+        width: 100%;
+
+    }
 }

@@ -589,25 +589,46 @@ Route::group(['prefix' => '/admin/', 'middleware' => ['App\Http\Middleware\Admin
     Route::get('/markingSystem','Admin\MarkingSystem\MarkingSystemController@index');
 
 
-    Route::group(['prefix' => 'markingSystem'],function() {
-        //创建评分系统
-        Route::get('/createMarkingSystem', 'Admin\MarkingSystem\MarkingSystemController@createMarkingSystem');
-
-        //创建分区
-        Route::post('/createMarkingSection', 'Admin\MarkingSystem\MarkingSystemController@createMarkingSection');
-
-        //删除分区
-        Route::post('/deleteMarkingSection', 'Admin\MarkingSystem\MarkingSystemController@deleteMarkingSection');
-
-        //创建评分区
-        Route::post('/createMarkingItems','Admin\MarkingSystem\MarkingSystemController@createMarkingItems');
-
-        //删除评分项
-        Route::post('/deleteMarkingStandard', 'Admin\MarkingSystem\MarkingSystemController@deleteMarkingStandard');
-
-    });
     
 });
+
+
+//酒店评分系统
+Route::get('admin/markingSystem','Admin\MarkingSystem\MarkingSystemController@index');
+
+Route::group(['prefix' => 'admin/markingSystem'],function() {
+    //创建评分系统
+    Route::get('/createMarkingSystem', 'Admin\MarkingSystem\MarkingSystemController@createMarkingSystem');
+
+    //创建分区
+    Route::post('/createMarkingSection', 'Admin\MarkingSystem\MarkingSystemController@createMarkingSection');
+
+    //删除分区
+    Route::post('/deleteMarkingSection', 'Admin\MarkingSystem\MarkingSystemController@deleteMarkingSection');
+
+    //创建评分区
+    Route::post('/createMarkingItems','Admin\MarkingSystem\MarkingSystemController@createMarkingItems');
+
+    //删除评分项
+    Route::post('/deleteMarkingStandard', 'Admin\MarkingSystem\MarkingSystemController@deleteMarkingStandard');
+
+
+
+    //评估酒店
+    Route::get('/evaluate', 'Admin\MarkingSystem\MarkingSystemController@evaluate');
+
+    //查看评估表
+    Route::get('/checkEvaluate/{recordId}','Admin\MarkingSystem\MarkingSystemController@showEvaluateRecord');
+
+    //提交分区评估结果
+    Route::post('/saveSectionEvaluates','Admin\MarkingSystem\MarkingSystemController@saveSectionEvaluates');
+
+    //导出excel
+    Route::get('/exportExcel/{recordId}','Admin\MarkingSystem\MarkingSystemController@exportExcel');
+});
+
+
+
 
 Route::get('/admin/Login','Admin\homeController@login');
 

@@ -153,6 +153,13 @@ return [
          * Entrust
          */
         Zizaco\Entrust\EntrustServiceProvider::class,
+
+
+        /*
+         * Excel
+         */
+        Maatwebsite\Excel\ExcelServiceProvider::class,
+
     ],
 
     /*
@@ -202,7 +209,8 @@ return [
         'View'      => Illuminate\Support\Facades\View::class,
         'QrCode'    => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
 
-        'Entrust'   => Zizaco\Entrust\EntrustFacade::class
+        'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
     ],
 
 ];

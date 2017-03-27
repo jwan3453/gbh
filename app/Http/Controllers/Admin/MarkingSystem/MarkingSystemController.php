@@ -1,10 +1,11 @@
 <?php
 namespace App\Http\Controllers\Admin\MarkingSystem;
 use App\Http\Requests;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Service\Admin\MarkingSystemService;
 use App\Tool\MessageResult;
-use Illuminate\Http\Request;
+
 
 
 class MarkingSystemController extends Controller
@@ -23,9 +24,10 @@ class MarkingSystemController extends Controller
      *
      * @return view
      */
-    public function index()
-    {
+    public function index(){
 
+        $recordList=  $this->msService->getEvaluateRecordList();
+        return view('Admin.MarkingSystem.index')->with(['recordList' =>  $recordList]);
     }
 
     /**
@@ -33,8 +35,8 @@ class MarkingSystemController extends Controller
      *
      * @return view
      */
-    public function createMarkingSystem()
-    {
+    public function createMarkingSystem(){
+
         $sectionList =  $this->msService->getAllSection();
         $standardList=  $this->msService->getStanderList();
 
@@ -47,8 +49,7 @@ class MarkingSystemController extends Controller
      * @return Json
      */
 
-    public function createMarkingSection(Request $request)
-    {
+    public function createMarkingSection(Request $request){
         $jsonResult = new MessageResult();
 
         $result = $this->msService->createNewSectionItem($request->input('newSection'));
@@ -69,8 +70,7 @@ class MarkingSystemController extends Controller
      *
      * @return Json
      */
-    public function deleteMarkingSection(Request $request)
-    {
+    public function deleteMarkingSection(Request $request){
         $jsonResult = new MessageResult();
 
         $result = $this->msService->deleteSectionItem($request->input('section'));
@@ -136,6 +136,61 @@ class MarkingSystemController extends Controller
         return response($jsonResult->toJson());
     }
 
+
+    /**
+     * 评估酒店
+     *
+     * @return Json
+     */
+
+    public function evaluate()
+    {
+        $standardList=  $this->msService->getStanderList();
+
+        return view('Admin.MarkingSystem.evaluate')->with(['standardList' =>  $standardList]);
+    }
+
+
+    /**
+     * 提交分区评估结果
+     *
+     * @return Json
+     */
+    public function saveSectionEvaluates(Request $request)
+    {
+        $jsonResult = new MessageResult();
+        $result=  $this->msService->saveSectionEvaluates($request);
+
+        $jsonResult->statusCode = 1;
+        $jsonResult->statusMsg = $result;
+
+        return response($jsonResult->toJson());
+    }
+
+    /**
+     * 查看评估报表
+     *
+     * @return view
+     */
+    public function showEvaluateRecord($recordId)
+    {
+        $recordInfo = $this->msService->getRecordInfo($recordId);
+        $evaluatedStandardList=  $this->msService->getEvaluatedStanderList($recordId);
+
+
+
+        return view('Admin.MarkingSystem.showEvaluateRecord')->with(['recordInfo'=>$recordInfo,'evaluatedStandardList'=>$evaluatedStandardList]);
+    }
+
+    /*
+     * 导出Excel
+     *
+     * return file
+     */
+    public function exportExcel($recordId)
+    {
+         $this->msService->exportExcel($recordId);
+    }
 
 }
 
