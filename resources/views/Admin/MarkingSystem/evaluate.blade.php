@@ -53,20 +53,20 @@
 
 
                 <div class="s-name">{{$loop .'. '.$section->name}}</div>
-                <table class="ui table group marking-table" >
-                    <thead>
-                    <tr>
-                        <th>项目</th>
-                        <th style="text-align: center">打分</th>
-                        <th style="text-align: center">描述</th>
-                        <th style="text-align: center">图片</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @foreach( $section->standards as $standard)
-                        <tr>
-                            <td  class="s-des">{{ $standard->description }}</td>
-                            <td>
+                <ul class=" marking-table" >
+                    <li class="head">
+
+                            <span >项目</span>
+                            <span style="text-align: center">打分</span>
+                            <span style="text-align: center">描述</span>
+                            <span style="text-align: center">图片</span>
+
+                    </li>
+
+                    @foreach( $section->standards as $index => $standard)
+                        <li>
+                            <div  class="s-des">{{ ($index+1).'. '. $standard->description }}</div>
+                            <div  class="s-points">
 
                                 <select class="evl-points" name="evlPoints_{{$standard->id}}">
                                     <option value ="0">0</option>
@@ -81,13 +81,13 @@
                                     <option value="90">90</option>
                                     <option value="100">100</option>
                                 </select>
-                            </td>
-                            <td><input type="text" class="evl-desc" name="evlDesc_{{$standard->id}}"/></td>
-                            <td><input type="file" accept="image/*" capture="camera" id="cameraInput" name="cameraInput_{{$standard->id}}" class="sign_file"/></td>
-                        </tr>
+                            </div>
+                            <div class="s-desc"><input type="text" class="evl-desc" name="evlDesc_{{$standard->id}}"/></div>
+                            <div class="s-file"><input type="file" accept="image/*" capture="camera" id="cameraInput" name="cameraInput_{{$standard->id}}" class="sign_file"/></div>
+                        </li>
                     @endforeach
-                    </tbody>
-                </table>
+
+                </ul>
 
 
                 <div>

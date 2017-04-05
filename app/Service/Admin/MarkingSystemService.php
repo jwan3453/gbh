@@ -109,7 +109,7 @@ class MarkingSystemService {
 
     public function getEvaluateRecordList()
     {
-        return $recordList = MarkingRecords::all();
+        return $recordList = MarkingRecords::latest()->createdAt()->get();
     }
 
     /*

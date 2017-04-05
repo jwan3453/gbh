@@ -10,6 +10,9 @@ use Carbon\Carbon;
 
 use App\Tool\MessageResult;
 
+use Cache;
+use Illuminate\Support\Facades\Redis;
+
 /**
  *
  */
@@ -17,14 +20,21 @@ class ArticleService {
 
     public function showArticle($articleId)
     {
-        $article = Article::findOrfail($articleId);
-        if($article != null)
-        {
-            $count = Article::where('id',$articleId)->select('view_count')->first()->view_count;
-            $view_count = $count + 1;
-            Article::where('id',$articleId)->update(['view_count'=>$view_count]);
-        }
-        return $article;
+
+        //缓存文章
+       // $result = Cache::remember('artile_cache',120,function() use ($articleId){
+
+            $article = Article::findOrfail($articleId);
+            if($article != null)
+            {
+                $count = Article::where('id',$articleId)->select('view_count')->first()->view_count;
+                $view_count = $count + 1;
+                Article::where('id',$articleId)->update(['view_count'=>$view_count]);
+            }
+            return $article;
+       // });
+
+     //   return $result;
     }
 
     public function getHomeArticleList()

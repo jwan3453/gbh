@@ -79,7 +79,7 @@ Route::get('/team','Gbh\HomeController@team');
 
 Route::get('/booking', 'Gbh\HomeController@booking');
 
-Route::get('/article/{articleId}', 'Gbh\ArticleController@showArticle');
+Route::get('/article/{articleId}', 'Gbh\ArticleController@showArticle')->where('id','[0-9]+');
 
 Route::post('/getArticleByCate','Gbh\ArticleController@getArticleByCate');
 

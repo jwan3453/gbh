@@ -177,14 +177,40 @@
 
 .marking-table{
     font-size: 13px!important;
-}
-.marking-table th{
-    text-align: center!important;
+    border:1px solid #DEDEDE;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    width:100%;
+    list-style: none;
+    padding:0!important;
 }
 
-.marking-table td{
-    text-align: center!important;
+.marking-table li{
+    width:calc(100% - 20px);
+    margin:10px 0;
 }
+.marking-table li div{
+    width:calc(24% - 10px);
+    display: inline-block;
+    text-align: center;
+
+    vertical-align: middle;
+}
+
+.marking-table .head{
+    border-bottom: #DEDEDE;
+    width: 100%;
+    background-color:#F9FAFB ;
+}
+
+.marking-table .head span{
+    text-align: center!important;
+    padding:15px 0 ;
+
+    display: inline-block;
+    width:24%;
+}
+
 .marking-table .evl-points{
     width:50px;
     height:28px;
@@ -208,9 +234,14 @@
     text-align: center;
 }
 .s-des{
+
     font-size: 12px;
+    padding-left:10px;
 
+}
 
+.m-t{
+    width:100%;
 }
 
 
@@ -220,5 +251,36 @@
     .container{
         width: 100%;
 
+    }
+    .marking-table{
+
+    }
+
+    .marking-table li{
+        border-bottom: 1px solid #DEDEDE;
+    }
+
+    .s-des{
+        width: calc(100% - 20px) !important;
+        padding: 10px;
+        text-align: left!important;
+    }
+    .s-points{
+        text-align: left!important;
+        padding: 10px;
+    }
+    .s-desc{
+        width:80px!important;
+        text-align: left!important;
+    }
+
+   .s-file {
+        width: 100% !important;
+        padding: 10px;
+        text-align: left!important;
+    }
+    .s-file img{
+        width:100%!important;
+        height:auto!important;
     }
 }

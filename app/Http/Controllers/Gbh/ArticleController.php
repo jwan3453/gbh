@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Service\Gbh\ArticleService;
 
 use App\Tool\MessageResult;
+use Illuminate\Support\Facades\Redis;
 
 
 class ArticleController extends Controller
@@ -21,6 +22,10 @@ class ArticleController extends Controller
     public function showArticle($articleId)
     {
 
+
+        $sortedViews = Redis::zRevRange('articleViews',0,-1,'withscores');
+
+
         $article= $this->article->showArticle($articleId);
         if(!empty($article->wechat_url))
         {
@@ -34,8 +39,12 @@ class ArticleController extends Controller
             $article->wechat_content = str_replace('data-src','src',
                                      $article->wechat_content);
 
-            //墙纸anchor为白色
+            //强制anchor为白色
             $article->wechat_content =str_replace('#607fa6','#f8f8f8', $article->wechat_content);
+
+
+            //浏览计数 储存在redis
+            //$views = Redis::zIncrBy('articleViews',1,'article:'.$articleId);
 
 
          //   dd($article->wechat_content);
