@@ -50,6 +50,7 @@ class HotelController extends Controller
 
         //判断权限
         $getCurrentUser = Session::get('adminusername');
+
         //查询用户
         $userInfo       = $this->commonService->checkInUser($getCurrentUser);
 
