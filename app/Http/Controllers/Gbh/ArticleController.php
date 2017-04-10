@@ -23,7 +23,7 @@ class ArticleController extends Controller
     {
 
 
-        $sortedViews = Redis::zRevRange('articleViews',0,-1,'withscores');
+      //  $sortedViews = Redis::zRevRange('articleViews',0,-1,'withscores');
 
 
         $article= $this->article->showArticle($articleId);
