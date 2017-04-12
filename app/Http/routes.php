@@ -625,6 +625,11 @@ Route::group(['prefix' => 'admin/markingSystem'],function() {
 
     //导出excel
     Route::get('/exportExcel/{recordId}','Admin\MarkingSystem\MarkingSystemController@exportExcel');
+
+
+    //对比结果
+    Route::get('/compare/{evalList}','Admin\MarkingSystem\MarkingSystemController@compare');
+
 });
 
 

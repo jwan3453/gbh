@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\ServiceProvider;
 use App\Service\Common\CommonService;
 use App\Service\Admin\AdminUserService;
+use Illuminate\Support\Facades\Blade;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -24,6 +25,8 @@ class AppServiceProvider extends ServiceProvider
     //多个页面共享数据
     public function boot()
     {
+
+
 
         view()->composer('*',function($view){
             $commonService = new CommonService;

@@ -323,4 +323,75 @@ class MarkingSystemService {
     }
 
 
+    /*
+     * 比较酒店评估
+     */
+    public function compare($evalList)
+    {
+
+
+
+        $sectionList =  MarkingSection::all();
+        foreach($sectionList as $section)
+        {
+
+
+
+
+            foreach($evalList as $recordId)
+            {
+                $evalKey = 'eval_'.$recordId;
+                $totalPointKey = 'totalPoints_'.$recordId;
+                $section->standards = MarkingSystemStandard::where('section_id',$section->id)->get();
+                $section[$evalKey] = DB::table('marking_system_standard as mst')->where('mst.section_id',$section->id)
+
+                    ->LeftJoin('marking_points as mp',function($join) use  ($recordId){
+
+                        $join->on('mst.id','=','mp.standard_id')->where('mp.record_id','=',$recordId);
+
+                    })
+
+                    ->select('mst.id','mst.description','mp.points')->get();//,'mp.description as mpdesc','mp.images')->get();
+
+                $section[$totalPointKey] = DB::table('marking_system_standard as mst')->where('mst.section_id',$section->id)
+
+                    ->LeftJoin('marking_points as mp',function($join) use  ($recordId){
+
+                        $join->on('mst.id','=','mp.standard_id')->where('mp.record_id','=',$recordId);
+
+                    })->select(DB::raw('sum(points) as total'))->first();
+
+            }
+
+            // MarkingSystemStandard::where('section_id',$section->id)->get();
+        }
+
+
+
+
+        return $sectionList;
+
+
+
+    }
+
+
+
+    /*
+        * 获取评估列表
+    */
+    public function getRecordList($evalList)
+    {
+        $evalRecord  = [];
+        foreach($evalList as $recordId) {
+
+            $record = MarkingRecords::where('id',$recordId)->first();
+            $evalRecord[$recordId] = $record->name;
+        }
+
+        return $evalRecord;
+
+    }
+
+
 }

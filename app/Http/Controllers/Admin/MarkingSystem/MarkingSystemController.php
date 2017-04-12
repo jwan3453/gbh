@@ -192,6 +192,24 @@ class MarkingSystemController extends Controller
          $this->msService->exportExcel($recordId);
     }
 
+    /*
+     * 对比两个评估结果
+     *
+     * return file
+     */
+
+    public function compare($evalList)
+    {
+        $evalArr = explode(' ',trim($evalList));
+        $compareResult = $this->msService->compare($evalArr);
+        $recordList =  $this->msService->getRecordList($evalArr);
+
+
+
+        return view('Admin.MarkingSystem.compare')->with(['compareResult'=>$compareResult,'recordList'=>$recordList]);
+
+    }
+
 }
 
 ?>

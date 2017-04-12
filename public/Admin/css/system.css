@@ -227,6 +227,11 @@
     width:150px;
 }
 
+.marking-table input[type=checkbox]{
+    width:20px;
+    height:20px;
+}
+
 .s-name{
     font-size: 14px;
     font-weight: 600;
